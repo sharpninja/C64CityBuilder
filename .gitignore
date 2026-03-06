@@ -1,3 +1,7 @@
+# C64 City Builder build artifacts
+*.prg
+*.lbl
+
 # Prerequisites
 *.d
 
