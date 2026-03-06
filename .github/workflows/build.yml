@@ -1,0 +1,81 @@
+name: Build and Release C64 City Builder
+
+# Builds the PRG, creates a D64 disk image, and publishes a
+# GitHub Release (with both files attached) whenever a
+# version tag such as v1.0.0 is pushed.
+# On every other push / PR the job builds and uploads the
+# artifacts for inspection without creating a release.
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+
+jobs:
+  build:
+    name: Assemble PRG and create D64 disk image
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # required to create GitHub Releases
+
+    steps:
+      # ── 1. Check out source ────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Install tools ───────────────────────────────────────
+      - name: Install cc65 assembler and VICE (for c1541)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y cc65 vice
+
+      # ── 3. Build citybuilder.prg ───────────────────────────────
+      - name: Build PRG
+        run: make
+
+      # ── 4. Verify PRG ─────────────────────────────────────────
+      - name: Verify PRG header
+        run: |
+          echo "=== File info ==="
+          ls -lh citybuilder.prg
+          echo "=== First 16 bytes (should start 01 08 = load addr $0801) ==="
+          xxd -l 16 citybuilder.prg
+
+      # ── 5. Create D64 disk image ──────────────────────────────
+      - name: Create D64 disk image
+        run: |
+          # Format a new 1541 disk named "CITYBUILDER" with ID 01
+          # then write the PRG as "CITYBUILDER" on the disk.
+          c1541 -format "citybuilder,01" d64 citybuilder.d64 \
+                -write citybuilder.prg citybuilder
+
+      # ── 6. Verify D64 ─────────────────────────────────────────
+      - name: Verify D64 contents
+        run: |
+          echo "=== D64 file info ==="
+          ls -lh citybuilder.d64
+          echo "=== Disk directory listing ==="
+          c1541 citybuilder.d64 -list
+
+      # ── 7. Upload artifacts (available on every run) ──────────
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: citybuilder-${{ github.sha }}
+          path: |
+            citybuilder.prg
+            citybuilder.d64
+
+      # ── 8. Create GitHub Release (tagged pushes only) ─────────
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --title "C64 City Builder ${{ github.ref_name }}" \
+            --generate-notes \
+            citybuilder.prg#"C64 City Builder PRG (load with LOAD\"*\",8,1 then RUN)" \
+            citybuilder.d64#"C64 City Builder D64 disk image (mount in emulator or real hardware)"

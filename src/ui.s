@@ -154,7 +154,7 @@ print_dec16:
 
 @pd_emit:
     lda tmp3
-    adc #48             ; → screen code for '0'-'9'  (C=0 here from bcc)
+    ora #$30            ; digit 0-9 → screen code 48-57 ('0'-'9'); no carry dependency
     sta (ptr2_lo),y
 
     lda #COLOR_WHITE

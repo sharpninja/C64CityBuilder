@@ -18,7 +18,7 @@ ptr2_hi:        .res 1      ; Second pointer high
 
 ; --- Game state -----------------------------------------
 game_mode:      .res 1      ; MODE_BUILD / MODE_DEMO
-sel_building:   .res 1      ; Currently selected building type (1-9)
+sel_building:   .res 1      ; Currently selected building type (1-7, matches TILE_ROAD..TILE_FIRE)
 dirty_map:      .res 1      ; Non-zero = map needs full redraw
 dirty_ui:       .res 1      ; Non-zero = UI bar needs redraw
 

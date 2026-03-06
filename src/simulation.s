@@ -307,7 +307,9 @@ run_simulation:
     sta msg_timer
 @money_floor_ok:
 
-    ; Clamp money ≤ $7FFF (32767) so high byte stays positive
+    ; Clamp money ≤ $7FFF (32767) to keep money_hi bit 7 clear (positive).
+    ; bpl branches when bit 7 of money_hi = 0 (money < $8000) → no clamp needed.
+    ; Falls through when bit 7 = 1 (money ≥ $8000) → clamp to $7FFF.
     lda money_hi
     bpl @money_ceil_ok
     lda #$7F

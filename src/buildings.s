@@ -273,7 +273,7 @@ decrement_count:
 show_building_name:
     lda sel_building
     beq @sbn_done
-    cmp #8
+    cmp #TILE_WATER         ; valid range is 1-7 (TILE_ROAD..TILE_FIRE)
     bcs @sbn_done
     sec
     sbc #1                  ; 0-6 index into bld_names table
