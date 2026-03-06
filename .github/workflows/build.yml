@@ -54,23 +54,44 @@ jobs:
       # ── 4. Download and extract ROMs (cache miss only) ────────
       # Skipped on a cache hit; the three ROM files total ~20 KB but live
       # inside a ~50 MB source tarball, so caching them pays off quickly.
+      #
+      # We discover each ROM path dynamically from the tarball listing so the
+      # extraction is resilient to a leading "./" prefix and to any top-level
+      # directory name that differs from "vice-X.Y.Z" (e.g. a mirror rename).
       - name: Extract C64 ROMs from VICE source tarball
         if: steps.rom-cache.outputs.cache-hit != 'true'
         run: |
+          TARBALL=/tmp/vice-src.tar.gz
+          ROMDIR="${{ env.VICE_ROM_DIR }}"
+
           echo "Cache miss – downloading VICE ${{ env.VICE_VERSION }} source tarball…"
           curl -fsSL \
             "https://sourceforge.net/projects/vice-emu/files/releases/vice-${{ env.VICE_VERSION }}.tar.gz/download" \
-            -o /tmp/vice-src.tar.gz
+            -o "$TARBALL"
 
-          echo "Extracting C64 ROM files (kernal, basic, chargen)…"
-          mkdir -p "${{ env.VICE_ROM_DIR }}"
-          tar -xzf /tmp/vice-src.tar.gz \
-            -C "${{ env.VICE_ROM_DIR }}" \
-            --strip-components=3 \
-            "vice-${{ env.VICE_VERSION }}/data/C64/kernal" \
-            "vice-${{ env.VICE_VERSION }}/data/C64/basic"  \
-            "vice-${{ env.VICE_VERSION }}/data/C64/chargen"
-          rm /tmp/vice-src.tar.gz
+          echo "Discovering and extracting C64 ROM files…"
+          mkdir -p "$ROMDIR"
+
+          # For each ROM, find its actual path inside the tarball (handles any
+          # leading "./" and any top-level directory name), then strip exactly
+          # the right number of path components so only the bare filename lands
+          # in $ROMDIR.
+          for rom in kernal basic chargen; do
+            path=$(tar -tzf "$TARBALL" 2>/dev/null \
+                     | grep -E "(^|/)data/C64/${rom}$" \
+                     | head -1)
+            if [ -z "$path" ]; then
+              echo "ERROR: '$rom' not found in VICE tarball" >&2
+              exit 1
+            fi
+            # Count '/' separators; that equals the number of components to strip
+            # so that only the bare filename is written into $ROMDIR.
+            strip=$(printf '%s' "$path" | tr -cd '/' | wc -c)
+            echo "  Extracting '$path' (strip-components=$strip)"
+            tar -xzf "$TARBALL" -C "$ROMDIR" --strip-components="$strip" "$path"
+          done
+
+          rm "$TARBALL"
 
       - name: Verify C64 ROM files
         run: |
