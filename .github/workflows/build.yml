@@ -1,0 +1,159 @@
+name: Build and Release C64 City Builder
+
+# Builds the PRG, creates a D64 disk image, takes a VICE screenshot of the
+# title screen, and publishes a GitHub Release (with all three files attached)
+# whenever a version tag such as v1.0.0 is pushed.
+# On every other push / PR the job builds and uploads the artifacts for
+# inspection without creating a release.
+#
+# C64 ROM files are fetched from github.com/asig/vice-roms (sparse checkout
+# of the C64/ directory only) and stored in lib/c64-roms/ inside the
+# workspace.  They are cached under the key vice-c64-roms-<commit-sha> so
+# subsequent runs skip the checkout entirely.
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+
+env:
+  # Workspace-relative path where VICE ROM files are placed.
+  # The actual .bin files are listed in .gitignore and fetched at build time.
+  VICE_ROM_DIR: lib/c64-roms
+
+jobs:
+  build:
+    name: Assemble PRG, create D64, screenshot title screen
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # required to create GitHub Releases
+
+    steps:
+      # 1. Check out source
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Install tools
+      - name: Install cc65, VICE and Xvfb
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y cc65 vice xvfb
+
+      # 3. Restore cached C64 ROM files
+      # ROM files come from github.com/asig/vice-roms (C64/ directory).
+      # Cache key is pinned to the commit SHA of that repo so it is
+      # invalidated if the ROM source is ever updated.
+      - name: Restore C64 ROM cache
+        id: rom-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.VICE_ROM_DIR }}
+          key: vice-c64-roms-d546f4957fbb
+
+      # 4a. Sparse-checkout asig/vice-roms (cache miss only)
+      - name: Checkout C64 ROMs from asig/vice-roms
+        if: steps.rom-cache.outputs.cache-hit != 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: asig/vice-roms
+          ref: d546f4957fbb0861fb4940ab77158100ef716164
+          path: _vice-roms
+          sparse-checkout: C64
+
+      # 4b. Copy the three required ROM files into lib/c64-roms/ (cache miss only)
+      - name: Install C64 ROM files
+        if: steps.rom-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p "${{ env.VICE_ROM_DIR }}"
+          cp _vice-roms/C64/kernal-901227-03.bin  "${{ env.VICE_ROM_DIR }}/kernal"
+          cp _vice-roms/C64/basic-901226-01.bin   "${{ env.VICE_ROM_DIR }}/basic"
+          cp _vice-roms/C64/chargen-901225-01.bin "${{ env.VICE_ROM_DIR }}/chargen"
+          rm -rf _vice-roms
+
+      # 4c. Verify ROM files are present (every run)
+      - name: Verify C64 ROM files
+        run: |
+          echo "=== C64 ROM files in ${{ env.VICE_ROM_DIR }} ==="
+          ls -lh "${{ env.VICE_ROM_DIR }}/"
+
+      # 5. Build citybuilder.prg
+      - name: Build PRG
+        run: make
+
+      # 6. Verify PRG header
+      - name: Verify PRG header
+        run: |
+          echo "=== File info ==="
+          ls -lh citybuilder.prg
+          echo "=== First 16 bytes (should start 01 08 = load addr \$0801) ==="
+          xxd -l 16 citybuilder.prg
+
+      # 7. Create D64 disk image
+      - name: Create D64 disk image
+        run: |
+          c1541 -format "citybuilder,01" d64 citybuilder.d64 \
+                -write citybuilder.prg citybuilder
+
+      # 8. Verify D64 contents
+      - name: Verify D64 contents
+        run: |
+          echo "=== D64 file info ==="
+          ls -lh citybuilder.d64
+          echo "=== Disk directory listing ==="
+          c1541 citybuilder.d64 -list
+
+      # 9. Screenshot title screen with VICE
+      # Run x64sc headlessly under Xvfb.
+      #   -warp            maximum emulation speed (no real-time throttle)
+      #   -limitcycles N   exit after N CPU cycles (~5 s of C64 time at 1 MHz;
+      #                    far more than enough to fully render the title screen)
+      #   -exitscreenshot  write a PNG of the current frame on exit
+      - name: Screenshot title screen with VICE
+        run: |
+          Xvfb :99 -screen 0 1024x768x24 -ac &
+          XVFB_PID=$!
+          sleep 2
+
+          DISPLAY=:99 x64sc \
+            -kernal  "${{ env.VICE_ROM_DIR }}/kernal"  \
+            -basic   "${{ env.VICE_ROM_DIR }}/basic"   \
+            -chargen "${{ env.VICE_ROM_DIR }}/chargen" \
+            -warp \
+            -limitcycles 5000000 \
+            +confirmonexit \
+            +saveres \
+            +sound \
+            -autostart citybuilder.prg \
+            -exitscreenshot title-screen.png \
+            2>&1 | grep -v "^$" || true
+
+          kill "$XVFB_PID" 2>/dev/null || true
+
+          echo "=== Screenshot info ==="
+          ls -lh title-screen.png
+          file title-screen.png
+
+      # 10. Upload artifacts (every run)
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: citybuilder-${{ github.sha }}
+          path: |
+            citybuilder.prg
+            citybuilder.d64
+            title-screen.png
+
+      # 11. Create GitHub Release (tagged pushes only)
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --title "C64 City Builder ${{ github.ref_name }}" \
+            --generate-notes \
+            citybuilder.prg#"C64 City Builder PRG (load with LOAD\"*\",8,1 then RUN)" \
+            citybuilder.d64#"C64 City Builder D64 disk image (mount in emulator or real hardware)" \
+            title-screen.png#"Title screen screenshot (captured by VICE emulator)"
