@@ -2,6 +2,12 @@
 *.prg
 *.d64
 *.lbl
+title-screen.png
+
+# C64 ROM files (downloaded at build time from asig/vice-roms; not committed)
+lib/c64-roms/kernal
+lib/c64-roms/basic
+lib/c64-roms/chargen
 
 # Prerequisites
 *.d
