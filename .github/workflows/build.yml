@@ -64,28 +64,37 @@ jobs:
           TARBALL=/tmp/vice-src.tar.gz
           ROMDIR="${{ env.VICE_ROM_DIR }}"
 
+          # ── Download the VICE source tarball ──────────────────────────────
+          # The SourceForge tarball (vice-X.Y.Z.tar.gz) is the only freely
+          # available package that ships the C64 ROM images alongside the
+          # emulator source code.  The +dfsg variant used by Debian/Ubuntu
+          # has the ROMs stripped out; we therefore fetch from SourceForge.
           echo "Cache miss – downloading VICE ${{ env.VICE_VERSION }} source tarball…"
           curl -fsSL \
             "https://sourceforge.net/projects/vice-emu/files/releases/vice-${{ env.VICE_VERSION }}.tar.gz/download" \
             -o "$TARBALL"
+          echo "Tarball size: $(wc -c < "$TARBALL") bytes"
 
-          echo "Discovering and extracting C64 ROM files…"
+          # ── Show which C64-related files are present ───────────────────────
+          echo "--- C64 entries in tarball ---"
+          tar -tzf "$TARBALL" 2>/dev/null | grep -iE "C64|kernal|basic|chargen" | head -40 || true
+          echo "--- end listing ---"
+
+          # ── Locate and extract each ROM ────────────────────────────────────
+          # Search for the file named exactly 'kernal', 'basic', or 'chargen'
+          # anywhere under a C64/ directory tree, regardless of leading './',
+          # top-level directory name, or presence of a 'data/' prefix.
           mkdir -p "$ROMDIR"
-
-          # For each ROM, find its actual path inside the tarball (handles any
-          # leading "./" and any top-level directory name), then strip exactly
-          # the right number of path components so only the bare filename lands
-          # in $ROMDIR.
           for rom in kernal basic chargen; do
             path=$(tar -tzf "$TARBALL" 2>/dev/null \
-                     | grep -E "(^|/)data/C64/${rom}$" \
+                     | grep -E "(^|/)C64/${rom}$" \
                      | head -1)
             if [ -z "$path" ]; then
               echo "ERROR: '$rom' not found in VICE tarball" >&2
+              echo "Full listing of tarball (first 100 lines):"
+              tar -tzf "$TARBALL" 2>/dev/null | head -100 || true
               exit 1
             fi
-            # Count '/' separators; that equals the number of components to strip
-            # so that only the bare filename is written into $ROMDIR.
             strip=$(printf '%s' "$path" | tr -cd '/' | wc -c)
             echo "  Extracting '$path' (strip-components=$strip)"
             tar -xzf "$TARBALL" -C "$ROMDIR" --strip-components="$strip" "$path"
