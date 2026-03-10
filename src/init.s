@@ -13,6 +13,12 @@
 init_system:
     sei                         ; disable IRQ while we poke hardware
 
+    ; Force lowercase-capable character set during startup (POKE 53272,23 equivalent).
+    lda VIC_VMEM_CTRL
+    and #$F1                   ; clear charset bits 1-3
+    ora #$06                   ; set charset bits for PETSCII set 2 (big/small chars)
+    sta VIC_VMEM_CTRL
+
     ; VIC-II colours
     lda #COLOR_BLACK
     sta VIC_BORDER_CLR

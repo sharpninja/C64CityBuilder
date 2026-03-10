@@ -14,35 +14,18 @@ try_place_building:
     bne @tp_sel_ok
     rts                     ; 0 = nothing selected
 @tp_sel_ok:
-    cmp #TILE_WATER
-    bne @tp_not_water
-    rts
-@tp_not_water:
-    cmp #TILE_TREE
-    bne @tp_not_tree
-    rts
-@tp_not_tree:
-
-    ; Can't build on a water tile in the map
+    ; If already this tile type, avoid double-spend.
     lda cursor_x
     ldx cursor_y
     jsr get_tile
+    cmp sel_building
+    beq @tp_same_tile
+
+    ; Can't build on water or tree tiles
     cmp #TILE_WATER
-    bne @tp_check_cost
-    ; Show can't-build message
-    lda #<str_msg_cantbuild
-    sta ptr_lo
-    lda #>str_msg_cantbuild
-    sta ptr_hi
-    ldx #0
-    ldy #UI_ROW_MSG
-    lda #COLOR_ORANGE
-    jsr print_str_col
-    lda #90
-    sta msg_timer
-    lda #1
-    sta dirty_ui
-    rts
+    beq @tp_cant_build
+    cmp #TILE_TREE
+    beq @tp_cant_build
 
 @tp_check_cost:
     ; 16-bit: money - cost; negative result → not enough
@@ -74,6 +57,25 @@ try_place_building:
     sta msg_timer
     lda #1
     sta dirty_ui
+    rts
+
+@tp_cant_build:
+    ; Show can't-build message
+    lda #<str_msg_cantbuild
+    sta ptr_lo
+    lda #>str_msg_cantbuild
+    sta ptr_hi
+    ldx #0
+    ldy #UI_ROW_MSG
+    lda #COLOR_ORANGE
+    jsr print_str_col
+    lda #90
+    sta msg_timer
+    lda #1
+    sta dirty_ui
+    rts
+
+@tp_same_tile:
     rts
 
 @tp_afford:
@@ -177,36 +179,57 @@ place_tile_at:
 increment_count:
     cmp #TILE_ROAD
     bne @inc1
+    lda cnt_roads
+    cmp #$FF
+    beq @inc_done
     inc cnt_roads
     rts
 @inc1:
     cmp #TILE_HOUSE
     bne @inc2
+    lda cnt_houses
+    cmp #$FF
+    beq @inc_done
     inc cnt_houses
     rts
 @inc2:
     cmp #TILE_FACTORY
     bne @inc3
+    lda cnt_factories
+    cmp #$FF
+    beq @inc_done
     inc cnt_factories
     rts
 @inc3:
     cmp #TILE_PARK
     bne @inc4
+    lda cnt_parks
+    cmp #$FF
+    beq @inc_done
     inc cnt_parks
     rts
 @inc4:
     cmp #TILE_POWER
     bne @inc5
+    lda cnt_power
+    cmp #$FF
+    beq @inc_done
     inc cnt_power
     rts
 @inc5:
     cmp #TILE_POLICE
     bne @inc6
+    lda cnt_police
+    cmp #$FF
+    beq @inc_done
     inc cnt_police
     rts
 @inc6:
     cmp #TILE_FIRE
     bne @inc_done
+    lda cnt_fire
+    cmp #$FF
+    beq @inc_done
     inc cnt_fire
 @inc_done:
     rts

@@ -39,8 +39,10 @@ render_map:
     lda #>COLOR_BASE
     sta tmp2
 
-    ; Three full 256-byte pages
-    ldx #3
+    ; Three full 256-byte pages. Keep the page counter out of X because
+    ; X is reused below as the tile-table index for each map byte.
+    lda #3
+    sta tmp4
 @rm_pg:
     ldy #0
 @rm_byte:
@@ -55,7 +57,7 @@ render_map:
     inc ptr_hi
     inc ptr2_hi
     inc tmp2
-    dex
+    dec tmp4
     bne @rm_pg
 
     ; Remaining 32 bytes  (800 - 768 = 32)
@@ -239,4 +241,36 @@ update_cursor_display:
     lda tile_color,x
     sta (ptr_lo),y
 @ucd_done:
+    rts
+
+; ------------------------------------------------------------
+; restore_cursor_color
+; Restore the colour RAM byte under the cursor to the tile's base colour.
+; ------------------------------------------------------------
+restore_cursor_color:
+    lda cursor_x
+    ldx cursor_y
+    jsr get_tile
+    tax
+
+    ldy cursor_y
+    lda mul40_lo,y
+    clc
+    adc #<COLOR_BASE
+    sta ptr_lo
+    lda mul40_hi,y
+    adc #>COLOR_BASE
+    sta ptr_hi
+
+    lda cursor_x
+    clc
+    adc ptr_lo
+    sta ptr_lo
+    bcc @rcc_no_carry
+    inc ptr_hi
+@rcc_no_carry:
+
+    ldy #0
+    lda tile_color,x
+    sta (ptr_lo),y
     rts

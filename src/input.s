@@ -73,22 +73,26 @@ read_input:
 
     ; ---- Movement handlers --------------------------------
 @ri_up:
+    jsr restore_cursor_color
     lda cursor_y
     beq @ri_done
     dec cursor_y
     jmp @ri_moved
 @ri_down:
+    jsr restore_cursor_color
     lda cursor_y
     cmp #MAP_HEIGHT - 1
     beq @ri_done
     inc cursor_y
     jmp @ri_moved
 @ri_left:
+    jsr restore_cursor_color
     lda cursor_x
     beq @ri_done
     dec cursor_x
     jmp @ri_moved
 @ri_right:
+    jsr restore_cursor_color
     lda cursor_x
     cmp #MAP_WIDTH - 1
     beq @ri_done
@@ -130,10 +134,14 @@ read_input:
 
     ; ---- Build / demolish / quit --------------------------
 @ri_build:
+    lda #MODE_BUILD
+    sta game_mode
     jsr try_place_building
     rts
 
 @ri_demo:
+    lda #MODE_DEMO
+    sta game_mode
     jsr try_demolish
     rts
 
