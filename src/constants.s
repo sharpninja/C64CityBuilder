@@ -6,16 +6,24 @@
 ; ------------------------------------------------------------
 ; Commodore 64  VIC-II registers ($D000-$D3FF)
 ; ------------------------------------------------------------
+VIC_SPR0_X      = $D000     ; Sprite 0 X position (low 8 bits)
+VIC_SPR0_Y      = $D001     ; Sprite 0 Y position
+VIC_SPR_X_MSB   = $D010     ; Sprite X high-bit register
 VIC_SPRITE_EN   = $D015     ; Sprite enable
+VIC_SPR_EXP_Y   = $D017     ; Sprite Y expansion
 VIC_CTRL1       = $D011     ; Control register 1 (screen on/off, raster)
 VIC_RASTER      = $D012     ; Raster compare
 VIC_CTRL2       = $D016     ; Control register 2 (multicolor etc.)
 VIC_VMEM_CTRL   = $D018     ; Video memory control (screen/char base)
 VIC_IRQ_STATUS  = $D019     ; Interrupt status
 VIC_IRQ_CTRL    = $D01A     ; Interrupt control
+VIC_SPR_BG_PRIO = $D01B     ; Sprite priority against background
+VIC_SPR_MC      = $D01C     ; Sprite multicolor enable
+VIC_SPR_EXP_X   = $D01D     ; Sprite X expansion
 VIC_BORDER_CLR  = $D020     ; Border color
 VIC_BKG_CLR0    = $D021     ; Background color 0
 VIC_BKG_CLR1    = $D022     ; Background color 1
+VIC_SPR0_COLOR  = $D027     ; Sprite 0 color
 
 ; ------------------------------------------------------------
 ; CIA #1 registers - keyboard & joystick ($DC00-$DCFF)
@@ -24,6 +32,14 @@ CIA1_PRA        = $DC00     ; Port A: keyboard column select
 CIA1_PRB        = $DC01     ; Port B: keyboard row read
 CIA1_DDRA       = $DC02     ; Port A direction register
 CIA1_DDRB       = $DC03     ; Port B direction register
+CIA2_PRA        = $DD00     ; Port A: VIC bank select (bits 0-1)
+
+; ------------------------------------------------------------
+; 6510 processor port
+; ------------------------------------------------------------
+CPU_PORT        = $01       ; Memory configuration / CHAREN control
+IRQ_VECTOR_LO   = $0314     ; IRQ vector low byte
+IRQ_VECTOR_HI   = $0315     ; IRQ vector high byte
 
 ; ------------------------------------------------------------
 ; C64 Memory map
@@ -31,6 +47,10 @@ CIA1_DDRB       = $DC03     ; Port B direction register
 SCREEN_BASE     = $0400     ; Default screen RAM (40×25)
 COLOR_BASE      = $D800     ; Color RAM (mirrors screen layout)
 SCREEN_SIZE     = 1000      ; 40×25 characters
+CHARSET_RAM     = $3000     ; RAM copy of the lowercase/uppercase charset
+SPRITE0_DATA    = $0340     ; Cassette buffer area, safe during gameplay
+SPRITE0_PTR     = SPRITE0_DATA / 64
+SPRITE0_PTR_LOC = SCREEN_BASE + $03F8
 
 ; ------------------------------------------------------------
 ; KERNAL system variables (zero page / RAM)
@@ -49,6 +69,7 @@ KERNAL_CHROUT   = $FFD2     ; Output character in A to current device
 KERNAL_SETMSG   = $FF90     ; Set KERNAL messages on/off
 KERNAL_IOINIT   = $FDA3     ; Init I/O devices
 KERNAL_CINT     = $FF81     ; Init CIA and screen
+KERNAL_IRQ      = $EA31     ; Standard IRQ handler entry
 
 ; ------------------------------------------------------------
 ; C64 hardware colors (0-15)
@@ -82,6 +103,8 @@ UI_ROW_STATS    = 21        ; Year / cash / pop stats
 UI_ROW_MENU     = 22        ; Building-selector menu
 UI_ROW_MSG      = 23        ; Message / mode indicator
 UI_ROW_HELP     = 24        ; Key-bindings help line
+RASTER_SPLIT_TOP    = 48    ; Restore top playfield background near frame start
+RASTER_SPLIT_LOWER  = 210   ; Switch lower 5 text rows to black
 
 ; ------------------------------------------------------------
 ; Tile types  (one byte per tile in map array)
@@ -97,6 +120,10 @@ TILE_FIRE       = 7         ; Fire station
 TILE_WATER      = 8         ; Water / river (decorative)
 TILE_TREE       = 9         ; Forest (decorative)
 TILE_COUNT      = 10        ; Total tile-type count
+TILE_TYPE_MASK      = $0F   ; Low nibble stores the base tile type
+TILE_DENSITY_MASK   = $30   ; Bits 4-5 store density level (0-3 => 1-4)
+TILE_DENSITY_STEP   = $10   ; One density level in the encoded tile byte
+TILE_MAX_DENSITY    = $30   ; Highest encoded density (level 4)
 
 ; ------------------------------------------------------------
 ; Building costs (low byte / high byte split for 16-bit math)
@@ -194,6 +221,8 @@ INITIAL_CRIME       = 40
 ; ------------------------------------------------------------
 CURSOR_COLOR        = COLOR_WHITE
 CURSOR_BLINK_RATE   = 25    ; Frames between blink state changes
+CURSOR_SPR_X_BASE   = 17    ; 24-pixel text origin minus 7-pixel box inset
+CURSOR_SPR_Y_BASE   = 44    ; 50-pixel text origin minus 6-pixel box inset
 
 ; ------------------------------------------------------------
 ; Map total size

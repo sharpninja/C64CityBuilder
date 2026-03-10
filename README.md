@@ -9,7 +9,9 @@ A modern city-building game for the **Commodore 64**, written entirely in
 
 Build and manage a growing city on the classic Commodore 64 hardware.
 Lay roads and utilities, zone housing and industry, and keep your citizens
-happy while balancing the city budget.
+happy while balancing the city budget. Rebuilding on an existing structure
+upgrades that tile through four density levels, with colour indicating how
+intensely the tile is developed.
 
 ### Controls
 
@@ -23,14 +25,14 @@ happy while balancing the city budget.
 | `5` | Select **Power Plant** ($1 000) |
 | `6` | Select **Police Station** ($300) |
 | `7` | Select **Fire Station** ($300) |
-| `RETURN` or `B` | Build selected building at cursor |
-| `X` | Demolish building at cursor |
+| `RETURN` or `B` | Build selected building or upgrade the matching tile's density |
+| `X` | Reduce density by one level, or demolish when a tile is at base density |
 | `Q` | Return to title screen |
 
 ### Screen Layout
 
 ```
-Rows  0-19  │  40×20 city map (cursor blinks white)
+Rows  0-19  │  40×20 city map (cursor shown as a white box sprite)
 Row  20     │  PWR / HAP / CRM stats
 Row  21     │  Year / Cash / Population
 Row  22     │  Building selector menu (selected entry highlighted yellow)
@@ -48,6 +50,8 @@ Every second (~60 frames) the city simulation runs:
 * **Power** – power plants supply 50 units each; houses need 5, factories 20
 * **Happiness** – base 50, +10 per park, −10 if power deficit, −½ crime
 * **Crime** – base 40, −10 per police station
+* **Density** – buildable tiles have four density levels; each level adds one
+  more unit of that building type to the simulation and changes the tile colour
 * **Population** – grows toward `houses × 10` when happy ≥ 50; shrinks when
   happiness < 30
 * **Year** – advances every 12 simulation ticks (~12 seconds real time)
@@ -113,11 +117,11 @@ C64CityBuilder/
     ├── init.s        – hardware initialisation, map setup
     ├── title.s       – title / credits screen
     ├── input.s       – KERNAL GETIN keyboard handler
-    ├── map.s         – BSS city_map array, tile rendering, cursor blink
-    ├── buildings.s   – build / demolish logic, building counts
+    ├── map.s         – BSS city_map array, tile rendering, sprite cursor
+    ├── buildings.s   – build / upgrade / demolish logic, density-aware counts
     ├── simulation.s  – economic & population simulation tick
     ├── ui.s          – status-bar renderer, decimal number printer
-    └── data.s        – lookup tables (mul40, tile chars/colours, costs, strings)
+    └── data.s        – lookup tables (mul40, tile chars/colours, density ramps, costs, strings)
 ```
 
 ---

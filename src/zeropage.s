@@ -73,3 +73,8 @@ cur_save_col:   .res 1      ; Original colour byte at cursor tile
 
 ; --- Blink state ---------------------------------------
 blink_state:    .res 1      ; 0 = cursor highlight off, 1 = on
+split_top_bg:   .res 1      ; Background colour used above the raster split
+raster_phase:   .res 1      ; 0 = top-half IRQ next, 1 = lower-UI IRQ next
+tile_col:       .res 1      ; Current tile column for adjacency-aware rendering
+tile_row:       .res 1      ; Current tile row for adjacency-aware rendering
+road_mask:      .res 1      ; NSEW neighbor mask for dynamic road glyph lookup

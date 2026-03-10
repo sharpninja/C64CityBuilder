@@ -28,7 +28,7 @@ mul40_hi:
 ; ------------------------------------------------------------
 tile_char:
     .byte 32        ; TILE_EMPTY    space
-    .byte 43        ; TILE_ROAD     '+'
+    .byte 64        ; TILE_ROAD     fallback horizontal line
     .byte  8        ; TILE_HOUSE    'H'
     .byte  6        ; TILE_FACTORY  'F'
     .byte 16        ; TILE_PARK     'P'
@@ -37,6 +37,31 @@ tile_char:
     .byte 19        ; TILE_FIRE     'S' (Station)
     .byte 42        ; TILE_WATER    '*'
     .byte 20        ; TILE_TREE     'T'
+
+; ------------------------------------------------------------
+; Road shape → screen character (C64 screen codes).
+; Index bits are NSEW = 1,2,4,8 and the glyphs come from the
+; PETSCII line-drawing set:
+;   64='-'  91='+'  93='|'  107='├'  109='└'  110='┐'
+;   112='┌' 113='┴' 114='┬' 115='┤' 125='┘'
+; ------------------------------------------------------------
+road_shape_char:
+    .byte 64        ; 0000 isolated road -> horizontal stub
+    .byte 93        ; 0001 N
+    .byte 93        ; 0010 S
+    .byte 93        ; 0011 N+S
+    .byte 64        ; 0100 E
+    .byte 109       ; 0101 N+E -> └
+    .byte 112       ; 0110 S+E -> ┌
+    .byte 107       ; 0111 N+S+E -> ├
+    .byte 64        ; 1000 W
+    .byte 125       ; 1001 N+W -> ┘
+    .byte 110       ; 1010 S+W -> ┐
+    .byte 115       ; 1011 N+S+W -> ┤
+    .byte 64        ; 1100 E+W
+    .byte 113       ; 1101 N+E+W -> ┴
+    .byte 114       ; 1110 S+E+W -> ┬
+    .byte 91        ; 1111 N+S+E+W -> ┼
 
 ; ------------------------------------------------------------
 ; Tile → foreground colour (0-15 palette)
@@ -52,6 +77,35 @@ tile_color:
     .byte COLOR_LTRED       ; TILE_FIRE
     .byte COLOR_LTBLUE      ; TILE_WATER
     .byte COLOR_GREEN       ; TILE_TREE
+
+; ------------------------------------------------------------
+; Base offset into density_color for each tile type.
+; Buildable tiles use four-entry colour ramps; decorative tiles fall
+; back to tile_color above.
+; ------------------------------------------------------------
+tile_density_base:
+    .byte 0                 ; TILE_EMPTY
+    .byte 0                 ; TILE_ROAD
+    .byte 4                 ; TILE_HOUSE
+    .byte 8                 ; TILE_FACTORY
+    .byte 12                ; TILE_PARK
+    .byte 16                ; TILE_POWER
+    .byte 20                ; TILE_POLICE
+    .byte 24                ; TILE_FIRE
+    .byte 0                 ; TILE_WATER
+    .byte 0                 ; TILE_TREE
+
+; ------------------------------------------------------------
+; Buildable tile colours by density level 1-4.
+; ------------------------------------------------------------
+density_color:
+    .byte COLOR_DKGRAY, COLOR_MDGRAY, COLOR_LTGRAY,  COLOR_WHITE
+    .byte COLOR_YELLOW, COLOR_ORANGE, COLOR_LTRED,   COLOR_WHITE
+    .byte COLOR_BROWN,  COLOR_RED,    COLOR_LTRED,   COLOR_ORANGE
+    .byte COLOR_LTGREEN, COLOR_CYAN,  COLOR_YELLOW,  COLOR_WHITE
+    .byte COLOR_LTGRAY, COLOR_LTBLUE, COLOR_YELLOW,  COLOR_WHITE
+    .byte COLOR_BLUE,   COLOR_LTBLUE, COLOR_CYAN,    COLOR_WHITE
+    .byte COLOR_RED,    COLOR_LTRED,  COLOR_ORANGE,  COLOR_YELLOW
 
 ; ------------------------------------------------------------
 ; Building cost tables (16-bit, lo/hi split)
@@ -78,6 +132,24 @@ pow10_lo:
 pow10_hi:
     .byte >10000, >1000, >100, >10, >1
 
+; ------------------------------------------------------------
+; Sprite 0 data: hollow box centred over one text cell.
+; 21 rows * 3 bytes + 1 padding byte = 64-byte sprite block.
+; ------------------------------------------------------------
+cursor_sprite_data:
+    .repeat 6
+        .byte $00, $00, $00
+    .endrepeat
+    .byte $01, $FF, $80
+    .repeat 8
+        .byte $01, $00, $80
+    .endrepeat
+    .byte $01, $FF, $80
+    .repeat 5
+        .byte $00, $00, $00
+    .endrepeat
+    .byte $00
+
 ; ============================================================
 ; Screen-code strings  (null-terminated, $00 = end-of-string)
 ;
@@ -103,8 +175,8 @@ str_title4:     .byte "PRESS ANY KEY TO START", $00
 str_title_key:  .byte "CONTROLS:", $00
 str_title_c1:   .byte "W/A/S/D OR ARROWS - MOVE", $00
 str_title_c2:   .byte "1-7  - SELECT BUILDING", $00
-str_title_c3:   .byte "RETURN/B  - BUILD", $00
-str_title_c4:   .byte "X  - DEMOLISH BUILDING", $00
+str_title_c3:   .byte "RETURN/B  - BUILD OR UPGRADE", $00
+str_title_c4:   .byte "X  - REDUCE OR DEMOLISH", $00
 str_title_c5:   .byte "Q  - RETURN TO TITLE", $00
 
 ; ---- Stats row label prefixes (screen codes) ---------------
@@ -126,15 +198,18 @@ str_mode_demo:  .byte "MODE:DEMO  ", $00
 
 ; ---- Message strings ---------------------------------------
 str_msg_placed:     .byte "BUILDING PLACED!         ", $00
+str_msg_upgraded:   .byte "DENSITY UPGRADED.        ", $00
+str_msg_maxdense:   .byte "ALREADY MAX DENSITY.     ", $00
 str_msg_notenough:  .byte "NOT ENOUGH CASH!         ", $00
 str_msg_demolished: .byte "DEMOLISHED.              ", $00
+str_msg_downgraded: .byte "DENSITY REDUCED.         ", $00
 str_msg_cantbuild:  .byte "CANNOT BUILD THERE.      ", $00
 str_msg_bankrupt:   .byte "*** CITY IS BANKRUPT ***!", $00
 str_msg_empty:      .byte "                         ", $00
 
 ; ---- Help row (up to 40 chars) -----------------------------
 str_help:
-    .byte "W/A/S/D:MOVE 1-7:SEL RETURN:BUILD X:DEMO", $00
+    .byte "W/A/S/D:MOVE 1-7:SEL B/RET:+DEN X:-DEN", $00
 
 ; ============================================================
 ; Building name strings (for selection feedback in msg row)

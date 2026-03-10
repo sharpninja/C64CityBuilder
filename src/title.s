@@ -18,6 +18,10 @@ TITLE_CTRL_CLR  = COLOR_LTGREEN
 ; Trashes A, X, Y.
 ; ------------------------------------------------------------
 show_title:
+    jsr disable_cursor_sprite
+    lda #TITLE_BG_COLOR
+    sta split_top_bg
+
     ; Set title colours
     lda #TITLE_BORDER
     sta VIC_BORDER_CLR
@@ -164,6 +168,8 @@ show_title:
     beq @wait_key       ; A=0 means empty
 
     ; Restore game colours
+    lda #COLOR_GREEN
+    sta split_top_bg
     lda #COLOR_BLACK
     sta VIC_BORDER_CLR
     lda #COLOR_GREEN

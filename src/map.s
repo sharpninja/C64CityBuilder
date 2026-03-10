@@ -39,6 +39,10 @@ render_map:
     lda #>COLOR_BASE
     sta tmp2
 
+    lda #0
+    sta tile_col
+    sta tile_row
+
     ; Three full 256-byte pages. Keep the page counter out of X because
     ; X is reused below as the tile-table index for each map byte.
     lda #3
@@ -46,12 +50,21 @@ render_map:
 @rm_pg:
     ldy #0
 @rm_byte:
-    lda (ptr_lo),y      ; tile type
-    tax
-    lda tile_char,x
+    lda (ptr_lo),y      ; raw tile byte (type + density)
+    sta tmp3
+    jsr get_tile_screen_char
     sta (ptr2_lo),y     ; → screen RAM
-    lda tile_color,x
+    lda tmp3
+    jsr get_tile_draw_color
     sta (tmp1),y        ; → colour RAM
+    inc tile_col
+    lda tile_col
+    cmp #MAP_WIDTH
+    bne @rm_next
+    lda #0
+    sta tile_col
+    inc tile_row
+@rm_next:
     iny
     bne @rm_byte
     inc ptr_hi
@@ -64,11 +77,20 @@ render_map:
     ldy #0
 @rm_rem:
     lda (ptr_lo),y
-    tax
-    lda tile_char,x
+    sta tmp3
+    jsr get_tile_screen_char
     sta (ptr2_lo),y
-    lda tile_color,x
+    lda tmp3
+    jsr get_tile_draw_color
     sta (tmp1),y
+    inc tile_col
+    lda tile_col
+    cmp #MAP_WIDTH
+    bne @rm_rem_next
+    lda #0
+    sta tile_col
+    inc tile_row
+@rm_rem_next:
     iny
     cpy #(MAP_SIZE - 768)   ; 32
     bne @rm_rem
@@ -102,11 +124,16 @@ render_tile:
     adc #>city_map
     sta ptr2_hi
     ldy #0
-    lda (ptr2_lo),y     ; tile type
-    tax
+    lda (ptr2_lo),y     ; raw tile byte
+    sta tmp3
+    lda tmp1
+    sta tile_col
+    lda tmp2
+    sta tile_row
 
     ; Write char to SCREEN_BASE + offset
-    lda tile_char,x
+    lda tmp3
+    jsr get_tile_screen_char
     pha
     lda ptr_lo
     clc
@@ -119,7 +146,8 @@ render_tile:
     sta (ptr2_lo),y     ; Y still 0
 
     ; Write colour to COLOR_BASE + offset
-    lda tile_color,x
+    lda tmp3
+    jsr get_tile_draw_color
     pha
     lda ptr_lo
     clc
@@ -130,6 +158,214 @@ render_tile:
     sta ptr2_hi
     pla
     sta (ptr2_lo),y
+    rts
+
+; ------------------------------------------------------------
+; render_road_neighborhood
+; Redraw the tile at (tmp1,tmp2) and any adjacent road tiles so
+; line junctions update immediately after road placement/removal.
+; ------------------------------------------------------------
+render_road_neighborhood:
+    lda tmp1
+    pha
+    lda tmp2
+    pha
+    jsr render_tile
+    pla
+    sta tmp2
+    pla
+    sta tmp1
+
+    lda tmp2
+    beq @rrn_south
+    lda tmp1
+    pha
+    lda tmp2
+    pha
+    dec tmp2
+    lda tmp1
+    ldx tmp2
+    jsr get_tile
+    and #TILE_TYPE_MASK
+    cmp #TILE_ROAD
+    bne @rrn_restore_north
+    jsr render_tile
+@rrn_restore_north:
+    pla
+    sta tmp2
+    pla
+    sta tmp1
+
+@rrn_south:
+    lda tmp2
+    cmp #MAP_HEIGHT - 1
+    beq @rrn_east
+    lda tmp1
+    pha
+    lda tmp2
+    pha
+    inc tmp2
+    lda tmp1
+    ldx tmp2
+    jsr get_tile
+    and #TILE_TYPE_MASK
+    cmp #TILE_ROAD
+    bne @rrn_restore_south
+    jsr render_tile
+@rrn_restore_south:
+    pla
+    sta tmp2
+    pla
+    sta tmp1
+
+@rrn_east:
+    lda tmp1
+    cmp #MAP_WIDTH - 1
+    beq @rrn_west
+    lda tmp1
+    pha
+    lda tmp2
+    pha
+    inc tmp1
+    lda tmp1
+    ldx tmp2
+    jsr get_tile
+    and #TILE_TYPE_MASK
+    cmp #TILE_ROAD
+    bne @rrn_restore_east
+    jsr render_tile
+@rrn_restore_east:
+    pla
+    sta tmp2
+    pla
+    sta tmp1
+
+@rrn_west:
+    lda tmp1
+    beq @rrn_done
+    lda tmp1
+    pha
+    lda tmp2
+    pha
+    dec tmp1
+    lda tmp1
+    ldx tmp2
+    jsr get_tile
+    and #TILE_TYPE_MASK
+    cmp #TILE_ROAD
+    bne @rrn_restore_west
+    jsr render_tile
+@rrn_restore_west:
+    pla
+    sta tmp2
+    pla
+    sta tmp1
+@rrn_done:
+    rts
+
+; ------------------------------------------------------------
+; get_tile_screen_char
+; A = raw tile byte, returns the character to draw for the
+; current tile. Roads are adjacency-aware.
+; ------------------------------------------------------------
+get_tile_screen_char:
+    and #TILE_TYPE_MASK
+    cmp #TILE_ROAD
+    beq @gtsc_road
+    tax
+    lda tile_char,x
+    rts
+@gtsc_road:
+    jmp get_road_screen_char
+
+; ------------------------------------------------------------
+; get_road_screen_char
+; Uses tile_col/tile_row to inspect adjacent road tiles and
+; returns the matching PETSCII line-drawing character.
+; ------------------------------------------------------------
+get_road_screen_char:
+    tya
+    pha
+    lda ptr_lo
+    pha
+    lda ptr_hi
+    pha
+    lda tmp3
+    pha
+
+    lda #0
+    sta road_mask
+
+    lda tile_row
+    beq @grsc_south
+    lda tile_col
+    ldx tile_row
+    dex
+    jsr get_tile
+    and #TILE_TYPE_MASK
+    cmp #TILE_ROAD
+    bne @grsc_south
+    lda road_mask
+    ora #$01
+    sta road_mask
+
+@grsc_south:
+    lda tile_row
+    cmp #MAP_HEIGHT - 1
+    beq @grsc_east
+    lda tile_col
+    ldx tile_row
+    inx
+    jsr get_tile
+    and #TILE_TYPE_MASK
+    cmp #TILE_ROAD
+    bne @grsc_east
+    lda road_mask
+    ora #$02
+    sta road_mask
+
+@grsc_east:
+    lda tile_col
+    cmp #MAP_WIDTH - 1
+    beq @grsc_west
+    clc
+    adc #1
+    ldx tile_row
+    jsr get_tile
+    and #TILE_TYPE_MASK
+    cmp #TILE_ROAD
+    bne @grsc_west
+    lda road_mask
+    ora #$04
+    sta road_mask
+
+@grsc_west:
+    lda tile_col
+    beq @grsc_lookup
+    sec
+    sbc #1
+    ldx tile_row
+    jsr get_tile
+    and #TILE_TYPE_MASK
+    cmp #TILE_ROAD
+    bne @grsc_lookup
+    lda road_mask
+    ora #$08
+    sta road_mask
+
+@grsc_lookup:
+    ldx road_mask
+    lda road_shape_char,x
+    tax
+    pla
+    sta tmp3
+    pla
+    sta ptr_hi
+    pla
+    sta ptr_lo
+    pla
+    tay
+    txa
     rts
 
 ; ------------------------------------------------------------
@@ -192,55 +428,69 @@ set_tile:
 
 ; ------------------------------------------------------------
 ; update_cursor_display
-; Blink the cursor by toggling the colour of the current tile.
+; Move sprite 0 so its hollow box frames the selected map tile.
 ; ------------------------------------------------------------
 update_cursor_display:
-    dec blink_timer
-    bne @ucd_done
+    lda #0
+    sta tmp1
 
-    lda #CURSOR_BLINK_RATE
-    sta blink_timer
-    lda blink_state
-    eor #1
-    sta blink_state
-
-    ; Compute colour RAM address for cursor
-    ldy cursor_y
-    lda mul40_lo,y
+    lda cursor_x
+    asl
+    rol tmp1
+    asl
+    rol tmp1
+    asl
+    rol tmp1
     clc
-    adc cursor_x
-    sta ptr_lo
-    lda mul40_hi,y
+    adc #CURSOR_SPR_X_BASE
+    sta VIC_SPR0_X
+
+    lda tmp1
     adc #0
-    sta ptr_hi
-    lda ptr_lo
+    tax
+    lda VIC_SPR_X_MSB
+    and #$FE
+    cpx #0
+    beq @ucd_store_x
+    ora #$01
+@ucd_store_x:
+    sta VIC_SPR_X_MSB
+
+    lda cursor_y
+    asl
+    asl
+    asl
     clc
-    adc #<COLOR_BASE
-    sta ptr_lo
-    lda ptr_hi
-    adc #>COLOR_BASE
-    sta ptr_hi
-
-    ldy #0
-    lda blink_state
-    beq @ucd_restore
-
-    ; Cursor ON: save current colour, write cursor highlight
-    lda (ptr_lo),y
-    sta cur_save_col
-    lda #CURSOR_COLOR
-    sta (ptr_lo),y
+    adc #CURSOR_SPR_Y_BASE
+    sta VIC_SPR0_Y
     rts
 
-@ucd_restore:
-    ; Cursor OFF: get tile's proper colour and restore it
-    lda cursor_x
-    ldx cursor_y
-    jsr get_tile
+; ------------------------------------------------------------
+; get_tile_draw_color
+; A = raw tile byte, returns the tile's display colour for the
+; current density level.
+; ------------------------------------------------------------
+get_tile_draw_color:
+    sta tmp3
+    and #TILE_TYPE_MASK
     tax
+    cpx #TILE_ROAD
+    bcc @gtdc_base
+    cpx #TILE_FIRE + 1
+    bcs @gtdc_base
+    lda tmp3
+    and #TILE_DENSITY_MASK
+    lsr
+    lsr
+    lsr
+    lsr
+    clc
+    adc tile_density_base,x
+    tax
+    lda density_color,x
+    rts
+@gtdc_base:
     lda tile_color,x
-    sta (ptr_lo),y
-@ucd_done:
     rts
 
 ; ------------------------------------------------------------
@@ -251,7 +501,8 @@ restore_cursor_color:
     lda cursor_x
     ldx cursor_y
     jsr get_tile
-    tax
+    jsr get_tile_draw_color
+    sta tmp4
 
     ldy cursor_y
     lda mul40_lo,y
@@ -271,6 +522,6 @@ restore_cursor_color:
 @rcc_no_carry:
 
     ldy #0
-    lda tile_color,x
+    lda tmp4
     sta (ptr_lo),y
     rts

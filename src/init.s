@@ -27,8 +27,7 @@ init_system:
 
     ; Clear screen + colour RAM
     jsr clear_screen
-
-    cli
+    jsr init_cursor_sprite
 
     ; ---- Zero-page variables --------------------------------
     lda #INITIAL_MONEY_LO
@@ -61,6 +60,10 @@ init_system:
     sta key_last
     sta msg_timer
     sta blink_state
+    lda #COLOR_GREEN
+    sta split_top_bg
+    lda #0
+    sta raster_phase
 
     ; Cursor at map centre
     lda #MAP_WIDTH / 2
@@ -91,7 +94,162 @@ init_system:
     sta last_jiffy
 
     jsr init_map
+    jsr init_raster_split
+
+    cli
     rts
+
+; ------------------------------------------------------------
+; init_cursor_sprite
+; Copy the sprite pattern into RAM and configure sprite 0, but
+; keep it hidden until gameplay starts.
+; ------------------------------------------------------------
+init_cursor_sprite:
+    lda #<cursor_sprite_data
+    sta ptr_lo
+    lda #>cursor_sprite_data
+    sta ptr_hi
+    lda #<SPRITE0_DATA
+    sta ptr2_lo
+    lda #>SPRITE0_DATA
+    sta ptr2_hi
+
+    ldy #0
+@ics_copy:
+    lda (ptr_lo),y
+    sta (ptr2_lo),y
+    iny
+    cpy #64
+    bne @ics_copy
+
+    lda #SPRITE0_PTR
+    sta SPRITE0_PTR_LOC
+
+    lda VIC_SPR_X_MSB
+    and #$FE
+    sta VIC_SPR_X_MSB
+
+    lda VIC_SPR_EXP_X
+    and #$FE
+    sta VIC_SPR_EXP_X
+
+    lda VIC_SPR_EXP_Y
+    and #$FE
+    sta VIC_SPR_EXP_Y
+
+    lda VIC_SPR_MC
+    and #$FE
+    sta VIC_SPR_MC
+
+    lda VIC_SPR_BG_PRIO
+    and #$FE
+    sta VIC_SPR_BG_PRIO
+
+    lda #CURSOR_COLOR
+    sta VIC_SPR0_COLOR
+
+    jsr disable_cursor_sprite
+    rts
+
+; ------------------------------------------------------------
+; enable_cursor_sprite / disable_cursor_sprite
+; ------------------------------------------------------------
+enable_cursor_sprite:
+    jsr update_cursor_display
+    lda VIC_SPRITE_EN
+    ora #$01
+    sta VIC_SPRITE_EN
+    rts
+
+disable_cursor_sprite:
+    lda VIC_SPRITE_EN
+    and #$FE
+    sta VIC_SPRITE_EN
+    rts
+
+; ------------------------------------------------------------
+; init_raster_split
+; Install a raster IRQ that restores the playfield background
+; at the top of the frame, then switches the lower 5 rows to
+; black for the UI/status panel.
+; ------------------------------------------------------------
+init_raster_split:
+    lda #<raster_irq
+    sta IRQ_VECTOR_LO
+    lda #>raster_irq
+    sta IRQ_VECTOR_HI
+
+    lda #0
+    sta raster_phase
+
+    lda VIC_CTRL1
+    and #$7F
+    sta VIC_CTRL1
+
+    lda #RASTER_SPLIT_TOP
+    sta VIC_RASTER
+
+    lda #$01
+    sta VIC_IRQ_STATUS
+
+    lda VIC_IRQ_CTRL
+    ora #$01
+    sta VIC_IRQ_CTRL
+    rts
+
+; ------------------------------------------------------------
+; raster_irq
+; Two-phase raster IRQ. This handler is reached through the
+; KERNAL RAM IRQ vector, so A/X/Y are already saved on the
+; stack before we enter. The top-of-frame IRQ restores the
+; active background colour, and the lower IRQ switches the
+; status area background to black.
+; ------------------------------------------------------------
+raster_irq:
+    lda VIC_IRQ_STATUS
+    and #$01
+    beq @chain_kernal
+
+    lda raster_phase
+    beq @top_phase
+
+@lower_phase:
+    lda #COLOR_BLACK
+    sta VIC_BKG_CLR0
+    lda #0
+    sta raster_phase
+    lda #RASTER_SPLIT_TOP
+    sta VIC_RASTER
+    lda VIC_CTRL1
+    and #$7F
+    sta VIC_CTRL1
+    lda #$01
+    sta VIC_IRQ_STATUS
+    jmp @irq_done
+
+@top_phase:
+    lda split_top_bg
+    sta VIC_BKG_CLR0
+    lda #1
+    sta raster_phase
+    lda #RASTER_SPLIT_LOWER
+    sta VIC_RASTER
+    lda VIC_CTRL1
+    and #$7F
+    sta VIC_CTRL1
+    lda #$01
+    sta VIC_IRQ_STATUS
+
+@irq_done:
+    pla
+    tay
+    pla
+    tax
+    pla
+    rti
+
+@chain_kernal:
+    jmp KERNAL_IRQ
 
 ; ------------------------------------------------------------
 ; clear_screen

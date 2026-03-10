@@ -67,6 +67,7 @@ game_start:
     ; ---- Full first-frame render --------------------------
     jsr render_map
     jsr draw_status_bar
+    jsr enable_cursor_sprite
 
 ; ============================================================
 ; game_loop

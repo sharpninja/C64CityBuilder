@@ -150,5 +150,6 @@ read_input:
     jsr init_system
     jsr render_map
     jsr draw_status_bar
+    jsr enable_cursor_sprite
 @ri_done:
     rts
