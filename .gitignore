@@ -75,3 +75,13 @@ dkms.conf
 AGENTS-README-FIRST.yaml
 
 .mcpServer/
+
+# Local scratch / temporary files
+mcp-data/
+mcp.db
+moncommands*.txt
+road_tile_activity.mmd
+road_tile_activity.svg
+src/*.o.new
+x64sc-help.txt
+Screenshot*.png
