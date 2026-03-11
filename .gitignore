@@ -79,6 +79,7 @@ AGENTS-README-FIRST.yaml
 # Local scratch / temporary files
 mcp-data/*
 !mcp-data/graphrag/
+!mcp-data/graphrag/**/
 !mcp-data/graphrag/**
 mcp.db
 moncommands*.txt
