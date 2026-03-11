@@ -24,77 +24,25 @@ city_map:   .res MAP_SIZE       ; 40 × 20 = 800 bytes
 ; Processes 800 bytes in 3 full 256-byte pages + 32 remainder.
 ; ------------------------------------------------------------
 render_map:
-    lda #<city_map
-    sta ptr_lo
-    lda #>city_map
-    sta ptr_hi
-
-    lda #<SCREEN_BASE
-    sta ptr2_lo
-    lda #>SCREEN_BASE
-    sta ptr2_hi
-
-    lda #<COLOR_BASE
-    sta tmp1
-    lda #>COLOR_BASE
-    sta tmp2
-
     lda #0
-    sta tile_col
     sta tile_row
-
-    ; Three full 256-byte pages. Keep the page counter out of X because
-    ; X is reused below as the tile-table index for each map byte.
-    lda #3
-    sta tmp4
-@rm_pg:
-    ldy #0
-@rm_byte:
-    lda (ptr_lo),y      ; raw tile byte (type + density)
-    sta tmp3
-    jsr get_tile_screen_char
-    sta (ptr2_lo),y     ; → screen RAM
-    lda tmp3
-    jsr get_tile_draw_color
-    sta (tmp1),y        ; → colour RAM
+@rm_row:
+    lda #0
+    sta tile_col
+@rm_col:
+    lda tile_col
+    sta tmp1
+    lda tile_row
+    sta tmp2
+    jsr render_tile
     inc tile_col
     lda tile_col
     cmp #MAP_WIDTH
-    bne @rm_next
-    lda #0
-    sta tile_col
+    bne @rm_col
     inc tile_row
-@rm_next:
-    iny
-    bne @rm_byte
-    inc ptr_hi
-    inc ptr2_hi
-    inc tmp2
-    dec tmp4
-    bne @rm_pg
-
-    ; Remaining 32 bytes  (800 - 768 = 32)
-    ldy #0
-@rm_rem:
-    lda (ptr_lo),y
-    sta tmp3
-    jsr get_tile_screen_char
-    sta (ptr2_lo),y
-    lda tmp3
-    jsr get_tile_draw_color
-    sta (tmp1),y
-    inc tile_col
-    lda tile_col
-    cmp #MAP_WIDTH
-    bne @rm_rem_next
-    lda #0
-    sta tile_col
-    inc tile_row
-@rm_rem_next:
-    iny
-    cpy #(MAP_SIZE - 768)   ; 32
-    bne @rm_rem
-
+    lda tile_row
+    cmp #MAP_HEIGHT
+    bne @rm_row
     lda #0
     sta dirty_map
     rts
@@ -105,6 +53,11 @@ render_map:
 ; Trashes A, X, Y, ptr_lo/hi, ptr2_lo/hi.
 ; ------------------------------------------------------------
 render_tile:
+    sei
+    jsr update_cursor_aoe_state
+    lda cursor_aoe_color
+    sta VIC_BKG_CLR1
+
     ; Compute map byte offset = row*40 + col
     ldy tmp2
     lda mul40_lo,y
@@ -158,6 +111,7 @@ render_tile:
     sta ptr2_hi
     pla
     sta (ptr2_lo),y
+    cli
     rts
 
 ; ------------------------------------------------------------
@@ -269,14 +223,31 @@ render_road_neighborhood:
 ; current tile. Roads are adjacency-aware.
 ; ------------------------------------------------------------
 get_tile_screen_char:
+    sta tmp3
     and #TILE_TYPE_MASK
     cmp #TILE_ROAD
     beq @gtsc_road
     tax
     lda tile_char,x
+    sta tmp4
+    jsr tile_in_cursor_aoe
+    beq @gtsc_base
+    lda tmp4
+    clc
+    adc #1
+    rts
+@gtsc_base:
+    lda tmp4
     rts
 @gtsc_road:
-    jmp get_road_screen_char
+    jsr get_road_screen_char
+    sta tmp4
+    jsr tile_in_cursor_aoe
+    beq @gtsc_base
+    lda tmp4
+    clc
+    adc #16
+    rts
 
 ; ------------------------------------------------------------
 ; get_road_screen_char
@@ -466,6 +437,116 @@ update_cursor_display:
     rts
 
 ; ------------------------------------------------------------
+; update_cursor_aoe_state
+; Cache the current cursor tile's AoE radius and highlight colour.
+; Houses / factories use explicit per-level radius tables.
+; ------------------------------------------------------------
+update_cursor_aoe_state:
+    lda #0
+    sta cursor_aoe_radius
+    sta cursor_aoe_active
+    lda #COLOR_GREEN
+    sta cursor_aoe_color
+
+    lda cursor_x
+    ldx cursor_y
+    jsr get_tile
+    sta tmp4
+    jsr get_tile_highlight_color
+    sta cursor_aoe_color
+
+    lda tmp4
+    and #TILE_TYPE_MASK
+    cmp #TILE_HOUSE
+    beq @ucao_house
+    cmp #TILE_FACTORY
+    beq @ucao_factory
+    cmp #TILE_PARK
+    beq @ucao_park
+    cmp #TILE_POLICE
+    beq @ucao_police
+    cmp #TILE_FIRE
+    beq @ucao_fire
+    rts
+
+@ucao_house:
+    lda tmp4
+    jsr get_tile_density_units
+    tax
+    lda house_aoe_radius,x
+    bne @ucao_enable
+
+@ucao_factory:
+    lda tmp4
+    jsr get_tile_density_units
+    tax
+    lda factory_aoe_radius,x
+@ucao_enable:
+    sta cursor_aoe_radius
+    lda #1
+    sta cursor_aoe_active
+    rts
+
+@ucao_park:
+    lda #PARK_RADIUS
+    bne @ucao_store
+@ucao_police:
+    lda #POLICE_RADIUS
+    bne @ucao_store
+@ucao_fire:
+    lda #FIRE_RADIUS
+@ucao_store:
+    sta cursor_aoe_radius
+    lda #1
+    sta cursor_aoe_active
+    rts
+
+; ------------------------------------------------------------
+; tile_in_cursor_aoe
+; Returns A=1 when tile_col/tile_row lies inside the current
+; cursor tile's highlighted AoE, otherwise A=0.
+; ------------------------------------------------------------
+tile_in_cursor_aoe:
+    lda cursor_aoe_active
+    bne @tica_dx
+    lda #0
+    rts
+
+@tica_dx:
+    lda tile_col
+    sec
+    sbc cursor_x
+    bcs @tica_dx_abs
+    eor #$FF
+    clc
+    adc #1
+@tica_dx_abs:
+    cmp cursor_aoe_radius
+    bcc @tica_dy
+    beq @tica_dy
+    lda #0
+    rts
+
+@tica_dy:
+    lda tile_row
+    sec
+    sbc cursor_y
+    bcs @tica_dy_abs
+    eor #$FF
+    clc
+    adc #1
+@tica_dy_abs:
+    cmp cursor_aoe_radius
+    bcc @tica_yes
+    beq @tica_yes
+    lda #0
+    rts
+
+@tica_yes:
+    lda #1
+    rts
+
+; ------------------------------------------------------------
 ; get_tile_draw_color
 ; A = raw tile byte, returns the tile's display colour for the
 ; current density level.
@@ -487,9 +568,37 @@ get_tile_draw_color:
     clc
     adc tile_density_base,x
     tax
-    lda density_color,x
+    lda density_mc_color,x
     rts
 @gtdc_base:
+    lda tile_mc_color,x
+    rts
+
+; ------------------------------------------------------------
+; get_tile_highlight_color
+; A = raw tile byte, returns the unflagged palette colour used
+; for the AoE highlight background.
+; ------------------------------------------------------------
+get_tile_highlight_color:
+    sta tmp3
+    and #TILE_TYPE_MASK
+    tax
+    cpx #TILE_ROAD
+    bcc @gthc_base
+    cpx #TILE_FIRE + 1
+    bcs @gthc_base
+    lda tmp3
+    and #TILE_DENSITY_MASK
+    lsr
+    lsr
+    lsr
+    lsr
+    clc
+    adc tile_density_base,x
+    tax
+    lda density_color,x
+    rts
+@gthc_base:
     lda tile_color,x
     rts
 

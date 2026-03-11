@@ -13,17 +13,22 @@
 init_system:
     sei                         ; disable IRQ while we poke hardware
 
-    ; Force lowercase-capable character set during startup (POKE 53272,23 equivalent).
-    lda VIC_VMEM_CTRL
-    and #$F1                   ; clear charset bits 1-3
-    ora #$06                   ; set charset bits for PETSCII set 2 (big/small chars)
-    sta VIC_VMEM_CTRL
+    ; Copy the lowercase/uppercase ROM charset into RAM, patch in our
+    ; custom map icons, and point the VIC-II at the RAM charset.
+    jsr init_custom_charset
 
     ; VIC-II colours
     lda #COLOR_BLACK
     sta VIC_BORDER_CLR
     lda #COLOR_GREEN
     sta VIC_BKG_CLR0
+    sta VIC_BKG_CLR1
+    lda #COLOR_DKGRAY
+    sta VIC_BKG_CLR2
+
+    lda VIC_CTRL2
+    ora #$10
+    sta VIC_CTRL2
 
     ; Clear screen + colour RAM
     jsr clear_screen
@@ -49,6 +54,12 @@ init_system:
     sta population
     sta power_avail
     sta power_needed
+    sta jobs_total
+    sta employed_pop
+    sta rev_lo
+    sta rev_hi
+    sta cost_lo
+    sta cost_hi
     sta tick_count
     sta cnt_roads
     sta cnt_houses
@@ -64,6 +75,10 @@ init_system:
     sta split_top_bg
     lda #0
     sta raster_phase
+    sta cursor_aoe_radius
+    sta cursor_aoe_active
+    lda #COLOR_GREEN
+    sta cursor_aoe_color
 
     ; Cursor at map centre
     lda #MAP_WIDTH / 2
@@ -97,6 +112,85 @@ init_system:
     jsr init_raster_split
 
     cli
+    rts
+
+; ------------------------------------------------------------
+; init_custom_charset
+; Copy the lowercase/uppercase ROM charset to RAM, patch the
+; map icon glyphs, and switch the VIC-II to use the RAM copy.
+; ------------------------------------------------------------
+init_custom_charset:
+    ; VIC bank 1 so SCREEN_BASE=$6800 and CHARSET_RAM=$7000 are visible
+    ; well above the growing program/BSS region.
+    lda CIA2_PRA
+    and #$FC
+    ora #$02
+    sta CIA2_PRA
+
+    ; Expose character ROM at $D000-$DFFF while keeping BASIC/KERNAL on.
+    lda CPU_PORT
+    pha
+    and #$FB
+    sta CPU_PORT
+
+    lda #<CHARSET_ROM
+    sta ptr_lo
+    lda #>CHARSET_ROM
+    sta ptr_hi
+    lda #<CHARSET_RAM
+    sta ptr2_lo
+    lda #>CHARSET_RAM
+    sta ptr2_hi
+    lda #8
+    sta tmp4
+@icc_page:
+    ldy #0
+@icc_byte:
+    lda (ptr_lo),y
+    sta (ptr2_lo),y
+    iny
+    bne @icc_byte
+    inc ptr_hi
+    inc ptr2_hi
+    dec tmp4
+    bne @icc_page
+
+    pla
+    sta CPU_PORT
+
+    ; Overwrite contiguous screen codes with custom multicolor city + HUD glyphs.
+    lda #<custom_char_glyphs
+    sta ptr_lo
+    lda #>custom_char_glyphs
+    sta ptr_hi
+    lda #<(CHARSET_RAM + MAP_GLYPH_EMPTY * 8)
+    sta ptr2_lo
+    lda #>(CHARSET_RAM + MAP_GLYPH_EMPTY * 8)
+    sta ptr2_hi
+    lda #1
+    sta tmp4
+@icc_custom_page:
+    ldy #0
+@icc_custom:
+    lda (ptr_lo),y
+    sta (ptr2_lo),y
+    iny
+    bne @icc_custom
+    inc ptr_hi
+    inc ptr2_hi
+    dec tmp4
+    bne @icc_custom_page
+    ldy #0
+@icc_custom_rem:
+    lda (ptr_lo),y
+    sta (ptr2_lo),y
+    iny
+    cpy #176
+    bne @icc_custom_rem
+
+    ; Screen at $6800, charset at $7000 inside VIC bank 1.
+    lda #$AC
+    sta VIC_VMEM_CTRL
     rts
 
 ; ------------------------------------------------------------
@@ -298,7 +392,7 @@ clear_screen:
 ; ------------------------------------------------------------
 ; init_map
 ; Fill the 800-byte city_map with TILE_EMPTY, then add a
-; river across row 10 and scatter trees in rows 0-2 and 19.
+; river across row 10 and leave the remaining land empty.
 ; ------------------------------------------------------------
 init_map:
     lda #<city_map
@@ -340,39 +434,5 @@ init_map:
     iny
     cpy #MAP_WIDTH
     bne @river
-
-    ; --- Trees: rows 0-2 (every 4th tile) ------------------
-    lda #<city_map
-    sta ptr_lo
-    lda #>city_map
-    sta ptr_hi
-    ldy #0
-@trees1:
-    tya
-    and #$03
-    bne @t1_skip
-    lda #TILE_TREE
-    sta (ptr_lo),y
-@t1_skip:
-    iny
-    cpy #(MAP_WIDTH * 3)
-    bne @trees1
-
-    ; --- Trees: row 19 (every other tile) ------------------
-    lda #<(city_map + 19 * MAP_WIDTH)
-    sta ptr_lo
-    lda #>(city_map + 19 * MAP_WIDTH)
-    sta ptr_hi
-    ldy #0
-@trees2:
-    tya
-    and #$01
-    bne @t2_skip
-    lda #TILE_TREE
-    sta (ptr_lo),y
-@t2_skip:
-    iny
-    cpy #MAP_WIDTH
-    bne @trees2
 
     rts

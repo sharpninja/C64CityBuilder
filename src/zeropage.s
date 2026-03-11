@@ -1,20 +1,23 @@
 ; ============================================================
 ; C64 City Builder - Zero Page Variable Layout
-; All variables here are accessed with fast zero-page addressing.
-; Starts at $0002 (KERNAL uses $90-$FF; we stay well below that).
+; Keep only the two indirect pointer pairs in true zero page.
+; The C64 KERNAL/BASIC/IRQ paths reuse much of low ZP, so the rest
+; of the game state lives in normal BSS instead of contested ZP.
 ; ============================================================
 
     .segment "ZEROPAGE"
-
-; --- Cursor ------------------------------------------------
-cursor_x:       .res 1      ; Cursor X position (0-39)
-cursor_y:       .res 1      ; Cursor Y position (0-19)
 
 ; --- General-purpose indirect pointers ------------------
 ptr_lo:         .res 1      ; Pointer low  byte
 ptr_hi:         .res 1      ; Pointer high byte
 ptr2_lo:        .res 1      ; Second pointer low
 ptr2_hi:        .res 1      ; Second pointer high
+
+    .segment "BSS"
+
+; --- Cursor ------------------------------------------------
+cursor_x:       .res 1      ; Cursor X position (0-39)
+cursor_y:       .res 1      ; Cursor Y position (0-19)
 
 ; --- Game state -----------------------------------------
 game_mode:      .res 1      ; MODE_BUILD / MODE_DEMO
@@ -44,6 +47,17 @@ cnt_parks:      .res 1
 cnt_power:      .res 1
 cnt_police:     .res 1
 cnt_fire:       .res 1
+jobs_total:     .res 1
+employed_pop:   .res 1
+rev_lo:         .res 1
+rev_hi:         .res 1
+cost_lo:        .res 1
+cost_hi:        .res 1
+park_coverage:  .res 1
+police_coverage:.res 1
+fire_coverage:  .res 1
+land_value_lo:  .res 1
+land_value_hi:  .res 1
 
 ; --- Timing --------------------------------------------
 sim_counter:    .res 1      ; Countdown to next simulation tick
@@ -78,3 +92,6 @@ raster_phase:   .res 1      ; 0 = top-half IRQ next, 1 = lower-UI IRQ next
 tile_col:       .res 1      ; Current tile column for adjacency-aware rendering
 tile_row:       .res 1      ; Current tile row for adjacency-aware rendering
 road_mask:      .res 1      ; NSEW neighbor mask for dynamic road glyph lookup
+cursor_aoe_radius: .res 1   ; Highlight radius for the tile under the cursor
+cursor_aoe_active: .res 1   ; Non-zero when the cursor tile has an AoE
+cursor_aoe_color:  .res 1   ; Shared multicolor background used for AoE tint

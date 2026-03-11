@@ -27,78 +27,125 @@ read_input:
 
     ; ---- Cursor movement (WASD + cursor keys) -------------
     cmp #KEY_CRSR_UP
-    beq @ri_up
+    bne @ri_check_w
+    jmp @ri_up
+@ri_check_w:
     cmp #KEY_CHR_W
-    beq @ri_up
+    bne @ri_check_down
+    jmp @ri_up
+@ri_check_down:
     cmp #KEY_CRSR_DOWN
-    beq @ri_down
+    bne @ri_check_s
+    jmp @ri_down
+@ri_check_s:
     cmp #KEY_CHR_S
-    beq @ri_down
+    bne @ri_check_left
+    jmp @ri_down
+@ri_check_left:
     cmp #KEY_CRSR_LEFT
-    beq @ri_left
+    bne @ri_check_a
+    jmp @ri_left
+@ri_check_a:
     cmp #KEY_CHR_A
-    beq @ri_left
+    bne @ri_check_right
+    jmp @ri_left
+@ri_check_right:
     cmp #KEY_CRSR_RIGHT
-    beq @ri_right
+    bne @ri_check_d
+    jmp @ri_right
+@ri_check_d:
     cmp #KEY_CHR_D
-    beq @ri_right
+    bne @ri_check_1
+    jmp @ri_right
 
     ; ---- Building selection (1-7) --------------------------
+@ri_check_1:
     cmp #KEY_CHR_1
-    beq @ri_sel1
+    bne @ri_check_2
+    jmp @ri_sel1
+@ri_check_2:
     cmp #KEY_CHR_2
-    beq @ri_sel2
+    bne @ri_check_3
+    jmp @ri_sel2
+@ri_check_3:
     cmp #KEY_CHR_3
-    beq @ri_sel3
+    bne @ri_check_4
+    jmp @ri_sel3
+@ri_check_4:
     cmp #KEY_CHR_4
-    beq @ri_sel4
+    bne @ri_check_5
+    jmp @ri_sel4
+@ri_check_5:
     cmp #KEY_CHR_5
-    beq @ri_sel5
+    bne @ri_check_6
+    jmp @ri_sel5
+@ri_check_6:
     cmp #KEY_CHR_6
-    beq @ri_sel6
+    bne @ri_check_7
+    jmp @ri_sel6
+@ri_check_7:
     cmp #KEY_CHR_7
-    beq @ri_sel7
+    bne @ri_check_action
+    jmp @ri_sel7
 
     ; ---- Action keys --------------------------------------
+@ri_check_action:
     cmp #KEY_RETURN
-    beq @ri_build
+    bne @ri_check_b
+    jmp @ri_build
+@ri_check_b:
     cmp #KEY_CHR_B
-    beq @ri_build
+    bne @ri_check_x
+    jmp @ri_build
+@ri_check_x:
     cmp #KEY_CHR_X
-    beq @ri_demo
+    bne @ri_check_q
+    jmp @ri_demo
+@ri_check_q:
     cmp #KEY_CHR_Q
-    beq @ri_quit
+    bne @ri_unknown
+    jmp @ri_quit
 
+@ri_unknown:
     rts                     ; unrecognised key
 
     ; ---- Movement handlers --------------------------------
 @ri_up:
     jsr restore_cursor_color
     lda cursor_y
-    beq @ri_done
+    bne @ri_up_move
+    jmp @ri_done
+@ri_up_move:
     dec cursor_y
     jmp @ri_moved
 @ri_down:
     jsr restore_cursor_color
     lda cursor_y
     cmp #MAP_HEIGHT - 1
-    beq @ri_done
+    bne @ri_down_move
+    jmp @ri_done
+@ri_down_move:
     inc cursor_y
     jmp @ri_moved
 @ri_left:
     jsr restore_cursor_color
     lda cursor_x
-    beq @ri_done
+    bne @ri_left_move
+    jmp @ri_done
+@ri_left_move:
     dec cursor_x
     jmp @ri_moved
 @ri_right:
     jsr restore_cursor_color
     lda cursor_x
     cmp #MAP_WIDTH - 1
-    beq @ri_done
+    bne @ri_right_move
+    jmp @ri_done
+@ri_right_move:
     inc cursor_x
 @ri_moved:
     lda #1
+    sta dirty_map
     sta dirty_ui
     rts
 
@@ -147,7 +194,7 @@ read_input:
 
 @ri_quit:
     jsr show_title
-    jsr init_system
+    jsr clear_screen
     jsr render_map
     jsr draw_status_bar
     jsr enable_cursor_sprite

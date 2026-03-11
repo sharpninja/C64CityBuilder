@@ -23,6 +23,7 @@ VIC_SPR_EXP_X   = $D01D     ; Sprite X expansion
 VIC_BORDER_CLR  = $D020     ; Border color
 VIC_BKG_CLR0    = $D021     ; Background color 0
 VIC_BKG_CLR1    = $D022     ; Background color 1
+VIC_BKG_CLR2    = $D023     ; Background color 2 / shared multicolor 2
 VIC_SPR0_COLOR  = $D027     ; Sprite 0 color
 
 ; ------------------------------------------------------------
@@ -44,13 +45,40 @@ IRQ_VECTOR_HI   = $0315     ; IRQ vector high byte
 ; ------------------------------------------------------------
 ; C64 Memory map
 ; ------------------------------------------------------------
-SCREEN_BASE     = $0400     ; Default screen RAM (40×25)
 COLOR_BASE      = $D800     ; Color RAM (mirrors screen layout)
 SCREEN_SIZE     = 1000      ; 40×25 characters
-CHARSET_RAM     = $3000     ; RAM copy of the lowercase/uppercase charset
-SPRITE0_DATA    = $0340     ; Cassette buffer area, safe during gameplay
-SPRITE0_PTR     = SPRITE0_DATA / 64
+VIC_BANK_BASE   = $4000     ; VIC bank 1 keeps display assets away from program/BSS
+SCREEN_BASE     = $6800     ; Screen RAM inside VIC bank 1, above program/BSS
+CHARSET_RAM     = $7000     ; RAM copy of the lowercase/uppercase charset
+CHARSET_ROM     = $D800     ; Lowercase/uppercase character ROM page
+SPRITE0_DATA    = $6C00     ; Sprite data inside VIC bank 1, above screen RAM
+SPRITE0_PTR     = (SPRITE0_DATA - VIC_BANK_BASE) / 64
 SPRITE0_PTR_LOC = SCREEN_BASE + $03F8
+MAP_GLYPH_EMPTY   = 96
+MAP_GLYPH_EMPTY_HL = 97
+MAP_GLYPH_ROAD_BASE = 98
+MAP_GLYPH_ROAD_HL_BASE = 114
+MAP_GLYPH_HOUSE   = 130
+MAP_GLYPH_HOUSE_HL = 131
+MAP_GLYPH_FACTORY = 132
+MAP_GLYPH_FACTORY_HL = 133
+MAP_GLYPH_PARK    = 134
+MAP_GLYPH_PARK_HL = 135
+MAP_GLYPH_POWER   = 136
+MAP_GLYPH_POWER_HL = 137
+MAP_GLYPH_POLICE  = 138
+MAP_GLYPH_POLICE_HL = 139
+MAP_GLYPH_FIRE    = 140
+MAP_GLYPH_FIRE_HL = 141
+MAP_GLYPH_WATER   = 142
+MAP_GLYPH_WATER_HL = 143
+MAP_GLYPH_TREE    = 144
+MAP_GLYPH_TREE_HL = 145
+HUD_GLYPH_POWER   = 146
+HUD_GLYPH_JOBS    = 147
+HUD_GLYPH_HAPPY   = 148
+HUD_GLYPH_CRIME   = 149
+MC_CHAR_FLAG      = $08
 
 ; ------------------------------------------------------------
 ; KERNAL system variables (zero page / RAM)
@@ -188,23 +216,53 @@ MODE_DEMO       = 1         ; Demolish mode
 SIM_INTERVAL        = 60    ; Frames (~1 real second) between sim ticks
 YEAR_TICKS          = 12    ; Sim ticks per game year
 
-INCOME_FACTORY      = 50    ; Income per factory per tick
+TAX_PER_RESIDENT    = 2     ; Property / local taxes per resident
+TAX_PER_EMPLOYED    = 2     ; Payroll / commerce taxes per employed resident
+TAX_PER_HOUSE       = 2     ; Housing tax base per zoned house unit
+TAX_PER_FACTORY     = 20    ; Industrial tax base per factory unit
 MAINT_ROAD          = 1     ; Upkeep per road
-MAINT_HOUSE         = 2     ; Upkeep per house
-MAINT_FACTORY       = 10    ; Upkeep per factory
+MAINT_HOUSE         = 1     ; Upkeep per house
+MAINT_FACTORY       = 5     ; Upkeep per factory
 MAINT_PARK          = 5     ; Upkeep per park
-MAINT_POWER         = 50    ; Upkeep per power plant
-MAINT_POLICE        = 20    ; Upkeep per police station
-MAINT_FIRE          = 20    ; Upkeep per fire station
+MAINT_POWER         = 20    ; Upkeep per power plant
+MAINT_POLICE        = 10    ; Upkeep per police station
+MAINT_FIRE          = 10    ; Upkeep per fire station
 
 POWER_PER_PLANT     = 50    ; Power produced per plant
 POWER_PER_HOUSE     = 5     ; Power consumed per house
 POWER_PER_FACTORY   = 20    ; Power consumed per factory
+POWER_PER_SERVICE   = 2     ; Power consumed per police/fire service unit
 
-HAPPINESS_BASE      = 50
+HAPPINESS_BASE      = 35
 HAPPINESS_PER_PARK  = 10
-CRIME_BASE          = 40
+CRIME_BASE          = 25
 CRIME_PER_POLICE    = 10
+JOBS_PER_FACTORY    = 10    ; Jobs created per factory unit
+JOBS_PER_SERVICE    = 2     ; Public-sector jobs created per service unit
+POP_JOB_BUFFER      = 5     ; Residents tolerated above the raw jobs count
+BLACKOUT_PENALTY    = 20    ; Treasury hit when the city is underpowered
+PARK_RADIUS         = 3
+POLICE_RADIUS       = 4
+FIRE_RADIUS         = 4
+PARK_EFFECT_STEP    = 3
+POLICE_EFFECT_STEP  = 2
+FIRE_EFFECT_STEP    = 2
+VALUE_CAP           = 99
+VALUE_BASE_ROAD     = 8
+VALUE_BASE_HOUSE    = 20
+VALUE_BASE_FACTORY  = 16
+VALUE_BASE_PARK     = 18
+VALUE_BASE_POWER    = 12
+VALUE_BASE_POLICE   = 18
+VALUE_BASE_FIRE     = 18
+VALUE_PER_DENSITY   = 4
+VALUE_BONUS_ROAD    = 4
+VALUE_BONUS_HOUSE   = 2
+VALUE_BONUS_PARK    = 3
+VALUE_BONUS_SERVICE = 2
+VALUE_PENALTY_FACTORY = 6
+VALUE_PENALTY_POWER   = 4
+VALUE_PENALTY_NO_ROAD = 8
 
 ; ------------------------------------------------------------
 ; Starting values

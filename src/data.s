@@ -27,44 +27,41 @@ mul40_hi:
 ;   space = 32  |  A-Z = 1-26  |  '+' = 43  |  '*' = 42
 ; ------------------------------------------------------------
 tile_char:
-    .byte 32        ; TILE_EMPTY    space
-    .byte 64        ; TILE_ROAD     fallback horizontal line
-    .byte  8        ; TILE_HOUSE    'H'
-    .byte  6        ; TILE_FACTORY  'F'
-    .byte 16        ; TILE_PARK     'P'
-    .byte  5        ; TILE_POWER    'E' (Electricity)
-    .byte 12        ; TILE_POLICE   'L' (Law)
-    .byte 19        ; TILE_FIRE     'S' (Station)
-    .byte 42        ; TILE_WATER    '*'
-    .byte 20        ; TILE_TREE     'T'
+    .byte MAP_GLYPH_EMPTY    ; TILE_EMPTY
+    .byte MAP_GLYPH_ROAD_BASE ; TILE_ROAD fallback horizontal line
+    .byte MAP_GLYPH_HOUSE    ; TILE_HOUSE
+    .byte MAP_GLYPH_FACTORY  ; TILE_FACTORY
+    .byte MAP_GLYPH_PARK     ; TILE_PARK
+    .byte MAP_GLYPH_POWER    ; TILE_POWER
+    .byte MAP_GLYPH_POLICE   ; TILE_POLICE
+    .byte MAP_GLYPH_FIRE     ; TILE_FIRE
+    .byte MAP_GLYPH_WATER    ; TILE_WATER
+    .byte MAP_GLYPH_TREE     ; TILE_TREE
 
 ; ------------------------------------------------------------
-; Road shape → screen character (C64 screen codes).
-; Index bits are NSEW = 1,2,4,8 and the glyphs come from the
-; PETSCII line-drawing set:
-;   64='-'  91='+'  93='|'  107='├'  109='└'  110='┐'
-;   112='┌' 113='┴' 114='┬' 115='┤' 125='┘'
+; Road shape → custom multicolor road character.
+; Index bits are NSEW = 1,2,4,8.
 ; ------------------------------------------------------------
 road_shape_char:
-    .byte 64        ; 0000 isolated road -> horizontal stub
-    .byte 93        ; 0001 N
-    .byte 93        ; 0010 S
-    .byte 93        ; 0011 N+S
-    .byte 64        ; 0100 E
-    .byte 109       ; 0101 N+E -> └
-    .byte 112       ; 0110 S+E -> ┌
-    .byte 107       ; 0111 N+S+E -> ├
-    .byte 64        ; 1000 W
-    .byte 125       ; 1001 N+W -> ┘
-    .byte 110       ; 1010 S+W -> ┐
-    .byte 115       ; 1011 N+S+W -> ┤
-    .byte 64        ; 1100 E+W
-    .byte 113       ; 1101 N+E+W -> ┴
-    .byte 114       ; 1110 S+E+W -> ┬
-    .byte 91        ; 1111 N+S+E+W -> ┼
+    .byte MAP_GLYPH_ROAD_BASE + 0
+    .byte MAP_GLYPH_ROAD_BASE + 1
+    .byte MAP_GLYPH_ROAD_BASE + 2
+    .byte MAP_GLYPH_ROAD_BASE + 3
+    .byte MAP_GLYPH_ROAD_BASE + 4
+    .byte MAP_GLYPH_ROAD_BASE + 5
+    .byte MAP_GLYPH_ROAD_BASE + 6
+    .byte MAP_GLYPH_ROAD_BASE + 7
+    .byte MAP_GLYPH_ROAD_BASE + 8
+    .byte MAP_GLYPH_ROAD_BASE + 9
+    .byte MAP_GLYPH_ROAD_BASE + 10
+    .byte MAP_GLYPH_ROAD_BASE + 11
+    .byte MAP_GLYPH_ROAD_BASE + 12
+    .byte MAP_GLYPH_ROAD_BASE + 13
+    .byte MAP_GLYPH_ROAD_BASE + 14
+    .byte MAP_GLYPH_ROAD_BASE + 15
 
 ; ------------------------------------------------------------
-; Tile → foreground colour (0-15 palette)
+; Tile → AoE highlight colour (0-15 palette)
 ; ------------------------------------------------------------
 tile_color:
     .byte COLOR_GREEN       ; TILE_EMPTY
@@ -75,7 +72,7 @@ tile_color:
     .byte COLOR_WHITE       ; TILE_POWER
     .byte COLOR_BLUE        ; TILE_POLICE
     .byte COLOR_LTRED       ; TILE_FIRE
-    .byte COLOR_LTBLUE      ; TILE_WATER
+    .byte COLOR_BLUE        ; TILE_WATER
     .byte COLOR_GREEN       ; TILE_TREE
 
 ; ------------------------------------------------------------
@@ -100,12 +97,47 @@ tile_density_base:
 ; ------------------------------------------------------------
 density_color:
     .byte COLOR_DKGRAY, COLOR_MDGRAY, COLOR_LTGRAY,  COLOR_WHITE
-    .byte COLOR_YELLOW, COLOR_ORANGE, COLOR_LTRED,   COLOR_WHITE
-    .byte COLOR_BROWN,  COLOR_RED,    COLOR_LTRED,   COLOR_ORANGE
-    .byte COLOR_LTGREEN, COLOR_CYAN,  COLOR_YELLOW,  COLOR_WHITE
-    .byte COLOR_LTGRAY, COLOR_LTBLUE, COLOR_YELLOW,  COLOR_WHITE
-    .byte COLOR_BLUE,   COLOR_LTBLUE, COLOR_CYAN,    COLOR_WHITE
-    .byte COLOR_RED,    COLOR_LTRED,  COLOR_ORANGE,  COLOR_YELLOW
+    .byte COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN
+    .byte COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN
+    .byte COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN
+    .byte COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN
+    .byte COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN
+    .byte COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN, COLOR_LTGREEN
+
+; ------------------------------------------------------------
+; Tile → multicolor character colour (bit 3 enables multicolor).
+; Only colours 0-7 are available per character in C64 multicolor
+; text mode, so these ramps intentionally use the base palette.
+; ------------------------------------------------------------
+tile_mc_color:
+    .byte MC_CHAR_FLAG + COLOR_GREEN      ; TILE_EMPTY
+    .byte MC_CHAR_FLAG + COLOR_WHITE      ; TILE_ROAD
+    .byte MC_CHAR_FLAG + COLOR_YELLOW     ; TILE_HOUSE
+    .byte MC_CHAR_FLAG + COLOR_RED        ; TILE_FACTORY
+    .byte MC_CHAR_FLAG + COLOR_GREEN      ; TILE_PARK
+    .byte MC_CHAR_FLAG + COLOR_CYAN       ; TILE_POWER
+    .byte MC_CHAR_FLAG + COLOR_BLUE       ; TILE_POLICE
+    .byte MC_CHAR_FLAG + COLOR_RED        ; TILE_FIRE
+    .byte MC_CHAR_FLAG + COLOR_BLUE       ; TILE_WATER
+    .byte MC_CHAR_FLAG + COLOR_GREEN      ; TILE_TREE
+
+density_mc_color:
+    .byte MC_CHAR_FLAG + COLOR_WHITE,  MC_CHAR_FLAG + COLOR_CYAN,   MC_CHAR_FLAG + COLOR_YELLOW, MC_CHAR_FLAG + COLOR_WHITE
+    .byte MC_CHAR_FLAG + COLOR_YELLOW, MC_CHAR_FLAG + COLOR_RED,    MC_CHAR_FLAG + COLOR_CYAN,   MC_CHAR_FLAG + COLOR_WHITE
+    .byte MC_CHAR_FLAG + COLOR_RED,    MC_CHAR_FLAG + COLOR_YELLOW, MC_CHAR_FLAG + COLOR_WHITE,  MC_CHAR_FLAG + COLOR_CYAN
+    .byte MC_CHAR_FLAG + COLOR_GREEN,  MC_CHAR_FLAG + COLOR_CYAN,   MC_CHAR_FLAG + COLOR_YELLOW, MC_CHAR_FLAG + COLOR_WHITE
+    .byte MC_CHAR_FLAG + COLOR_CYAN,   MC_CHAR_FLAG + COLOR_WHITE,  MC_CHAR_FLAG + COLOR_YELLOW, MC_CHAR_FLAG + COLOR_RED
+    .byte MC_CHAR_FLAG + COLOR_BLUE,   MC_CHAR_FLAG + COLOR_CYAN,   MC_CHAR_FLAG + COLOR_WHITE,  MC_CHAR_FLAG + COLOR_YELLOW
+    .byte MC_CHAR_FLAG + COLOR_RED,    MC_CHAR_FLAG + COLOR_YELLOW, MC_CHAR_FLAG + COLOR_WHITE,  MC_CHAR_FLAG + COLOR_CYAN
+
+; ------------------------------------------------------------
+; Level-based AoE radii (index 0 unused, levels 1-4).
+; ------------------------------------------------------------
+house_aoe_radius:
+    .byte 0, 2, 4, 7, 11
+
+factory_aoe_radius:
+    .byte 0, 3, 6, 10, 15
 
 ; ------------------------------------------------------------
 ; Building cost tables (16-bit, lo/hi split)
@@ -150,6 +182,326 @@ cursor_sprite_data:
     .endrepeat
     .byte $00
 
+; ------------------------------------------------------------
+; Custom glyphs written into CHARSET_RAM at screen codes
+; 96-149: multicolor map tiles (normal + AoE-highlight variants)
+; plus the top-row HUD icons.
+; ------------------------------------------------------------
+MC_BG0 = 0
+MC_BG1 = 1
+MC_ACC = 2
+MC_FG  = 3
+
+.macro MCROW P0, P1, P2, P3
+    .byte ((P0 << 6) | (P1 << 4) | (P2 << 2) | P3)
+.endmacro
+
+.macro GLYPH_EMPTY BG
+    .repeat 8
+        MCROW BG, BG, BG, BG
+    .endrepeat
+.endmacro
+
+.macro ROAD_HORIZ BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+.endmacro
+
+.macro ROAD_VERT BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+.endmacro
+
+.macro ROAD_NE BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_FG, MC_FG, MC_FG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+.endmacro
+
+.macro ROAD_SE BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+.endmacro
+
+.macro ROAD_NW BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW MC_FG, MC_FG, MC_FG, BG
+    MCROW MC_FG, MC_FG, MC_FG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+.endmacro
+
+.macro ROAD_SW BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW MC_FG, MC_FG, MC_FG, BG
+    MCROW MC_FG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+.endmacro
+
+.macro ROAD_T_E BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+.endmacro
+
+.macro ROAD_T_W BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW MC_FG, MC_FG, MC_FG, BG
+    MCROW MC_FG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+.endmacro
+
+.macro ROAD_T_N BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+.endmacro
+
+.macro ROAD_T_S BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, BG, BG, BG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+.endmacro
+
+.macro ROAD_CROSS BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+.endmacro
+
+.macro GLYPH_HOUSE BG
+    MCROW BG, BG, MC_ACC, BG
+    MCROW BG, MC_ACC, MC_ACC, BG
+    MCROW MC_ACC, MC_ACC, MC_ACC, MC_ACC
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW MC_FG, MC_ACC, BG, MC_FG
+    MCROW MC_FG, BG, BG, MC_FG
+    MCROW MC_FG, BG, BG, MC_FG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+.endmacro
+
+.macro GLYPH_FACTORY BG
+    MCROW BG, MC_FG, BG, BG
+    MCROW BG, MC_FG, MC_ACC, BG
+    MCROW MC_FG, MC_FG, MC_FG, BG
+    MCROW MC_FG, MC_ACC, MC_FG, MC_FG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW MC_FG, MC_ACC, MC_ACC, MC_FG
+    MCROW MC_FG, MC_ACC, BG, MC_FG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+.endmacro
+
+.macro GLYPH_PARK BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, MC_FG, BG, MC_FG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_ACC, MC_FG, BG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_FG, BG, MC_FG
+    MCROW BG, MC_ACC, MC_ACC, BG
+    MCROW BG, BG, BG, BG
+.endmacro
+
+.macro GLYPH_POWER BG
+    MCROW BG, BG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, BG, BG
+    MCROW MC_FG, MC_FG, MC_FG, BG
+    MCROW BG, BG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_FG, BG, BG
+    MCROW MC_FG, BG, BG, BG
+.endmacro
+
+.macro GLYPH_POLICE BG
+    MCROW BG, MC_ACC, MC_ACC, BG
+    MCROW MC_ACC, MC_FG, MC_FG, MC_ACC
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW MC_FG, MC_ACC, MC_ACC, MC_FG
+    MCROW MC_FG, MC_ACC, MC_ACC, MC_FG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, BG, MC_FG, BG
+.endmacro
+
+.macro GLYPH_FIRE BG
+    MCROW BG, BG, MC_FG, BG
+    MCROW BG, MC_FG, MC_ACC, BG
+    MCROW BG, MC_ACC, MC_FG, BG
+    MCROW MC_ACC, MC_FG, MC_FG, MC_ACC
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW BG, MC_ACC, MC_FG, BG
+    MCROW BG, BG, MC_FG, BG
+    MCROW BG, BG, BG, BG
+.endmacro
+
+.macro GLYPH_WATER BG
+    MCROW BG, BG, BG, BG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW MC_FG, BG, BG, MC_FG
+    MCROW MC_FG, MC_FG, BG, BG
+    MCROW BG, BG, MC_FG, MC_FG
+    MCROW BG, MC_FG, MC_FG, BG
+    MCROW MC_FG, BG, BG, MC_FG
+    MCROW BG, BG, BG, BG
+.endmacro
+
+.macro GLYPH_TREE BG
+    MCROW BG, BG, MC_FG, BG
+    MCROW BG, MC_FG, MC_FG, MC_FG
+    MCROW BG, MC_ACC, MC_FG, BG
+    MCROW MC_FG, MC_FG, MC_FG, MC_FG
+    MCROW BG, BG, MC_FG, BG
+    MCROW BG, BG, MC_FG, BG
+    MCROW BG, MC_ACC, MC_ACC, BG
+    MCROW BG, BG, BG, BG
+.endmacro
+
+custom_char_glyphs:
+    GLYPH_EMPTY MC_BG0
+    GLYPH_EMPTY MC_BG1
+
+    ROAD_HORIZ MC_BG0
+    ROAD_VERT  MC_BG0
+    ROAD_VERT  MC_BG0
+    ROAD_VERT  MC_BG0
+    ROAD_HORIZ MC_BG0
+    ROAD_NE    MC_BG0
+    ROAD_SE    MC_BG0
+    ROAD_T_E   MC_BG0
+    ROAD_HORIZ MC_BG0
+    ROAD_NW    MC_BG0
+    ROAD_SW    MC_BG0
+    ROAD_T_W   MC_BG0
+    ROAD_HORIZ MC_BG0
+    ROAD_T_N   MC_BG0
+    ROAD_T_S   MC_BG0
+    ROAD_CROSS MC_BG0
+
+    ROAD_HORIZ MC_BG1
+    ROAD_VERT  MC_BG1
+    ROAD_VERT  MC_BG1
+    ROAD_VERT  MC_BG1
+    ROAD_HORIZ MC_BG1
+    ROAD_NE    MC_BG1
+    ROAD_SE    MC_BG1
+    ROAD_T_E   MC_BG1
+    ROAD_HORIZ MC_BG1
+    ROAD_NW    MC_BG1
+    ROAD_SW    MC_BG1
+    ROAD_T_W   MC_BG1
+    ROAD_HORIZ MC_BG1
+    ROAD_T_N   MC_BG1
+    ROAD_T_S   MC_BG1
+    ROAD_CROSS MC_BG1
+
+    GLYPH_HOUSE   MC_BG0
+    GLYPH_HOUSE   MC_BG1
+    GLYPH_FACTORY MC_BG0
+    GLYPH_FACTORY MC_BG1
+    GLYPH_PARK    MC_BG0
+    GLYPH_PARK    MC_BG1
+    GLYPH_POWER   MC_BG0
+    GLYPH_POWER   MC_BG1
+    GLYPH_POLICE  MC_BG0
+    GLYPH_POLICE  MC_BG1
+    GLYPH_FIRE    MC_BG0
+    GLYPH_FIRE    MC_BG1
+    GLYPH_WATER   MC_BG0
+    GLYPH_WATER   MC_BG1
+    GLYPH_TREE    MC_BG0
+    GLYPH_TREE    MC_BG1
+
+    .byte %00011000
+    .byte %00111100
+    .byte %00011000
+    .byte %00011000
+    .byte %00111100
+    .byte %00011000
+    .byte %00110000
+    .byte %01100000
+
+    .byte %00000000
+    .byte %00111100
+    .byte %01111110
+    .byte %01011010
+    .byte %01011010
+    .byte %01111110
+    .byte %00111100
+    .byte %00000000
+
+    .byte %00000000
+    .byte %01100110
+    .byte %11111111
+    .byte %11111111
+    .byte %11111111
+    .byte %01111110
+    .byte %00111100
+    .byte %00011000
+
+    .byte %00000000
+    .byte %00111100
+    .byte %01100110
+    .byte %11000011
+    .byte %11011011
+    .byte %01100110
+    .byte %00111100
+    .byte %00000000
+
 ; ============================================================
 ; Screen-code strings  (null-terminated, $00 = end-of-string)
 ;
@@ -183,9 +535,10 @@ str_title_c5:   .byte "Q  - RETURN TO TITLE", $00
 str_yr:         .byte "YR:", $00
 str_cash:       .byte " $:", $00
 str_pop:        .byte " POP:", $00
-str_pwr:        .byte "PWR:", $00
-str_hap:        .byte " HAP:", $00
-str_crm:        .byte " CRM:", $00
+str_pwr:        .byte HUD_GLYPH_POWER, $00
+str_job:        .byte HUD_GLYPH_JOBS, $00
+str_hap:        .byte HUD_GLYPH_HAPPY, $00
+str_crm:        .byte HUD_GLYPH_CRIME, $00
 
 ; ---- Building menu (exactly 39 chars, fits 40-col screen) --
 ; Layout: 1:RD 2:HSE 3:FAC 4:PRK 5:PWR 6:POL 7:FIR
@@ -195,6 +548,18 @@ str_menu:
 ; ---- Mode labels -------------------------------------------
 str_mode_build: .byte "MODE:BUILD ", $00
 str_mode_demo:  .byte "MODE:DEMO  ", $00
+str_needs_hdr:  .byte "NEEDS:", $00
+str_need_ok:    .byte "OK", $00
+str_need_pwr:   .byte "PWR", $00
+str_need_job:   .byte "JOB", $00
+str_need_hse:   .byte "HSE", $00
+str_need_prk:   .byte "PRK", $00
+str_need_saf:   .byte "SAF", $00
+str_lvl_na:     .byte "L-", $00
+str_lvl_1:      .byte "L1", $00
+str_lvl_2:      .byte "L2", $00
+str_lvl_3:      .byte "L3", $00
+str_lvl_4:      .byte "L4", $00
 
 ; ---- Message strings ---------------------------------------
 str_msg_placed:     .byte "BUILDING PLACED!         ", $00
@@ -205,7 +570,11 @@ str_msg_demolished: .byte "DEMOLISHED.              ", $00
 str_msg_downgraded: .byte "DENSITY REDUCED.         ", $00
 str_msg_cantbuild:  .byte "CANNOT BUILD THERE.      ", $00
 str_msg_bankrupt:   .byte "*** CITY IS BANKRUPT ***!", $00
-str_msg_empty:      .byte "                         ", $00
+str_msg_empty:
+    .repeat 29
+        .byte 32
+    .endrepeat
+    .byte $00
 
 ; ---- Help row (up to 40 chars) -----------------------------
 str_help:
@@ -222,6 +591,17 @@ bld_name_park:    .byte "PARK       ($200)        ", $00
 bld_name_power:   .byte "POWER PLT  ($1000)       ", $00
 bld_name_police:  .byte "POLICE STN ($300)        ", $00
 bld_name_fire:    .byte "FIRE STN   ($300)        ", $00
+
+hud_tile_land:    .byte "LAND", $00
+hud_tile_road:    .byte "ROAD", $00
+hud_tile_home:    .byte "HOME", $00
+hud_tile_fact:    .byte "FACT", $00
+hud_tile_park:    .byte "PARK", $00
+hud_tile_pwr:     .byte "POWR", $00
+hud_tile_pol:     .byte "POLC", $00
+hud_tile_fire:    .byte "FIRE", $00
+hud_tile_watr:    .byte "WATR", $00
+hud_tile_tree:    .byte "TREE", $00
 
 ; ---- Reset A-Z back to ASCII (65-90) for safety ------------
 .repeat 26, I
@@ -240,3 +620,21 @@ bld_names:
     .word bld_name_power
     .word bld_name_police
     .word bld_name_fire
+
+hud_tile_names:
+    .word hud_tile_land
+    .word hud_tile_road
+    .word hud_tile_home
+    .word hud_tile_fact
+    .word hud_tile_park
+    .word hud_tile_pwr
+    .word hud_tile_pol
+    .word hud_tile_fire
+    .word hud_tile_watr
+    .word hud_tile_tree
+
+hud_level_names:
+    .word str_lvl_1
+    .word str_lvl_2
+    .word str_lvl_3
+    .word str_lvl_4

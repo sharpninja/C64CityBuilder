@@ -41,16 +41,16 @@ try_place_building:
     lda sel_building
     tax
     lda bld_cost_lo,x
-    sta tmp3
+    sta tmp1
     lda bld_cost_hi,x
-    sta tmp4
+    sta tmp2
 
     lda money_lo
     sec
-    sbc tmp3
+    sbc tmp1
     sta tmp1            ; result lo
     lda money_hi
-    sbc tmp4
+    sbc tmp2
     bpl @tp_afford      ; high byte >= 0 → affordable
 
     ; Not enough cash
@@ -247,6 +247,8 @@ place_tile_at:
     ; Redraw the changed tile and any adjacent roads so road
     ; junction glyphs stay in sync with the map.
     jsr render_road_neighborhood
+    lda #1
+    sta dirty_map
 
     rts
 

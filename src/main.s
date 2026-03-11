@@ -65,6 +65,7 @@ game_start:
     jsr show_title          ; title screen + keypress wait
 
     ; ---- Full first-frame render --------------------------
+    jsr clear_screen
     jsr render_map
     jsr draw_status_bar
     jsr enable_cursor_sprite
