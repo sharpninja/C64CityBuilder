@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.164 2956.7999999999993" width="264.164" height="2956.7999999999993" style="--bg:#FFFFFF;--fg:#27272A;--accent:#3b82f6">
+<style>
+  text { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .mono { font-family: ui-monospace, 'SF Mono', 'Cascadia Code', monospace; }
+  svg {
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 55%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 35%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 20%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 32%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 70%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 4%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 22%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 4%, var(--bg));
+    --_group-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 8%, var(--bg));
+    --_accent-fill:   color-mix(in srgb, var(--accent, var(--fg)) 8%, var(--bg));
+    --_accent-stroke: color-mix(in srgb, var(--accent, var(--fg)) 20%, var(--bg));
+    --_accent-text:   color-mix(in srgb, var(--accent, var(--fg)) 65%, var(--bg));
+  }
+  .node, .actor, .entity, .class-node { filter: drop-shadow(0 1px 3px rgba(0,0,0,.07)); }
+  .subgraph { filter: drop-shadow(0 1px 2px rgba(0,0,0,.04)); }
+</style>
+
+<defs>
+  <marker id="arrowhead" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto">
+    <polygon points="0 0, 12 6, 0 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="1" refY="6" orient="auto-start-reverse">
+    <polygon points="12 0, 0 6, 12 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+
+<path class="edge" data-from="_start" data-to="data_mul40_lo" data-style="solid" data-arrow-start="false" data-arrow-end="true" d="M132.082,80 L132.082,152" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_mul40_lo" data-to="data_mul40_hi" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,198.2 L132.082,270.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_mul40_hi" data-to="data_tile_char" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,316.4 L132.082,388.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_tile_char" data-to="data_road_shape_char" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,434.59999999999997 L132.082,506.59999999999997" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_road_shape_char" data-to="data_tile_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,552.8 L132.082,624.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_tile_color" data-to="data_tile_density_base" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,671 L132.082,743" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_tile_density_base" data-to="data_density_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,789.2 L132.082,861.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_density_color" data-to="data_tile_mc_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,907.4000000000001 L132.082,979.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_tile_mc_color" data-to="data_density_mc_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,1025.6000000000001 L132.082,1097.6000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_density_mc_color" data-to="data_house_aoe_radius" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,1143.8000000000002 L132.082,1215.8000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_house_aoe_radius" data-to="data_factory_aoe_radius" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,1262.0000000000002 L132.082,1334.0000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_factory_aoe_radius" data-to="data_bld_cost_lo" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,1380.2000000000003 L132.082,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_bld_cost_lo" data-to="data_bld_cost_hi" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,1498.4000000000003 L132.082,1570.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_bld_cost_hi" data-to="data_pow10_lo" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,1616.6000000000004 L132.082,1688.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_pow10_lo" data-to="data_pow10_hi" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,1734.8000000000004 L132.082,1806.8000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_pow10_hi" data-to="data_cursor_sprite_data" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,1853.0000000000005 L132.082,1925.0000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_cursor_sprite_data" data-to="data_custom_char_glyphs" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,1971.2000000000005 L132.082,2043.2000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_custom_char_glyphs" data-to="data_str_menu" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,2089.4000000000005 L132.082,2161.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_str_menu" data-to="data_str_msg_empty" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,2207.6000000000004 L132.082,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_str_msg_empty" data-to="data_str_help" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,2325.8 L132.082,2397.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_str_help" data-to="data_bld_names" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,2444 L132.082,2516" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_bld_names" data-to="data_hud_tile_names" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,2562.2 L132.082,2634.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_hud_tile_names" data-to="data_hud_segment_names" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,2680.3999999999996 L132.082,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="data_hud_segment_names" data-to="data_hud_level_names" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M132.082,2798.5999999999995 L132.082,2870.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="data_mul40_lo" data-to="data_mul40_hi" data-label="fallthrough">
+  <rect x="95.966" y="211.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="227" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_mul40_hi" data-to="data_tile_char" data-label="fallthrough">
+  <rect x="95.966" y="329.4" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="345.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_tile_char" data-to="data_road_shape_char" data-label="fallthrough">
+  <rect x="95.966" y="447.59999999999997" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="463.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_road_shape_char" data-to="data_tile_color" data-label="fallthrough">
+  <rect x="95.966" y="565.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="581.5999999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_tile_color" data-to="data_tile_density_base" data-label="fallthrough">
+  <rect x="95.966" y="684" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="699.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_tile_density_base" data-to="data_density_color" data-label="fallthrough">
+  <rect x="95.966" y="802.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="818" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_density_color" data-to="data_tile_mc_color" data-label="fallthrough">
+  <rect x="95.966" y="920.4000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="936.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_tile_mc_color" data-to="data_density_mc_color" data-label="fallthrough">
+  <rect x="95.966" y="1038.6000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="1054.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_density_mc_color" data-to="data_house_aoe_radius" data-label="fallthrough">
+  <rect x="95.966" y="1156.8000000000002" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="1172.6000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_house_aoe_radius" data-to="data_factory_aoe_radius" data-label="fallthrough">
+  <rect x="95.966" y="1275.0000000000002" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="1290.8000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_factory_aoe_radius" data-to="data_bld_cost_lo" data-label="fallthrough">
+  <rect x="95.966" y="1393.2000000000003" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="1409.0000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_bld_cost_lo" data-to="data_bld_cost_hi" data-label="fallthrough">
+  <rect x="95.966" y="1511.4000000000003" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="1527.2000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_bld_cost_hi" data-to="data_pow10_lo" data-label="fallthrough">
+  <rect x="95.966" y="1629.6000000000004" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="1645.4000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_pow10_lo" data-to="data_pow10_hi" data-label="fallthrough">
+  <rect x="95.966" y="1747.8000000000004" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="1763.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_pow10_hi" data-to="data_cursor_sprite_data" data-label="fallthrough">
+  <rect x="95.966" y="1866.0000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="1881.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_cursor_sprite_data" data-to="data_custom_char_glyphs" data-label="fallthrough">
+  <rect x="95.966" y="1984.2000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="2000.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_custom_char_glyphs" data-to="data_str_menu" data-label="fallthrough">
+  <rect x="95.966" y="2102.4000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="2118.2000000000007" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_str_menu" data-to="data_str_msg_empty" data-label="fallthrough">
+  <rect x="95.966" y="2220.6000000000004" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="2236.4000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_str_msg_empty" data-to="data_str_help" data-label="fallthrough">
+  <rect x="95.966" y="2338.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="2354.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_str_help" data-to="data_bld_names" data-label="fallthrough">
+  <rect x="95.966" y="2457" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="2472.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_bld_names" data-to="data_hud_tile_names" data-label="fallthrough">
+  <rect x="95.966" y="2575.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="2591" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_hud_tile_names" data-to="data_hud_segment_names" data-label="fallthrough">
+  <rect x="95.966" y="2693.3999999999996" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="2709.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="data_hud_segment_names" data-to="data_hud_level_names" data-label="fallthrough">
+  <rect x="95.966" y="2811.5999999999995" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="132.082" y="2827.3999999999996" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="node" data-id="data_mul40_lo" data-label="mul40_lo" data-shape="rounded">
+  <rect x="79.102" y="152" width="105.96" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="175.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">mul40_lo</text>
+</g>
+<g class="node" data-id="data_mul40_hi" data-label="mul40_hi" data-shape="rounded">
+  <rect x="79.102" y="270.2" width="105.96" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="293.3" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">mul40_hi</text>
+</g>
+<g class="node" data-id="data_tile_char" data-label="tile_char" data-shape="rounded">
+  <rect x="79.102" y="388.4" width="105.96" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="411.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">tile_char</text>
+</g>
+<g class="node" data-id="data_road_shape_char" data-label="road_shape_char" data-shape="rounded">
+  <rect x="48.778000000000006" y="506.59999999999997" width="166.608" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="529.6999999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">road_shape_char</text>
+</g>
+<g class="node" data-id="data_tile_color" data-label="tile_color" data-shape="rounded">
+  <rect x="77.506" y="624.8" width="109.152" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="647.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">tile_color</text>
+</g>
+<g class="node" data-id="data_tile_density_base" data-label="tile_density_base" data-shape="rounded">
+  <rect x="51.17200000000001" y="743" width="161.82" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="766.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">tile_density_base</text>
+</g>
+<g class="node" data-id="data_density_color" data-label="density_color" data-shape="rounded">
+  <rect x="63.14200000000001" y="861.2" width="137.88" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="884.3000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">density_color</text>
+</g>
+<g class="node" data-id="data_tile_mc_color" data-label="tile_mc_color" data-shape="rounded">
+  <rect x="64.73800000000001" y="979.4000000000001" width="134.688" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="1002.5000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">tile_mc_color</text>
+</g>
+<g class="node" data-id="data_density_mc_color" data-label="density_mc_color" data-shape="rounded">
+  <rect x="50.37400000000001" y="1097.6000000000001" width="163.416" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="1120.7" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">density_mc_color</text>
+</g>
+<g class="node" data-id="data_house_aoe_radius" data-label="house_aoe_radius" data-shape="rounded">
+  <rect x="46.384000000000015" y="1215.8000000000002" width="171.396" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="1238.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">house_aoe_radius</text>
+</g>
+<g class="node" data-id="data_factory_aoe_radius" data-label="factory_aoe_radius" data-shape="rounded">
+  <rect x="43.99000000000001" y="1334.0000000000002" width="176.184" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="1357.1000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">factory_aoe_radius</text>
+</g>
+<g class="node" data-id="data_bld_cost_lo" data-label="bld_cost_lo" data-shape="rounded">
+  <rect x="70.32400000000001" y="1452.2000000000003" width="123.51599999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="1475.3000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">bld_cost_lo</text>
+</g>
+<g class="node" data-id="data_bld_cost_hi" data-label="bld_cost_hi" data-shape="rounded">
+  <rect x="70.32400000000001" y="1570.4000000000003" width="123.51599999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="1593.5000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">bld_cost_hi</text>
+</g>
+<g class="node" data-id="data_pow10_lo" data-label="pow10_lo" data-shape="rounded">
+  <rect x="79.102" y="1688.6000000000004" width="105.96" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="1711.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">pow10_lo</text>
+</g>
+<g class="node" data-id="data_pow10_hi" data-label="pow10_hi" data-shape="rounded">
+  <rect x="79.102" y="1806.8000000000004" width="105.96" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="1829.9000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">pow10_hi</text>
+</g>
+<g class="node" data-id="data_cursor_sprite_data" data-label="cursor_sprite_data" data-shape="rounded">
+  <rect x="44.788" y="1925.0000000000005" width="174.58800000000002" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="1948.1000000000004" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">cursor_sprite_data</text>
+</g>
+<g class="node" data-id="data_custom_char_glyphs" data-label="custom_char_glyphs" data-shape="rounded">
+  <rect x="40" y="2043.2000000000005" width="184.16400000000002" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="2066.3000000000006" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">custom_char_glyphs</text>
+</g>
+<g class="node" data-id="data_str_menu" data-label="str_menu" data-shape="rounded">
+  <rect x="77.506" y="2161.4000000000005" width="109.152" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="2184.5000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">str_menu</text>
+</g>
+<g class="node" data-id="data_str_msg_empty" data-label="str_msg_empty" data-shape="rounded">
+  <rect x="59.152000000000015" y="2279.6000000000004" width="145.85999999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="2302.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">str_msg_empty</text>
+</g>
+<g class="node" data-id="data_str_help" data-label="str_help" data-shape="rounded">
+  <rect x="80.69800000000001" y="2397.8" width="102.768" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="2420.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">str_help</text>
+</g>
+<g class="node" data-id="data_bld_names" data-label="bld_names" data-shape="rounded">
+  <rect x="72.71800000000002" y="2516" width="118.728" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.08200000000002" y="2539.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">bld_names</text>
+</g>
+<g class="node" data-id="data_hud_tile_names" data-label="hud_tile_names" data-shape="rounded">
+  <rect x="57.556000000000026" y="2634.2" width="149.05199999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="2657.2999999999997" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">hud_tile_names</text>
+</g>
+<g class="node" data-id="data_hud_segment_names" data-label="hud_segment_names" data-shape="rounded">
+  <rect x="40.00000000000003" y="2752.3999999999996" width="184.16399999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="2775.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">hud_segment_names</text>
+</g>
+<g class="node" data-id="data_hud_level_names" data-label="hud_level_names" data-shape="rounded">
+  <rect x="51.17200000000001" y="2870.5999999999995" width="161.82" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="132.082" y="2893.6999999999994" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">hud_level_names</text>
+</g>
+<g class="node" data-id="_start" data-label="" data-shape="statestart">
+  <circle cx="132.082" cy="60" r="12" fill="var(--_text)" stroke="none" />
+  
+</g>
+</svg>

@@ -1,0 +1,166 @@
+stateDiagram-v2
+    state "render_map" as map_render_map
+    state "@rm_row" as map__rm_row
+    state "@rm_col" as map__rm_col
+    state "render_tile" as map_render_tile
+    state "render_road_neighborhood" as map_render_road_neighborhood
+    state "@rrn_render_north" as map__rrn_render_north
+    state "@rrn_restore_north" as map__rrn_restore_north
+    state "@rrn_south" as map__rrn_south
+    state "@rrn_render_south" as map__rrn_render_south
+    state "@rrn_restore_south" as map__rrn_restore_south
+    state "@rrn_east" as map__rrn_east
+    state "@rrn_render_east" as map__rrn_render_east
+    state "@rrn_restore_east" as map__rrn_restore_east
+    state "@rrn_west" as map__rrn_west
+    state "@rrn_render_west" as map__rrn_render_west
+    state "@rrn_restore_west" as map__rrn_restore_west
+    state "render_road_neighborhood_exit" as map_render_road_neighborhood_exit
+    state "@rrn_done" as map__rrn_done
+    state "get_tile_screen_char" as map_get_tile_screen_char
+    state "@gtsc_base" as map__gtsc_base
+    state "@gtsc_road" as map__gtsc_road
+    state "get_road_screen_char" as map_get_road_screen_char
+    state "@grsc_north_yes" as map__grsc_north_yes
+    state "@grsc_south" as map__grsc_south
+    state "@grsc_south_yes" as map__grsc_south_yes
+    state "@grsc_east" as map__grsc_east
+    state "@grsc_east_yes" as map__grsc_east_yes
+    state "@grsc_west" as map__grsc_west
+    state "@grsc_west_yes" as map__grsc_west_yes
+    state "@grsc_lookup" as map__grsc_lookup
+    state "get_tile" as map_get_tile
+    state "set_tile" as map_set_tile
+    state "update_cursor_display" as map_update_cursor_display
+    state "@ucd_store_x" as map__ucd_store_x
+    state "update_cursor_aoe_state" as map_update_cursor_aoe_state
+    state "@ucao_house" as map__ucao_house
+    state "@ucao_factory" as map__ucao_factory
+    state "@ucao_enable" as map__ucao_enable
+    state "@ucao_park" as map__ucao_park
+    state "@ucao_police" as map__ucao_police
+    state "@ucao_fire" as map__ucao_fire
+    state "@ucao_store" as map__ucao_store
+    state "tile_in_cursor_aoe" as map_tile_in_cursor_aoe
+    state "@tica_dx" as map__tica_dx
+    state "@tica_dx_abs" as map__tica_dx_abs
+    state "@tica_dy" as map__tica_dy
+    state "@tica_dy_abs" as map__tica_dy_abs
+    state "@tica_yes" as map__tica_yes
+    state "get_tile_draw_color" as map_get_tile_draw_color
+    state "@gtdc_base" as map__gtdc_base
+    state "get_tile_highlight_color" as map_get_tile_highlight_color
+    state "@gthc_base" as map__gthc_base
+    state "restore_cursor_color" as map_restore_cursor_color
+    state "@rcc_no_carry" as map__rcc_no_carry
+
+    [*] --> map_render_map
+    map_render_map --> map__rm_row : fallthrough
+    map__rm_row --> map__rm_col : fallthrough
+    map__rm_col --> map_render_tile : Call render_tile
+    map__rm_col --> map__rm_col : Branch BNE
+    map__rm_col --> map__rm_row : Branch BNE
+    map_render_tile --> map_update_cursor_aoe_state : Call update_cursor_aoe_state
+    map_render_tile --> map_get_tile_screen_char : Call get_tile_screen_char
+    map_render_tile --> map_get_tile_draw_color : Call get_tile_draw_color
+    map_render_road_neighborhood --> map_render_tile : Call render_tile
+    map_render_road_neighborhood --> map__rrn_south : Branch BEQ
+    map_render_road_neighborhood --> map_get_tile : Call get_tile
+    map_render_road_neighborhood --> map__rrn_render_north : Branch BEQ
+    map_render_road_neighborhood --> map__rrn_restore_north : Branch BNE
+    map_render_road_neighborhood --> map__rrn_render_north : fallthrough
+    map__rrn_render_north --> map_render_tile : Call render_tile
+    map__rrn_render_north --> map__rrn_restore_north : fallthrough
+    map__rrn_restore_north --> map__rrn_south : fallthrough
+    map__rrn_south --> map__rrn_east : Branch BEQ
+    map__rrn_south --> map_get_tile : Call get_tile
+    map__rrn_south --> map__rrn_render_south : Branch BEQ
+    map__rrn_south --> map__rrn_restore_south : Branch BNE
+    map__rrn_south --> map__rrn_render_south : fallthrough
+    map__rrn_render_south --> map_render_tile : Call render_tile
+    map__rrn_render_south --> map__rrn_restore_south : fallthrough
+    map__rrn_restore_south --> map__rrn_east : fallthrough
+    map__rrn_east --> map__rrn_west : Branch BEQ
+    map__rrn_east --> map_get_tile : Call get_tile
+    map__rrn_east --> map__rrn_render_east : Branch BEQ
+    map__rrn_east --> map__rrn_restore_east : Branch BNE
+    map__rrn_east --> map__rrn_render_east : fallthrough
+    map__rrn_render_east --> map_render_tile : Call render_tile
+    map__rrn_render_east --> map__rrn_restore_east : fallthrough
+    map__rrn_restore_east --> map__rrn_west : fallthrough
+    map__rrn_west --> map__rrn_done : Branch BEQ
+    map__rrn_west --> map_get_tile : Call get_tile
+    map__rrn_west --> map__rrn_render_west : Branch BEQ
+    map__rrn_west --> map__rrn_restore_west : Branch BNE
+    map__rrn_west --> map__rrn_render_west : fallthrough
+    map__rrn_render_west --> map_render_tile : Call render_tile
+    map__rrn_render_west --> map__rrn_restore_west : fallthrough
+    map__rrn_restore_west --> map_render_road_neighborhood_exit : fallthrough
+    map_render_road_neighborhood_exit --> map__rrn_done : fallthrough
+    map_get_tile_screen_char --> map__gtsc_road : Branch BEQ
+    map_get_tile_screen_char --> map__gtsc_road : Branch BEQ
+    map_get_tile_screen_char --> map_tile_in_cursor_aoe : Call tile_in_cursor_aoe
+    map_get_tile_screen_char --> map__gtsc_base : Branch BEQ
+    map__gtsc_road --> map_get_road_screen_char : Call get_road_screen_char
+    map__gtsc_road --> map_tile_in_cursor_aoe : Call tile_in_cursor_aoe
+    map__gtsc_road --> map__gtsc_base : Branch BEQ
+    map_get_road_screen_char --> map__grsc_south : Branch BEQ
+    map_get_road_screen_char --> map_get_tile : Call get_tile
+    map_get_road_screen_char --> map__grsc_north_yes : Branch BEQ
+    map_get_road_screen_char --> map__grsc_south : Branch BNE
+    map_get_road_screen_char --> map__grsc_north_yes : fallthrough
+    map__grsc_north_yes --> map__grsc_south : fallthrough
+    map__grsc_south --> map__grsc_east : Branch BEQ
+    map__grsc_south --> map_get_tile : Call get_tile
+    map__grsc_south --> map__grsc_south_yes : Branch BEQ
+    map__grsc_south --> map__grsc_east : Branch BNE
+    map__grsc_south --> map__grsc_south_yes : fallthrough
+    map__grsc_south_yes --> map__grsc_east : fallthrough
+    map__grsc_east --> map__grsc_west : Branch BEQ
+    map__grsc_east --> map_get_tile : Call get_tile
+    map__grsc_east --> map__grsc_east_yes : Branch BEQ
+    map__grsc_east --> map__grsc_west : Branch BNE
+    map__grsc_east --> map__grsc_east_yes : fallthrough
+    map__grsc_east_yes --> map__grsc_west : fallthrough
+    map__grsc_west --> map__grsc_lookup : Branch BEQ
+    map__grsc_west --> map_get_tile : Call get_tile
+    map__grsc_west --> map__grsc_west_yes : Branch BEQ
+    map__grsc_west --> map__grsc_lookup : Branch BNE
+    map__grsc_west --> map__grsc_west_yes : fallthrough
+    map__grsc_west_yes --> map__grsc_lookup : fallthrough
+    map_update_cursor_display --> map__ucd_store_x : Branch BEQ
+    map_update_cursor_display --> map__ucd_store_x : fallthrough
+    map_update_cursor_aoe_state --> map_get_tile : Call get_tile
+    map_update_cursor_aoe_state --> map_get_tile_highlight_color : Call get_tile_highlight_color
+    map_update_cursor_aoe_state --> map__ucao_house : Branch BEQ
+    map_update_cursor_aoe_state --> map__ucao_factory : Branch BEQ
+    map_update_cursor_aoe_state --> map__ucao_park : Branch BEQ
+    map_update_cursor_aoe_state --> map__ucao_police : Branch BEQ
+    map_update_cursor_aoe_state --> map__ucao_fire : Branch BEQ
+    map__ucao_house --> buildings_get_tile_density_units : Call get_tile_density_units
+    map__ucao_house --> map__ucao_enable : Branch BNE
+    map__ucao_house --> map__ucao_factory : fallthrough
+    map__ucao_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    map__ucao_factory --> map__ucao_enable : fallthrough
+    map__ucao_park --> map__ucao_store : Branch BNE
+    map__ucao_park --> map__ucao_police : fallthrough
+    map__ucao_police --> map__ucao_store : Branch BNE
+    map__ucao_police --> map__ucao_fire : fallthrough
+    map__ucao_fire --> map__ucao_store : fallthrough
+    map_tile_in_cursor_aoe --> map__tica_dx : Branch BNE
+    map__tica_dx --> map__tica_dx_abs : Branch BCS
+    map__tica_dx --> map__tica_dx_abs : fallthrough
+    map__tica_dx_abs --> map__tica_dy : Branch BCC
+    map__tica_dx_abs --> map__tica_dy : Branch BEQ
+    map__tica_dy --> map__tica_dy_abs : Branch BCS
+    map__tica_dy --> map__tica_dy_abs : fallthrough
+    map__tica_dy_abs --> map__tica_yes : Branch BCC
+    map__tica_dy_abs --> map__tica_yes : Branch BEQ
+    map_get_tile_draw_color --> map__gtdc_base : Branch BCC
+    map_get_tile_draw_color --> map__gtdc_base : Branch BCS
+    map_get_tile_highlight_color --> map__gthc_base : Branch BCC
+    map_get_tile_highlight_color --> map__gthc_base : Branch BCS
+    map_restore_cursor_color --> map_get_tile : Call get_tile
+    map_restore_cursor_color --> map_get_tile_draw_color : Call get_tile_draw_color
+    map_restore_cursor_color --> map__rcc_no_carry : Branch BCC
+    map_restore_cursor_color --> map__rcc_no_carry : fallthrough

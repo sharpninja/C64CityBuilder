@@ -1,0 +1,353 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2075.2619999999997 639" width="2075.2619999999997" height="639" style="--bg:#FFFFFF;--fg:#27272A;--accent:#3b82f6">
+<style>
+  text { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .mono { font-family: ui-monospace, 'SF Mono', 'Cascadia Code', monospace; }
+  svg {
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 55%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 35%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 20%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 32%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 70%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 4%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 22%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 4%, var(--bg));
+    --_group-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 8%, var(--bg));
+    --_accent-fill:   color-mix(in srgb, var(--accent, var(--fg)) 8%, var(--bg));
+    --_accent-stroke: color-mix(in srgb, var(--accent, var(--fg)) 20%, var(--bg));
+    --_accent-text:   color-mix(in srgb, var(--accent, var(--fg)) 65%, var(--bg));
+  }
+  .node, .actor, .entity, .class-node { filter: drop-shadow(0 1px 3px rgba(0,0,0,.07)); }
+  .subgraph { filter: drop-shadow(0 1px 2px rgba(0,0,0,.04)); }
+</style>
+
+<defs>
+  <marker id="arrowhead" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto">
+    <polygon points="0 0, 12 6, 0 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="1" refY="6" orient="auto-start-reverse">
+    <polygon points="12 0, 0 6, 12 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+
+<path class="edge" data-from="_start" data-to="init_init_system" data-style="solid" data-arrow-start="false" data-arrow-end="true" d="M1025.551,80 L1025.551,113.1 Q1025.551,119.1 1031.551,119.1 L1050.277,119.1 Q1056.277,119.1 1056.277,125.1 L1056.277,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_init_system" data-to="init_init_custom_charset" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call init_custom_charset" d="M1056.277,204.4 L1056.277,234.4 Q1056.277,240.4 1050.277,240.4 L744.4,240.4 Q738.4,240.4 738.4,246.4 L738.4,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_init_system" data-to="init_clear_screen" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call clear_screen" d="M1056.277,204.4 L1056.277,234.4 Q1056.277,240.4 1050.277,240.4 L313.64799999999997,240.4 Q307.64799999999997,240.4 307.64799999999997,246.4 L307.64799999999997,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_init_system" data-to="init_init_cursor_sprite" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call init_cursor_sprite" d="M1056.277,204.4 L1056.277,234.4 Q1056.277,240.4 1062.277,240.4 L1076.968,240.4 Q1082.968,240.4 1082.968,246.4 L1082.968,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_init_system" data-to="init_init_map" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call init_map" d="M1056.277,204.4 L1056.277,234.4 Q1056.277,240.4 1050.277,240.4 L919.876,240.4 Q913.876,240.4 913.876,246.4 L913.876,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_init_system" data-to="simulation_clear_road_segment_state" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call clear_road_segment_state" d="M1056.277,204.4 L1056.277,234.4 Q1056.277,240.4 1062.277,240.4 L1526.0739999999998,240.4 Q1532.0739999999998,240.4 1532.0739999999998,246.4 L1532.0739999999998,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_init_system" data-to="init_init_raster_split" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call init_raster_split" d="M1056.277,204.4 L1056.277,234.4 Q1056.277,240.4 1062.277,240.4 L1270,240.4 Q1276,240.4 1276,246.4 L1276,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_init_custom_charset" data-to="init__icc_page" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M738.4,322.6 L738.4,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__icc_page" data-to="init__icc_byte" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M738.4,440.8 L738.4,512.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__icc_byte" data-to="init__icc_byte" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M795.3699999999999,535.9000000000001 L1713.6219999999998,535.9000000000001 L1713.6219999999998,535.9000000000001 L795.3699999999999,535.9000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__icc_byte" data-to="init__icc_page" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M795.3699999999999,535.9000000000001 L1707.6219999999998,535.9000000000001 Q1713.6219999999998,535.9000000000001 1713.6219999999998,529.9000000000001 L1713.6219999999998,423.70000000000005 Q1713.6219999999998,417.70000000000005 1707.6219999999998,417.70000000000005 L797.7639999999999,417.70000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__icc_byte" data-to="init__icc_custom_page" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M738.4,559 L738.4,305.5 Q738.4,299.5 732.4,299.5 L347.08099999999985,299.5 Q341.08099999999985,299.5 341.08099999999985,293.5 L341.08099999999985,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__icc_custom_page" data-to="init__icc_custom" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M341.08099999999985,86.2 L341.08099999999985,69.1 Q341.08099999999985,63.1 347.08099999999985,63.1 L522.5269999999998,63.1 Q528.5269999999998,63.1 528.5269999999998,57.1 L528.5269999999998,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__icc_custom" data-to="init__icc_custom" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M594.2749999999999,63.1 L1713.6219999999998,63.1 L1713.6219999999998,63.1 L594.2749999999999,63.1" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__icc_custom" data-to="init__icc_custom_page" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M594.2749999999999,63.1 L1713.6219999999998,63.1 L1713.6219999999998,63.1 L426.7789999999998,63.1" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_init_cursor_sprite" data-to="init__ics_copy" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M1082.968,322.6 L1082.968,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__ics_copy" data-to="init__ics_copy" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M1142.332,417.70000000000005 L1713.6219999999998,417.70000000000005 L1713.6219999999998,417.70000000000005 L1142.332,417.70000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__ics_copy" data-to="init_disable_cursor_sprite" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call disable_cursor_sprite" d="M1082.968,440.8 L1082.968,246.4 Q1082.968,240.4 1076.968,240.4 L884.6809999999998,240.4 Q878.6809999999998,240.4 878.6809999999998,234.4 L878.6809999999998,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_raster_irq" data-to="init__chain_kernal" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M688.0429999999999,86.2 L688.0429999999999,116.2 Q688.0429999999999,122.2 694.0429999999999,122.2 L881.983,122.2 Q887.983,122.2 887.983,128.2 L887.983,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_raster_irq" data-to="init__lower_phase" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M688.0429999999999,86.2 L688.0429999999999,116.2 Q688.0429999999999,122.2 682.0429999999999,122.2 L145.35399999999998,122.2 Q139.35399999999998,122.2 139.35399999999998,128.2 L139.35399999999998,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__lower_phase" data-to="init__top_phase" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M139.35399999999998,204.4 L139.35399999999998,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__top_phase" data-to="init__irq_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M139.35399999999998,322.6 L139.35399999999998,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__chain_kernal" data-to="external_KERNAL_IRQ" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M887.983,204.4 L887.983,234.4 Q887.983,240.4 881.983,240.4 L519.049,240.4 Q513.049,240.4 513.049,246.4 L513.049,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__chain_kernal" data-to="init_clear_screen" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M887.983,204.4 L887.983,234.4 Q887.983,240.4 881.983,240.4 L313.64799999999997,240.4 Q307.64799999999997,240.4 307.64799999999997,246.4 L307.64799999999997,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_clear_screen" data-to="init__pg_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M307.64799999999997,322.6 L307.64799999999997,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__pg_loop" data-to="init__byte_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M307.64799999999997,440.8 L307.64799999999997,512.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__byte_loop" data-to="init__byte_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M368.608,535.9000000000001 L1713.6219999999998,535.9000000000001 L1713.6219999999998,535.9000000000001 L368.608,535.9000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__byte_loop" data-to="init__pg_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M368.608,535.9000000000001 L1707.6219999999998,535.9000000000001 Q1713.6219999999998,535.9000000000001 1713.6219999999998,529.9000000000001 L1713.6219999999998,423.70000000000005 Q1713.6219999999998,417.70000000000005 1707.6219999999998,417.70000000000005 L363.022,417.70000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__byte_loop" data-to="init__rem_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M307.64799999999997,559 L307.64799999999997,305.5 Q307.64799999999997,299.5 313.64799999999997,299.5 L1128.915,299.5 Q1134.915,299.5 1134.915,293.5 L1134.915,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__rem_loop" data-to="init__rem_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M1194.279,63.1 L1713.6219999999998,63.1 L1713.6219999999998,63.1 L1194.279,63.1" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_init_map" data-to="init__im_pg" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M913.876,322.6 L913.876,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__im_pg" data-to="init__im_inner" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M913.876,440.8 L913.876,512.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__im_inner" data-to="init__im_inner" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M970.846,535.9000000000001 L1713.6219999999998,535.9000000000001 L1713.6219999999998,535.9000000000001 L970.846,535.9000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__im_inner" data-to="init__im_pg" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M970.846,535.9000000000001 L1707.6219999999998,535.9000000000001 Q1713.6219999999998,535.9000000000001 1713.6219999999998,529.9000000000001 L1713.6219999999998,423.70000000000005 Q1713.6219999999998,417.70000000000005 1707.6219999999998,417.70000000000005 L962.068,417.70000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__im_inner" data-to="init__im_rem" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M913.876,559 L913.876,305.5 Q913.876,299.5 919.876,299.5 L1276.461,299.5 Q1282.461,299.5 1282.461,293.5 L1282.461,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__im_rem" data-to="init__im_rem" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M1334.643,63.1 L1713.6219999999998,63.1 L1713.6219999999998,63.1 L1334.643,63.1" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__im_rem" data-to="init__river" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M1282.461,86.2 L1282.461,69.1 Q1282.461,63.1 1288.461,63.1 L1410.441,63.1 Q1416.441,63.1 1416.441,57.1 L1416.441,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__river" data-to="init__river" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M1462.239,63.1 L1713.6219999999998,63.1 L1713.6219999999998,63.1 L1462.239,63.1" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init__lower_phase" data-to="init__irq_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M139.35399999999998,204.4 L139.35399999999998,234.4 Q139.35399999999998,240.4 133.35399999999998,240.4 L46,240.4 Q40,240.4 40,246.4 L40,270.4 Q40,276.4 40,282.4 L40,329.5 Q40,335.5 46,335.5 L133.35399999999998,335.5 Q139.35399999999998,335.5 139.35399999999998,341.5 L139.35399999999998,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_raster_irq" data-to="init__top_phase" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M688.0429999999999,86.2 L688.0429999999999,116.2 Q688.0429999999999,122.2 694.0429999999999,122.2 L773.851,122.2 Q779.851,122.2 779.851,128.2 L779.851,152.2 Q779.851,158.2 779.851,164.2 L779.851,211.3 Q779.851,217.3 773.851,217.3 L145.35399999999998,217.3 Q139.35399999999998,217.3 139.35399999999998,223.3 L139.35399999999998,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="init_enable_cursor_sprite" data-to="map_update_cursor_display" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call update_cursor_display" d="M1918.4419999999998,86.2 L1918.4419999999998,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="init_init_system" data-to="init_init_custom_charset" data-label="Call init_custom_charset">
+  <rect x="857.6942" y="224.6" width="142.86400000000003" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="929.1262" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call init_custom_charset</text>
+</g>
+<g class="edge-label" data-from="init_init_system" data-to="init_clear_screen" data-label="Call clear_screen">
+  <rect x="701.5934" y="224.6" width="110.46400000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="756.8254" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call clear_screen</text>
+</g>
+<g class="edge-label" data-from="init_init_system" data-to="init_init_cursor_sprite" data-label="Call init_cursor_sprite">
+  <rect x="990.029" y="203" width="132.49599999999998" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1056.277" y="218.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call init_cursor_sprite</text>
+</g>
+<g class="edge-label" data-from="init_init_system" data-to="init_init_map" data-label="Call init_map">
+  <rect x="958.9886" y="224.6" width="80.656" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="999.3166" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call init_map</text>
+</g>
+<g class="edge-label" data-from="init_init_system" data-to="simulation_clear_road_segment_state" data-label="Call clear_road_segment_state">
+  <rect x="1157.6678" y="224.6" width="177.85600000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1246.5958" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call clear_road_segment_state</text>
+</g>
+<g class="edge-label" data-from="init_init_system" data-to="init_init_raster_split" data-label="Call init_raster_split">
+  <rect x="1084.3982" y="224.6" width="119.53600000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1144.1662000000001" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call init_raster_split</text>
+</g>
+<g class="edge-label" data-from="init_init_custom_charset" data-to="init__icc_page" data-label="fallthrough">
+  <rect x="702.284" y="335.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="738.4" y="351.40000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__icc_page" data-to="init__icc_byte" data-label="fallthrough">
+  <rect x="702.284" y="453.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="738.4" y="469.6" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__icc_byte" data-to="init__icc_byte" data-label="Branch BNE">
+  <rect x="1121.6947999999998" y="520.1000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1162.6707999999999" y="535.9000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__icc_byte" data-to="init__icc_page" data-label="Branch BNE">
+  <rect x="1305.3451999999997" y="520.1000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1346.3211999999999" y="535.9000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__icc_byte" data-to="init__icc_custom_page" data-label="fallthrough">
+  <rect x="543.3563999999999" y="283.7" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="579.4723999999999" y="299.5" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__icc_custom_page" data-to="init__icc_custom" data-label="fallthrough">
+  <rect x="379.9433999999998" y="47.3" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="416.0593999999998" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__icc_custom" data-to="init__icc_custom" data-label="Branch BNE">
+  <rect x="1001.0378" y="47.3" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1042.0138" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__icc_custom" data-to="init__icc_custom_page" data-label="Branch BNE">
+  <rect x="900.5401999999998" y="47.3" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="941.5161999999998" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init_init_cursor_sprite" data-to="init__ics_copy" data-label="fallthrough">
+  <rect x="1046.852" y="335.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1082.968" y="351.40000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__ics_copy" data-to="init__ics_copy" data-label="Branch BNE">
+  <rect x="1329.8719999999998" y="401.90000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1370.848" y="417.70000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__ics_copy" data-to="init_disable_cursor_sprite" data-label="Call disable_cursor_sprite">
+  <rect x="923.3412" y="224.6" width="155.82400000000004" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1001.2532" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call disable_cursor_sprite</text>
+</g>
+<g class="edge-label" data-from="init_raster_irq" data-to="init__chain_kernal" data-label="Branch BEQ">
+  <rect x="727.0429999999999" y="106.4" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="768.0189999999999" y="122.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="init_raster_irq" data-to="init__lower_phase" data-label="fallthrough">
+  <rect x="432.45139999999986" y="106.4" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="468.56739999999985" y="122.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__lower_phase" data-to="init__top_phase" data-label="fallthrough">
+  <rect x="103.23799999999999" y="217.4" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="139.35399999999998" y="233.20000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__top_phase" data-to="init__irq_done" data-label="fallthrough">
+  <rect x="103.23799999999999" y="335.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="139.35399999999998" y="351.40000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__chain_kernal" data-to="external_KERNAL_IRQ" data-label="Jmp JMP">
+  <rect x="704.4853999999999" y="224.6" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="738.0093999999999" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="init__chain_kernal" data-to="init_clear_screen" data-label="fallthrough">
+  <rect x="619.733" y="224.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="655.8489999999999" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init_clear_screen" data-to="init__pg_loop" data-label="fallthrough">
+  <rect x="271.532" y="335.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="307.64799999999997" y="351.40000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__pg_loop" data-to="init__byte_loop" data-label="fallthrough">
+  <rect x="271.532" y="453.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="307.64799999999997" y="469.6" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__byte_loop" data-to="init__byte_loop" data-label="Branch BNE">
+  <rect x="865.6375999999999" y="520.1000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="906.6135999999999" y="535.9000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__byte_loop" data-to="init__pg_loop" data-label="Branch BNE">
+  <rect x="862.2860000000001" y="401.90000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="903.2620000000001" y="417.70000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__byte_loop" data-to="init__rem_loop" data-label="fallthrough">
+  <rect x="602.4388" y="283.7" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="638.5548" y="299.5" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__rem_loop" data-to="init__rem_loop" data-label="Branch BNE">
+  <rect x="1361.0402" y="47.3" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1402.0162" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init_init_map" data-to="init__im_pg" data-label="fallthrough">
+  <rect x="877.76" y="335.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="913.876" y="351.40000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__im_pg" data-to="init__im_inner" data-label="fallthrough">
+  <rect x="877.76" y="453.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="913.876" y="469.6" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__im_inner" data-to="init__im_inner" data-label="Branch BNE">
+  <rect x="1226.9804" y="520.1000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1267.9564" y="535.9000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__im_inner" data-to="init__im_pg" data-label="Branch BNE">
+  <rect x="1221.7136" y="401.90000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1262.6896" y="417.70000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__im_inner" data-to="init__im_rem" data-label="fallthrough">
+  <rect x="1025.194" y="283.7" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1061.31" y="299.5" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__im_rem" data-to="init__im_rem" data-label="Branch BNE">
+  <rect x="1445.2586000000001" y="47.3" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1486.2346" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__im_rem" data-to="init__river" data-label="fallthrough">
+  <rect x="1299.9370000000001" y="47.3" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1336.053" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="init__river" data-to="init__river" data-label="Branch BNE">
+  <rect x="1521.8161999999998" y="47.3" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1562.7921999999999" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="init__lower_phase" data-to="init__irq_done" data-label="Jmp JMP">
+  <rect x="66.0884" y="224.6" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="99.6124" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="init_raster_irq" data-to="init__top_phase" data-label="Branch BEQ">
+  <rect x="482.6762" y="201.5" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="523.6522" y="217.3" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="init_enable_cursor_sprite" data-to="map_update_cursor_display" data-label="Call update_cursor_display">
+  <rect x="1837.9379999999999" y="99.2" width="161.008" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1918.4419999999998" y="115" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call update_cursor_display</text>
+</g>
+<g class="node" data-id="init_init_system" data-label="init_system" data-shape="rounded">
+  <rect x="996.115" y="158.2" width="120.32399999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1056.277" y="181.29999999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_system</text>
+</g>
+<g class="node" data-id="init_init_custom_charset" data-label="init_custom_charset" data-shape="rounded">
+  <rect x="649.51" y="276.4" width="177.78" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="738.4" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_custom_charset</text>
+</g>
+<g class="node" data-id="init__icc_page" data-label="@icc_page" data-shape="rounded">
+  <rect x="679.036" y="394.6" width="118.72799999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="738.4" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@icc_page</text>
+</g>
+<g class="node" data-id="init__icc_byte" data-label="@icc_byte" data-shape="rounded">
+  <rect x="681.43" y="512.8" width="113.94" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="738.4" y="535.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@icc_byte</text>
+</g>
+<g class="node" data-id="init__icc_custom_page" data-label="@icc_custom_page" data-shape="rounded">
+  <rect x="255.38299999999987" y="40" width="171.39599999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="341.08099999999985" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@icc_custom_page</text>
+</g>
+<g class="node" data-id="init__icc_custom" data-label="@icc_custom" data-shape="rounded">
+  <rect x="462.7789999999998" y="40" width="131.49599999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="528.5269999999998" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@icc_custom</text>
+</g>
+<g class="node" data-id="init_init_cursor_sprite" data-label="init_cursor_sprite" data-shape="rounded">
+  <rect x="1000.462" y="276.4" width="165.012" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1082.968" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_cursor_sprite</text>
+</g>
+<g class="node" data-id="init__ics_copy" data-label="@ics_copy" data-shape="rounded">
+  <rect x="1023.604" y="394.6" width="118.72799999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1082.968" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ics_copy</text>
+</g>
+<g class="node" data-id="init_disable_cursor_sprite" data-label="disable_cursor_sprite" data-shape="rounded">
+  <rect x="781.8109999999998" y="40" width="193.73999999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="878.6809999999998" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">disable_cursor_sprite</text>
+</g>
+<g class="node" data-id="init_init_raster_split" data-label="init_raster_split" data-shape="rounded">
+  <rect x="1201.474" y="276.4" width="149.052" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1276" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_raster_split</text>
+</g>
+<g class="node" data-id="init_raster_irq" data-label="raster_irq" data-shape="rounded">
+  <rect x="630.2749999999999" y="40" width="115.53599999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="688.0429999999999" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">raster_irq</text>
+</g>
+<g class="node" data-id="init__lower_phase" data-label="@lower_phase" data-shape="rounded">
+  <rect x="68.02" y="158.2" width="142.668" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="139.35399999999998" y="181.29999999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@lower_phase</text>
+</g>
+<g class="node" data-id="init__top_phase" data-label="@top_phase" data-shape="rounded">
+  <rect x="76" y="276.4" width="126.70799999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="139.35399999999998" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@top_phase</text>
+</g>
+<g class="node" data-id="init__irq_done" data-label="@irq_done" data-shape="rounded">
+  <rect x="80.78800000000001" y="394.6" width="117.13199999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="139.354" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@irq_done</text>
+</g>
+<g class="node" data-id="init__chain_kernal" data-label="@chain_kernal" data-shape="rounded">
+  <rect x="815.851" y="158.2" width="144.264" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="887.983" y="181.29999999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@chain_kernal</text>
+</g>
+<g class="node" data-id="init_clear_screen" data-label="clear_screen" data-shape="rounded">
+  <rect x="238.70799999999997" y="276.4" width="137.88" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="307.64799999999997" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">clear_screen</text>
+</g>
+<g class="node" data-id="init__pg_loop" data-label="@pg_loop" data-shape="rounded">
+  <rect x="252.274" y="394.6" width="110.74799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="307.648" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@pg_loop</text>
+</g>
+<g class="node" data-id="init__byte_loop" data-label="@byte_loop" data-shape="rounded">
+  <rect x="246.688" y="512.8" width="121.91999999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="307.64799999999997" y="535.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@byte_loop</text>
+</g>
+<g class="node" data-id="init__rem_loop" data-label="@rem_loop" data-shape="rounded">
+  <rect x="1075.551" y="40" width="118.728" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1134.915" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@rem_loop</text>
+</g>
+<g class="node" data-id="init_init_map" data-label="init_map" data-shape="rounded">
+  <rect x="863.29" y="276.4" width="101.172" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="913.876" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_map</text>
+</g>
+<g class="node" data-id="init__im_pg" data-label="@im_pg" data-shape="rounded">
+  <rect x="865.684" y="394.6" width="96.384" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="913.876" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@im_pg</text>
+</g>
+<g class="node" data-id="init__im_inner" data-label="@im_inner" data-shape="rounded">
+  <rect x="856.906" y="512.8" width="113.94" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="913.876" y="535.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@im_inner</text>
+</g>
+<g class="node" data-id="init__im_rem" data-label="@im_rem" data-shape="rounded">
+  <rect x="1230.279" y="40" width="104.364" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1282.461" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@im_rem</text>
+</g>
+<g class="node" data-id="init__river" data-label="@river" data-shape="rounded">
+  <rect x="1370.643" y="40" width="91.596" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1416.441" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@river</text>
+</g>
+<g class="node" data-id="_start" data-label="" data-shape="statestart">
+  <circle cx="1025.551" cy="60" r="12" fill="var(--_text)" stroke="none" />
+  
+</g>
+<g class="node" data-id="simulation_clear_road_segment_state" data-label="simulation_clear_road_segment_state" data-shape="rounded">
+  <rect x="1386.5259999999998" y="276.4" width="291.096" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1532.0739999999998" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">simulation_clear_road_segment_state</text>
+</g>
+<g class="node" data-id="external_KERNAL_IRQ" data-label="KERNAL_IRQ (external)" data-shape="rounded">
+  <rect x="412.58799999999997" y="276.4" width="200.92199999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="513.049" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">KERNAL_IRQ (external)</text>
+</g>
+<g class="node" data-id="init_enable_cursor_sprite" data-label="enable_cursor_sprite" data-shape="rounded">
+  <rect x="1823.168" y="40" width="190.548" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1918.442" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">enable_cursor_sprite</text>
+</g>
+<g class="node" data-id="map_update_cursor_display" data-label="map_update_cursor_display" data-shape="rounded">
+  <rect x="1801.6219999999998" y="158.2" width="233.63999999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1918.4419999999998" y="181.29999999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">map_update_cursor_display</text>
+</g>
+</svg>

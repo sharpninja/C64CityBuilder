@@ -1,0 +1,30 @@
+stateDiagram-v2
+    state "game_start" as main_game_start
+    state "game_loop" as main_game_loop
+    state "@wait_jiffy" as main__wait_jiffy
+    state "@no_sim" as main__no_sim
+    state "@no_map_redraw" as main__no_map_redraw
+    state "@no_ui_redraw" as main__no_ui_redraw
+
+    [*] --> main_game_start
+    main_game_start --> init_init_system : Call init_system
+    main_game_start --> title_show_title : Call show_title
+    main_game_start --> init_clear_screen : Call clear_screen
+    main_game_start --> map_render_map : Call render_map
+    main_game_start --> ui_draw_status_bar : Call draw_status_bar
+    main_game_start --> init_enable_cursor_sprite : Call enable_cursor_sprite
+    main_game_start --> main_game_loop : fallthrough
+    main_game_loop --> main__wait_jiffy : fallthrough
+    main__wait_jiffy --> main__wait_jiffy : Branch BEQ
+    main__wait_jiffy --> input_read_input : Call read_input
+    main__wait_jiffy --> main__no_sim : Branch BNE
+    main__wait_jiffy --> simulation_run_simulation : Call run_simulation
+    main__wait_jiffy --> main__no_sim : fallthrough
+    main__no_sim --> main__no_map_redraw : Branch BEQ
+    main__no_sim --> map_render_map : Call render_map
+    main__no_sim --> main__no_map_redraw : fallthrough
+    main__no_map_redraw --> map_update_cursor_display : Call update_cursor_display
+    main__no_map_redraw --> main__no_ui_redraw : Branch BEQ
+    main__no_map_redraw --> ui_draw_status_bar : Call draw_status_bar
+    main__no_map_redraw --> main__no_ui_redraw : fallthrough
+    main__no_ui_redraw --> main_game_loop : Jmp JMP

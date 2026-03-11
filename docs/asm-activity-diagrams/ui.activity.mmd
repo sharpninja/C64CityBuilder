@@ -1,0 +1,214 @@
+stateDiagram-v2
+    state "print_str_col" as ui_print_str_col
+    state "@psc_nc1" as ui__psc_nc1
+    state "@psc_loop" as ui__psc_loop
+    state "@psc_done" as ui__psc_done
+    state "print_dec16" as ui_print_dec16
+    state "@pd_nc1" as ui__pd_nc1
+    state "@pd_loop" as ui__pd_loop
+    state "@pd_sub" as ui__pd_sub
+    state "@pd_do_sub" as ui__pd_do_sub
+    state "@pd_emit" as ui__pd_emit
+    state "fill_row_color" as ui_fill_row_color
+    state "@frc_loop" as ui__frc_loop
+    state "fill_row_char" as ui_fill_row_char
+    state "@frch_loop" as ui__frch_loop
+    state "draw_status_bar" as ui_draw_status_bar
+    state "draw_mode_row" as ui_draw_mode_row
+    state "@dm_demo" as ui__dm_demo
+    state "@dm_print" as ui__dm_print
+    state "@dm_needs" as ui__dm_needs
+    state "@dm_done" as ui__dm_done
+    state "draw_city_needs" as ui_draw_city_needs
+    state "@dcn_jobs" as ui__dcn_jobs
+    state "@dcn_housing" as ui__dcn_housing
+    state "@dcn_parks" as ui__dcn_parks
+    state "@dcn_safety" as ui__dcn_safety
+    state "@dcn_ok" as ui__dcn_ok
+    state "@dcn_done" as ui__dcn_done
+    state "draw_cursor_tile_info" as ui_draw_cursor_tile_info
+    state "@dcti_segment" as ui__dcti_segment
+    state "@dcti_no_level" as ui__dcti_no_level
+    state "@dcti_print_level" as ui__dcti_print_level
+    state "get_cursor_tile_impact" as ui_get_cursor_tile_impact
+    state "@gcti_road" as ui__gcti_road
+    state "@gcti_house" as ui__gcti_house
+    state "@gcti_factory" as ui__gcti_factory
+    state "@gcti_park" as ui__gcti_park
+    state "@gcti_power" as ui__gcti_power
+    state "@gcti_police" as ui__gcti_police
+    state "@gcti_fire" as ui__gcti_fire
+    state "@gcti_zero" as ui__gcti_zero
+    state "draw_cursor_tile_impact" as ui_draw_cursor_tile_impact
+    state "@dcti_zero" as ui__dcti_zero
+    state "@dcti_abs_ready" as ui__dcti_abs_ready
+    state "@dcti_tens" as ui__dcti_tens
+    state "@dcti_digits" as ui__dcti_digits
+    state "@dcti_scr_ok" as ui__dcti_scr_ok
+    state "@dcti_col_ok" as ui__dcti_col_ok
+    state "@dcti_blank_tens" as ui__dcti_blank_tens
+    state "@dcti_store_tens" as ui__dcti_store_tens
+    state "menu_entry_col" as ui_menu_entry_col
+    state "menu_entry_len" as ui_menu_entry_len
+    state "menu_icon_col" as ui_menu_icon_col
+    state "menu_icon_color" as ui_menu_icon_color
+    state "color_menu_icons" as ui_color_menu_icons
+    state "@cmi_loop" as ui__cmi_loop
+    state "@cmi_base" as ui__cmi_base
+    state "@cmi_store" as ui__cmi_store
+    state "highlight_sel_building" as ui_highlight_sel_building
+    state "@hsel_nc" as ui__hsel_nc
+    state "@hsel_loop" as ui__hsel_loop
+    state "@hsel_done" as ui__hsel_done
+
+    [*] --> ui_print_str_col
+    ui_print_str_col --> ui__psc_nc1 : Branch BCC
+    ui_print_str_col --> ui__psc_nc1 : fallthrough
+    ui__psc_nc1 --> ui__psc_loop : fallthrough
+    ui__psc_loop --> ui__psc_done : Branch BEQ
+    ui__psc_loop --> ui__psc_loop : Branch BNE
+    ui__psc_loop --> ui__psc_done : fallthrough
+    ui_print_dec16 --> ui__pd_nc1 : Branch BCC
+    ui_print_dec16 --> ui__pd_nc1 : fallthrough
+    ui__pd_nc1 --> ui__pd_loop : fallthrough
+    ui__pd_loop --> ui__pd_sub : fallthrough
+    ui__pd_sub --> ui__pd_emit : Branch BCC
+    ui__pd_sub --> ui__pd_do_sub : Branch BNE
+    ui__pd_sub --> ui__pd_emit : Branch BCC
+    ui__pd_sub --> ui__pd_do_sub : fallthrough
+    ui__pd_do_sub --> ui__pd_sub : Branch BNE
+    ui__pd_do_sub --> ui__pd_emit : fallthrough
+    ui__pd_emit --> ui__pd_loop : Branch BNE
+    ui_fill_row_color --> ui__frc_loop : fallthrough
+    ui__frc_loop --> ui__frc_loop : Branch BNE
+    ui_fill_row_char --> ui__frch_loop : fallthrough
+    ui__frch_loop --> ui__frch_loop : Branch BNE
+    ui_draw_status_bar --> ui_fill_row_char : Call fill_row_char
+    ui_draw_status_bar --> ui_fill_row_color : Call fill_row_color
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_highlight_sel_building : Call highlight_sel_building
+    ui_draw_status_bar --> ui_color_menu_icons : Call color_menu_icons
+    ui_draw_status_bar --> ui_fill_row_char : Call fill_row_char
+    ui_draw_status_bar --> ui_fill_row_color : Call fill_row_color
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_fill_row_char : Call fill_row_char
+    ui_draw_status_bar --> ui_fill_row_color : Call fill_row_color
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_draw_cursor_tile_info : Call draw_cursor_tile_info
+    ui_draw_status_bar --> ui_draw_mode_row : Call draw_mode_row
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_mode_row --> ui__dm_demo : Branch BNE
+    ui_draw_mode_row --> ui__dm_print : Branch BNE
+    ui_draw_mode_row --> ui__dm_demo : fallthrough
+    ui__dm_demo --> ui__dm_print : fallthrough
+    ui__dm_print --> ui_print_str_col : Call print_str_col
+    ui__dm_print --> ui__dm_needs : Branch BEQ
+    ui__dm_print --> ui__dm_done : Branch BNE
+    ui__dm_print --> ui__dm_needs : fallthrough
+    ui__dm_needs --> ui_draw_city_needs : Call draw_city_needs
+    ui__dm_needs --> ui__dm_done : fallthrough
+    ui_draw_city_needs --> ui_print_str_col : Call print_str_col
+    ui_draw_city_needs --> ui_print_str_col : Call print_str_col
+    ui_draw_city_needs --> ui__dcn_jobs : Branch BCS
+    ui_draw_city_needs --> ui_print_str_col : Call print_str_col
+    ui_draw_city_needs --> ui__dcn_jobs : fallthrough
+    ui__dcn_jobs --> ui__dcn_housing : Branch BEQ
+    ui__dcn_jobs --> ui_print_str_col : Call print_str_col
+    ui__dcn_jobs --> ui__dcn_housing : fallthrough
+    ui__dcn_housing --> ui__dcn_parks : Branch BEQ
+    ui__dcn_housing --> simulation_mul_by_10 : Call mul_by_10
+    ui__dcn_housing --> ui__dcn_parks : Branch BCC
+    ui__dcn_housing --> ui_print_str_col : Call print_str_col
+    ui__dcn_housing --> ui__dcn_parks : fallthrough
+    ui__dcn_parks --> ui__dcn_safety : Branch BCS
+    ui__dcn_parks --> ui_print_str_col : Call print_str_col
+    ui__dcn_parks --> ui__dcn_safety : fallthrough
+    ui__dcn_safety --> ui__dcn_ok : Branch BCC
+    ui__dcn_safety --> ui_print_str_col : Call print_str_col
+    ui__dcn_safety --> ui__dcn_ok : fallthrough
+    ui__dcn_ok --> ui__dcn_done : Branch BNE
+    ui__dcn_ok --> ui_print_str_col : Call print_str_col
+    ui__dcn_ok --> ui__dcn_done : fallthrough
+    ui_draw_cursor_tile_info --> map_get_tile : Call get_tile
+    ui_draw_cursor_tile_info --> ui_print_str_col : Call print_str_col
+    ui_draw_cursor_tile_info --> ui__dcti_segment : Branch BEQ
+    ui_draw_cursor_tile_info --> ui__dcti_segment : Branch BEQ
+    ui_draw_cursor_tile_info --> ui__dcti_no_level : Branch BCC
+    ui_draw_cursor_tile_info --> ui__dcti_no_level : Branch BCS
+    ui_draw_cursor_tile_info --> ui__dcti_print_level : Branch BNE
+    ui_draw_cursor_tile_info --> ui__dcti_segment : fallthrough
+    ui__dcti_segment --> simulation_load_metric_at : Call load_metric_at
+    ui__dcti_segment --> ui__dcti_print_level : Branch BNE
+    ui__dcti_segment --> ui__dcti_no_level : fallthrough
+    ui__dcti_no_level --> ui__dcti_print_level : fallthrough
+    ui__dcti_print_level --> ui_print_str_col : Call print_str_col
+    ui__dcti_print_level --> ui_get_cursor_tile_impact : Call get_cursor_tile_impact
+    ui__dcti_print_level --> ui_draw_cursor_tile_impact : Call draw_cursor_tile_impact
+    ui_get_cursor_tile_impact --> ui__gcti_road : Branch BEQ
+    ui_get_cursor_tile_impact --> ui__gcti_house : Branch BNE
+    ui_get_cursor_tile_impact --> ui__gcti_road : fallthrough
+    ui__gcti_road --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_house --> ui__gcti_factory : Branch BNE
+    ui__gcti_house --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_factory --> ui__gcti_park : Branch BNE
+    ui__gcti_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_factory --> simulation_mul_by_10 : Call mul_by_10
+    ui__gcti_factory --> simulation_mul_by_5 : Call mul_by_5
+    ui__gcti_park --> ui__gcti_power : Branch BNE
+    ui__gcti_park --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_park --> simulation_mul_by_5 : Call mul_by_5
+    ui__gcti_power --> ui__gcti_police : Branch BNE
+    ui__gcti_power --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_power --> simulation_mul_by_20 : Call mul_by_20
+    ui__gcti_police --> ui__gcti_fire : Branch BNE
+    ui__gcti_police --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_police --> simulation_mul_by_10 : Call mul_by_10
+    ui__gcti_fire --> ui__gcti_zero : Branch BNE
+    ui__gcti_fire --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_fire --> simulation_mul_by_10 : Call mul_by_10
+    ui_draw_cursor_tile_impact --> ui__dcti_zero : Branch BEQ
+    ui_draw_cursor_tile_impact --> ui__dcti_abs_ready : Branch BPL
+    ui_draw_cursor_tile_impact --> ui__dcti_abs_ready : Branch BNE
+    ui_draw_cursor_tile_impact --> ui__dcti_zero : fallthrough
+    ui__dcti_zero --> ui__dcti_abs_ready : fallthrough
+    ui__dcti_abs_ready --> ui__dcti_tens : fallthrough
+    ui__dcti_tens --> ui__dcti_digits : Branch BCC
+    ui__dcti_tens --> ui__dcti_tens : Branch BNE
+    ui__dcti_tens --> ui__dcti_digits : fallthrough
+    ui__dcti_digits --> ui__dcti_scr_ok : Branch BCC
+    ui__dcti_digits --> ui__dcti_scr_ok : fallthrough
+    ui__dcti_scr_ok --> ui__dcti_col_ok : Branch BCC
+    ui__dcti_scr_ok --> ui__dcti_col_ok : fallthrough
+    ui__dcti_col_ok --> ui__dcti_blank_tens : Branch BEQ
+    ui__dcti_col_ok --> ui__dcti_store_tens : Branch BNE
+    ui__dcti_col_ok --> ui__dcti_blank_tens : fallthrough
+    ui__dcti_blank_tens --> ui__dcti_store_tens : fallthrough
+    ui_menu_entry_col --> ui_menu_entry_len : fallthrough
+    ui_menu_entry_len --> ui_menu_icon_col : fallthrough
+    ui_menu_icon_col --> ui_menu_icon_color : fallthrough
+    ui_menu_icon_color --> ui_color_menu_icons : fallthrough
+    ui_color_menu_icons --> ui__cmi_loop : fallthrough
+    ui__cmi_loop --> ui__cmi_base : Branch BNE
+    ui__cmi_loop --> ui__cmi_store : Branch BNE
+    ui__cmi_loop --> ui__cmi_base : fallthrough
+    ui__cmi_base --> ui__cmi_store : fallthrough
+    ui__cmi_store --> ui__cmi_loop : Branch BNE
+    ui_highlight_sel_building --> ui__hsel_done : Branch BEQ
+    ui_highlight_sel_building --> ui__hsel_done : Branch BCS
+    ui_highlight_sel_building --> ui__hsel_nc : Branch BCC
+    ui_highlight_sel_building --> ui__hsel_nc : fallthrough
+    ui__hsel_nc --> ui__hsel_loop : fallthrough
+    ui__hsel_loop --> ui__hsel_loop : Branch BNE
+    ui__hsel_loop --> ui__hsel_done : fallthrough

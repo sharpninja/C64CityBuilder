@@ -3,6 +3,13 @@
 *.d64
 *.lbl
 title-screen.png
+citybuilder-*.png
+vice-*.png
+
+# Runtime captures / diagnostics
+*.log
+tmp/
+output/
 
 # C64 ROM files (downloaded at build time from asig/vice-roms; not committed)
 lib/c64-roms/kernal

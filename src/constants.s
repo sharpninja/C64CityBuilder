@@ -78,6 +78,16 @@ HUD_GLYPH_POWER   = 146
 HUD_GLYPH_JOBS    = 147
 HUD_GLYPH_HAPPY   = 148
 HUD_GLYPH_CRIME   = 149
+HUD_GLYPH_YEAR    = 150
+HUD_GLYPH_CASH    = 151
+HUD_GLYPH_POP     = 152
+MENU_GLYPH_ROAD   = 153
+MENU_GLYPH_HOUSE  = 154
+MENU_GLYPH_FACTORY = 155
+MENU_GLYPH_PARK   = 156
+MENU_GLYPH_POWER  = 157
+MENU_GLYPH_POLICE = 158
+MENU_GLYPH_FIRE   = 159
 MC_CHAR_FLAG      = $08
 
 ; ------------------------------------------------------------
@@ -126,13 +136,13 @@ SCREEN_COLS     = 40
 SCREEN_ROWS     = 25
 MAP_WIDTH       = 40        ; Visible map columns (full width)
 MAP_HEIGHT      = 20        ; Visible map rows
-UI_ROW_SEP      = 20        ; Separator / top-of-UI bar
-UI_ROW_STATS    = 21        ; Year / cash / pop stats
-UI_ROW_MENU     = 22        ; Building-selector menu
+UI_ROW_SEP      = 21        ; Separator / top-of-UI bar
+UI_ROW_STATS    = 22        ; Year / cash / pop stats
+UI_ROW_MENU     = 0         ; Building-selector menu (top row)
 UI_ROW_MSG      = 23        ; Message / mode indicator
 UI_ROW_HELP     = 24        ; Key-bindings help line
 RASTER_SPLIT_TOP    = 48    ; Restore top playfield background near frame start
-RASTER_SPLIT_LOWER  = 210   ; Switch lower 5 text rows to black
+RASTER_SPLIT_LOWER  = 218   ; Switch lower 4 text rows to black
 
 ; ------------------------------------------------------------
 ; Tile types  (one byte per tile in map array)
@@ -145,9 +155,10 @@ TILE_PARK       = 4         ; City park
 TILE_POWER      = 5         ; Power plant
 TILE_POLICE     = 6         ; Police station
 TILE_FIRE       = 7         ; Fire station
-TILE_WATER      = 8         ; Water / river (decorative)
-TILE_TREE       = 9         ; Forest (decorative)
-TILE_COUNT      = 10        ; Total tile-type count
+TILE_BRIDGE     = 8         ; Bridge / road over water
+TILE_WATER      = 9         ; Water / river (decorative)
+TILE_TREE       = 10        ; Forest (decorative)
+TILE_COUNT      = 11        ; Total tile-type count
 TILE_TYPE_MASK      = $0F   ; Low nibble stores the base tile type
 TILE_DENSITY_MASK   = $30   ; Bits 4-5 store density level (0-3 => 1-4)
 TILE_DENSITY_STEP   = $10   ; One density level in the encoded tile byte
@@ -170,6 +181,8 @@ COST_POLICE_LO  = <300
 COST_POLICE_HI  = >300
 COST_FIRE_LO    = <300
 COST_FIRE_HI    = >300
+COST_BRIDGE_LO  = <100
+COST_BRIDGE_HI  = >100
 
 ; ------------------------------------------------------------
 ; PETSCII key codes  (returned by GETIN)

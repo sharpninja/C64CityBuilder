@@ -1,0 +1,50 @@
+stateDiagram-v2
+    state "mul40_lo" as data_mul40_lo
+    state "mul40_hi" as data_mul40_hi
+    state "tile_char" as data_tile_char
+    state "road_shape_char" as data_road_shape_char
+    state "tile_color" as data_tile_color
+    state "tile_density_base" as data_tile_density_base
+    state "density_color" as data_density_color
+    state "tile_mc_color" as data_tile_mc_color
+    state "density_mc_color" as data_density_mc_color
+    state "house_aoe_radius" as data_house_aoe_radius
+    state "factory_aoe_radius" as data_factory_aoe_radius
+    state "bld_cost_lo" as data_bld_cost_lo
+    state "bld_cost_hi" as data_bld_cost_hi
+    state "pow10_lo" as data_pow10_lo
+    state "pow10_hi" as data_pow10_hi
+    state "cursor_sprite_data" as data_cursor_sprite_data
+    state "custom_char_glyphs" as data_custom_char_glyphs
+    state "str_menu" as data_str_menu
+    state "str_msg_empty" as data_str_msg_empty
+    state "str_help" as data_str_help
+    state "bld_names" as data_bld_names
+    state "hud_tile_names" as data_hud_tile_names
+    state "hud_segment_names" as data_hud_segment_names
+    state "hud_level_names" as data_hud_level_names
+
+    [*] --> data_mul40_lo
+    data_mul40_lo --> data_mul40_hi : fallthrough
+    data_mul40_hi --> data_tile_char : fallthrough
+    data_tile_char --> data_road_shape_char : fallthrough
+    data_road_shape_char --> data_tile_color : fallthrough
+    data_tile_color --> data_tile_density_base : fallthrough
+    data_tile_density_base --> data_density_color : fallthrough
+    data_density_color --> data_tile_mc_color : fallthrough
+    data_tile_mc_color --> data_density_mc_color : fallthrough
+    data_density_mc_color --> data_house_aoe_radius : fallthrough
+    data_house_aoe_radius --> data_factory_aoe_radius : fallthrough
+    data_factory_aoe_radius --> data_bld_cost_lo : fallthrough
+    data_bld_cost_lo --> data_bld_cost_hi : fallthrough
+    data_bld_cost_hi --> data_pow10_lo : fallthrough
+    data_pow10_lo --> data_pow10_hi : fallthrough
+    data_pow10_hi --> data_cursor_sprite_data : fallthrough
+    data_cursor_sprite_data --> data_custom_char_glyphs : fallthrough
+    data_custom_char_glyphs --> data_str_menu : fallthrough
+    data_str_menu --> data_str_msg_empty : fallthrough
+    data_str_msg_empty --> data_str_help : fallthrough
+    data_str_help --> data_bld_names : fallthrough
+    data_bld_names --> data_hud_tile_names : fallthrough
+    data_hud_tile_names --> data_hud_segment_names : fallthrough
+    data_hud_segment_names --> data_hud_level_names : fallthrough

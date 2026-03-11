@@ -1,0 +1,69 @@
+stateDiagram-v2
+    state "init_system" as init_init_system
+    state "init_custom_charset" as init_init_custom_charset
+    state "@icc_page" as init__icc_page
+    state "@icc_byte" as init__icc_byte
+    state "@icc_custom_page" as init__icc_custom_page
+    state "@icc_custom" as init__icc_custom
+    state "init_cursor_sprite" as init_init_cursor_sprite
+    state "@ics_copy" as init__ics_copy
+    state "enable_cursor_sprite" as init_enable_cursor_sprite
+    state "disable_cursor_sprite" as init_disable_cursor_sprite
+    state "init_raster_split" as init_init_raster_split
+    state "raster_irq" as init_raster_irq
+    state "@lower_phase" as init__lower_phase
+    state "@top_phase" as init__top_phase
+    state "@irq_done" as init__irq_done
+    state "@chain_kernal" as init__chain_kernal
+    state "clear_screen" as init_clear_screen
+    state "@pg_loop" as init__pg_loop
+    state "@byte_loop" as init__byte_loop
+    state "@rem_loop" as init__rem_loop
+    state "init_map" as init_init_map
+    state "@im_pg" as init__im_pg
+    state "@im_inner" as init__im_inner
+    state "@im_rem" as init__im_rem
+    state "@river" as init__river
+
+    [*] --> init_init_system
+    init_init_system --> init_init_custom_charset : Call init_custom_charset
+    init_init_system --> init_clear_screen : Call clear_screen
+    init_init_system --> init_init_cursor_sprite : Call init_cursor_sprite
+    init_init_system --> init_init_map : Call init_map
+    init_init_system --> simulation_clear_road_segment_state : Call clear_road_segment_state
+    init_init_system --> init_init_raster_split : Call init_raster_split
+    init_init_custom_charset --> init__icc_page : fallthrough
+    init__icc_page --> init__icc_byte : fallthrough
+    init__icc_byte --> init__icc_byte : Branch BNE
+    init__icc_byte --> init__icc_page : Branch BNE
+    init__icc_byte --> init__icc_custom_page : fallthrough
+    init__icc_custom_page --> init__icc_custom : fallthrough
+    init__icc_custom --> init__icc_custom : Branch BNE
+    init__icc_custom --> init__icc_custom_page : Branch BNE
+    init_init_cursor_sprite --> init__ics_copy : fallthrough
+    init__ics_copy --> init__ics_copy : Branch BNE
+    init__ics_copy --> init_disable_cursor_sprite : Call disable_cursor_sprite
+    init_enable_cursor_sprite --> map_update_cursor_display : Call update_cursor_display
+    init_raster_irq --> init__chain_kernal : Branch BEQ
+    init_raster_irq --> init__top_phase : Branch BEQ
+    init_raster_irq --> init__lower_phase : fallthrough
+    init__lower_phase --> init__irq_done : Jmp JMP
+    init__lower_phase --> init__top_phase : fallthrough
+    init__top_phase --> init__irq_done : fallthrough
+    state "KERNAL_IRQ (external)" as external_KERNAL_IRQ
+    init__chain_kernal --> external_KERNAL_IRQ : Jmp JMP
+    init__chain_kernal --> init_clear_screen : fallthrough
+    init_clear_screen --> init__pg_loop : fallthrough
+    init__pg_loop --> init__byte_loop : fallthrough
+    init__byte_loop --> init__byte_loop : Branch BNE
+    init__byte_loop --> init__pg_loop : Branch BNE
+    init__byte_loop --> init__rem_loop : fallthrough
+    init__rem_loop --> init__rem_loop : Branch BNE
+    init_init_map --> init__im_pg : fallthrough
+    init__im_pg --> init__im_inner : fallthrough
+    init__im_inner --> init__im_inner : Branch BNE
+    init__im_inner --> init__im_pg : Branch BNE
+    init__im_inner --> init__im_rem : fallthrough
+    init__im_rem --> init__im_rem : Branch BNE
+    init__im_rem --> init__river : fallthrough
+    init__river --> init__river : Branch BNE

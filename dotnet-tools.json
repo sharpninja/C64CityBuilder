@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "mermaider.cli": {
+      "version": "0.6.0",
+      "commands": [
+        "mermaid"
+      ],
+      "rollForward": false
+    }
+  }
+}

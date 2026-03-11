@@ -1,0 +1,1044 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1612.4599999999998 3790.399999999998" width="1612.4599999999998" height="3790.399999999998" style="--bg:#FFFFFF;--fg:#27272A;--accent:#3b82f6">
+<style>
+  text { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .mono { font-family: ui-monospace, 'SF Mono', 'Cascadia Code', monospace; }
+  svg {
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 55%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 35%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 20%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 32%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 70%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 4%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 22%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 4%, var(--bg));
+    --_group-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 8%, var(--bg));
+    --_accent-fill:   color-mix(in srgb, var(--accent, var(--fg)) 8%, var(--bg));
+    --_accent-stroke: color-mix(in srgb, var(--accent, var(--fg)) 20%, var(--bg));
+    --_accent-text:   color-mix(in srgb, var(--accent, var(--fg)) 65%, var(--bg));
+  }
+  .node, .actor, .entity, .class-node { filter: drop-shadow(0 1px 3px rgba(0,0,0,.07)); }
+  .subgraph { filter: drop-shadow(0 1px 2px rgba(0,0,0,.04)); }
+</style>
+
+<defs>
+  <marker id="arrowhead" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto">
+    <polygon points="0 0, 12 6, 0 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="1" refY="6" orient="auto-start-reverse">
+    <polygon points="12 0, 0 6, 12 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+
+<path class="edge" data-from="_start" data-to="buildings_try_place_building" data-style="solid" data-arrow-start="false" data-arrow-end="true" d="M958.5639999999999,80 L958.5639999999999,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_try_place_building" data-to="buildings__tp_sel_ok" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M958.5639999999999,204.4 L958.5639999999999,234.4 Q958.5639999999999,240.4 952.5639999999999,240.4 L917.17,240.4 Q911.17,240.4 911.17,246.4 L911.17,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_sel_ok" data-to="buildings__tp_check_same" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M911.17,322.6 L911.17,354.388 Q911.17,358.6 906.9579999999999,358.6 L906.9579999999999,358.6 Q902.7459999999999,358.6 902.7459999999999,362.81200000000007 L902.7459999999999,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_sel_ok" data-to="buildings__tp_check_same" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M911.17,322.6 L911.17,354.388 Q911.17,358.6 906.9579999999999,358.6 L906.9579999999999,358.6 Q902.7459999999999,358.6 902.7459999999999,362.81200000000007 L902.7459999999999,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_check_same" data-to="buildings__tp_not_water" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M902.7459999999999,440.8 L902.7459999999999,470.8 Q902.7459999999999,476.8 896.7459999999999,476.8 L871.1499999999999,476.8 Q865.1499999999999,476.8 865.1499999999999,482.8 L865.1499999999999,512.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_check_same" data-to="buildings__tp_not_water" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M902.7459999999999,440.8 L902.7459999999999,470.8 Q902.7459999999999,476.8 896.7459999999999,476.8 L871.1499999999999,476.8 Q865.1499999999999,476.8 865.1499999999999,482.8 L865.1499999999999,512.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_not_water" data-to="buildings__tp_not_bridge" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M865.1499999999999,559 L865.1499999999999,594.025 Q865.1499999999999,595 864.1749999999998,595 L864.1749999999998,595 Q863.1999999999998,595 863.1999999999998,595.975 L863.1999999999998,631" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_not_water" data-to="buildings__tp_not_bridge" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M865.1499999999999,559 L865.1499999999999,594.025 Q865.1499999999999,595 864.1749999999998,595 L864.1749999999998,595 Q863.1999999999998,595 863.1999999999998,595.975 L863.1999999999998,631" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_not_bridge" data-to="buildings__tp_cant_build" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M863.1999999999998,677.2 L863.1999999999998,707.2 Q863.1999999999998,713.2 857.1999999999998,713.2 L773.4819999999997,713.2 Q767.4819999999997,713.2 767.4819999999997,719.2 L767.4819999999997,749.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_not_bridge" data-to="buildings__tp_upgrade_density" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M863.1999999999998,677.2 L863.1999999999998,707.2 Q863.1999999999998,713.2 869.1999999999998,713.2 L1035.292,713.2 Q1041.292,713.2 1041.292,719.2 L1041.292,749.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_upgrade_density" data-to="buildings__tp_max_density" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M1041.292,795.4000000000001 L1041.292,831.001 Q1041.292,831.4000000000001 1041.691,831.4000000000001 L1041.691,831.4000000000001 Q1042.0900000000001,831.4000000000001 1042.0900000000001,831.7990000000002 L1042.0900000000001,867.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_upgrade_density" data-to="buildings__tp_check_cost" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M1041.292,795.4000000000001 L1041.292,825.4000000000001 Q1041.292,831.4000000000001 1035.292,831.4000000000001 L823.8459999999999,831.4000000000001 Q817.8459999999999,831.4000000000001 817.8459999999999,837.4000000000001 L817.8459999999999,867.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_check_cost" data-to="buildings__tp_cost_bridge" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M817.8459999999999,913.6000000000001 L817.8459999999999,943.6000000000001 Q817.8459999999999,949.6000000000001 811.8459999999999,949.6000000000001 L794.2299999999999,949.6000000000001 Q788.2299999999999,949.6000000000001 788.2299999999999,955.6000000000001 L788.2299999999999,985.6000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_check_cost" data-to="buildings__tp_cost_bridge" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M817.8459999999999,913.6000000000001 L817.8459999999999,943.6000000000001 Q817.8459999999999,949.6000000000001 811.8459999999999,949.6000000000001 L794.2299999999999,949.6000000000001 Q788.2299999999999,949.6000000000001 788.2299999999999,955.6000000000001 L788.2299999999999,985.6000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_cost_bridge" data-to="buildings__tp_cost_ready" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M788.2299999999999,1031.8000000000002 L788.2299999999999,1067.0020000000002 Q788.2299999999999,1067.8000000000002 787.4319999999999,1067.8000000000002 L787.4319999999999,1067.8000000000002 Q786.6339999999999,1067.8000000000002 786.6339999999999,1068.5980000000002 L786.6339999999999,1103.8000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_cost_ready" data-to="buildings__tp_afford" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BPL" d="M786.6339999999999,1150.0000000000002 L786.6339999999999,1180.0000000000002 Q786.6339999999999,1186.0000000000002 780.6339999999999,1186.0000000000002 L774.28,1186.0000000000002 Q768.28,1186.0000000000002 768.28,1192.0000000000002 L768.28,1222.0000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_afford" data-to="buildings__tp_new_bridge" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M768.28,1268.2000000000003 L768.28,1298.2000000000003 Q768.28,1304.2000000000003 762.28,1304.2000000000003 L758.2299999999998,1304.2000000000003 Q752.2299999999998,1304.2000000000003 752.2299999999998,1310.2000000000003 L752.2299999999998,1340.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_afford" data-to="buildings__tp_new_bridge" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M768.28,1268.2000000000003 L768.28,1298.2000000000003 Q768.28,1304.2000000000003 762.28,1304.2000000000003 L758.2299999999998,1304.2000000000003 Q752.2299999999998,1304.2000000000003 752.2299999999998,1310.2000000000003 L752.2299999999998,1340.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_new_bridge" data-to="buildings__tp_new_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M752.2299999999998,1386.4000000000003 L752.2299999999998,1416.4000000000003 Q752.2299999999998,1422.4000000000003 758.2299999999998,1422.4000000000003 L800.23,1422.4000000000003 Q806.23,1422.4000000000003 806.23,1428.4000000000003 L806.23,1458.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_new_tile" data-to="buildings__tp_place_new" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M806.23,1504.6000000000004 L806.23,1534.6000000000004 Q806.23,1540.6000000000004 800.23,1540.6000000000004 L794.2299999999999,1540.6000000000004 Q788.2299999999999,1540.6000000000004 788.2299999999999,1546.6000000000004 L788.2299999999999,1576.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_place_new" data-to="buildings__tp_make_upgrade" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M788.2299999999999,1622.8000000000004 L788.2299999999999,1652.8000000000004 Q788.2299999999999,1658.8000000000004 794.2299999999999,1658.8000000000004 L847.1800000000001,1658.8000000000004 Q853.1800000000001,1658.8000000000004 853.1800000000001,1664.8000000000004 L853.1800000000001,1694.8000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_make_upgrade" data-to="buildings__tp_place_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M853.1800000000001,1741.0000000000005 L853.1800000000001,1813.0000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_place_tile" data-to="buildings_place_tile_at" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call place_tile_at" d="M853.1800000000001,1859.2000000000005 L853.1800000000001,1889.2000000000005 Q853.1800000000001,1895.2000000000005 847.1800000000001,1895.2000000000005 L545.1579999999999,1895.2000000000005 Q539.1579999999999,1895.2000000000005 539.1579999999999,1901.2000000000005 L539.1579999999999,1931.2000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_place_tile" data-to="buildings__tp_msg_upgraded" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M853.1800000000001,1859.2000000000005 L853.18,1931.2000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_place_tile" data-to="buildings__tp_msg_upgraded" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M853.1800000000001,1859.2000000000005 L853.18,1931.2000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_msg_upgraded" data-to="buildings__tp_show_msg" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M853.18,1977.4000000000005 L853.18,2007.4000000000005 Q853.18,2013.4000000000005 859.18,2013.4000000000005 L942.3219999999998,2013.4000000000005 Q948.3219999999998,2013.4000000000005 948.3219999999998,2019.4000000000005 L948.3219999999998,2049.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_show_msg" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M948.3219999999998,2095.6000000000004 L948.3219999999998,2125.6000000000004 Q948.3219999999998,2131.6000000000004 942.3219999999998,2131.6000000000004 L937.5639999999999,2131.6000000000004 Q931.5639999999999,2131.6000000000004 931.5639999999999,2137.6000000000004 L931.5639999999999,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_try_demolish" data-to="buildings__td_do_it" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M788.5839999999998,86.2 L788.5839999999998,119.85100000000001 Q788.5839999999998,122.2 786.2349999999999,122.2 L786.2349999999999,122.2 Q783.8859999999999,122.2 783.8859999999999,124.54899999999999 L783.8859999999999,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_do_it" data-to="buildings__td_clear_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCC" d="M783.8859999999999,204.4 L783.8859999999999,234.4 Q783.8859999999999,240.4 777.8859999999999,240.4 L715.27,240.4 Q709.27,240.4 709.27,246.4 L709.27,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_do_it" data-to="buildings__td_clear_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M783.8859999999999,204.4 L783.8859999999999,234.4 Q783.8859999999999,240.4 777.8859999999999,240.4 L715.27,240.4 Q709.27,240.4 709.27,246.4 L709.27,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_do_it" data-to="buildings__td_clear_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M783.8859999999999,204.4 L783.8859999999999,234.4 Q783.8859999999999,240.4 777.8859999999999,240.4 L715.27,240.4 Q709.27,240.4 709.27,246.4 L709.27,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_do_it" data-to="buildings__td_clear_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M783.8859999999999,204.4 L783.8859999999999,234.4 Q783.8859999999999,240.4 777.8859999999999,240.4 L715.27,240.4 Q709.27,240.4 709.27,246.4 L709.27,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_clear_tile" data-to="buildings__td_clear_empty" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M709.27,322.6 L709.27,352.6 Q709.27,358.6 703.27,358.6 L642.1179999999998,358.6 Q636.1179999999998,358.6 636.1179999999998,364.6 L636.1179999999998,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_clear_tile" data-to="buildings__td_clear_empty" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M709.27,322.6 L709.27,352.6 Q709.27,358.6 703.27,358.6 L642.1179999999998,358.6 Q636.1179999999998,358.6 636.1179999999998,364.6 L636.1179999999998,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_clear_empty" data-to="buildings__td_store_clear" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M636.1179999999998,440.8 L636.1179999999998,470.8 Q636.1179999999998,476.8 630.1179999999998,476.8 L615.6939999999998,476.8 Q609.6939999999998,476.8 609.6939999999998,482.8 L609.6939999999998,512.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_store_clear" data-to="buildings__td_place" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M609.6939999999998,559 L609.6939999999998,589 Q609.6939999999998,595 603.6939999999998,595 L594.5019999999998,595 Q588.5019999999998,595 588.5019999999998,601 L588.5019999999998,631" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_place" data-to="buildings__td_msg_demo" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M588.5019999999998,677.2 L588.5019999999998,707.2 Q588.5019999999998,713.2 582.5019999999998,713.2 L556.4199999999998,713.2 Q550.4199999999998,713.2 550.4199999999998,719.2 L550.4199999999998,749.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_place" data-to="buildings__td_msg_demo" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M588.5019999999998,677.2 L588.5019999999998,707.2 Q588.5019999999998,713.2 582.5019999999998,713.2 L556.4199999999998,713.2 Q550.4199999999998,713.2 550.4199999999998,719.2 L550.4199999999998,749.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_msg_demo" data-to="buildings__td_show_msg" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M550.4199999999998,795.4000000000001 L550.4199999999998,867.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_place_tile_at" data-to="map_get_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call get_tile" d="M539.1579999999999,1977.4000000000005 L539.1579999999999,2007.4000000000005 Q539.1579999999999,2013.4000000000005 545.1579999999999,2013.4000000000005 L1187.404,2013.4000000000005 Q1193.404,2013.4000000000005 1193.404,2019.4000000000005 L1193.404,2049.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_place_tile_at" data-to="buildings_decrement_count" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call decrement_count" d="M539.1579999999999,1977.4000000000005 L539.1579999999999,2007.4000000000005 Q539.1579999999999,2013.4000000000005 545.1579999999999,2013.4000000000005 L645.2799999999999,2013.4000000000005 Q651.2799999999999,2013.4000000000005 651.2799999999999,2019.4000000000005 L651.2799999999999,2049.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_place_tile_at" data-to="buildings__pta_old_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M539.1579999999999,1977.4000000000005 L539.1579999999999,2007.4000000000005 Q539.1579999999999,2013.4000000000005 533.1579999999999,2013.4000000000005 L433.03599999999994,2013.4000000000005 Q427.03599999999994,2013.4000000000005 427.03599999999994,2019.4000000000005 L427.03599999999994,2049.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_place_tile_at" data-to="buildings__pta_old_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M539.1579999999999,1977.4000000000005 L539.1579999999999,2007.4000000000005 Q539.1579999999999,2013.4000000000005 533.1579999999999,2013.4000000000005 L433.03599999999994,2013.4000000000005 Q427.03599999999994,2013.4000000000005 427.03599999999994,2019.4000000000005 L427.03599999999994,2049.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_old_road" data-to="buildings__pta_old_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M427.03599999999994,2095.6000000000004 L427.03599999999994,2125.6000000000004 Q427.03599999999994,2131.6000000000004 433.03599999999994,2131.6000000000004 L582.5019999999998,2131.6000000000004 Q588.5019999999998,2131.6000000000004 588.5019999999998,2137.6000000000004 L588.5019999999998,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_old_done" data-to="buildings__pta_new_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M588.5019999999998,2213.8 L588.5019999999998,2243.8 Q588.5019999999998,2249.8 594.5019999999998,2249.8 L623.8239999999998,2249.8 Q629.8239999999998,2249.8 629.8239999999998,2255.8 L629.8239999999998,2285.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_old_done" data-to="buildings__pta_new_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M588.5019999999998,2213.8 L588.5019999999998,2243.8 Q588.5019999999998,2249.8 594.5019999999998,2249.8 L623.8239999999998,2249.8 Q629.8239999999998,2249.8 629.8239999999998,2255.8 L629.8239999999998,2285.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_new_road" data-to="buildings__pta_compare" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M629.8239999999998,2332 L629.8239999999998,2362 Q629.8239999999998,2368 635.8239999999998,2368 L728.3199999999999,2368 Q734.3199999999999,2368 734.3199999999999,2374 L734.3199999999999,2404" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_compare" data-to="buildings__pta_topology_changed" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M734.3199999999999,2450.2 L734.3199999999999,2522.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_compare" data-to="buildings__pta_topology_changed" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M734.3199999999999,2450.2 L734.3199999999999,2522.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_topology_changed" data-to="buildings__pta_write" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M734.3199999999999,2568.3999999999996 L734.3199999999999,2602.8039999999996 Q734.3199999999999,2604.3999999999996 732.7239999999999,2604.3999999999996 L732.7239999999999,2604.3999999999996 Q731.1279999999999,2604.3999999999996 731.1279999999999,2605.9959999999996 L731.1279999999999,2640.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_write" data-to="map_set_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call set_tile" d="M731.1279999999999,2686.5999999999995 L731.1279999999999,2716.5999999999995 Q731.1279999999999,2722.5999999999995 725.1279999999999,2722.5999999999995 L110.152,2722.5999999999995 Q104.152,2722.5999999999995 104.152,2728.5999999999995 L104.152,2758.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_write" data-to="buildings_increment_count" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call increment_count" d="M731.1279999999999,2686.5999999999995 L731.1279999999999,2716.5999999999995 Q731.1279999999999,2722.5999999999995 725.1279999999999,2722.5999999999995 L485.842,2722.5999999999995 Q479.842,2722.5999999999995 479.842,2728.5999999999995 L479.842,2758.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_write" data-to="map_render_road_neighborhood" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call render_road_neighborhood" d="M731.1279999999999,2686.5999999999995 L731.1279999999999,2719.8069999999993 Q731.1279999999999,2722.5999999999995 728.3349999999999,2722.5999999999995 L728.3349999999999,2722.5999999999995 Q725.5419999999999,2722.5999999999995 725.5419999999999,2725.3929999999996 L725.5419999999999,2758.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_write" data-to="buildings__pta_update_one" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M731.1279999999999,2686.5999999999995 L731.1279999999999,2716.5999999999995 Q731.1279999999999,2722.5999999999995 725.1279999999999,2722.5999999999995 L291.214,2722.5999999999995 Q285.214,2722.5999999999995 285.214,2728.5999999999995 L285.214,2758.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_write" data-to="simulation_rebuild_road_segments" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call rebuild_road_segments" d="M731.1279999999999,2686.5999999999995 L731.1279999999999,2716.5999999999995 Q731.1279999999999,2722.5999999999995 737.1279999999999,2722.5999999999995 L1187.0919999999999,2722.5999999999995 Q1193.0919999999999,2722.5999999999995 1193.0919999999999,2728.5999999999995 L1193.0919999999999,2758.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_write" data-to="buildings__pta_update_one" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M731.1279999999999,2686.5999999999995 L731.1279999999999,2716.5999999999995 Q731.1279999999999,2722.5999999999995 725.1279999999999,2722.5999999999995 L291.214,2722.5999999999995 Q285.214,2722.5999999999995 285.214,2728.5999999999995 L285.214,2758.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_update_one" data-to="simulation_update_building_segment_at" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call update_building_segment_at" d="M285.214,2804.7999999999993 L285.214,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_update_one" data-to="buildings__pta_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M285.214,2804.7999999999993 L285.214,2834.7999999999993 Q285.214,2840.7999999999993 291.214,2840.7999999999993 L796.0659999999999,2840.7999999999993 Q802.0659999999999,2840.7999999999993 802.0659999999999,2846.7999999999993 L802.0659999999999,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_increment_count" data-to="buildings_get_tile_density_units" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call get_tile_density_units" d="M479.842,2804.7999999999993 L479.842,2834.7999999999993 Q479.842,2840.7999999999993 485.842,2840.7999999999993 L1211.92,2840.7999999999993 Q1217.92,2840.7999999999993 1217.92,2846.7999999999993 L1217.92,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_increment_count" data-to="buildings__inc_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M479.842,2804.7999999999993 L479.842,2834.7999999999993 Q479.842,2840.7999999999993 485.842,2840.7999999999993 L524.116,2840.7999999999993 Q530.116,2840.7999999999993 530.116,2846.7999999999993 L530.116,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_increment_count" data-to="buildings__inc1" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M479.842,2804.7999999999993 L479.842,2834.7999999999993 Q479.842,2840.7999999999993 485.842,2840.7999999999993 L659.6919999999999,2840.7999999999993 Q665.6919999999999,2840.7999999999993 665.6919999999999,2846.7999999999993 L665.6919999999999,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_increment_count" data-to="buildings__inc_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M479.842,2804.7999999999993 L479.842,2834.7999999999993 Q479.842,2840.7999999999993 485.842,2840.7999999999993 L524.116,2840.7999999999993 Q530.116,2840.7999999999993 530.116,2846.7999999999993 L530.116,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc_road" data-to="buildings__inc_store_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCC" d="M530.116,2922.999999999999 L530.1159999999999,2994.999999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc_road" data-to="buildings__inc_store_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M530.116,2922.999999999999 L530.1159999999999,2994.999999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc1" data-to="buildings__inc2" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M665.6919999999999,2922.999999999999 L665.6919999999999,2952.999999999999 Q665.6919999999999,2958.999999999999 671.6919999999999,2958.999999999999 L682.8339999999998,2958.999999999999 Q688.8339999999998,2958.999999999999 688.8339999999998,2964.999999999999 L688.8339999999998,2994.999999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc1" data-to="buildings__inc_store_house" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCC" d="M665.6919999999999,2922.999999999999 L665.6919999999999,2952.999999999999 Q665.6919999999999,2958.999999999999 671.6919999999999,2958.999999999999 L846.3399999999998,2958.999999999999 Q852.3399999999998,2958.999999999999 852.3399999999998,2964.999999999999 L852.3399999999998,2994.999999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc1" data-to="buildings__inc_store_house" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M665.6919999999999,2922.999999999999 L665.6919999999999,2952.999999999999 Q665.6919999999999,2958.999999999999 671.6919999999999,2958.999999999999 L846.3399999999998,2958.999999999999 Q852.3399999999998,2958.999999999999 852.3399999999998,2964.999999999999 L852.3399999999998,2994.999999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc2" data-to="buildings__inc3" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M688.8339999999998,3041.199999999999 L688.8339999999998,3071.199999999999 Q688.8339999999998,3077.199999999999 694.8339999999998,3077.199999999999 L848.7339999999998,3077.199999999999 Q854.7339999999998,3077.199999999999 854.7339999999998,3083.199999999999 L854.7339999999998,3113.199999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc2" data-to="buildings__inc_store_factory" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCC" d="M688.8339999999998,3041.199999999999 L688.8339999999998,3113.199999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc2" data-to="buildings__inc_store_factory" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M688.8339999999998,3041.199999999999 L688.8339999999998,3113.199999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc3" data-to="buildings__inc4" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M854.7339999999998,3159.3999999999987 L854.7339999999998,3189.3999999999987 Q854.7339999999998,3195.3999999999987 860.7339999999998,3195.3999999999987 L897.5439999999999,3195.3999999999987 Q903.5439999999999,3195.3999999999987 903.5439999999999,3201.3999999999987 L903.5439999999999,3231.3999999999987" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc3" data-to="buildings__inc_store_park" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCC" d="M854.7339999999998,3159.3999999999987 L854.7339999999998,3189.3999999999987 Q854.7339999999998,3195.3999999999987 848.7339999999998,3195.3999999999987 L750.8259999999999,3195.3999999999987 Q744.8259999999999,3195.3999999999987 744.8259999999999,3201.3999999999987 L744.8259999999999,3231.3999999999987" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc3" data-to="buildings__inc_store_park" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M854.7339999999998,3159.3999999999987 L854.7339999999998,3189.3999999999987 Q854.7339999999998,3195.3999999999987 848.7339999999998,3195.3999999999987 L750.8259999999999,3195.3999999999987 Q744.8259999999999,3195.3999999999987 744.8259999999999,3201.3999999999987 L744.8259999999999,3231.3999999999987" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc4" data-to="buildings__inc5" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M903.5439999999999,3277.5999999999985 L903.5439999999999,3311.2059999999983 Q903.5439999999999,3313.5999999999985 905.9379999999999,3313.5999999999985 L905.9379999999999,3313.5999999999985 Q908.3319999999999,3313.5999999999985 908.3319999999999,3315.993999999999 L908.3319999999999,3349.5999999999985" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc4" data-to="buildings__inc_store_power" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCC" d="M903.5439999999999,3277.5999999999985 L903.5439999999999,3307.5999999999985 Q903.5439999999999,3313.5999999999985 897.5439999999999,3313.5999999999985 L750.8259999999999,3313.5999999999985 Q744.8259999999999,3313.5999999999985 744.8259999999999,3319.5999999999985 L744.8259999999999,3349.5999999999985" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc4" data-to="buildings__inc_store_power" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M903.5439999999999,3277.5999999999985 L903.5439999999999,3307.5999999999985 Q903.5439999999999,3313.5999999999985 897.5439999999999,3313.5999999999985 L750.8259999999999,3313.5999999999985 Q744.8259999999999,3313.5999999999985 744.8259999999999,3319.5999999999985 L744.8259999999999,3349.5999999999985" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc5" data-to="buildings__inc6" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M908.3319999999999,3395.7999999999984 L908.3319999999999,3431.4009999999985 Q908.3319999999999,3431.7999999999984 907.9329999999999,3431.7999999999984 L907.9329999999999,3431.7999999999984 Q907.5339999999999,3431.7999999999984 907.5339999999999,3432.1989999999983 L907.5339999999999,3467.7999999999984" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc5" data-to="buildings__inc_store_police" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCC" d="M908.3319999999999,3395.7999999999984 L908.3319999999999,3425.7999999999984 Q908.3319999999999,3431.7999999999984 902.3319999999999,3431.7999999999984 L750.8259999999999,3431.7999999999984 Q744.8259999999999,3431.7999999999984 744.8259999999999,3437.7999999999984 L744.8259999999999,3467.7999999999984" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc5" data-to="buildings__inc_store_police" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M908.3319999999999,3395.7999999999984 L908.3319999999999,3425.7999999999984 Q908.3319999999999,3431.7999999999984 902.3319999999999,3431.7999999999984 L750.8259999999999,3431.7999999999984 Q744.8259999999999,3431.7999999999984 744.8259999999999,3437.7999999999984 L744.8259999999999,3467.7999999999984" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc6" data-to="buildings__inc_store_fire" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCC" d="M907.5339999999999,3513.999999999998 L907.5339999999999,3543.999999999998 Q907.5339999999999,3549.999999999998 901.5339999999999,3549.999999999998 L794.2299999999999,3549.999999999998 Q788.2299999999999,3549.999999999998 788.2299999999999,3555.999999999998 L788.2299999999999,3585.999999999998" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc6" data-to="buildings__inc_store_fire" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M907.5339999999999,3513.999999999998 L907.5339999999999,3543.999999999998 Q907.5339999999999,3549.999999999998 901.5339999999999,3549.999999999998 L794.2299999999999,3549.999999999998 Q788.2299999999999,3549.999999999998 788.2299999999999,3555.999999999998 L788.2299999999999,3585.999999999998" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc_store_fire" data-to="buildings__inc_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M788.2299999999999,3632.199999999998 L788.2299999999999,3704.199999999998" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_decrement_count" data-to="buildings__dec_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M651.2799999999999,2095.6000000000004 L651.2799999999999,2125.6000000000004 Q651.2799999999999,2131.6000000000004 657.2799999999999,2131.6000000000004 L1097.848,2131.6000000000004 Q1103.848,2131.6000000000004 1103.848,2137.6000000000004 L1103.848,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_decrement_count" data-to="buildings__dec1" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M651.2799999999999,2095.6000000000004 L651.2799999999999,2125.6000000000004 Q651.2799999999999,2131.6000000000004 657.2799999999999,2131.6000000000004 L734.8359999999999,2131.6000000000004 Q740.8359999999999,2131.6000000000004 740.8359999999999,2137.6000000000004 L740.8359999999999,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_decrement_count" data-to="buildings__dec_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M651.2799999999999,2095.6000000000004 L651.2799999999999,2125.6000000000004 Q651.2799999999999,2131.6000000000004 657.2799999999999,2131.6000000000004 L1097.848,2131.6000000000004 Q1103.848,2131.6000000000004 1103.848,2137.6000000000004 L1103.848,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec_road" data-to="buildings__dec_store_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M1103.848,2213.8 L1103.848,2285.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec_road" data-to="buildings__dec_store_road" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M1103.848,2213.8 L1103.848,2285.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec1" data-to="buildings__dec2" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M740.8359999999999,2213.8 L740.8359999999999,2243.8 Q740.8359999999999,2249.8 734.8359999999999,2249.8 L478.7019999999999,2249.8 Q472.7019999999999,2249.8 472.7019999999999,2255.8 L472.7019999999999,2285.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec1" data-to="buildings__dec_store_house" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M740.8359999999999,2213.8 L740.8359999999999,2243.8 Q740.8359999999999,2249.8 746.8359999999999,2249.8 L857.6439999999999,2249.8 Q863.6439999999999,2249.8 863.6439999999999,2255.8 L863.6439999999999,2285.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec1" data-to="buildings__dec_store_house" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M740.8359999999999,2213.8 L740.8359999999999,2243.8 Q740.8359999999999,2249.8 746.8359999999999,2249.8 L857.6439999999999,2249.8 Q863.6439999999999,2249.8 863.6439999999999,2255.8 L863.6439999999999,2285.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec2" data-to="buildings__dec3" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M472.7019999999999,2332 L472.7019999999999,2362 Q472.7019999999999,2368 478.7019999999999,2368 L984.4839999999998,2368 Q990.4839999999998,2368 990.4839999999998,2374 L990.4839999999998,2404" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec2" data-to="buildings__dec_store_factory" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M472.7019999999999,2332 L472.7019999999999,2404" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec2" data-to="buildings__dec_store_factory" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M472.7019999999999,2332 L472.7019999999999,2404" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec3" data-to="buildings__dec4" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M990.4839999999998,2450.2 L990.4839999999998,2480.2 Q990.4839999999998,2486.2 984.4839999999998,2486.2 L556.0659999999999,2486.2 Q550.0659999999999,2486.2 550.0659999999999,2492.2 L550.0659999999999,2522.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec3" data-to="buildings__dec_store_park" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M990.4839999999998,2450.2 L990.4839999999998,2522.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec3" data-to="buildings__dec_store_park" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M990.4839999999998,2450.2 L990.4839999999998,2522.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec4" data-to="buildings__dec5" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M550.0659999999999,2568.3999999999996 L550.0659999999999,2598.3999999999996 Q550.0659999999999,2604.3999999999996 556.0659999999999,2604.3999999999996 L1277.2659999999998,2604.3999999999996 Q1283.2659999999998,2604.3999999999996 1283.2659999999998,2610.3999999999996 L1283.2659999999998,2640.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec4" data-to="buildings__dec_store_power" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M550.0659999999999,2568.3999999999996 L550.0659999999999,2640.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec4" data-to="buildings__dec_store_power" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M550.0659999999999,2568.3999999999996 L550.0659999999999,2640.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec5" data-to="buildings__dec6" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M1283.2659999999998,2686.5999999999995 L1283.2659999999998,2716.5999999999995 Q1283.2659999999998,2722.5999999999995 1277.2659999999998,2722.5999999999995 L981.3219999999999,2722.5999999999995 Q975.3219999999999,2722.5999999999995 975.3219999999999,2728.5999999999995 L975.3219999999999,2758.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec5" data-to="buildings__dec_store_police" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M1283.2659999999998,2686.5999999999995 L1283.2659999999998,2716.5999999999995 Q1283.2659999999998,2722.5999999999995 1289.2659999999998,2722.5999999999995 L1480.762,2722.5999999999995 Q1486.762,2722.5999999999995 1486.762,2728.5999999999995 L1486.762,2758.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec5" data-to="buildings__dec_store_police" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M1283.2659999999998,2686.5999999999995 L1283.2659999999998,2716.5999999999995 Q1283.2659999999998,2722.5999999999995 1289.2659999999998,2722.5999999999995 L1480.762,2722.5999999999995 Q1486.762,2722.5999999999995 1486.762,2728.5999999999995 L1486.762,2758.5999999999995" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec6" data-to="buildings__dec_store_fire" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M975.3219999999999,2804.7999999999993 L975.3219999999999,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec6" data-to="buildings__dec_store_fire" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M975.3219999999999,2804.7999999999993 L975.3219999999999,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec_store_fire" data-to="buildings__dec_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M975.3219999999999,2922.999999999999 L975.3219999999999,2952.999999999999 Q975.3219999999999,2958.999999999999 981.3219999999999,2958.999999999999 L1028.1999999999998,2958.999999999999 Q1034.1999999999998,2958.999999999999 1034.1999999999998,2964.999999999999 L1034.1999999999998,2994.999999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_show_building_name" data-to="buildings__sbn_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M595.5519999999999,86.2 L595.5519999999999,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_show_building_name" data-to="buildings__sbn_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M595.5519999999999,86.2 L595.5519999999999,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_show_building_name" data-to="buildings__sbn_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M595.5519999999999,86.2 L595.5519999999999,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_show_building_name" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M595.5519999999999,86.2 L595.5519999999999,116.2 Q595.5519999999999,122.2 601.5519999999999,122.2 L687.3099999999998,122.2 Q693.3099999999998,122.2 693.3099999999998,128.2 L693.3099999999998,152.2 Q693.3099999999998,158.2 693.3099999999998,164.2 L693.3099999999998,211.3 Q693.3099999999998,217.3 687.3099999999998,217.3 L447.4899999999998,217.3 Q441.4899999999998,217.3 441.4899999999998,223.3 L441.4899999999998,270.4 Q441.4899999999998,276.4 441.4899999999998,282.4 L441.4899999999998,388.6 Q441.4899999999998,394.6 441.4899999999998,400.6 L441.4899999999998,506.79999999999995 Q441.4899999999998,512.8 441.4899999999998,518.8 L441.4899999999998,625 Q441.4899999999998,631 441.4899999999998,637 L441.4899999999998,743.2 Q441.4899999999998,749.2 441.4899999999998,755.2 L441.4899999999998,861.4000000000001 Q441.4899999999998,867.4000000000001 441.4899999999998,873.4000000000001 L441.4899999999998,920.5000000000001 Q441.4899999999998,926.5000000000001 447.4899999999998,926.5000000000001 L561.3099999999998,926.5000000000001 Q567.3099999999998,926.5000000000001 567.3099999999998,932.5000000000001 L567.3099999999998,979.6000000000001 Q567.3099999999998,985.6000000000001 567.3099999999998,991.6000000000001 L567.3099999999998,1097.8000000000002 Q567.3099999999998,1103.8000000000002 567.3099999999998,1109.8000000000002 L567.3099999999998,1216.0000000000002 Q567.3099999999998,1222.0000000000002 567.3099999999998,1228.0000000000002 L567.3099999999998,1334.2000000000003 Q567.3099999999998,1340.2000000000003 567.3099999999998,1346.2000000000003 L567.3099999999998,1393.3000000000002 Q567.3099999999998,1399.3000000000002 573.3099999999998,1399.3000000000002 L591.28,1399.3000000000002 Q597.28,1399.3000000000002 597.28,1405.3000000000002 L597.28,1452.4000000000003 Q597.28,1458.4000000000003 597.28,1464.4000000000003 L597.28,1512.8890000000006 Q597.28,1517.5000000000005 601.891,1517.5000000000005 L601.891,1517.5000000000005 Q606.502,1517.5000000000005 606.502,1522.1110000000003 L606.502,1570.6000000000004 Q606.502,1576.6000000000004 606.502,1582.6000000000004 L606.502,1629.7000000000003 Q606.502,1635.7000000000003 612.502,1635.7000000000003 L615.8860000000001,1635.7000000000003 Q621.8860000000001,1635.7000000000003 621.8860000000001,1641.7000000000003 L621.8860000000001,1688.8000000000004 Q621.8860000000001,1694.8000000000004 621.8860000000001,1700.8000000000004 L621.8860000000001,1747.9000000000005 Q621.8860000000001,1753.9000000000005 627.8860000000001,1753.9000000000005 L651.886,1753.9000000000005 Q657.886,1753.9000000000005 657.886,1759.9000000000005 L657.886,1807.0000000000005 Q657.886,1813.0000000000005 657.886,1819.0000000000005 L657.886,1925.2000000000005 Q657.886,1931.2000000000005 657.886,1937.2000000000005 L657.886,1984.3000000000006 Q657.886,1990.3000000000006 663.886,1990.3000000000006 L761.3919999999998,1990.3000000000006 Q767.3919999999998,1990.3000000000006 767.3919999999998,1996.3000000000006 L767.3919999999998,2043.4000000000005 Q767.3919999999998,2049.4000000000005 767.3919999999998,2055.4000000000005 L767.3919999999998,2102.5000000000005 Q767.3919999999998,2108.5000000000005 773.3919999999998,2108.5000000000005 L925.5639999999999,2108.5000000000005 Q931.5639999999999,2108.5000000000005 931.5639999999999,2114.5000000000005 L931.5639999999999,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__dec6" data-to="buildings__dec_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M975.3219999999999,2804.7999999999993 L975.3219999999999,2834.7999999999993 Q975.3219999999999,2840.7999999999993 981.3219999999999,2840.7999999999993 L1082.242,2840.7999999999993 Q1088.242,2840.7999999999993 1088.242,2846.7999999999993 L1088.242,2870.7999999999993 Q1088.242,2876.7999999999993 1088.242,2882.7999999999993 L1088.242,2929.899999999999 Q1088.242,2935.899999999999 1082.242,2935.899999999999 L1040.1999999999998,2935.899999999999 Q1034.1999999999998,2935.899999999999 1034.1999999999998,2941.899999999999 L1034.1999999999998,2994.999999999999" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_decrement_count" data-to="buildings_get_tile_density_units" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call get_tile_density_units" d="M651.2799999999999,2095.6000000000004 L651.2799999999999,2125.6000000000004 Q651.2799999999999,2131.6000000000004 657.2799999999999,2131.6000000000004 L814.2399999999999,2131.6000000000004 Q820.2399999999999,2131.6000000000004 820.2399999999999,2137.6000000000004 L820.2399999999999,2161.6000000000004 Q820.2399999999999,2167.6000000000004 820.2399999999999,2173.6000000000004 L820.2399999999999,2220.7000000000003 Q820.2399999999999,2226.7000000000003 826.2399999999999,2226.7000000000003 L980.14,2226.7000000000003 Q986.14,2226.7000000000003 986.14,2232.7000000000003 L986.14,2279.8 Q986.14,2285.8 986.14,2291.8 L986.14,2338.9 Q986.14,2344.9 992.14,2344.9 L1359.0639999999999,2344.9 Q1365.0639999999999,2344.9 1365.0639999999999,2350.9 L1365.0639999999999,2398 Q1365.0639999999999,2404 1365.0639999999999,2410 L1365.0639999999999,2516.2 Q1365.0639999999999,2522.2 1365.0639999999999,2528.2 L1365.0639999999999,2634.3999999999996 Q1365.0639999999999,2640.3999999999996 1365.0639999999999,2646.3999999999996 L1365.0639999999999,2752.5999999999995 Q1365.0639999999999,2758.5999999999995 1365.0639999999999,2764.5999999999995 L1365.0639999999999,2811.6999999999994 Q1365.0639999999999,2817.6999999999994 1359.0639999999999,2817.6999999999994 L1223.92,2817.6999999999994 Q1217.92,2817.6999999999994 1217.92,2823.6999999999994 L1217.92,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__inc6" data-to="buildings__inc_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M907.5339999999999,3513.999999999998 L907.5339999999999,3545.610999999998 Q907.5339999999999,3549.999999999998 903.145,3549.999999999998 L903.145,3549.999999999998 Q898.756,3549.999999999998 898.756,3554.3889999999983 L898.756,3579.999999999998 Q898.756,3585.999999999998 898.756,3591.999999999998 L898.756,3639.099999999998 Q898.756,3645.099999999998 892.756,3645.099999999998 L794.2299999999999,3645.099999999998 Q788.2299999999999,3645.099999999998 788.2299999999999,3651.099999999998 L788.2299999999999,3704.199999999998" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_write" data-to="buildings__pta_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M731.1279999999999,2686.5999999999995 L731.1279999999999,2716.5999999999995 Q731.1279999999999,2722.5999999999995 737.1279999999999,2722.5999999999995 L887.5239999999999,2722.5999999999995 Q893.5239999999999,2722.5999999999995 893.5239999999999,2728.5999999999995 L893.5239999999999,2752.5999999999995 Q893.5239999999999,2758.5999999999995 893.5239999999999,2764.5999999999995 L893.5239999999999,2811.6999999999994 Q893.5239999999999,2817.6999999999994 887.5239999999999,2817.6999999999994 L808.0659999999999,2817.6999999999994 Q802.0659999999999,2817.6999999999994 802.0659999999999,2823.6999999999994 L802.0659999999999,2876.7999999999993" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_compare" data-to="buildings__pta_write" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M734.3199999999999,2450.2 L734.3199999999999,2480.2 Q734.3199999999999,2486.2 740.3199999999999,2486.2 L866.7759999999998,2486.2 Q872.7759999999998,2486.2 872.7759999999998,2492.2 L872.7759999999998,2516.2 Q872.7759999999998,2522.2 872.7759999999998,2528.2 L872.7759999999998,2575.2999999999997 Q872.7759999999998,2581.2999999999997 866.7759999999998,2581.2999999999997 L737.1279999999999,2581.2999999999997 Q731.1279999999999,2581.2999999999997 731.1279999999999,2587.2999999999997 L731.1279999999999,2640.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__pta_old_done" data-to="buildings__pta_compare" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M588.5019999999998,2213.8 L588.5019999999998,2243.8 Q588.5019999999998,2249.8 594.5019999999998,2249.8 L735.1479999999999,2249.8 Q741.1479999999999,2249.8 741.1479999999999,2255.8 L741.1479999999999,2279.8 Q741.1479999999999,2285.8 741.1479999999999,2291.8 L741.1479999999999,2341.486 Q741.1479999999999,2344.9 737.7339999999999,2344.9 L737.7339999999999,2344.9 Q734.3199999999999,2344.9 734.3199999999999,2348.3140000000003 L734.3199999999999,2404" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_place_tile_at" data-to="buildings__pta_old_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M539.1579999999999,1977.4000000000005 L539.1579999999999,2011.4050000000007 Q539.1579999999999,2013.4000000000005 537.1629999999999,2013.4000000000005 L537.1629999999999,2013.4000000000005 Q535.1679999999999,2013.4000000000005 535.1679999999999,2015.3950000000004 L535.1679999999999,2043.4000000000005 Q535.1679999999999,2049.4000000000005 535.1679999999999,2055.4000000000005 L535.1679999999999,2102.5000000000005 Q535.1679999999999,2108.5000000000005 541.1679999999999,2108.5000000000005 L582.5019999999998,2108.5000000000005 Q588.5019999999998,2108.5000000000005 588.5019999999998,2114.5000000000005 L588.5019999999998,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_show_msg" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M550.4199999999998,913.6000000000001 L550.4199999999998,943.6000000000001 Q550.4199999999998,949.6000000000001 556.4199999999998,949.6000000000001 L597.3099999999998,949.6000000000001 Q603.3099999999998,949.6000000000001 603.3099999999998,955.6000000000001 L603.3099999999998,979.6000000000001 Q603.3099999999998,985.6000000000001 603.3099999999998,991.6000000000001 L603.3099999999998,1097.8000000000002 Q603.3099999999998,1103.8000000000002 603.3099999999998,1109.8000000000002 L603.3099999999998,1216.0000000000002 Q603.3099999999998,1222.0000000000002 603.3099999999998,1228.0000000000002 L603.3099999999998,1334.2000000000003 Q603.3099999999998,1340.2000000000003 603.3099999999998,1346.2000000000003 L603.3099999999998,1393.3000000000002 Q603.3099999999998,1399.3000000000002 609.3099999999998,1399.3000000000002 L627.28,1399.3000000000002 Q633.28,1399.3000000000002 633.28,1405.3000000000002 L633.28,1452.4000000000003 Q633.28,1458.4000000000003 633.28,1464.4000000000003 L633.28,1512.8890000000006 Q633.28,1517.5000000000005 637.891,1517.5000000000005 L637.891,1517.5000000000005 Q642.502,1517.5000000000005 642.502,1522.1110000000003 L642.502,1570.6000000000004 Q642.502,1576.6000000000004 642.502,1582.6000000000004 L642.502,1629.7000000000003 Q642.502,1635.7000000000003 648.502,1635.7000000000003 L651.8860000000001,1635.7000000000003 Q657.8860000000001,1635.7000000000003 657.8860000000001,1641.7000000000003 L657.8860000000001,1688.8000000000004 Q657.8860000000001,1694.8000000000004 657.8860000000001,1700.8000000000004 L657.8860000000001,1747.9000000000005 Q657.8860000000001,1753.9000000000005 663.8860000000001,1753.9000000000005 L687.886,1753.9000000000005 Q693.886,1753.9000000000005 693.886,1759.9000000000005 L693.886,1807.0000000000005 Q693.886,1813.0000000000005 693.886,1819.0000000000005 L693.886,1925.2000000000005 Q693.886,1931.2000000000005 693.886,1937.2000000000005 L693.886,1984.3000000000006 Q693.886,1990.3000000000006 699.886,1990.3000000000006 L797.3919999999998,1990.3000000000006 Q803.3919999999998,1990.3000000000006 803.3919999999998,1996.3000000000006 L803.3919999999998,2043.4000000000005 Q803.3919999999998,2049.4000000000005 803.3919999999998,2055.4000000000005 L803.3919999999998,2102.5000000000005 Q803.3919999999998,2108.5000000000005 809.3919999999998,2108.5000000000005 L925.5639999999999,2108.5000000000005 Q931.5639999999999,2108.5000000000005 931.5639999999999,2114.5000000000005 L931.5639999999999,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_place" data-to="buildings__td_show_msg" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M588.5019999999998,677.2 L588.5019999999998,707.2 Q588.5019999999998,713.2 594.5019999999998,713.2 L653.3499999999998,713.2 Q659.3499999999998,713.2 659.3499999999998,719.2 L659.3499999999998,743.2 Q659.3499999999998,749.2 659.3499999999998,755.2 L659.3499999999998,802.3000000000001 Q659.3499999999998,808.3000000000001 653.3499999999998,808.3000000000001 L556.4199999999998,808.3000000000001 Q550.4199999999998,808.3000000000001 550.4199999999998,814.3000000000001 L550.4199999999998,867.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_place" data-to="buildings_place_tile_at" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call place_tile_at" d="M588.5019999999998,677.2 L588.5019999999998,707.2 Q588.5019999999998,713.2 582.5019999999998,713.2 L411.4899999999998,713.2 Q405.4899999999998,713.2 405.4899999999998,719.2 L405.4899999999998,743.2 Q405.4899999999998,749.2 405.4899999999998,755.2 L405.4899999999998,861.4000000000001 Q405.4899999999998,867.4000000000001 405.4899999999998,873.4000000000001 L405.4899999999998,920.5000000000001 Q405.4899999999998,926.5000000000001 411.4899999999998,926.5000000000001 L525.3099999999998,926.5000000000001 Q531.3099999999998,926.5000000000001 531.3099999999998,932.5000000000001 L531.3099999999998,979.6000000000001 Q531.3099999999998,985.6000000000001 531.3099999999998,991.6000000000001 L531.3099999999998,1097.8000000000002 Q531.3099999999998,1103.8000000000002 531.3099999999998,1109.8000000000002 L531.3099999999998,1216.0000000000002 Q531.3099999999998,1222.0000000000002 531.3099999999998,1228.0000000000002 L531.3099999999998,1334.2000000000003 Q531.3099999999998,1340.2000000000003 531.3099999999998,1346.2000000000003 L531.3099999999998,1395.3760000000002 Q531.3099999999998,1399.3000000000002 535.2339999999999,1399.3000000000002 L535.2339999999999,1399.3000000000002 Q539.1579999999999,1399.3000000000002 539.1579999999999,1403.2240000000002 L539.1579999999999,1452.4000000000003 Q539.1579999999999,1458.4000000000003 539.1579999999999,1464.4000000000003 L539.1579999999999,1570.6000000000004 Q539.1579999999999,1576.6000000000004 539.1579999999999,1582.6000000000004 L539.1579999999999,1688.8000000000004 Q539.1579999999999,1694.8000000000004 539.1579999999999,1700.8000000000004 L539.1579999999999,1807.0000000000005 Q539.1579999999999,1813.0000000000005 539.1579999999999,1819.0000000000005 L539.1579999999999,1931.2000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_clear_tile" data-to="buildings__td_store_clear" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M709.27,322.6 L709.27,352.6 Q709.27,358.6 715.27,358.6 L744.6339999999998,358.6 Q750.6339999999998,358.6 750.6339999999998,364.6 L750.6339999999998,388.6 Q750.6339999999998,394.6 750.6339999999998,400.6 L750.6339999999998,447.70000000000005 Q750.6339999999998,453.70000000000005 744.6339999999998,453.70000000000005 L615.6939999999998,453.70000000000005 Q609.6939999999998,453.70000000000005 609.6939999999998,459.70000000000005 L609.6939999999998,512.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__td_do_it" data-to="buildings__td_place" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M783.8859999999999,204.4 L783.8859999999999,234.4 Q783.8859999999999,240.4 789.8859999999999,240.4 L808.2099999999999,240.4 Q814.2099999999999,240.4 814.2099999999999,246.4 L814.2099999999999,270.4 Q814.2099999999999,276.4 814.2099999999999,282.4 L814.2099999999999,329.5 Q814.2099999999999,335.5 808.2099999999999,335.5 L792.6339999999998,335.5 Q786.6339999999998,335.5 786.6339999999998,341.5 L786.6339999999998,388.6 Q786.6339999999998,394.6 786.6339999999998,400.6 L786.6339999999998,447.70000000000005 Q786.6339999999998,453.70000000000005 780.6339999999998,453.70000000000005 L728.6139999999999,453.70000000000005 Q722.6139999999999,453.70000000000005 722.6139999999999,459.70000000000005 L722.6139999999999,506.79999999999995 Q722.6139999999999,512.8 722.6139999999999,518.8 L722.6139999999999,565.9 Q722.6139999999999,571.9 716.6139999999999,571.9 L594.5019999999998,571.9 Q588.5019999999998,571.9 588.5019999999998,577.9 L588.5019999999998,631" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings_try_demolish" data-to="map_get_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call get_tile" d="M788.5839999999998,86.2 L788.5839999999998,116.2 Q788.5839999999998,122.2 794.5839999999998,122.2 L1164.9699999999998,122.2 Q1170.9699999999998,122.2 1170.9699999999998,128.2 L1170.9699999999998,152.2 Q1170.9699999999998,158.2 1170.9699999999998,164.2 L1170.9699999999998,270.4 Q1170.9699999999998,276.4 1170.9699999999998,282.4 L1170.9699999999998,388.6 Q1170.9699999999998,394.6 1170.9699999999998,400.6 L1170.9699999999998,506.79999999999995 Q1170.9699999999998,512.8 1170.9699999999998,518.8 L1170.9699999999998,625 Q1170.9699999999998,631 1170.9699999999998,637 L1170.9699999999998,743.2 Q1170.9699999999998,749.2 1170.9699999999998,755.2 L1170.9699999999998,802.3000000000001 Q1170.9699999999998,808.3000000000001 1164.9699999999998,808.3000000000001 L1163.404,808.3000000000001 Q1157.404,808.3000000000001 1157.404,814.3000000000001 L1157.404,861.4000000000001 Q1157.404,867.4000000000001 1157.404,873.4000000000001 L1157.404,979.6000000000001 Q1157.404,985.6000000000001 1157.404,991.6000000000001 L1157.404,1097.8000000000002 Q1157.404,1103.8000000000002 1157.404,1109.8000000000002 L1157.404,1216.0000000000002 Q1157.404,1222.0000000000002 1157.404,1228.0000000000002 L1157.404,1334.2000000000003 Q1157.404,1340.2000000000003 1157.404,1346.2000000000003 L1157.404,1452.4000000000003 Q1157.404,1458.4000000000003 1157.404,1464.4000000000003 L1157.404,1570.6000000000004 Q1157.404,1576.6000000000004 1157.404,1582.6000000000004 L1157.404,1688.8000000000004 Q1157.404,1694.8000000000004 1157.404,1700.8000000000004 L1157.404,1807.0000000000005 Q1157.404,1813.0000000000005 1157.404,1819.0000000000005 L1157.404,1925.2000000000005 Q1157.404,1931.2000000000005 1157.404,1937.2000000000005 L1157.404,1984.3000000000006 Q1157.404,1990.3000000000006 1163.404,1990.3000000000006 L1187.404,1990.3000000000006 Q1193.404,1990.3000000000006 1193.404,1996.3000000000006 L1193.404,2049.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_place_tile" data-to="buildings__tp_show_msg" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M853.1800000000001,1859.2000000000005 L853.1800000000001,1889.2000000000005 Q853.1800000000001,1895.2000000000005 859.1800000000001,1895.2000000000005 L970.4739999999999,1895.2000000000005 Q976.4739999999999,1895.2000000000005 976.4739999999999,1901.2000000000005 L976.4739999999999,1925.2000000000005 Q976.4739999999999,1931.2000000000005 976.4739999999999,1937.2000000000005 L976.4739999999999,1984.3000000000006 Q976.4739999999999,1990.3000000000006 970.4739999999999,1990.3000000000006 L954.3219999999998,1990.3000000000006 Q948.3219999999998,1990.3000000000006 948.3219999999998,1996.3000000000006 L948.3219999999998,2049.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_place_new" data-to="buildings__tp_place_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M788.2299999999999,1622.8000000000004 L788.2299999999999,1652.8000000000004 Q788.2299999999999,1658.8000000000004 782.2299999999999,1658.8000000000004 L735.8860000000001,1658.8000000000004 Q729.8860000000001,1658.8000000000004 729.8860000000001,1664.8000000000004 L729.8860000000001,1688.8000000000004 Q729.8860000000001,1694.8000000000004 729.8860000000001,1700.8000000000004 L729.8860000000001,1747.9000000000005 Q729.8860000000001,1753.9000000000005 735.8860000000001,1753.9000000000005 L847.1800000000001,1753.9000000000005 Q853.1800000000001,1753.9000000000005 853.1800000000001,1759.9000000000005 L853.1800000000001,1813.0000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_new_bridge" data-to="buildings__tp_place_new" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M752.2299999999998,1386.4000000000003 L752.2299999999998,1416.4000000000003 Q752.2299999999998,1422.4000000000003 746.2299999999998,1422.4000000000003 L711.28,1422.4000000000003 Q705.28,1422.4000000000003 705.28,1428.4000000000003 L705.28,1452.4000000000003 Q705.28,1458.4000000000003 705.28,1464.4000000000003 L705.28,1511.5000000000005 Q705.28,1517.5000000000005 711.28,1517.5000000000005 L782.2299999999999,1517.5000000000005 Q788.2299999999999,1517.5000000000005 788.2299999999999,1523.5000000000005 L788.2299999999999,1576.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_afford" data-to="buildings__tp_new_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M768.28,1268.2000000000003 L768.28,1298.2000000000003 Q768.28,1304.2000000000003 774.28,1304.2000000000003 L859.1499999999999,1304.2000000000003 Q865.1499999999999,1304.2000000000003 865.1499999999999,1310.2000000000003 L865.1499999999999,1334.2000000000003 Q865.1499999999999,1340.2000000000003 865.1499999999999,1346.2000000000003 L865.1499999999999,1393.3000000000002 Q865.1499999999999,1399.3000000000002 859.1499999999999,1399.3000000000002 L812.23,1399.3000000000002 Q806.23,1399.3000000000002 806.23,1405.3000000000002 L806.23,1458.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_afford" data-to="buildings__tp_new_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M768.28,1268.2000000000003 L768.28,1298.2000000000003 Q768.28,1304.2000000000003 774.28,1304.2000000000003 L895.1499999999999,1304.2000000000003 Q901.1499999999999,1304.2000000000003 901.1499999999999,1310.2000000000003 L901.1499999999999,1334.2000000000003 Q901.1499999999999,1340.2000000000003 901.1499999999999,1346.2000000000003 L901.1499999999999,1393.3000000000002 Q901.1499999999999,1399.3000000000002 895.1499999999999,1399.3000000000002 L812.23,1399.3000000000002 Q806.23,1399.3000000000002 806.23,1405.3000000000002 L806.23,1458.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_afford" data-to="buildings__tp_make_upgrade" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M768.28,1268.2000000000003 L768.28,1298.2000000000003 Q768.28,1304.2000000000003 774.28,1304.2000000000003 L931.1499999999999,1304.2000000000003 Q937.1499999999999,1304.2000000000003 937.1499999999999,1310.2000000000003 L937.1499999999999,1334.2000000000003 Q937.1499999999999,1340.2000000000003 937.1499999999999,1346.2000000000003 L937.1499999999999,1393.3000000000002 Q937.1499999999999,1399.3000000000002 931.1499999999999,1399.3000000000002 L913.18,1399.3000000000002 Q907.18,1399.3000000000002 907.18,1405.3000000000002 L907.18,1452.4000000000003 Q907.18,1458.4000000000003 907.18,1464.4000000000003 L907.18,1512.8890000000004 Q907.18,1517.5000000000005 902.569,1517.5000000000005 L902.569,1517.5000000000005 Q897.9579999999999,1517.5000000000005 897.9579999999999,1522.1110000000006 L897.9579999999999,1570.6000000000004 Q897.9579999999999,1576.6000000000004 897.9579999999999,1582.6000000000004 L897.9579999999999,1629.7000000000003 Q897.9579999999999,1635.7000000000003 891.9579999999999,1635.7000000000003 L859.1800000000001,1635.7000000000003 Q853.1800000000001,1635.7000000000003 853.1800000000001,1641.7000000000003 L853.1800000000001,1694.8000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_max_density" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M1042.0900000000001,913.6000000000001 L1042.0900000000001,943.6000000000001 Q1042.0900000000001,949.6000000000001 1048.0900000000001,949.6000000000001 L1087.252,949.6000000000001 Q1093.252,949.6000000000001 1093.252,955.6000000000001 L1093.252,979.6000000000001 Q1093.252,985.6000000000001 1093.252,991.6000000000001 L1093.252,1097.8000000000002 Q1093.252,1103.8000000000002 1093.252,1109.8000000000002 L1093.252,1216.0000000000002 Q1093.252,1222.0000000000002 1093.252,1228.0000000000002 L1093.252,1334.2000000000003 Q1093.252,1340.2000000000003 1093.252,1346.2000000000003 L1093.252,1452.4000000000003 Q1093.252,1458.4000000000003 1093.252,1464.4000000000003 L1093.252,1570.6000000000004 Q1093.252,1576.6000000000004 1093.252,1582.6000000000004 L1093.252,1688.8000000000004 Q1093.252,1694.8000000000004 1093.252,1700.8000000000004 L1093.252,1807.0000000000005 Q1093.252,1813.0000000000005 1093.252,1819.0000000000005 L1093.252,1925.2000000000005 Q1093.252,1931.2000000000005 1093.252,1937.2000000000005 L1093.252,2043.4000000000005 Q1093.252,2049.4000000000005 1093.252,2055.4000000000005 L1093.252,2102.5000000000005 Q1093.252,2108.5000000000005 1087.252,2108.5000000000005 L937.5639999999999,2108.5000000000005 Q931.5639999999999,2108.5000000000005 931.5639999999999,2114.5000000000005 L931.5639999999999,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_cant_build" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M767.4819999999997,795.4000000000001 L767.4819999999997,825.4000000000001 Q767.4819999999997,831.4000000000001 761.4819999999997,831.4000000000001 L665.3499999999998,831.4000000000001 Q659.3499999999998,831.4000000000001 659.3499999999998,837.4000000000001 L659.3499999999998,861.4000000000001 Q659.3499999999998,867.4000000000001 659.3499999999998,873.4000000000001 L659.3499999999998,920.5000000000001 Q659.3499999999998,926.5000000000001 653.3499999999998,926.5000000000001 L645.3099999999998,926.5000000000001 Q639.3099999999998,926.5000000000001 639.3099999999998,932.5000000000001 L639.3099999999998,979.6000000000001 Q639.3099999999998,985.6000000000001 639.3099999999998,991.6000000000001 L639.3099999999998,1097.8000000000002 Q639.3099999999998,1103.8000000000002 639.3099999999998,1109.8000000000002 L639.3099999999998,1216.0000000000002 Q639.3099999999998,1222.0000000000002 639.3099999999998,1228.0000000000002 L639.3099999999998,1334.2000000000003 Q639.3099999999998,1340.2000000000003 639.3099999999998,1346.2000000000003 L639.3099999999998,1393.3000000000002 Q639.3099999999998,1399.3000000000002 645.3099999999998,1399.3000000000002 L663.28,1399.3000000000002 Q669.28,1399.3000000000002 669.28,1405.3000000000002 L669.28,1452.4000000000003 Q669.28,1458.4000000000003 669.28,1464.4000000000003 L669.28,1512.8890000000006 Q669.28,1517.5000000000005 673.891,1517.5000000000005 L673.891,1517.5000000000005 Q678.502,1517.5000000000005 678.502,1522.1110000000003 L678.502,1570.6000000000004 Q678.502,1576.6000000000004 678.502,1582.6000000000004 L678.502,1629.7000000000003 Q678.502,1635.7000000000003 684.502,1635.7000000000003 L687.8860000000001,1635.7000000000003 Q693.8860000000001,1635.7000000000003 693.8860000000001,1641.7000000000003 L693.8860000000001,1688.8000000000004 Q693.8860000000001,1694.8000000000004 693.8860000000001,1700.8000000000004 L693.8860000000001,1747.9000000000005 Q693.8860000000001,1753.9000000000005 699.8860000000001,1753.9000000000005 L723.886,1753.9000000000005 Q729.886,1753.9000000000005 729.886,1759.9000000000005 L729.886,1807.0000000000005 Q729.886,1813.0000000000005 729.886,1819.0000000000005 L729.886,1925.2000000000005 Q729.886,1931.2000000000005 729.886,1937.2000000000005 L729.886,1984.3000000000006 Q729.886,1990.3000000000006 735.886,1990.3000000000006 L833.3919999999998,1990.3000000000006 Q839.3919999999998,1990.3000000000006 839.3919999999998,1996.3000000000006 L839.3919999999998,2043.4000000000005 Q839.3919999999998,2049.4000000000005 839.3919999999998,2055.4000000000005 L839.3919999999998,2102.5000000000005 Q839.3919999999998,2108.5000000000005 845.3919999999998,2108.5000000000005 L925.5639999999999,2108.5000000000005 Q931.5639999999999,2108.5000000000005 931.5639999999999,2114.5000000000005 L931.5639999999999,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_cost_ready" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M786.6339999999999,1150.0000000000002 L786.6339999999999,1180.0000000000002 Q786.6339999999999,1186.0000000000002 792.6339999999999,1186.0000000000002 L1051.252,1186.0000000000002 Q1057.252,1186.0000000000002 1057.252,1192.0000000000002 L1057.252,1216.0000000000002 Q1057.252,1222.0000000000002 1057.252,1228.0000000000002 L1057.252,1334.2000000000003 Q1057.252,1340.2000000000003 1057.252,1346.2000000000003 L1057.252,1452.4000000000003 Q1057.252,1458.4000000000003 1057.252,1464.4000000000003 L1057.252,1570.6000000000004 Q1057.252,1576.6000000000004 1057.252,1582.6000000000004 L1057.252,1688.8000000000004 Q1057.252,1694.8000000000004 1057.252,1700.8000000000004 L1057.252,1807.0000000000005 Q1057.252,1813.0000000000005 1057.252,1819.0000000000005 L1057.252,1925.2000000000005 Q1057.252,1931.2000000000005 1057.252,1937.2000000000005 L1057.252,2043.4000000000005 Q1057.252,2049.4000000000005 1057.252,2055.4000000000005 L1057.252,2102.5000000000005 Q1057.252,2108.5000000000005 1051.252,2108.5000000000005 L937.5639999999999,2108.5000000000005 Q931.5639999999999,2108.5000000000005 931.5639999999999,2114.5000000000005 L931.5639999999999,2167.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_check_cost" data-to="buildings__tp_cost_ready" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M817.8459999999999,913.6000000000001 L817.8459999999999,943.6000000000001 Q817.8459999999999,949.6000000000001 823.8459999999999,949.6000000000001 L895.9479999999999,949.6000000000001 Q901.9479999999999,949.6000000000001 901.9479999999999,955.6000000000001 L901.9479999999999,979.6000000000001 Q901.9479999999999,985.6000000000001 901.9479999999999,991.6000000000001 L901.9479999999999,1038.7000000000003 Q901.9479999999999,1044.7000000000003 895.9479999999999,1044.7000000000003 L792.6339999999999,1044.7000000000003 Q786.6339999999999,1044.7000000000003 786.6339999999999,1050.7000000000003 L786.6339999999999,1103.8000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_check_cost" data-to="buildings__tp_cost_ready" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M817.8459999999999,913.6000000000001 L817.8459999999999,943.6000000000001 Q817.8459999999999,949.6000000000001 823.8459999999999,949.6000000000001 L931.9479999999999,949.6000000000001 Q937.9479999999999,949.6000000000001 937.9479999999999,955.6000000000001 L937.9479999999999,979.6000000000001 Q937.9479999999999,985.6000000000001 937.9479999999999,991.6000000000001 L937.9479999999999,1038.7000000000003 Q937.9479999999999,1044.7000000000003 931.9479999999999,1044.7000000000003 L792.6339999999999,1044.7000000000003 Q786.6339999999999,1044.7000000000003 786.6339999999999,1050.7000000000003 L786.6339999999999,1103.8000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_not_water" data-to="buildings__tp_check_cost" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M865.1499999999999,559 L865.1499999999999,589 Q865.1499999999999,595 859.1499999999999,595 L759.4719999999999,595 Q753.4719999999999,595 753.4719999999999,601 L753.4719999999999,625 Q753.4719999999999,631 753.4719999999999,637 L753.4719999999999,684.1 Q753.4719999999999,690.1 759.4719999999999,690.1 L869.6139999999998,690.1 Q875.6139999999998,690.1 875.6139999999998,696.1 L875.6139999999998,743.2 Q875.6139999999998,749.2 875.6139999999998,755.2 L875.6139999999998,802.3000000000001 Q875.6139999999998,808.3000000000001 869.6139999999998,808.3000000000001 L823.8459999999999,808.3000000000001 Q817.8459999999999,808.3000000000001 817.8459999999999,814.3000000000001 L817.8459999999999,867.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_not_water" data-to="buildings__tp_cant_build" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M865.1499999999999,559 L865.1499999999999,589 Q865.1499999999999,595 859.1499999999999,595 L723.4719999999999,595 Q717.4719999999999,595 717.4719999999999,601 L717.4719999999999,625 Q717.4719999999999,631 717.4719999999999,637 L717.4719999999999,684.1 Q717.4719999999999,690.1 723.4719999999999,690.1 L761.4819999999997,690.1 Q767.4819999999997,690.1 767.4819999999997,696.1 L767.4819999999997,749.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_check_same" data-to="buildings__tp_check_cost" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M902.7459999999999,440.8 L902.7459999999999,470.8 Q902.7459999999999,476.8 908.7459999999999,476.8 L966.9279999999999,476.8 Q972.9279999999999,476.8 972.9279999999999,482.8 L972.9279999999999,506.79999999999995 Q972.9279999999999,512.8 972.9279999999999,518.8 L972.9279999999999,625 Q972.9279999999999,631 972.9279999999999,637 L972.9279999999999,684.1 Q972.9279999999999,690.1 966.9279999999999,690.1 L917.6139999999998,690.1 Q911.6139999999998,690.1 911.6139999999998,696.1 L911.6139999999998,743.2 Q911.6139999999998,749.2 911.6139999999998,755.2 L911.6139999999998,802.3000000000001 Q911.6139999999998,808.3000000000001 905.6139999999998,808.3000000000001 L823.8459999999999,808.3000000000001 Q817.8459999999999,808.3000000000001 817.8459999999999,814.3000000000001 L817.8459999999999,867.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_check_same" data-to="buildings__tp_cant_build" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M902.7459999999999,440.8 L902.7459999999999,470.8 Q902.7459999999999,476.8 896.7459999999999,476.8 L764.6139999999999,476.8 Q758.6139999999999,476.8 758.6139999999999,482.8 L758.6139999999999,506.79999999999995 Q758.6139999999999,512.8 758.6139999999999,518.8 L758.6139999999999,565.9 Q758.6139999999999,571.9 752.6139999999999,571.9 L687.4719999999999,571.9 Q681.4719999999999,571.9 681.4719999999999,577.9 L681.4719999999999,625 Q681.4719999999999,631 681.4719999999999,637 L681.4719999999999,684.1 Q681.4719999999999,690.1 687.4719999999999,690.1 L761.4819999999997,690.1 Q767.4819999999997,690.1 767.4819999999997,696.1 L767.4819999999997,749.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_check_same" data-to="buildings__tp_upgrade_density" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M902.7459999999999,440.8 L902.7459999999999,470.8 Q902.7459999999999,476.8 908.7459999999999,476.8 L1002.9279999999999,476.8 Q1008.9279999999999,476.8 1008.9279999999999,482.8 L1008.9279999999999,506.79999999999995 Q1008.9279999999999,512.8 1008.9279999999999,518.8 L1008.9279999999999,625 Q1008.9279999999999,631 1008.9279999999999,637 L1008.9279999999999,684.1 Q1008.9279999999999,690.1 1014.9279999999999,690.1 L1035.292,690.1 Q1041.292,690.1 1041.292,696.1 L1041.292,749.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_sel_ok" data-to="buildings__tp_upgrade_density" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M911.17,322.6 L911.17,352.6 Q911.17,358.6 917.17,358.6 L1038.9279999999999,358.6 Q1044.9279999999999,358.6 1044.9279999999999,364.6 L1044.9279999999999,388.6 Q1044.9279999999999,394.6 1044.9279999999999,400.6 L1044.9279999999999,506.79999999999995 Q1044.9279999999999,512.8 1044.9279999999999,518.8 L1044.9279999999999,625 Q1044.9279999999999,631 1044.9279999999999,637 L1044.9279999999999,688.282 Q1044.9279999999999,690.1 1043.11,690.1 L1043.11,690.1 Q1041.292,690.1 1041.292,691.918 L1041.292,749.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="buildings__tp_sel_ok" data-to="map_get_tile" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call get_tile" d="M911.17,322.6 L911.17,352.6 Q911.17,358.6 917.17,358.6 L1200.9699999999998,358.6 Q1206.9699999999998,358.6 1206.9699999999998,364.6 L1206.9699999999998,388.6 Q1206.9699999999998,394.6 1206.9699999999998,400.6 L1206.9699999999998,506.79999999999995 Q1206.9699999999998,512.8 1206.9699999999998,518.8 L1206.9699999999998,625 Q1206.9699999999998,631 1206.9699999999998,637 L1206.9699999999998,743.2 Q1206.9699999999998,749.2 1206.9699999999998,755.2 L1206.9699999999998,802.3000000000001 Q1206.9699999999998,808.3000000000001 1200.9699999999998,808.3000000000001 L1199.404,808.3000000000001 Q1193.404,808.3000000000001 1193.404,814.3000000000001 L1193.404,861.4000000000001 Q1193.404,867.4000000000001 1193.404,873.4000000000001 L1193.404,979.6000000000001 Q1193.404,985.6000000000001 1193.404,991.6000000000001 L1193.404,1097.8000000000002 Q1193.404,1103.8000000000002 1193.404,1109.8000000000002 L1193.404,1216.0000000000002 Q1193.404,1222.0000000000002 1193.404,1228.0000000000002 L1193.404,1334.2000000000003 Q1193.404,1340.2000000000003 1193.404,1346.2000000000003 L1193.404,1452.4000000000003 Q1193.404,1458.4000000000003 1193.404,1464.4000000000003 L1193.404,1570.6000000000004 Q1193.404,1576.6000000000004 1193.404,1582.6000000000004 L1193.404,1688.8000000000004 Q1193.404,1694.8000000000004 1193.404,1700.8000000000004 L1193.404,1807.0000000000005 Q1193.404,1813.0000000000005 1193.404,1819.0000000000005 L1193.404,1925.2000000000005 Q1193.404,1931.2000000000005 1193.404,1937.2000000000005 L1193.404,2049.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="buildings_try_place_building" data-to="buildings__tp_sel_ok" data-label="Branch BNE">
+  <rect x="898.6303999999999" y="224.6" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="939.6063999999999" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_sel_ok" data-to="buildings__tp_check_same" data-label="Branch BNE">
+  <rect x="870.194" y="321.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="911.17" y="337" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_sel_ok" data-to="buildings__tp_check_same" data-label="fallthrough">
+  <rect x="875.054" y="321.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="911.17" y="337" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_check_same" data-to="buildings__tp_not_water" data-label="Branch BNE">
+  <rect x="846.7315999999998" y="461" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="887.7075999999998" y="476.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_check_same" data-to="buildings__tp_not_water" data-label="fallthrough">
+  <rect x="851.5915999999999" y="461" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="887.7075999999998" y="476.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_not_water" data-to="buildings__tp_not_bridge" data-label="Branch BNE">
+  <rect x="824.1739999999999" y="557.6" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="865.1499999999999" y="573.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_not_water" data-to="buildings__tp_not_bridge" data-label="fallthrough">
+  <rect x="829.0339999999999" y="557.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="865.1499999999999" y="573.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_not_bridge" data-to="buildings__tp_cant_build" data-label="Branch BEQ">
+  <rect x="783.9367999999998" y="697.4000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="824.9127999999998" y="713.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_not_bridge" data-to="buildings__tp_upgrade_density" data-label="fallthrough">
+  <rect x="898.3207999999998" y="697.4000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="934.4367999999998" y="713.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_upgrade_density" data-to="buildings__tp_max_density" data-label="Branch BEQ">
+  <rect x="1000.3159999999999" y="794.0000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1041.292" y="809.8000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_upgrade_density" data-to="buildings__tp_check_cost" data-label="fallthrough">
+  <rect x="915.7975999999999" y="815.6000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="951.9135999999999" y="831.4000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_check_cost" data-to="buildings__tp_cost_bridge" data-label="Branch BEQ">
+  <rect x="776.8699999999999" y="912.2000000000002" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="817.8459999999999" y="928.0000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_check_cost" data-to="buildings__tp_cost_bridge" data-label="fallthrough">
+  <rect x="781.7299999999999" y="912.2000000000002" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="817.8459999999999" y="928.0000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_cost_bridge" data-to="buildings__tp_cost_ready" data-label="fallthrough">
+  <rect x="752.1139999999999" y="1030.4000000000003" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="788.2299999999999" y="1046.2000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_cost_ready" data-to="buildings__tp_afford" data-label="Branch BPL">
+  <rect x="745.6579999999999" y="1148.6000000000004" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="786.6339999999999" y="1164.4000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BPL</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_afford" data-to="buildings__tp_new_bridge" data-label="Branch BEQ">
+  <rect x="727.304" y="1266.8000000000004" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="768.28" y="1282.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_afford" data-to="buildings__tp_new_bridge" data-label="fallthrough">
+  <rect x="732.164" y="1266.8000000000004" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="768.28" y="1282.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_new_bridge" data-to="buildings__tp_new_tile" data-label="fallthrough">
+  <rect x="737.7139999999999" y="1406.6000000000004" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="773.8299999999999" y="1422.4000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_new_tile" data-to="buildings__tp_place_new" data-label="fallthrough">
+  <rect x="770.114" y="1503.2000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="806.23" y="1519.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_place_new" data-to="buildings__tp_make_upgrade" data-label="fallthrough">
+  <rect x="778.0939999999999" y="1643.0000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="814.2099999999999" y="1658.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_make_upgrade" data-to="buildings__tp_place_tile" data-label="fallthrough">
+  <rect x="817.0640000000001" y="1754.0000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="853.1800000000001" y="1769.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_place_tile" data-to="buildings_place_tile_at" data-label="Call place_tile_at">
+  <rect x="675.5792" y="1879.4000000000005" width="103.98400000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="727.5712" y="1895.2000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call place_tile_at</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_place_tile" data-to="buildings__tp_msg_upgraded" data-label="Branch BNE">
+  <rect x="812.2040000000001" y="1872.2000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="853.1800000000001" y="1888.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_place_tile" data-to="buildings__tp_msg_upgraded" data-label="fallthrough">
+  <rect x="817.0640000000001" y="1872.2000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="853.1800000000001" y="1888.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_msg_upgraded" data-to="buildings__tp_show_msg" data-label="fallthrough">
+  <rect x="855.1207999999999" y="1997.6000000000006" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="891.2367999999999" y="2013.4000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_show_msg" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="895.6819999999998" y="2094.2000000000003" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="948.3219999999998" y="2110.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="buildings_try_demolish" data-to="buildings__td_do_it" data-label="Branch BNE">
+  <rect x="747.6079999999998" y="84.8" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="788.5839999999998" y="100.6" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__td_do_it" data-to="buildings__td_clear_tile" data-label="Branch BCC">
+  <rect x="713.0636" y="224.6" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="754.0396" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCC</text>
+</g>
+<g class="edge-label" data-from="buildings__td_do_it" data-to="buildings__td_clear_tile" data-label="Branch BCS">
+  <rect x="713.0636" y="224.6" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="754.0396" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="buildings__td_do_it" data-to="buildings__td_clear_tile" data-label="Branch BEQ">
+  <rect x="713.0636" y="224.6" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="754.0396" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__td_do_it" data-to="buildings__td_clear_tile" data-label="fallthrough">
+  <rect x="717.9236" y="224.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="754.0396" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__td_clear_tile" data-to="buildings__td_clear_empty" data-label="Branch BNE">
+  <rect x="639.0332" y="342.8" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="680.0092" y="358.6" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__td_clear_tile" data-to="buildings__td_clear_empty" data-label="fallthrough">
+  <rect x="643.8932" y="342.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="680.0092" y="358.6" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__td_clear_empty" data-to="buildings__td_store_clear" data-label="fallthrough">
+  <rect x="600.0019999999998" y="439.4" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="636.1179999999998" y="455.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__td_store_clear" data-to="buildings__td_place" data-label="fallthrough">
+  <rect x="573.5779999999999" y="557.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="609.6939999999998" y="573.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__td_place" data-to="buildings__td_msg_demo" data-label="Branch BEQ">
+  <rect x="532.2931999999998" y="697.4000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="573.2691999999998" y="713.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__td_place" data-to="buildings__td_msg_demo" data-label="fallthrough">
+  <rect x="537.1531999999999" y="697.4000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="573.2691999999998" y="713.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__td_msg_demo" data-to="buildings__td_show_msg" data-label="fallthrough">
+  <rect x="514.3039999999999" y="808.4000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="550.4199999999998" y="824.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings_place_tile_at" data-to="map_get_tile" data-label="Call get_tile">
+  <rect x="763.1203999999999" y="1997.6000000000006" width="75.47200000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="800.8563999999999" y="2013.4000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call get_tile</text>
+</g>
+<g class="edge-label" data-from="buildings_place_tile_at" data-to="buildings_decrement_count" data-label="Call decrement_count">
+  <rect x="519.7027999999999" y="1997.6000000000006" width="128.608" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="584.0067999999999" y="2013.4000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call decrement_count</text>
+</g>
+<g class="edge-label" data-from="buildings_place_tile_at" data-to="buildings__pta_old_road" data-label="Branch BEQ">
+  <rect x="453.3331999999999" y="1997.6000000000006" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="494.3091999999999" y="2013.4000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings_place_tile_at" data-to="buildings__pta_old_road" data-label="fallthrough">
+  <rect x="458.19319999999993" y="1997.6000000000006" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="494.3091999999999" y="2013.4000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_old_road" data-to="buildings__pta_old_done" data-label="fallthrough">
+  <rect x="455.50639999999987" y="2115.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="491.62239999999986" y="2131.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_old_done" data-to="buildings__pta_new_road" data-label="Branch BEQ">
+  <rect x="564.0547999999999" y="2234" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="605.0307999999999" y="2249.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_old_done" data-to="buildings__pta_new_road" data-label="fallthrough">
+  <rect x="568.9147999999999" y="2234" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="605.0307999999999" y="2249.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_new_road" data-to="buildings__pta_compare" data-label="fallthrough">
+  <rect x="635.5063999999999" y="2352.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="671.6223999999999" y="2368" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_compare" data-to="buildings__pta_topology_changed" data-label="Branch BNE">
+  <rect x="693.3439999999999" y="2463.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="734.3199999999999" y="2479" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_compare" data-to="buildings__pta_topology_changed" data-label="fallthrough">
+  <rect x="698.204" y="2463.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="734.3199999999999" y="2479" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_topology_changed" data-to="buildings__pta_write" data-label="fallthrough">
+  <rect x="698.204" y="2566.9999999999995" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="734.3199999999999" y="2582.7999999999997" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_write" data-to="map_set_tile" data-label="Call set_tile">
+  <rect x="442.60159999999996" y="2706.7999999999993" width="75.47200000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="480.33759999999995" y="2722.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call set_tile</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_write" data-to="buildings_increment_count" data-label="Call increment_count">
+  <rect x="568.2535999999999" y="2706.7999999999993" width="124.72" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="630.6135999999999" y="2722.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call increment_count</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_write" data-to="map_render_road_neighborhood" data-label="Call render_road_neighborhood">
+  <rect x="638.3119999999999" y="2685.1999999999994" width="185.63200000000003" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="731.1279999999999" y="2700.9999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call render_road_neighborhood</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_write" data-to="buildings__pta_update_one" data-label="Branch BEQ">
+  <rect x="511.78639999999996" y="2706.7999999999993" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="552.7624" y="2722.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_write" data-to="simulation_rebuild_road_segments" data-label="Call rebuild_road_segments">
+  <rect x="834.7615999999998" y="2706.7999999999993" width="162.30400000000003" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="915.9135999999999" y="2722.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call rebuild_road_segments</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_write" data-to="buildings__pta_update_one" data-label="fallthrough">
+  <rect x="516.6464" y="2706.7999999999993" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="552.7624" y="2722.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_update_one" data-to="simulation_update_building_segment_at" data-label="Call update_building_segment_at">
+  <rect x="192.398" y="2817.7999999999993" width="185.632" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="285.214" y="2833.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call update_building_segment_at</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_update_one" data-to="buildings__pta_done" data-label="fallthrough">
+  <rect x="455.8388" y="2824.999999999999" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="491.9548" y="2840.7999999999993" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings_increment_count" data-to="buildings_get_tile_density_units" data-label="Call get_tile_density_units">
+  <rect x="699.7532" y="2824.999999999999" width="150.64000000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="775.0732" y="2840.7999999999993" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call get_tile_density_units</text>
+</g>
+<g class="edge-label" data-from="buildings_increment_count" data-to="buildings__inc_road" data-label="Branch BEQ">
+  <rect x="458.9756" y="2824.999999999999" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="499.9516" y="2840.7999999999993" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings_increment_count" data-to="buildings__inc1" data-label="Branch BNE">
+  <rect x="513.2059999999999" y="2824.999999999999" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="554.1819999999999" y="2840.7999999999993" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings_increment_count" data-to="buildings__inc_road" data-label="fallthrough">
+  <rect x="463.8356" y="2824.999999999999" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="499.9516" y="2840.7999999999993" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__inc_road" data-to="buildings__inc_store_road" data-label="Branch BCC">
+  <rect x="489.14" y="2935.999999999999" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="530.116" y="2951.7999999999993" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCC</text>
+</g>
+<g class="edge-label" data-from="buildings__inc_road" data-to="buildings__inc_store_road" data-label="fallthrough">
+  <rect x="494" y="2935.999999999999" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="530.116" y="2951.7999999999993" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__inc1" data-to="buildings__inc2" data-label="Branch BNE">
+  <rect x="624.7159999999999" y="2921.599999999999" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="665.6919999999999" y="2937.399999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__inc1" data-to="buildings__inc_store_house" data-label="Branch BCC">
+  <rect x="699.3751999999998" y="2943.199999999999" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="740.3511999999998" y="2958.999999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCC</text>
+</g>
+<g class="edge-label" data-from="buildings__inc1" data-to="buildings__inc_store_house" data-label="fallthrough">
+  <rect x="704.2351999999998" y="2943.199999999999" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="740.3511999999998" y="2958.999999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__inc2" data-to="buildings__inc3" data-label="Branch BNE">
+  <rect x="714.2179999999998" y="3061.3999999999987" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="755.1939999999998" y="3077.199999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__inc2" data-to="buildings__inc_store_factory" data-label="Branch BCC">
+  <rect x="647.8579999999998" y="3054.199999999999" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="688.8339999999998" y="3069.999999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCC</text>
+</g>
+<g class="edge-label" data-from="buildings__inc2" data-to="buildings__inc_store_factory" data-label="fallthrough">
+  <rect x="652.7179999999998" y="3054.199999999999" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="688.8339999999998" y="3069.999999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__inc3" data-to="buildings__inc4" data-label="Branch BNE">
+  <rect x="833.2819999999998" y="3179.5999999999985" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="874.2579999999998" y="3195.3999999999987" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__inc3" data-to="buildings__inc_store_park" data-label="Branch BCC">
+  <rect x="769.7947999999999" y="3179.5999999999985" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="810.7707999999999" y="3195.3999999999987" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCC</text>
+</g>
+<g class="edge-label" data-from="buildings__inc3" data-to="buildings__inc_store_park" data-label="fallthrough">
+  <rect x="774.6547999999999" y="3179.5999999999985" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="810.7707999999999" y="3195.3999999999987" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__inc4" data-to="buildings__inc5" data-label="Branch BNE">
+  <rect x="862.5679999999999" y="3276.1999999999985" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="903.5439999999999" y="3291.9999999999986" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__inc4" data-to="buildings__inc_store_power" data-label="Branch BCC">
+  <rect x="799.0807999999998" y="3297.7999999999984" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="840.0567999999998" y="3313.5999999999985" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCC</text>
+</g>
+<g class="edge-label" data-from="buildings__inc4" data-to="buildings__inc_store_power" data-label="fallthrough">
+  <rect x="803.9407999999999" y="3297.7999999999984" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="840.0567999999998" y="3313.5999999999985" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__inc5" data-to="buildings__inc6" data-label="Branch BNE">
+  <rect x="867.3559999999999" y="3394.3999999999983" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="908.3319999999999" y="3410.1999999999985" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__inc5" data-to="buildings__inc_store_police" data-label="Branch BCC">
+  <rect x="801.9535999999999" y="3415.999999999998" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="842.9295999999999" y="3431.7999999999984" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCC</text>
+</g>
+<g class="edge-label" data-from="buildings__inc5" data-to="buildings__inc_store_police" data-label="fallthrough">
+  <rect x="806.8136" y="3415.999999999998" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="842.9295999999999" y="3431.7999999999984" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__inc6" data-to="buildings__inc_store_fire" data-label="Branch BCC">
+  <rect x="818.8363999999999" y="3534.199999999998" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="859.8123999999999" y="3549.999999999998" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCC</text>
+</g>
+<g class="edge-label" data-from="buildings__inc6" data-to="buildings__inc_store_fire" data-label="fallthrough">
+  <rect x="823.6963999999999" y="3534.199999999998" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="859.8123999999999" y="3549.999999999998" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__inc_store_fire" data-to="buildings__inc_done" data-label="fallthrough">
+  <rect x="752.1139999999999" y="3645.199999999998" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="788.2299999999999" y="3660.999999999998" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings_decrement_count" data-to="buildings__dec_road" data-label="Branch BEQ">
+  <rect x="791.3312" y="2115.8" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="832.3072" y="2131.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings_decrement_count" data-to="buildings__dec1" data-label="Branch BNE">
+  <rect x="646.1263999999999" y="2115.8" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="687.1023999999999" y="2131.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings_decrement_count" data-to="buildings__dec_road" data-label="fallthrough">
+  <rect x="796.1912" y="2115.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="832.3072" y="2131.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__dec_road" data-to="buildings__dec_store_road" data-label="Branch BCS">
+  <rect x="1062.8719999999998" y="2226.8" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1103.848" y="2242.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="buildings__dec_road" data-to="buildings__dec_store_road" data-label="fallthrough">
+  <rect x="1067.732" y="2226.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1103.848" y="2242.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__dec1" data-to="buildings__dec2" data-label="Branch BNE">
+  <rect x="592.6063999999999" y="2234" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="633.5823999999999" y="2249.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__dec1" data-to="buildings__dec_store_house" data-label="Branch BCS">
+  <rect x="748.9831999999999" y="2234" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="789.9591999999999" y="2249.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="buildings__dec1" data-to="buildings__dec_store_house" data-label="fallthrough">
+  <rect x="753.8431999999999" y="2234" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="789.9591999999999" y="2249.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__dec2" data-to="buildings__dec3" data-label="Branch BNE">
+  <rect x="638.8387999999999" y="2352.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="679.8147999999999" y="2368" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__dec2" data-to="buildings__dec_store_factory" data-label="Branch BCS">
+  <rect x="431.7259999999999" y="2345" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="472.7019999999999" y="2360.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="buildings__dec2" data-to="buildings__dec_store_factory" data-label="fallthrough">
+  <rect x="436.5859999999999" y="2345" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="472.7019999999999" y="2360.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__dec3" data-to="buildings__dec4" data-label="Branch BNE">
+  <rect x="773.3407999999998" y="2470.3999999999996" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="814.3167999999998" y="2486.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__dec3" data-to="buildings__dec_store_park" data-label="Branch BCS">
+  <rect x="949.5079999999998" y="2463.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="990.4839999999998" y="2479" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="buildings__dec3" data-to="buildings__dec_store_park" data-label="fallthrough">
+  <rect x="954.3679999999998" y="2463.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="990.4839999999998" y="2479" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__dec4" data-to="buildings__dec5" data-label="Branch BNE">
+  <rect x="802.3699999999999" y="2588.5999999999995" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="843.3459999999999" y="2604.3999999999996" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__dec4" data-to="buildings__dec_store_power" data-label="Branch BCS">
+  <rect x="509.0899999999999" y="2581.3999999999996" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="550.0659999999999" y="2597.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="buildings__dec4" data-to="buildings__dec_store_power" data-label="fallthrough">
+  <rect x="513.9499999999999" y="2581.3999999999996" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="550.0659999999999" y="2597.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__dec5" data-to="buildings__dec6" data-label="Branch BNE">
+  <rect x="1119.1124" y="2706.7999999999993" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1160.0883999999999" y="2722.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__dec5" data-to="buildings__dec_store_police" data-label="Branch BCS">
+  <rect x="1323.6884" y="2706.7999999999993" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1364.6644" y="2722.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="buildings__dec5" data-to="buildings__dec_store_police" data-label="fallthrough">
+  <rect x="1328.5484" y="2706.7999999999993" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1364.6644" y="2722.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__dec6" data-to="buildings__dec_store_fire" data-label="Branch BCS">
+  <rect x="934.3459999999999" y="2817.7999999999993" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="975.3219999999999" y="2833.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="buildings__dec6" data-to="buildings__dec_store_fire" data-label="fallthrough">
+  <rect x="939.2059999999999" y="2817.7999999999993" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="975.3219999999999" y="2833.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings__dec_store_fire" data-to="buildings__dec_done" data-label="fallthrough">
+  <rect x="962.7571999999999" y="2943.199999999999" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="998.8731999999999" y="2958.999999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings_show_building_name" data-to="buildings__sbn_done" data-label="Branch BEQ">
+  <rect x="554.5759999999999" y="99.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="595.5519999999999" y="115" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings_show_building_name" data-to="buildings__sbn_done" data-label="Branch BCS">
+  <rect x="554.5759999999999" y="99.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="595.5519999999999" y="115" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="buildings_show_building_name" data-to="buildings__sbn_done" data-label="fallthrough">
+  <rect x="559.4359999999999" y="99.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="595.5519999999999" y="115" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="buildings_show_building_name" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="539.9419999999998" y="201.5" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="592.5819999999998" y="217.3" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="buildings__dec6" data-to="buildings__dec_done" data-label="Branch BNE">
+  <rect x="979.5139999999999" y="2824.999999999999" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1020.4899999999999" y="2840.7999999999993" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings_decrement_count" data-to="buildings_get_tile_density_units" data-label="Call get_tile_density_units">
+  <rect x="1062.3896" y="2329.1" width="150.64000000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1137.7096" y="2344.9" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call get_tile_density_units</text>
+</g>
+<g class="edge-label" data-from="buildings__inc6" data-to="buildings__inc_done" data-label="Branch BNE">
+  <rect x="813.5695999999999" y="3629.299999999998" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="854.5455999999999" y="3645.099999999998" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_write" data-to="buildings__pta_done" data-label="Jmp JMP">
+  <rect x="762.5623999999999" y="2706.7999999999993" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="796.0863999999999" y="2722.5999999999995" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_compare" data-to="buildings__pta_write" data-label="Branch BEQ">
+  <rect x="775.1407999999999" y="2565.4999999999995" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="816.1167999999999" y="2581.2999999999997" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__pta_old_done" data-to="buildings__pta_compare" data-label="Branch BNE">
+  <rect x="608.5843999999998" y="2234" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="649.5603999999998" y="2249.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings_place_tile_at" data-to="buildings__pta_old_done" data-label="Branch BNE">
+  <rect x="494.1919999999999" y="2057.2400000000002" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="535.1679999999999" y="2073.0400000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__td_show_msg" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="802.0207999999999" y="2092.7000000000003" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="854.6607999999999" y="2108.5000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="buildings__td_place" data-to="buildings__td_show_msg" data-label="Branch BNE">
+  <rect x="574.8019999999998" y="792.5000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="615.7779999999998" y="808.3000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__td_place" data-to="buildings_place_tile_at" data-label="Call place_tile_at">
+  <rect x="463.30519999999984" y="697.4000000000001" width="103.98400000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="515.2971999999999" y="713.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call place_tile_at</text>
+</g>
+<g class="edge-label" data-from="buildings__td_clear_tile" data-to="buildings__td_store_clear" data-label="Branch BNE">
+  <rect x="653.2819999999998" y="437.90000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="694.2579999999998" y="453.70000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__td_do_it" data-to="buildings__td_place" data-label="Branch BNE">
+  <rect x="627.9931999999999" y="556.1" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="668.9691999999999" y="571.9" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings_try_demolish" data-to="map_get_tile" data-label="Call get_tile">
+  <rect x="903.8023999999998" y="106.4" width="75.47200000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="941.5383999999998" y="122.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call get_tile</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_place_tile" data-to="buildings__tp_show_msg" data-label="Branch BNE">
+  <rect x="861.5216" y="1879.4000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="902.4976" y="1895.2000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_place_new" data-to="buildings__tp_place_tile" data-label="Branch BNE">
+  <rect x="738.2276" y="1738.1000000000006" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="779.2036" y="1753.9000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_new_bridge" data-to="buildings__tp_place_new" data-label="Branch BNE">
+  <rect x="697.4839999999999" y="1501.7000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="738.4599999999999" y="1517.5000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_afford" data-to="buildings__tp_new_tile" data-label="Branch BNE">
+  <rect x="766.0519999999999" y="1288.4000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="807.0279999999999" y="1304.2000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_afford" data-to="buildings__tp_new_tile" data-label="Branch BNE">
+  <rect x="780.4519999999999" y="1288.4000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="821.4279999999999" y="1304.2000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_afford" data-to="buildings__tp_make_upgrade" data-label="Branch BEQ">
+  <rect x="794.852" y="1288.4000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="835.828" y="1304.2000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_max_density" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="975.9368000000001" y="2092.7000000000003" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1028.5768" y="2108.5000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_cant_build" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="586.6699999999998" y="1017.0800000000002" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="639.3099999999998" y="1032.88" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_cost_ready" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="842.2411999999999" y="1170.2000000000003" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="894.8811999999999" y="1186.0000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_check_cost" data-to="buildings__tp_cost_ready" data-label="Branch BNE">
+  <rect x="814.8463999999999" y="1028.9000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="855.8223999999999" y="1044.7000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_check_cost" data-to="buildings__tp_cost_ready" data-label="Branch BNE">
+  <rect x="836.4463999999999" y="1028.9000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="877.4223999999999" y="1044.7000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_not_water" data-to="buildings__tp_check_cost" data-label="Jmp JMP">
+  <rect x="768.8047999999999" y="674.3000000000001" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="802.3287999999999" y="690.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_not_water" data-to="buildings__tp_cant_build" data-label="Branch BNE">
+  <rect x="765.1027999999999" y="579.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="806.0787999999999" y="595" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_check_same" data-to="buildings__tp_check_cost" data-label="Jmp JMP">
+  <rect x="939.4039999999999" y="544.2800000000001" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="972.9279999999999" y="560.08" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_check_same" data-to="buildings__tp_cant_build" data-label="Branch BNE">
+  <rect x="804.1171999999999" y="461" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="845.0931999999999" y="476.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_check_same" data-to="buildings__tp_upgrade_density" data-label="Branch BEQ">
+  <rect x="967.9519999999999" y="544.2800000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1008.9279999999999" y="560.08" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_sel_ok" data-to="buildings__tp_upgrade_density" data-label="Branch BEQ">
+  <rect x="923.6972" y="342.8" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="964.6732" y="358.6" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="buildings__tp_sel_ok" data-to="map_get_tile" data-label="Call get_tile">
+  <rect x="991.754" y="342.8" width="75.47200000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="1029.49" y="358.6" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call get_tile</text>
+</g>
+<g class="node" data-id="buildings_try_place_building" data-label="try_place_building" data-shape="rounded">
+  <rect x="874.4619999999999" y="158.2" width="168.204" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="958.5639999999999" y="181.29999999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">try_place_building</text>
+</g>
+<g class="node" data-id="buildings__tp_sel_ok" data-label="@tp_sel_ok" data-shape="rounded">
+  <rect x="850.2099999999999" y="276.4" width="121.91999999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="911.17" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_sel_ok</text>
+</g>
+<g class="node" data-id="buildings__tp_check_same" data-label="@tp_check_same" data-shape="rounded">
+  <rect x="822.6339999999999" y="394.6" width="160.224" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="902.7459999999999" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_check_same</text>
+</g>
+<g class="node" data-id="buildings__tp_not_water" data-label="@tp_not_water" data-shape="rounded">
+  <rect x="794.6139999999999" y="512.8" width="141.072" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="865.1499999999999" y="535.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_not_water</text>
+</g>
+<g class="node" data-id="buildings__tp_not_bridge" data-label="@tp_not_bridge" data-shape="rounded">
+  <rect x="789.4719999999999" y="631" width="147.456" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="863.1999999999998" y="654.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_not_bridge</text>
+</g>
+<g class="node" data-id="buildings__tp_upgrade_density" data-label="@tp_upgrade_density" data-shape="rounded">
+  <rect x="947.6139999999998" y="749.2" width="187.35599999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1041.2919999999997" y="772.3000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_upgrade_density</text>
+</g>
+<g class="node" data-id="buildings__tp_check_cost" data-label="@tp_check_cost" data-shape="rounded">
+  <rect x="740.9259999999999" y="867.4000000000001" width="153.83999999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="817.8459999999999" y="890.5000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_check_cost</text>
+</g>
+<g class="node" data-id="buildings__tp_cost_bridge" data-label="@tp_cost_bridge" data-shape="rounded">
+  <rect x="710.512" y="985.6000000000001" width="155.43599999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="788.2299999999999" y="1008.7000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_cost_bridge</text>
+</g>
+<g class="node" data-id="buildings__tp_cost_ready" data-label="@tp_cost_ready" data-shape="rounded">
+  <rect x="710.512" y="1103.8000000000002" width="152.244" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="786.6339999999999" y="1126.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_cost_ready</text>
+</g>
+<g class="node" data-id="buildings__tp_cant_build" data-label="@tp_cant_build" data-shape="rounded">
+  <rect x="695.3499999999998" y="749.2" width="144.264" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="767.4819999999997" y="772.3000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_cant_build</text>
+</g>
+<g class="node" data-id="buildings__tp_max_density" data-label="@tp_max_density" data-shape="rounded">
+  <rect x="962.7760000000001" y="867.4000000000001" width="158.628" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1042.0900000000001" y="890.5000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_max_density</text>
+</g>
+<g class="node" data-id="buildings__tp_afford" data-label="@tp_afford" data-shape="rounded">
+  <rect x="710.512" y="1222.0000000000002" width="115.53599999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="768.28" y="1245.1000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_afford</text>
+</g>
+<g class="node" data-id="buildings__tp_new_bridge" data-label="@tp_new_bridge" data-shape="rounded">
+  <rect x="675.3099999999998" y="1340.2000000000003" width="153.84" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="752.2299999999998" y="1363.3000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_new_bridge</text>
+</g>
+<g class="node" data-id="buildings__tp_new_tile" data-label="@tp_new_tile" data-shape="rounded">
+  <rect x="741.28" y="1458.4000000000003" width="129.89999999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="806.23" y="1481.5000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_new_tile</text>
+</g>
+<g class="node" data-id="buildings__tp_place_new" data-label="@tp_place_new" data-shape="rounded">
+  <rect x="714.502" y="1576.6000000000004" width="147.45599999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="788.2299999999999" y="1599.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_place_new</text>
+</g>
+<g class="node" data-id="buildings__tp_make_upgrade" data-label="@tp_make_upgrade" data-shape="rounded">
+  <rect x="765.8860000000001" y="1694.8000000000004" width="174.58800000000002" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="853.1800000000001" y="1717.9000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_make_upgrade</text>
+</g>
+<g class="node" data-id="buildings__tp_place_tile" data-label="@tp_place_tile" data-shape="rounded">
+  <rect x="783.442" y="1813.0000000000005" width="139.476" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="853.1800000000001" y="1836.1000000000004" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_place_tile</text>
+</g>
+<g class="node" data-id="buildings__tp_msg_upgraded" data-label="@tp_msg_upgraded" data-shape="rounded">
+  <rect x="765.886" y="1931.2000000000005" width="174.58800000000002" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="853.18" y="1954.3000000000004" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_msg_upgraded</text>
+</g>
+<g class="node" data-id="buildings__tp_show_msg" data-label="@tp_show_msg" data-shape="rounded">
+  <rect x="875.3919999999998" y="2049.4000000000005" width="145.85999999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="948.3219999999998" y="2072.5000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@tp_show_msg</text>
+</g>
+<g class="node" data-id="buildings_try_demolish" data-label="try_demolish" data-shape="rounded">
+  <rect x="722.8359999999999" y="40" width="131.49599999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="788.5839999999998" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">try_demolish</text>
+</g>
+<g class="node" data-id="buildings__td_do_it" data-label="@td_do_it" data-shape="rounded">
+  <rect x="729.3099999999998" y="158.2" width="109.152" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="783.8859999999999" y="181.29999999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@td_do_it</text>
+</g>
+<g class="node" data-id="buildings__td_clear_tile" data-label="@td_clear_tile" data-shape="rounded">
+  <rect x="640.3299999999999" y="276.4" width="137.88" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="709.27" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@td_clear_tile</text>
+</g>
+<g class="node" data-id="buildings__td_clear_empty" data-label="@td_clear_empty" data-shape="rounded">
+  <rect x="557.6019999999999" y="394.6" width="157.03199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="636.1179999999998" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@td_clear_empty</text>
+</g>
+<g class="node" data-id="buildings__td_store_clear" data-label="@td_store_clear" data-shape="rounded">
+  <rect x="532.7739999999999" y="512.8" width="153.84" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="609.6939999999998" y="535.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@td_store_clear</text>
+</g>
+<g class="node" data-id="buildings__td_place" data-label="@td_place" data-shape="rounded">
+  <rect x="531.5319999999999" y="631" width="113.94" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="588.502" y="654.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@td_place</text>
+</g>
+<g class="node" data-id="buildings__td_msg_demo" data-label="@td_msg_demo" data-shape="rounded">
+  <rect x="477.4899999999998" y="749.2" width="145.85999999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="550.4199999999997" y="772.3000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@td_msg_demo</text>
+</g>
+<g class="node" data-id="buildings__td_show_msg" data-label="@td_show_msg" data-shape="rounded">
+  <rect x="477.4899999999998" y="867.4000000000001" width="145.85999999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="550.4199999999997" y="890.5000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@td_show_msg</text>
+</g>
+<g class="node" data-id="buildings_place_tile_at" data-label="place_tile_at" data-shape="rounded">
+  <rect x="474.20799999999997" y="1931.2000000000005" width="129.9" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="539.158" y="1954.3000000000004" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">place_tile_at</text>
+</g>
+<g class="node" data-id="buildings__pta_old_road" data-label="@pta_old_road" data-shape="rounded">
+  <rect x="354.9039999999999" y="2049.4000000000005" width="144.264" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="427.0359999999999" y="2072.5000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@pta_old_road</text>
+</g>
+<g class="node" data-id="buildings__pta_old_done" data-label="@pta_old_done" data-shape="rounded">
+  <rect x="515.5719999999999" y="2167.6000000000004" width="145.85999999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="588.5019999999998" y="2190.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@pta_old_done</text>
+</g>
+<g class="node" data-id="buildings__pta_new_road" data-label="@pta_new_road" data-shape="rounded">
+  <rect x="554.4999999999999" y="2285.8" width="150.64800000000002" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="629.8239999999998" y="2308.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@pta_new_road</text>
+</g>
+<g class="node" data-id="buildings__pta_compare" data-label="@pta_compare" data-shape="rounded">
+  <rect x="662.9859999999999" y="2404" width="142.668" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="734.3199999999999" y="2427.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@pta_compare</text>
+</g>
+<g class="node" data-id="buildings__pta_topology_changed" data-label="@pta_topology_changed" data-shape="rounded">
+  <rect x="631.8639999999999" y="2522.2" width="204.91199999999995" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="734.3199999999999" y="2545.2999999999997" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@pta_topology_changed</text>
+</g>
+<g class="node" data-id="buildings__pta_write" data-label="@pta_write" data-shape="rounded">
+  <rect x="672.5619999999999" y="2640.3999999999996" width="117.13199999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="731.1279999999999" y="2663.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@pta_write</text>
+</g>
+<g class="node" data-id="buildings__pta_update_one" data-label="@pta_update_one" data-shape="rounded">
+  <rect x="204.304" y="2758.5999999999995" width="161.82" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="285.214" y="2781.6999999999994" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@pta_update_one</text>
+</g>
+<g class="node" data-id="buildings__pta_done" data-label="@pta_done" data-shape="rounded">
+  <rect x="742.7019999999999" y="2876.7999999999993" width="118.72799999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="802.0659999999999" y="2899.899999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@pta_done</text>
+</g>
+<g class="node" data-id="buildings_get_tile_density_units" data-label="get_tile_density_units" data-shape="rounded">
+  <rect x="1124.242" y="2876.7999999999993" width="187.356" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1217.92" y="2899.899999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">get_tile_density_units</text>
+</g>
+<g class="node" data-id="buildings_increment_count" data-label="increment_count" data-shape="rounded">
+  <rect x="402.124" y="2758.5999999999995" width="155.43599999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="479.842" y="2781.6999999999994" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">increment_count</text>
+</g>
+<g class="node" data-id="buildings__inc_road" data-label="@inc_road" data-shape="rounded">
+  <rect x="471.54999999999995" y="2876.7999999999993" width="117.13199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="530.116" y="2899.899999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc_road</text>
+</g>
+<g class="node" data-id="buildings__inc_store_road" data-label="@inc_store_road" data-shape="rounded">
+  <rect x="450.8019999999999" y="2994.999999999999" width="158.628" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="530.1159999999999" y="3018.099999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc_store_road</text>
+</g>
+<g class="node" data-id="buildings__inc1" data-label="@inc1" data-shape="rounded">
+  <rect x="624.6819999999999" y="2876.7999999999993" width="82.02" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="665.6919999999999" y="2899.899999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc1</text>
+</g>
+<g class="node" data-id="buildings__inc_store_house" data-label="@inc_store_house" data-shape="rounded">
+  <rect x="768.2379999999998" y="2994.999999999999" width="168.204" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="852.3399999999998" y="3018.099999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc_store_house</text>
+</g>
+<g class="node" data-id="buildings__inc2" data-label="@inc2" data-shape="rounded">
+  <rect x="645.4299999999998" y="2994.999999999999" width="86.80799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="688.8339999999998" y="3018.099999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc2</text>
+</g>
+<g class="node" data-id="buildings__inc_store_factory" data-label="@inc_store_factory" data-shape="rounded">
+  <rect x="602.3379999999999" y="3113.199999999999" width="172.992" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="688.8339999999998" y="3136.299999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc_store_factory</text>
+</g>
+<g class="node" data-id="buildings__inc3" data-label="@inc3" data-shape="rounded">
+  <rect x="811.3299999999998" y="3113.199999999999" width="86.80799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="854.7339999999998" y="3136.299999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc3</text>
+</g>
+<g class="node" data-id="buildings__inc_store_park" data-label="@inc_store_park" data-shape="rounded">
+  <rect x="665.512" y="3231.3999999999987" width="158.628" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="744.8259999999999" y="3254.4999999999986" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc_store_park</text>
+</g>
+<g class="node" data-id="buildings__inc4" data-label="@inc4" data-shape="rounded">
+  <rect x="860.1399999999999" y="3231.3999999999987" width="86.80799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="903.5439999999999" y="3254.4999999999986" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc4</text>
+</g>
+<g class="node" data-id="buildings__inc_store_power" data-label="@inc_store_power" data-shape="rounded">
+  <rect x="660.7239999999999" y="3349.5999999999985" width="168.204" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="744.8259999999999" y="3372.6999999999985" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc_store_power</text>
+</g>
+<g class="node" data-id="buildings__inc5" data-label="@inc5" data-shape="rounded">
+  <rect x="864.9279999999999" y="3349.5999999999985" width="86.80799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="908.3319999999999" y="3372.6999999999985" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc5</text>
+</g>
+<g class="node" data-id="buildings__inc_store_police" data-label="@inc_store_police" data-shape="rounded">
+  <rect x="661.5219999999999" y="3467.7999999999984" width="166.608" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="744.8259999999999" y="3490.8999999999983" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc_store_police</text>
+</g>
+<g class="node" data-id="buildings__inc6" data-label="@inc6" data-shape="rounded">
+  <rect x="864.1299999999999" y="3467.7999999999984" width="86.80799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="907.5339999999999" y="3490.8999999999983" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc6</text>
+</g>
+<g class="node" data-id="buildings__inc_store_fire" data-label="@inc_store_fire" data-shape="rounded">
+  <rect x="713.704" y="3585.999999999998" width="149.052" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="788.2299999999999" y="3609.099999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc_store_fire</text>
+</g>
+<g class="node" data-id="buildings__inc_done" data-label="@inc_done" data-shape="rounded">
+  <rect x="728.8659999999999" y="3704.199999999998" width="118.72799999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="788.2299999999999" y="3727.299999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@inc_done</text>
+</g>
+<g class="node" data-id="buildings_decrement_count" data-label="decrement_count" data-shape="rounded">
+  <rect x="571.1679999999999" y="2049.4000000000005" width="160.224" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="651.2799999999999" y="2072.5000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">decrement_count</text>
+</g>
+<g class="node" data-id="buildings__dec_road" data-label="@dec_road" data-shape="rounded">
+  <rect x="1042.888" y="2167.6000000000004" width="121.91999999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1103.848" y="2190.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec_road</text>
+</g>
+<g class="node" data-id="buildings__dec_store_road" data-label="@dec_store_road" data-shape="rounded">
+  <rect x="1022.14" y="2285.8" width="163.416" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1103.848" y="2308.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec_store_road</text>
+</g>
+<g class="node" data-id="buildings__dec1" data-label="@dec1" data-shape="rounded">
+  <rect x="697.4319999999999" y="2167.6000000000004" width="86.80799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="740.8359999999999" y="2190.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec1</text>
+</g>
+<g class="node" data-id="buildings__dec_store_house" data-label="@dec_store_house" data-shape="rounded">
+  <rect x="777.1479999999999" y="2285.8" width="172.99199999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="863.6439999999999" y="2308.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec_store_house</text>
+</g>
+<g class="node" data-id="buildings__dec2" data-label="@dec2" data-shape="rounded">
+  <rect x="426.9039999999999" y="2285.8" width="91.596" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="472.7019999999999" y="2308.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec2</text>
+</g>
+<g class="node" data-id="buildings__dec_store_factory" data-label="@dec_store_factory" data-shape="rounded">
+  <rect x="383.8119999999999" y="2404" width="177.78" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="472.7019999999999" y="2427.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec_store_factory</text>
+</g>
+<g class="node" data-id="buildings__dec3" data-label="@dec3" data-shape="rounded">
+  <rect x="944.6859999999998" y="2404" width="91.596" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="990.4839999999998" y="2427.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec3</text>
+</g>
+<g class="node" data-id="buildings__dec_store_park" data-label="@dec_store_park" data-shape="rounded">
+  <rect x="908.7759999999998" y="2522.2" width="163.416" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="990.4839999999998" y="2545.2999999999997" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec_store_park</text>
+</g>
+<g class="node" data-id="buildings__dec4" data-label="@dec4" data-shape="rounded">
+  <rect x="504.2679999999999" y="2522.2" width="91.596" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="550.0659999999999" y="2545.2999999999997" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec4</text>
+</g>
+<g class="node" data-id="buildings__dec_store_power" data-label="@dec_store_power" data-shape="rounded">
+  <rect x="463.56999999999994" y="2640.3999999999996" width="172.99199999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="550.0659999999999" y="2663.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec_store_power</text>
+</g>
+<g class="node" data-id="buildings__dec5" data-label="@dec5" data-shape="rounded">
+  <rect x="1237.4679999999998" y="2640.3999999999996" width="91.596" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1283.2659999999998" y="2663.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec5</text>
+</g>
+<g class="node" data-id="buildings__dec_store_police" data-label="@dec_store_police" data-shape="rounded">
+  <rect x="1401.0639999999999" y="2758.5999999999995" width="171.396" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1486.762" y="2781.6999999999994" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec_store_police</text>
+</g>
+<g class="node" data-id="buildings__dec6" data-label="@dec6" data-shape="rounded">
+  <rect x="929.5239999999999" y="2758.5999999999995" width="91.596" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="975.3219999999999" y="2781.6999999999994" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec6</text>
+</g>
+<g class="node" data-id="buildings__dec_store_fire" data-label="@dec_store_fire" data-shape="rounded">
+  <rect x="898.4019999999999" y="2876.7999999999993" width="153.84" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="975.3219999999999" y="2899.899999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec_store_fire</text>
+</g>
+<g class="node" data-id="buildings__dec_done" data-label="@dec_done" data-shape="rounded">
+  <rect x="972.4419999999998" y="2994.999999999999" width="123.51599999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1034.1999999999998" y="3018.099999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@dec_done</text>
+</g>
+<g class="node" data-id="buildings_show_building_name" data-label="show_building_name" data-shape="rounded">
+  <rect x="504.2679999999999" y="40" width="182.568" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="595.5519999999999" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">show_building_name</text>
+</g>
+<g class="node" data-id="buildings__sbn_done" data-label="@sbn_done" data-shape="rounded">
+  <rect x="533.7939999999999" y="158.2" width="123.51599999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="595.5519999999999" y="181.29999999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@sbn_done</text>
+</g>
+<g class="node" data-id="_start" data-label="" data-shape="statestart">
+  <circle cx="958.5639999999999" cy="60" r="12" fill="var(--_text)" stroke="none" />
+  
+</g>
+<g class="node" data-id="map_get_tile" data-label="map_get_tile" data-shape="rounded">
+  <rect x="1129.252" y="2049.4000000000005" width="128.304" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1193.404" y="2072.5000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">map_get_tile</text>
+</g>
+<g class="node" data-id="ui_print_str_col" data-label="ui_print_str_col" data-shape="rounded">
+  <rect x="856.2399999999999" y="2167.6000000000004" width="150.64800000000002" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="931.5639999999999" y="2190.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">ui_print_str_col</text>
+</g>
+<g class="node" data-id="map_set_tile" data-label="map_set_tile" data-shape="rounded">
+  <rect x="40" y="2758.5999999999995" width="128.304" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="104.152" y="2781.6999999999994" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">map_set_tile</text>
+</g>
+<g class="node" data-id="map_render_road_neighborhood" data-label="map_render_road_neighborhood" data-shape="rounded">
+  <rect x="593.56" y="2758.5999999999995" width="263.96399999999994" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="725.5419999999999" y="2781.6999999999994" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">map_render_road_neighborhood</text>
+</g>
+<g class="node" data-id="simulation_rebuild_road_segments" data-label="simulation_rebuild_road_segments" data-shape="rounded">
+  <rect x="1057.12" y="2758.5999999999995" width="271.94399999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1193.0919999999999" y="2781.6999999999994" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">simulation_rebuild_road_segments</text>
+</g>
+<g class="node" data-id="simulation_update_building_segment_at" data-label="simulation_update_building_segment_at" data-shape="rounded">
+  <rect x="134.87800000000004" y="2876.7999999999993" width="300.6719999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="285.214" y="2899.899999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">simulation_update_building_segment_at</text>
+</g>
+</svg>

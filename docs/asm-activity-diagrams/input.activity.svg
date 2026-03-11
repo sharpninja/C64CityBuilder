@@ -1,0 +1,784 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1229.324 2838.5999999999995" width="1229.324" height="2838.5999999999995" style="--bg:#FFFFFF;--fg:#27272A;--accent:#3b82f6">
+<style>
+  text { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .mono { font-family: ui-monospace, 'SF Mono', 'Cascadia Code', monospace; }
+  svg {
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 55%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 35%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 20%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 32%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 70%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 4%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 22%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 4%, var(--bg));
+    --_group-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 8%, var(--bg));
+    --_accent-fill:   color-mix(in srgb, var(--accent, var(--fg)) 8%, var(--bg));
+    --_accent-stroke: color-mix(in srgb, var(--accent, var(--fg)) 20%, var(--bg));
+    --_accent-text:   color-mix(in srgb, var(--accent, var(--fg)) 65%, var(--bg));
+  }
+  .node, .actor, .entity, .class-node { filter: drop-shadow(0 1px 3px rgba(0,0,0,.07)); }
+  .subgraph { filter: drop-shadow(0 1px 2px rgba(0,0,0,.04)); }
+</style>
+
+<defs>
+  <marker id="arrowhead" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto">
+    <polygon points="0 0, 12 6, 0 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="1" refY="6" orient="auto-start-reverse">
+    <polygon points="12 0, 0 6, 12 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+
+<path class="edge" data-from="_start" data-to="input_read_input" data-style="solid" data-arrow-start="false" data-arrow-end="true" d="M198.31599999999995,80 L198.31599999999995,152" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input_read_input" data-to="input__ri_process" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call KERNAL_GETIN" d="M198.31599999999995,198.2 L198.31599999999995,270.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input_read_input" data-to="input__ri_process" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,198.2 L198.31599999999995,270.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_process" data-to="input__ri_not_lc" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCC" d="M198.31599999999995,316.4 L198.31599999999995,388.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_process" data-to="input__ri_not_lc" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BCS" d="M198.31599999999995,316.4 L198.31599999999995,388.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_process" data-to="input__ri_not_lc" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,316.4 L198.31599999999995,388.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_not_lc" data-to="input__ri_check_w" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,434.59999999999997 L198.31599999999995,506.59999999999997" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_not_lc" data-to="input__ri_check_w" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,434.59999999999997 L198.31599999999995,506.59999999999997" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_w" data-to="input__ri_check_down" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,552.8 L198.31599999999995,624.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_w" data-to="input__ri_up" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,552.8 L198.31599999999995,582.8 Q198.31599999999995,588.8 204.31599999999995,588.8 L472.822,588.8 Q478.822,588.8 478.822,594.8 L478.822,624.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_w" data-to="input__ri_check_down" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,552.8 L198.31599999999995,624.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_down" data-to="input__ri_check_s" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,671 L198.31599999999995,743" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_down" data-to="input__ri_check_s" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,671 L198.31599999999995,743" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_s" data-to="input__ri_check_left" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,789.2 L198.31599999999995,861.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_s" data-to="input__ri_down" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,789.2 L198.31599999999995,819.2 Q198.31599999999995,825.2 204.31599999999995,825.2 L576.166,825.2 Q582.166,825.2 582.166,831.2 L582.166,861.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_s" data-to="input__ri_check_left" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,789.2 L198.31599999999995,861.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_left" data-to="input__ri_check_a" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,907.4000000000001 L198.31599999999995,979.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_left" data-to="input__ri_check_a" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,907.4000000000001 L198.31599999999995,979.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_a" data-to="input__ri_check_right" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,1025.6000000000001 L198.31599999999995,1097.6000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_a" data-to="input__ri_left" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,1025.6000000000001 L198.31599999999995,1055.6000000000001 Q198.31599999999995,1061.6000000000001 204.31599999999995,1061.6000000000001 L576.166,1061.6000000000001 Q582.166,1061.6000000000001 582.166,1067.6000000000001 L582.166,1097.6000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_a" data-to="input__ri_check_right" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,1025.6000000000001 L198.31599999999995,1097.6000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_right" data-to="input__ri_check_d" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,1143.8000000000002 L198.31599999999995,1215.8000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_right" data-to="input__ri_check_d" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,1143.8000000000002 L198.31599999999995,1215.8000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_d" data-to="input__ri_check_1" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,1262.0000000000002 L198.31599999999995,1334.0000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_d" data-to="input__ri_right" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,1262.0000000000002 L198.31599999999995,1292.0000000000002 Q198.31599999999995,1298.0000000000002 204.31599999999995,1298.0000000000002 L576.166,1298.0000000000002 Q582.166,1298.0000000000002 582.166,1304.0000000000002 L582.166,1334.0000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_d" data-to="input__ri_check_1" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,1262.0000000000002 L198.31599999999995,1334.0000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_1" data-to="input__ri_check_2" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,1380.2000000000003 L198.31599999999995,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_1" data-to="input__ri_sel1" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,1380.2000000000003 L198.31599999999995,1410.2000000000003 Q198.31599999999995,1416.2000000000003 204.31599999999995,1416.2000000000003 L344.6500000000001,1416.2000000000003 Q350.6500000000001,1416.2000000000003 350.6500000000001,1422.2000000000003 L350.6500000000001,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_1" data-to="input__ri_check_2" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,1380.2000000000003 L198.31599999999995,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_2" data-to="input__ri_check_3" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,1498.4000000000003 L198.31599999999995,1570.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_2" data-to="input__ri_sel2" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,1498.4000000000003 L198.31599999999995,1528.4000000000003 Q198.31599999999995,1534.4000000000003 204.31599999999995,1534.4000000000003 L347.044,1534.4000000000003 Q353.044,1534.4000000000003 353.044,1540.4000000000003 L353.044,1570.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_2" data-to="input__ri_check_3" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,1498.4000000000003 L198.31599999999995,1570.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_3" data-to="input__ri_check_4" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,1616.6000000000004 L198.31599999999995,1688.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_3" data-to="input__ri_sel3" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,1616.6000000000004 L198.31599999999995,1646.6000000000004 Q198.31599999999995,1652.6000000000004 204.31599999999995,1652.6000000000004 L362.206,1652.6000000000004 Q368.206,1652.6000000000004 368.206,1658.6000000000004 L368.206,1688.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_3" data-to="input__ri_check_4" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,1616.6000000000004 L198.31599999999995,1688.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_4" data-to="input__ri_check_5" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,1734.8000000000004 L198.31599999999995,1806.8000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_4" data-to="input__ri_sel4" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,1734.8000000000004 L198.31599999999995,1764.8000000000004 Q198.31599999999995,1770.8000000000004 204.31599999999995,1770.8000000000004 L362.206,1770.8000000000004 Q368.206,1770.8000000000004 368.206,1776.8000000000004 L368.206,1806.8000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_4" data-to="input__ri_check_5" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,1734.8000000000004 L198.31599999999995,1806.8000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_5" data-to="input__ri_check_6" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,1853.0000000000005 L198.31599999999995,1925.0000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_5" data-to="input__ri_sel5" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,1853.0000000000005 L198.31599999999995,1883.0000000000005 Q198.31599999999995,1889.0000000000005 204.31599999999995,1889.0000000000005 L362.206,1889.0000000000005 Q368.206,1889.0000000000005 368.206,1895.0000000000005 L368.206,1925.0000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_5" data-to="input__ri_check_6" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,1853.0000000000005 L198.31599999999995,1925.0000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_6" data-to="input__ri_check_7" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,1971.2000000000005 L198.31599999999995,2043.2000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_6" data-to="input__ri_sel6" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,1971.2000000000005 L198.31599999999995,2001.2000000000005 Q198.31599999999995,2007.2000000000005 204.31599999999995,2007.2000000000005 L362.206,2007.2000000000005 Q368.206,2007.2000000000005 368.206,2013.2000000000005 L368.206,2043.2000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_6" data-to="input__ri_check_7" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,1971.2000000000005 L198.31599999999995,2043.2000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_7" data-to="input__ri_check_action" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,2089.4000000000005 L198.31599999999995,2161.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_7" data-to="input__ri_sel7" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,2089.4000000000005 L198.31599999999995,2119.4000000000005 Q198.31599999999995,2125.4000000000005 204.31599999999995,2125.4000000000005 L362.206,2125.4000000000005 Q368.206,2125.4000000000005 368.206,2131.4000000000005 L368.206,2161.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_7" data-to="input__ri_check_action" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,2089.4000000000005 L198.31599999999995,2161.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_action" data-to="input__ri_check_b" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,2207.6000000000004 L198.31599999999995,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_action" data-to="input__ri_check_b" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,2207.6000000000004 L198.31599999999995,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_b" data-to="input__ri_check_x" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,2325.8 L198.31599999999995,2397.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_b" data-to="input__ri_build" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,2325.8 L198.31599999999995,2355.8 Q198.31599999999995,2361.8 204.31599999999995,2361.8 L348.64,2361.8 Q354.64,2361.8 354.64,2367.8 L354.64,2397.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_b" data-to="input__ri_check_x" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,2325.8 L198.31599999999995,2397.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_x" data-to="input__ri_check_q" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,2444 L198.31599999999995,2516" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_x" data-to="input__ri_demo" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,2444 L198.31599999999995,2474 Q198.31599999999995,2480 204.31599999999995,2480 L350.236,2480 Q356.236,2480 356.236,2486 L356.236,2516" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_x" data-to="input__ri_check_q" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,2444 L198.31599999999995,2516" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_q" data-to="input__ri_unknown" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M198.31599999999995,2562.2 L198.31599999999995,2634.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_q" data-to="input__ri_quit" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,2562.2 L198.31599999999995,2592.2 Q198.31599999999995,2598.2 204.31599999999995,2598.2 L594.298,2598.2 Q600.298,2598.2 600.298,2604.2 L600.298,2634.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_q" data-to="input__ri_unknown" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M198.31599999999995,2562.2 L198.31599999999995,2634.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_up" data-to="input__ri_up_move" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M478.822,671 L478.822,743" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_up" data-to="input__ri_up_move" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M478.822,671 L478.822,743" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_up_move" data-to="input__ri_down" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M478.822,789.2 L478.822,819.2 Q478.822,825.2 484.822,825.2 L576.166,825.2 Q582.166,825.2 582.166,831.2 L582.166,861.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_down" data-to="input__ri_down_move" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M582.166,907.4000000000001 L582.166,979.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_down" data-to="input__ri_down_move" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M582.166,907.4000000000001 L582.166,979.4000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_down_move" data-to="input__ri_left" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M582.166,1025.6000000000001 L582.166,1097.6000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_left" data-to="input__ri_left_move" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M582.166,1143.8000000000002 L582.166,1215.8000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_left" data-to="input__ri_left_move" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M582.166,1143.8000000000002 L582.166,1215.8000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_left_move" data-to="input__ri_right" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M582.166,1262.0000000000002 L582.166,1334.0000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_right" data-to="map_restore_cursor_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call restore_cursor_color" d="M582.166,1380.2000000000003 L582.166,1410.2000000000003 Q582.166,1416.2000000000003 588.166,1416.2000000000003 L942.7239999999999,1416.2000000000003 Q948.7239999999999,1416.2000000000003 948.7239999999999,1422.2000000000003 L948.7239999999999,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_right" data-to="input__ri_right_move" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M582.166,1380.2000000000003 L582.166,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_right" data-to="input__ri_right_move" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M582.166,1380.2000000000003 L582.166,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_right_move" data-to="input__ri_moved" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M582.166,1498.4000000000003 L582.166,1528.4000000000003 Q582.166,1534.4000000000003 588.166,1534.4000000000003 L602.59,1534.4000000000003 Q608.59,1534.4000000000003 608.59,1540.4000000000003 L608.59,1570.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel1" data-to="input__ri_sel2" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M350.6500000000001,1498.4000000000003 L350.6500000000001,1533.2030000000004 Q350.6500000000001,1534.4000000000003 351.84700000000004,1534.4000000000003 L351.84700000000004,1534.4000000000003 Q353.044,1534.4000000000003 353.044,1535.5970000000002 L353.044,1570.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel2" data-to="input__ri_sel3" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M353.044,1616.6000000000004 L353.044,1646.6000000000004 Q353.044,1652.6000000000004 359.044,1652.6000000000004 L362.206,1652.6000000000004 Q368.206,1652.6000000000004 368.206,1658.6000000000004 L368.206,1688.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel3" data-to="input__ri_sel4" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M368.206,1734.8000000000004 L368.206,1806.8000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel4" data-to="input__ri_sel5" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M368.206,1853.0000000000005 L368.206,1925.0000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel5" data-to="input__ri_sel6" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M368.206,1971.2000000000005 L368.206,2043.2000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel6" data-to="input__ri_sel7" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M368.206,2089.4000000000005 L368.206,2161.4000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel7" data-to="input__ri_setsel" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M368.206,2207.6000000000004 L368.206,2237.6000000000004 Q368.206,2243.6000000000004 374.206,2243.6000000000004 L562.42,2243.6000000000004 Q568.42,2243.6000000000004 568.42,2249.6000000000004 L568.42,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_setsel" data-to="buildings_show_building_name" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call show_building_name" d="M568.42,2325.8 L568.42,2397.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_build" data-to="buildings_try_place_building" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call try_place_building" d="M354.64,2444 L354.64,2474 Q354.64,2480 360.64,2480 L558.43,2480 Q564.43,2480 564.43,2486 L564.43,2516" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_demo" data-to="buildings_try_demolish" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call try_demolish" d="M356.236,2562.2 L356.236,2592.2 Q356.236,2598.2 362.236,2598.2 L394.126,2598.2 Q400.126,2598.2 400.126,2604.2 L400.126,2634.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_quit" data-to="title_show_title" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call show_title" d="M600.298,2680.3999999999996 L600.298,2710.3999999999996 Q600.298,2716.3999999999996 594.298,2716.3999999999996 L116.536,2716.3999999999996 Q110.536,2716.3999999999996 110.536,2722.3999999999996 L110.536,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_quit" data-to="init_clear_screen" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call clear_screen" d="M600.298,2680.3999999999996 L600.298,2710.3999999999996 Q600.298,2716.3999999999996 594.298,2716.3999999999996 L304.78,2716.3999999999996 Q298.78,2716.3999999999996 298.78,2722.3999999999996 L298.78,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_quit" data-to="map_render_map" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call render_map" d="M600.298,2680.3999999999996 L600.298,2710.3999999999996 Q600.298,2716.3999999999996 594.298,2716.3999999999996 L503.398,2716.3999999999996 Q497.398,2716.3999999999996 497.398,2722.3999999999996 L497.398,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_quit" data-to="ui_draw_status_bar" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call draw_status_bar" d="M600.298,2680.3999999999996 L600.298,2710.3999999999996 Q600.298,2716.3999999999996 606.298,2716.3999999999996 L697.198,2716.3999999999996 Q703.198,2716.3999999999996 703.198,2722.3999999999996 L703.198,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_quit" data-to="init_enable_cursor_sprite" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call enable_cursor_sprite" d="M600.298,2680.3999999999996 L600.298,2710.3999999999996 Q600.298,2716.3999999999996 606.298,2716.3999999999996 L930.13,2716.3999999999996 Q936.13,2716.3999999999996 936.13,2722.3999999999996 L936.13,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_quit" data-to="input__ri_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M600.298,2680.3999999999996 L600.298,2710.3999999999996 Q600.298,2716.3999999999996 606.298,2716.3999999999996 L1128.748,2716.3999999999996 Q1134.748,2716.3999999999996 1134.748,2722.3999999999996 L1134.748,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel6" data-to="input__ri_setsel" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M368.206,2089.4000000000005 L368.206,2119.4000000000005 Q368.206,2125.4000000000005 374.206,2125.4000000000005 L450.38800000000003,2125.4000000000005 Q456.38800000000003,2125.4000000000005 456.38800000000003,2131.4000000000005 L456.38800000000003,2155.4000000000005 Q456.38800000000003,2161.4000000000005 456.38800000000003,2167.4000000000005 L456.38800000000003,2214.5000000000005 Q456.38800000000003,2220.5000000000005 462.38800000000003,2220.5000000000005 L562.42,2220.5000000000005 Q568.42,2220.5000000000005 568.42,2226.5000000000005 L568.42,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel5" data-to="input__ri_setsel" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M368.206,1971.2000000000005 L368.206,2001.2000000000005 Q368.206,2007.2000000000005 374.206,2007.2000000000005 L486.38800000000003,2007.2000000000005 Q492.38800000000003,2007.2000000000005 492.38800000000003,2013.2000000000005 L492.38800000000003,2037.2000000000005 Q492.38800000000003,2043.2000000000005 492.38800000000003,2049.2000000000007 L492.38800000000003,2155.4000000000005 Q492.38800000000003,2161.4000000000005 492.38800000000003,2167.4000000000005 L492.38800000000003,2214.5000000000005 Q492.38800000000003,2220.5000000000005 498.38800000000003,2220.5000000000005 L562.42,2220.5000000000005 Q568.42,2220.5000000000005 568.42,2226.5000000000005 L568.42,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel4" data-to="input__ri_setsel" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M368.206,1853.0000000000005 L368.206,1883.0000000000005 Q368.206,1889.0000000000005 374.206,1889.0000000000005 L522.388,1889.0000000000005 Q528.388,1889.0000000000005 528.388,1895.0000000000005 L528.388,1919.0000000000005 Q528.388,1925.0000000000005 528.388,1931.0000000000005 L528.388,2037.2000000000005 Q528.388,2043.2000000000005 528.388,2049.2000000000007 L528.388,2155.4000000000005 Q528.388,2161.4000000000005 528.388,2167.4000000000005 L528.388,2214.5000000000005 Q528.388,2220.5000000000005 534.388,2220.5000000000005 L562.42,2220.5000000000005 Q568.42,2220.5000000000005 568.42,2226.5000000000005 L568.42,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel3" data-to="input__ri_setsel" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M368.206,1734.8000000000004 L368.206,1764.8000000000004 Q368.206,1770.8000000000004 374.206,1770.8000000000004 L558.388,1770.8000000000004 Q564.388,1770.8000000000004 564.388,1776.8000000000004 L564.388,1800.8000000000004 Q564.388,1806.8000000000004 564.388,1812.8000000000004 L564.388,1919.0000000000005 Q564.388,1925.0000000000005 564.388,1931.0000000000005 L564.388,2037.2000000000005 Q564.388,2043.2000000000005 564.388,2049.2000000000007 L564.388,2155.4000000000005 Q564.388,2161.4000000000005 564.388,2167.4000000000005 L564.388,2218.4840000000004 Q564.388,2220.5000000000005 566.404,2220.5000000000005 L566.404,2220.5000000000005 Q568.42,2220.5000000000005 568.42,2222.5160000000005 L568.42,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel2" data-to="input__ri_setsel" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M353.044,1616.6000000000004 L353.044,1646.6000000000004 Q353.044,1652.6000000000004 359.044,1652.6000000000004 L594.388,1652.6000000000004 Q600.388,1652.6000000000004 600.388,1658.6000000000004 L600.388,1682.6000000000004 Q600.388,1688.6000000000004 600.388,1694.6000000000004 L600.388,1800.8000000000004 Q600.388,1806.8000000000004 600.388,1812.8000000000004 L600.388,1919.0000000000005 Q600.388,1925.0000000000005 600.388,1931.0000000000005 L600.388,2037.2000000000005 Q600.388,2043.2000000000005 600.388,2049.2000000000007 L600.388,2155.4000000000005 Q600.388,2161.4000000000005 600.388,2167.4000000000005 L600.388,2214.5000000000005 Q600.388,2220.5000000000005 594.388,2220.5000000000005 L574.42,2220.5000000000005 Q568.42,2220.5000000000005 568.42,2226.5000000000005 L568.42,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_sel1" data-to="input__ri_setsel" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M350.6500000000001,1498.4000000000003 L350.6500000000001,1528.4000000000003 Q350.6500000000001,1534.4000000000003 356.6500000000001,1534.4000000000003 L435.226,1534.4000000000003 Q441.226,1534.4000000000003 441.226,1540.4000000000003 L441.226,1564.4000000000003 Q441.226,1570.4000000000003 441.226,1576.4000000000003 L441.226,1623.5000000000005 Q441.226,1629.5000000000005 447.226,1629.5000000000005 L630.388,1629.5000000000005 Q636.388,1629.5000000000005 636.388,1635.5000000000005 L636.388,1682.6000000000004 Q636.388,1688.6000000000004 636.388,1694.6000000000004 L636.388,1800.8000000000004 Q636.388,1806.8000000000004 636.388,1812.8000000000004 L636.388,1919.0000000000005 Q636.388,1925.0000000000005 636.388,1931.0000000000005 L636.388,2037.2000000000005 Q636.388,2043.2000000000005 636.388,2049.2000000000007 L636.388,2155.4000000000005 Q636.388,2161.4000000000005 636.388,2167.4000000000005 L636.388,2214.5000000000005 Q636.388,2220.5000000000005 630.388,2220.5000000000005 L574.42,2220.5000000000005 Q568.42,2220.5000000000005 568.42,2226.5000000000005 L568.42,2279.6000000000004" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_right" data-to="input__ri_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M582.166,1380.2000000000003 L582.166,1410.2000000000003 Q582.166,1416.2000000000003 576.166,1416.2000000000003 L442.438,1416.2000000000003 Q436.438,1416.2000000000003 436.438,1422.2000000000003 L436.438,1446.2000000000003 Q436.438,1452.2000000000003 436.438,1458.2000000000003 L436.438,1505.3000000000002 Q436.438,1511.3000000000002 442.438,1511.3000000000002 L471.226,1511.3000000000002 Q477.226,1511.3000000000002 477.226,1517.3000000000002 L477.226,1564.4000000000003 Q477.226,1570.4000000000003 477.226,1576.4000000000003 L477.226,1623.5000000000005 Q477.226,1629.5000000000005 483.226,1629.5000000000005 L1020.748,1629.5000000000005 Q1026.748,1629.5000000000005 1026.748,1635.5000000000005 L1026.748,1682.6000000000004 Q1026.748,1688.6000000000004 1026.748,1694.6000000000004 L1026.748,1800.8000000000004 Q1026.748,1806.8000000000004 1026.748,1812.8000000000004 L1026.748,1919.0000000000005 Q1026.748,1925.0000000000005 1026.748,1931.0000000000005 L1026.748,2037.2000000000005 Q1026.748,2043.2000000000005 1026.748,2049.2000000000007 L1026.748,2155.4000000000005 Q1026.748,2161.4000000000005 1026.748,2167.4000000000005 L1026.748,2273.6000000000004 Q1026.748,2279.6000000000004 1026.748,2285.6000000000004 L1026.748,2391.8 Q1026.748,2397.8 1026.748,2403.8 L1026.748,2510 Q1026.748,2516 1026.748,2522 L1026.748,2628.2 Q1026.748,2634.2 1026.748,2640.2 L1026.748,2687.2999999999997 Q1026.748,2693.2999999999997 1032.748,2693.2999999999997 L1128.748,2693.2999999999997 Q1134.748,2693.2999999999997 1134.748,2699.2999999999997 L1134.748,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_left_move" data-to="input__ri_moved" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M582.166,1262.0000000000002 L582.166,1292.0000000000002 Q582.166,1298.0000000000002 588.166,1298.0000000000002 L685.894,1298.0000000000002 Q691.894,1298.0000000000002 691.894,1304.0000000000002 L691.894,1328.0000000000002 Q691.894,1334.0000000000002 691.894,1340.0000000000002 L691.894,1446.2000000000003 Q691.894,1452.2000000000003 691.894,1458.2000000000003 L691.894,1505.3000000000002 Q691.894,1511.3000000000002 685.894,1511.3000000000002 L614.59,1511.3000000000002 Q608.59,1511.3000000000002 608.59,1517.3000000000002 L608.59,1570.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_left" data-to="input__ri_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M582.166,1143.8000000000002 L582.166,1173.8000000000002 Q582.166,1179.8000000000002 576.166,1179.8000000000002 L448.024,1179.8000000000002 Q442.024,1179.8000000000002 442.024,1185.8000000000002 L442.024,1209.8000000000002 Q442.024,1215.8000000000002 442.024,1221.8000000000002 L442.024,1268.9 Q442.024,1274.9 448.024,1274.9 L466.438,1274.9 Q472.438,1274.9 472.438,1280.9 L472.438,1328.0000000000002 Q472.438,1334.0000000000002 472.438,1340.0000000000002 L472.438,1446.2000000000003 Q472.438,1452.2000000000003 472.438,1458.2000000000003 L472.438,1505.3000000000002 Q472.438,1511.3000000000002 478.438,1511.3000000000002 L507.226,1511.3000000000002 Q513.226,1511.3000000000002 513.226,1517.3000000000002 L513.226,1564.4000000000003 Q513.226,1570.4000000000003 513.226,1576.4000000000003 L513.226,1623.5000000000005 Q513.226,1629.5000000000005 519.226,1629.5000000000005 L1056.748,1629.5000000000005 Q1062.748,1629.5000000000005 1062.748,1635.5000000000005 L1062.748,1682.6000000000004 Q1062.748,1688.6000000000004 1062.748,1694.6000000000004 L1062.748,1800.8000000000004 Q1062.748,1806.8000000000004 1062.748,1812.8000000000004 L1062.748,1919.0000000000005 Q1062.748,1925.0000000000005 1062.748,1931.0000000000005 L1062.748,2037.2000000000005 Q1062.748,2043.2000000000005 1062.748,2049.2000000000007 L1062.748,2155.4000000000005 Q1062.748,2161.4000000000005 1062.748,2167.4000000000005 L1062.748,2273.6000000000004 Q1062.748,2279.6000000000004 1062.748,2285.6000000000004 L1062.748,2391.8 Q1062.748,2397.8 1062.748,2403.8 L1062.748,2510 Q1062.748,2516 1062.748,2522 L1062.748,2628.2 Q1062.748,2634.2 1062.748,2640.2 L1062.748,2687.2999999999997 Q1062.748,2693.2999999999997 1068.748,2693.2999999999997 L1128.748,2693.2999999999997 Q1134.748,2693.2999999999997 1134.748,2699.2999999999997 L1134.748,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_left" data-to="map_restore_cursor_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call restore_cursor_color" d="M582.166,1143.8000000000002 L582.166,1173.8000000000002 Q582.166,1179.8000000000002 588.166,1179.8000000000002 L870.7239999999999,1179.8000000000002 Q876.7239999999999,1179.8000000000002 876.7239999999999,1185.8000000000002 L876.7239999999999,1209.8000000000002 Q876.7239999999999,1215.8000000000002 876.7239999999999,1221.8000000000002 L876.7239999999999,1328.0000000000002 Q876.7239999999999,1334.0000000000002 876.7239999999999,1340.0000000000002 L876.7239999999999,1387.1000000000004 Q876.7239999999999,1393.1000000000004 882.7239999999999,1393.1000000000004 L942.7239999999999,1393.1000000000004 Q948.7239999999999,1393.1000000000004 948.7239999999999,1399.1000000000004 L948.7239999999999,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_down_move" data-to="input__ri_moved" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M582.166,1025.6000000000001 L582.166,1055.6000000000001 Q582.166,1061.6000000000001 588.166,1061.6000000000001 L721.894,1061.6000000000001 Q727.894,1061.6000000000001 727.894,1067.6000000000001 L727.894,1091.6000000000001 Q727.894,1097.6000000000001 727.894,1103.6000000000001 L727.894,1209.8000000000002 Q727.894,1215.8000000000002 727.894,1221.8000000000002 L727.894,1328.0000000000002 Q727.894,1334.0000000000002 727.894,1340.0000000000002 L727.894,1446.2000000000003 Q727.894,1452.2000000000003 727.894,1458.2000000000003 L727.894,1505.3000000000002 Q727.894,1511.3000000000002 721.894,1511.3000000000002 L614.59,1511.3000000000002 Q608.59,1511.3000000000002 608.59,1517.3000000000002 L608.59,1570.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_down" data-to="input__ri_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M582.166,907.4000000000001 L582.166,937.4000000000001 Q582.166,943.4000000000001 588.166,943.4000000000001 L793.894,943.4000000000001 Q799.894,943.4000000000001 799.894,949.4000000000001 L799.894,973.4000000000001 Q799.894,979.4000000000001 799.894,985.4000000000001 L799.894,1091.6000000000001 Q799.894,1097.6000000000001 799.894,1103.6000000000001 L799.894,1209.8000000000002 Q799.894,1215.8000000000002 799.894,1221.8000000000002 L799.894,1328.0000000000002 Q799.894,1334.0000000000002 799.894,1340.0000000000002 L799.894,1446.2000000000003 Q799.894,1452.2000000000003 799.894,1458.2000000000003 L799.894,1505.3000000000002 Q799.894,1511.3000000000002 805.894,1511.3000000000002 L1092.748,1511.3000000000002 Q1098.748,1511.3000000000002 1098.748,1517.3000000000002 L1098.748,1564.4000000000003 Q1098.748,1570.4000000000003 1098.748,1576.4000000000003 L1098.748,1682.6000000000004 Q1098.748,1688.6000000000004 1098.748,1694.6000000000004 L1098.748,1800.8000000000004 Q1098.748,1806.8000000000004 1098.748,1812.8000000000004 L1098.748,1919.0000000000005 Q1098.748,1925.0000000000005 1098.748,1931.0000000000005 L1098.748,2037.2000000000005 Q1098.748,2043.2000000000005 1098.748,2049.2000000000007 L1098.748,2155.4000000000005 Q1098.748,2161.4000000000005 1098.748,2167.4000000000005 L1098.748,2273.6000000000004 Q1098.748,2279.6000000000004 1098.748,2285.6000000000004 L1098.748,2391.8 Q1098.748,2397.8 1098.748,2403.8 L1098.748,2510 Q1098.748,2516 1098.748,2522 L1098.748,2628.2 Q1098.748,2634.2 1098.748,2640.2 L1098.748,2687.2999999999997 Q1098.748,2693.2999999999997 1104.748,2693.2999999999997 L1128.748,2693.2999999999997 Q1134.748,2693.2999999999997 1134.748,2699.2999999999997 L1134.748,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_down" data-to="map_restore_cursor_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call restore_cursor_color" d="M582.166,907.4000000000001 L582.166,937.4000000000001 Q582.166,943.4000000000001 588.166,943.4000000000001 L906.7239999999999,943.4000000000001 Q912.7239999999999,943.4000000000001 912.7239999999999,949.4000000000001 L912.7239999999999,973.4000000000001 Q912.7239999999999,979.4000000000001 912.7239999999999,985.4000000000001 L912.7239999999999,1091.6000000000001 Q912.7239999999999,1097.6000000000001 912.7239999999999,1103.6000000000001 L912.7239999999999,1209.8000000000002 Q912.7239999999999,1215.8000000000002 912.7239999999999,1221.8000000000002 L912.7239999999999,1328.0000000000002 Q912.7239999999999,1334.0000000000002 912.7239999999999,1340.0000000000002 L912.7239999999999,1387.1000000000004 Q912.7239999999999,1393.1000000000004 918.7239999999999,1393.1000000000004 L942.7239999999999,1393.1000000000004 Q948.7239999999999,1393.1000000000004 948.7239999999999,1399.1000000000004 L948.7239999999999,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_up_move" data-to="input__ri_moved" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M478.822,789.2 L478.822,819.215 Q478.822,825.2 484.807,825.2 L484.807,825.2 Q490.79200000000003,825.2 490.79200000000003,831.1850000000001 L490.79200000000003,855.2 Q490.79200000000003,861.2 490.79200000000003,867.2 L490.79200000000003,914.3000000000001 Q490.79200000000003,920.3000000000001 496.79200000000003,920.3000000000001 L757.894,920.3000000000001 Q763.894,920.3000000000001 763.894,926.3000000000001 L763.894,973.4000000000001 Q763.894,979.4000000000001 763.894,985.4000000000001 L763.894,1091.6000000000001 Q763.894,1097.6000000000001 763.894,1103.6000000000001 L763.894,1209.8000000000002 Q763.894,1215.8000000000002 763.894,1221.8000000000002 L763.894,1328.0000000000002 Q763.894,1334.0000000000002 763.894,1340.0000000000002 L763.894,1446.2000000000003 Q763.894,1452.2000000000003 763.894,1458.2000000000003 L763.894,1505.3000000000002 Q763.894,1511.3000000000002 757.894,1511.3000000000002 L614.59,1511.3000000000002 Q608.59,1511.3000000000002 608.59,1517.3000000000002 L608.59,1570.4000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_up" data-to="input__ri_done" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M478.822,671 L478.822,701 Q478.822,707 484.822,707 L1128.748,707 Q1134.748,707 1134.748,713 L1134.748,737 Q1134.748,743 1134.748,749 L1134.748,855.2 Q1134.748,861.2 1134.748,867.2 L1134.748,973.4000000000001 Q1134.748,979.4000000000001 1134.748,985.4000000000001 L1134.748,1091.6000000000001 Q1134.748,1097.6000000000001 1134.748,1103.6000000000001 L1134.748,1209.8000000000002 Q1134.748,1215.8000000000002 1134.748,1221.8000000000002 L1134.748,1328.0000000000002 Q1134.748,1334.0000000000002 1134.748,1340.0000000000002 L1134.748,1446.2000000000003 Q1134.748,1452.2000000000003 1134.748,1458.2000000000003 L1134.748,1564.4000000000003 Q1134.748,1570.4000000000003 1134.748,1576.4000000000003 L1134.748,1682.6000000000004 Q1134.748,1688.6000000000004 1134.748,1694.6000000000004 L1134.748,1800.8000000000004 Q1134.748,1806.8000000000004 1134.748,1812.8000000000004 L1134.748,1919.0000000000005 Q1134.748,1925.0000000000005 1134.748,1931.0000000000005 L1134.748,2037.2000000000005 Q1134.748,2043.2000000000005 1134.748,2049.2000000000007 L1134.748,2155.4000000000005 Q1134.748,2161.4000000000005 1134.748,2167.4000000000005 L1134.748,2273.6000000000004 Q1134.748,2279.6000000000004 1134.748,2285.6000000000004 L1134.748,2391.8 Q1134.748,2397.8 1134.748,2403.8 L1134.748,2510 Q1134.748,2516 1134.748,2522 L1134.748,2628.2 Q1134.748,2634.2 1134.748,2640.2 L1134.748,2752.3999999999996" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_up" data-to="map_restore_cursor_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call restore_cursor_color" d="M478.822,671 L478.822,701 Q478.822,707 484.822,707 L942.7239999999999,707 Q948.7239999999999,707 948.7239999999999,713 L948.7239999999999,737 Q948.7239999999999,743 948.7239999999999,749 L948.7239999999999,855.2 Q948.7239999999999,861.2 948.7239999999999,867.2 L948.7239999999999,973.4000000000001 Q948.7239999999999,979.4000000000001 948.7239999999999,985.4000000000001 L948.7239999999999,1091.6000000000001 Q948.7239999999999,1097.6000000000001 948.7239999999999,1103.6000000000001 L948.7239999999999,1209.8000000000002 Q948.7239999999999,1215.8000000000002 948.7239999999999,1221.8000000000002 L948.7239999999999,1328.0000000000002 Q948.7239999999999,1334.0000000000002 948.7239999999999,1340.0000000000002 L948.7239999999999,1452.2000000000003" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_action" data-to="input__ri_build" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,2207.6000000000004 L198.31599999999995,2237.6000000000004 Q198.31599999999995,2243.6000000000004 204.31599999999995,2243.6000000000004 L348.64,2243.6000000000004 Q354.64,2243.6000000000004 354.64,2249.6000000000004 L354.64,2273.6000000000004 Q354.64,2279.6000000000004 354.64,2285.6000000000004 L354.64,2397.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_right" data-to="input__ri_right" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,1143.8000000000002 L198.31599999999995,1173.8000000000002 Q198.31599999999995,1179.8000000000002 204.31599999999995,1179.8000000000002 L472.024,1179.8000000000002 Q478.024,1179.8000000000002 478.024,1185.8000000000002 L478.024,1209.8000000000002 Q478.024,1215.8000000000002 478.024,1221.8000000000002 L478.024,1268.9 Q478.024,1274.9 484.024,1274.9 L576.166,1274.9 Q582.166,1274.9 582.166,1280.9 L582.166,1334.0000000000002" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_left" data-to="input__ri_left" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,907.4000000000001 L198.31599999999995,937.4000000000001 Q198.31599999999995,943.4000000000001 204.31599999999995,943.4000000000001 L464.044,943.4000000000001 Q470.044,943.4000000000001 470.044,949.4000000000001 L470.044,973.4000000000001 Q470.044,979.4000000000001 470.044,985.4000000000001 L470.044,1032.5 Q470.044,1038.5 476.044,1038.5 L576.166,1038.5 Q582.166,1038.5 582.166,1044.5 L582.166,1097.6000000000001" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_check_down" data-to="input__ri_down" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,671 L198.31599999999995,701 Q198.31599999999995,707 204.31599999999995,707 L576.166,707 Q582.166,707 582.166,713 L582.166,737 Q582.166,743 582.166,749 L582.166,861.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="input__ri_not_lc" data-to="input__ri_up" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M198.31599999999995,434.59999999999997 L198.31599999999995,464.59999999999997 Q198.31599999999995,470.59999999999997 204.31599999999995,470.59999999999997 L472.822,470.59999999999997 Q478.822,470.59999999999997 478.822,476.59999999999997 L478.822,500.59999999999997 Q478.822,506.59999999999997 478.822,512.5999999999999 L478.822,624.8" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="input_read_input" data-to="input__ri_process" data-label="Call KERNAL_GETIN">
+  <rect x="135.30799999999996" y="211.2" width="126.01599999999998" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="227" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call KERNAL_GETIN</text>
+</g>
+<g class="edge-label" data-from="input_read_input" data-to="input__ri_process" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="211.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="227" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_process" data-to="input__ri_not_lc" data-label="Branch BCC">
+  <rect x="157.33999999999995" y="329.4" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="345.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCC</text>
+</g>
+<g class="edge-label" data-from="input__ri_process" data-to="input__ri_not_lc" data-label="Branch BCS">
+  <rect x="157.33999999999995" y="329.4" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="345.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BCS</text>
+</g>
+<g class="edge-label" data-from="input__ri_process" data-to="input__ri_not_lc" data-label="fallthrough">
+  <rect x="162.19999999999993" y="329.4" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="345.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_not_lc" data-to="input__ri_check_w" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="447.59999999999997" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="463.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_not_lc" data-to="input__ri_check_w" data-label="fallthrough">
+  <rect x="162.19999999999993" y="447.59999999999997" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="463.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_w" data-to="input__ri_check_down" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="565.8" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="581.5999999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_w" data-to="input__ri_up" data-label="Jmp JMP">
+  <rect x="276.99440000000004" y="573" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="310.51840000000004" y="588.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_w" data-to="input__ri_check_down" data-label="fallthrough">
+  <rect x="162.19999999999993" y="565.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="581.5999999999999" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_down" data-to="input__ri_check_s" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="684" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="699.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_down" data-to="input__ri_check_s" data-label="fallthrough">
+  <rect x="162.19999999999993" y="684" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="699.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_s" data-to="input__ri_check_left" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="802.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="818" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_s" data-to="input__ri_down" data-label="Jmp JMP">
+  <rect x="318.332" y="809.4000000000001" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="351.856" y="825.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_s" data-to="input__ri_check_left" data-label="fallthrough">
+  <rect x="162.19999999999993" y="802.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="818" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_left" data-to="input__ri_check_a" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="920.4000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="936.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_left" data-to="input__ri_check_a" data-label="fallthrough">
+  <rect x="162.19999999999993" y="920.4000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="936.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_a" data-to="input__ri_check_right" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="1038.6000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1054.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_a" data-to="input__ri_left" data-label="Jmp JMP">
+  <rect x="318.332" y="1045.8000000000002" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="351.856" y="1061.6000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_a" data-to="input__ri_check_right" data-label="fallthrough">
+  <rect x="162.19999999999993" y="1038.6000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1054.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_right" data-to="input__ri_check_d" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="1156.8000000000002" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1172.6000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_right" data-to="input__ri_check_d" data-label="fallthrough">
+  <rect x="162.19999999999993" y="1156.8000000000002" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1172.6000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_d" data-to="input__ri_check_1" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="1275.0000000000002" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1290.8000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_d" data-to="input__ri_right" data-label="Jmp JMP">
+  <rect x="318.332" y="1282.2000000000003" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="351.856" y="1298.0000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_d" data-to="input__ri_check_1" data-label="fallthrough">
+  <rect x="162.19999999999993" y="1275.0000000000002" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1290.8000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_1" data-to="input__ri_check_2" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="1393.2000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1409.0000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_1" data-to="input__ri_sel1" data-label="Jmp JMP">
+  <rect x="225.7256" y="1400.4000000000003" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="259.2496" y="1416.2000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_1" data-to="input__ri_check_2" data-label="fallthrough">
+  <rect x="162.19999999999993" y="1393.2000000000003" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1409.0000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_2" data-to="input__ri_check_3" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="1511.4000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1527.2000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_2" data-to="input__ri_sel2" data-label="Jmp JMP">
+  <rect x="226.68319999999994" y="1518.6000000000004" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="260.20719999999994" y="1534.4000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_2" data-to="input__ri_check_3" data-label="fallthrough">
+  <rect x="162.19999999999993" y="1511.4000000000003" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1527.2000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_3" data-to="input__ri_check_4" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="1629.6000000000004" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1645.4000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_3" data-to="input__ri_sel3" data-label="Jmp JMP">
+  <rect x="232.74799999999993" y="1636.8000000000004" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="266.27199999999993" y="1652.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_3" data-to="input__ri_check_4" data-label="fallthrough">
+  <rect x="162.19999999999993" y="1629.6000000000004" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1645.4000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_4" data-to="input__ri_check_5" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="1747.8000000000004" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1763.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_4" data-to="input__ri_sel4" data-label="Jmp JMP">
+  <rect x="232.74799999999993" y="1755.0000000000005" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="266.27199999999993" y="1770.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_4" data-to="input__ri_check_5" data-label="fallthrough">
+  <rect x="162.19999999999993" y="1747.8000000000004" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1763.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_5" data-to="input__ri_check_6" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="1866.0000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1881.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_5" data-to="input__ri_sel5" data-label="Jmp JMP">
+  <rect x="232.74799999999993" y="1873.2000000000005" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="266.27199999999993" y="1889.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_5" data-to="input__ri_check_6" data-label="fallthrough">
+  <rect x="162.19999999999993" y="1866.0000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="1881.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_6" data-to="input__ri_check_7" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="1984.2000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2000.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_6" data-to="input__ri_sel6" data-label="Jmp JMP">
+  <rect x="232.74799999999993" y="1991.4000000000005" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="266.27199999999993" y="2007.2000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_6" data-to="input__ri_check_7" data-label="fallthrough">
+  <rect x="162.19999999999993" y="1984.2000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2000.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_7" data-to="input__ri_check_action" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="2102.4000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2118.2000000000007" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_7" data-to="input__ri_sel7" data-label="Jmp JMP">
+  <rect x="232.74799999999993" y="2109.6000000000004" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="266.27199999999993" y="2125.4000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_7" data-to="input__ri_check_action" data-label="fallthrough">
+  <rect x="162.19999999999993" y="2102.4000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2118.2000000000007" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_action" data-to="input__ri_check_b" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="2220.6000000000004" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2236.4000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_action" data-to="input__ri_check_b" data-label="fallthrough">
+  <rect x="162.19999999999993" y="2220.6000000000004" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2236.4000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_b" data-to="input__ri_check_x" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="2338.8" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2354.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_b" data-to="input__ri_build" data-label="Jmp JMP">
+  <rect x="227.3216" y="2346" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="260.8456" y="2361.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_b" data-to="input__ri_check_x" data-label="fallthrough">
+  <rect x="162.19999999999993" y="2338.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2354.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_x" data-to="input__ri_check_q" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="2457" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2472.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_x" data-to="input__ri_demo" data-label="Jmp JMP">
+  <rect x="227.95999999999992" y="2464.2" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="261.4839999999999" y="2480" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_x" data-to="input__ri_check_q" data-label="fallthrough">
+  <rect x="162.19999999999993" y="2457" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2472.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_q" data-to="input__ri_unknown" data-label="Branch BNE">
+  <rect x="157.33999999999995" y="2575.2" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2591" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_q" data-to="input__ri_quit" data-label="Jmp JMP">
+  <rect x="325.5848" y="2582.3999999999996" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="359.1088" y="2598.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_q" data-to="input__ri_unknown" data-label="fallthrough">
+  <rect x="162.19999999999993" y="2575.2" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="198.31599999999995" y="2591" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_up" data-to="input__ri_up_move" data-label="Branch BNE">
+  <rect x="437.846" y="684" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="478.822" y="699.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_up" data-to="input__ri_up_move" data-label="fallthrough">
+  <rect x="442.706" y="684" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="478.822" y="699.8" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_up_move" data-to="input__ri_down" data-label="fallthrough">
+  <rect x="484.0436000000001" y="809.4000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="520.1596000000001" y="825.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_down" data-to="input__ri_down_move" data-label="Branch BNE">
+  <rect x="541.19" y="920.4000000000001" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="582.166" y="936.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_down" data-to="input__ri_down_move" data-label="fallthrough">
+  <rect x="546.0500000000001" y="920.4000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="582.166" y="936.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_down_move" data-to="input__ri_left" data-label="fallthrough">
+  <rect x="546.0500000000001" y="1038.6000000000001" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="582.166" y="1054.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_left" data-to="input__ri_left_move" data-label="Branch BNE">
+  <rect x="541.19" y="1156.8000000000002" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="582.166" y="1172.6000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_left" data-to="input__ri_left_move" data-label="fallthrough">
+  <rect x="546.0500000000001" y="1156.8000000000002" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="582.166" y="1172.6000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_left_move" data-to="input__ri_right" data-label="fallthrough">
+  <rect x="546.0500000000001" y="1275.0000000000002" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="582.166" y="1290.8000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_right" data-to="map_restore_cursor_color" data-label="Call restore_cursor_color">
+  <rect x="651.5252" y="1400.4000000000003" width="154.52800000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="728.7892" y="1416.2000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call restore_cursor_color</text>
+</g>
+<g class="edge-label" data-from="input__ri_right" data-to="input__ri_right_move" data-label="Branch BNE">
+  <rect x="541.19" y="1393.2000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="582.166" y="1409.0000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_right" data-to="input__ri_right_move" data-label="fallthrough">
+  <rect x="546.0500000000001" y="1393.2000000000003" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="582.166" y="1409.0000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_right_move" data-to="input__ri_moved" data-label="fallthrough">
+  <rect x="546.0500000000001" y="1497.0000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="582.166" y="1512.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel1" data-to="input__ri_sel2" data-label="fallthrough">
+  <rect x="314.5340000000001" y="1497.0000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="350.6500000000001" y="1512.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel2" data-to="input__ri_sel3" data-label="fallthrough">
+  <rect x="316.928" y="1615.2000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="353.044" y="1631.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel3" data-to="input__ri_sel4" data-label="fallthrough">
+  <rect x="332.09000000000003" y="1747.8000000000004" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="368.206" y="1763.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel4" data-to="input__ri_sel5" data-label="fallthrough">
+  <rect x="332.09000000000003" y="1866.0000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="368.206" y="1881.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel5" data-to="input__ri_sel6" data-label="fallthrough">
+  <rect x="332.09000000000003" y="1984.2000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="368.206" y="2000.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel6" data-to="input__ri_sel7" data-label="fallthrough">
+  <rect x="332.09000000000003" y="2102.4000000000005" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="368.206" y="2118.2000000000007" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel7" data-to="input__ri_setsel" data-label="fallthrough">
+  <rect x="412.17560000000003" y="2227.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="448.2916" y="2243.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_setsel" data-to="buildings_show_building_name" data-label="Call show_building_name">
+  <rect x="495.0439999999999" y="2338.8" width="146.75200000000004" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="568.42" y="2354.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call show_building_name</text>
+</g>
+<g class="edge-label" data-from="input__ri_build" data-to="buildings_try_place_building" data-label="Call try_place_building">
+  <rect x="371.01199999999994" y="2464.2" width="135.08800000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="438.5559999999999" y="2480" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call try_place_building</text>
+</g>
+<g class="edge-label" data-from="input__ri_demo" data-to="buildings_try_demolish" data-label="Call try_demolish">
+  <rect x="321.15199999999993" y="2582.3999999999996" width="105.28" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="373.7919999999999" y="2598.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call try_demolish</text>
+</g>
+<g class="edge-label" data-from="input__ri_quit" data-to="title_show_title" data-label="Call show_title">
+  <rect x="359.52919999999995" y="2700.5999999999995" width="89.72800000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="404.3932" y="2716.3999999999996" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call show_title</text>
+</g>
+<g class="edge-label" data-from="input__ri_quit" data-to="init_clear_screen" data-label="Call clear_screen">
+  <rect x="424.45879999999994" y="2700.5999999999995" width="110.46400000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="479.69079999999997" y="2716.3999999999996" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call clear_screen</text>
+</g>
+<g class="edge-label" data-from="input__ri_quit" data-to="map_render_map" data-label="Call render_map">
+  <rect x="507.79400000000004" y="2700.5999999999995" width="102.688" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="559.138" y="2716.3999999999996" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call render_map</text>
+</g>
+<g class="edge-label" data-from="input__ri_quit" data-to="ui_draw_status_bar" data-label="Call draw_status_bar">
+  <rect x="577.8019999999999" y="2700.5999999999995" width="127.31200000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="641.458" y="2716.3999999999996" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call draw_status_bar</text>
+</g>
+<g class="edge-label" data-from="input__ri_quit" data-to="init_enable_cursor_sprite" data-label="Call enable_cursor_sprite">
+  <rect x="658.0148" y="2700.5999999999995" width="153.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="734.6308" y="2716.3999999999996" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call enable_cursor_sprite</text>
+</g>
+<g class="edge-label" data-from="input__ri_quit" data-to="input__ri_done" data-label="fallthrough">
+  <rect x="777.962" y="2700.5999999999995" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="814.078" y="2716.3999999999996" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel6" data-to="input__ri_setsel" data-label="Branch BNE">
+  <rect x="460.22479999999996" y="2204.7000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="501.20079999999996" y="2220.5000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel5" data-to="input__ri_setsel" data-label="Branch BNE">
+  <rect x="376.90279999999996" y="1991.4000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="417.87879999999996" y="2007.2000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel4" data-to="input__ri_setsel" data-label="Branch BNE">
+  <rect x="391.30280000000005" y="1873.2000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="432.27880000000005" y="1889.0000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel3" data-to="input__ri_setsel" data-label="Branch BNE">
+  <rect x="405.7028" y="1755.0000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="446.6788" y="1770.8000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel2" data-to="input__ri_setsel" data-label="Branch BNE">
+  <rect x="411.00559999999996" y="1636.8000000000004" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="451.98159999999996" y="1652.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_sel1" data-to="input__ri_setsel" data-label="Branch BNE">
+  <rect x="478.3148" y="1613.7000000000005" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="519.2908" y="1629.5000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="input__ri_right" data-to="input__ri_done" data-label="Jmp JMP">
+  <rect x="663.5108" y="1613.7000000000005" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="697.0348" y="1629.5000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_left_move" data-to="input__ri_moved" data-label="Jmp JMP">
+  <rect x="658.37" y="1365.4800000000002" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="691.894" y="1381.2800000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_left" data-to="input__ri_done" data-label="Jmp JMP">
+  <rect x="699.5108" y="1613.7000000000005" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="733.0348" y="1629.5000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_left" data-to="map_restore_cursor_color" data-label="Call restore_cursor_color">
+  <rect x="622.7252" y="1164.0000000000002" width="154.52800000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="699.9892" y="1179.8000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call restore_cursor_color</text>
+</g>
+<g class="edge-label" data-from="input__ri_down_move" data-to="input__ri_moved" data-label="Jmp JMP">
+  <rect x="606.9332" y="1045.8000000000002" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="640.4572000000001" y="1061.6000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_down" data-to="input__ri_done" data-label="Jmp JMP">
+  <rect x="885.9116" y="1495.5000000000002" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="919.4356" y="1511.3000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_down" data-to="map_restore_cursor_color" data-label="Call restore_cursor_color">
+  <rect x="637.1252000000001" y="927.6000000000001" width="154.52800000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="714.3892000000001" y="943.4000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call restore_cursor_color</text>
+</g>
+<g class="edge-label" data-from="input__ri_up_move" data-to="input__ri_moved" data-label="Jmp JMP">
+  <rect x="566.5088000000001" y="904.5000000000001" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="600.0328000000001" y="920.3000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_up" data-to="input__ri_done" data-label="Jmp JMP">
+  <rect x="707.6684" y="691.2" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="741.1924" y="707" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_up" data-to="map_restore_cursor_color" data-label="Call restore_cursor_color">
+  <rect x="589.5187999999999" y="691.2" width="154.52800000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="666.7828" y="707" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call restore_cursor_color</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_action" data-to="input__ri_build" data-label="Jmp JMP">
+  <rect x="227.3216" y="2227.8" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="260.8456" y="2243.6000000000004" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_right" data-to="input__ri_right" data-label="Jmp JMP">
+  <rect x="276.6752" y="1164.0000000000002" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="310.1992" y="1179.8000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_left" data-to="input__ri_left" data-label="Jmp JMP">
+  <rect x="273.4832" y="927.6000000000001" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="307.0072" y="943.4000000000001" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_check_down" data-to="input__ri_down" data-label="Jmp JMP">
+  <rect x="318.332" y="691.2" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="351.856" y="707" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="input__ri_not_lc" data-to="input__ri_up" data-label="Jmp JMP">
+  <rect x="276.99440000000004" y="454.79999999999995" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="310.51840000000004" y="470.59999999999997" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="node" data-id="input_read_input" data-label="read_input" data-shape="rounded">
+  <rect x="138.95199999999994" y="152" width="118.72799999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999992" y="175.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">read_input</text>
+</g>
+<g class="node" data-id="input__ri_process" data-label="@ri_process" data-shape="rounded">
+  <rect x="132.56799999999996" y="270.2" width="131.49599999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="293.3" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_process</text>
+</g>
+<g class="node" data-id="input__ri_not_lc" data-label="@ri_not_lc" data-shape="rounded">
+  <rect x="140.54799999999994" y="388.4" width="115.536" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="411.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_not_lc</text>
+</g>
+<g class="node" data-id="input__ri_check_w" data-label="@ri_check_w" data-shape="rounded">
+  <rect x="130.97199999999995" y="506.59999999999997" width="134.688" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="529.6999999999999" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_w</text>
+</g>
+<g class="node" data-id="input__ri_check_down" data-label="@ri_check_down" data-shape="rounded">
+  <rect x="119.00199999999995" y="624.8" width="158.628" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="647.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_down</text>
+</g>
+<g class="node" data-id="input__ri_check_s" data-label="@ri_check_s" data-shape="rounded">
+  <rect x="131.76999999999995" y="743" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="766.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_s</text>
+</g>
+<g class="node" data-id="input__ri_check_left" data-label="@ri_check_left" data-shape="rounded">
+  <rect x="126.98199999999994" y="861.2" width="142.668" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="884.3000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_left</text>
+</g>
+<g class="node" data-id="input__ri_check_a" data-label="@ri_check_a" data-shape="rounded">
+  <rect x="131.76999999999995" y="979.4000000000001" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="1002.5000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_a</text>
+</g>
+<g class="node" data-id="input__ri_check_right" data-label="@ri_check_right" data-shape="rounded">
+  <rect x="121.39599999999994" y="1097.6000000000001" width="153.84" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="1120.7" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_right</text>
+</g>
+<g class="node" data-id="input__ri_check_d" data-label="@ri_check_d" data-shape="rounded">
+  <rect x="131.76999999999995" y="1215.8000000000002" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="1238.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_d</text>
+</g>
+<g class="node" data-id="input__ri_check_1" data-label="@ri_check_1" data-shape="rounded">
+  <rect x="134.16399999999993" y="1334.0000000000002" width="128.304" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999992" y="1357.1000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_1</text>
+</g>
+<g class="node" data-id="input__ri_check_2" data-label="@ri_check_2" data-shape="rounded">
+  <rect x="131.76999999999995" y="1452.2000000000003" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="1475.3000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_2</text>
+</g>
+<g class="node" data-id="input__ri_check_3" data-label="@ri_check_3" data-shape="rounded">
+  <rect x="131.76999999999995" y="1570.4000000000003" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="1593.5000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_3</text>
+</g>
+<g class="node" data-id="input__ri_check_4" data-label="@ri_check_4" data-shape="rounded">
+  <rect x="131.76999999999995" y="1688.6000000000004" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="1711.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_4</text>
+</g>
+<g class="node" data-id="input__ri_check_5" data-label="@ri_check_5" data-shape="rounded">
+  <rect x="131.76999999999995" y="1806.8000000000004" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="1829.9000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_5</text>
+</g>
+<g class="node" data-id="input__ri_check_6" data-label="@ri_check_6" data-shape="rounded">
+  <rect x="131.76999999999995" y="1925.0000000000005" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="1948.1000000000004" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_6</text>
+</g>
+<g class="node" data-id="input__ri_check_7" data-label="@ri_check_7" data-shape="rounded">
+  <rect x="131.76999999999995" y="2043.2000000000005" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="2066.3000000000006" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_7</text>
+</g>
+<g class="node" data-id="input__ri_check_action" data-label="@ri_check_action" data-shape="rounded">
+  <rect x="116.60799999999995" y="2161.4000000000005" width="163.416" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="2184.5000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_action</text>
+</g>
+<g class="node" data-id="input__ri_check_b" data-label="@ri_check_b" data-shape="rounded">
+  <rect x="131.76999999999995" y="2279.6000000000004" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="2302.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_b</text>
+</g>
+<g class="node" data-id="input__ri_check_x" data-label="@ri_check_x" data-shape="rounded">
+  <rect x="131.76999999999995" y="2397.8" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="2420.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_x</text>
+</g>
+<g class="node" data-id="input__ri_check_q" data-label="@ri_check_q" data-shape="rounded">
+  <rect x="131.76999999999995" y="2516" width="133.09199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="2539.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_check_q</text>
+</g>
+<g class="node" data-id="input__ri_unknown" data-label="@ri_unknown" data-shape="rounded">
+  <rect x="130.97199999999995" y="2634.2" width="134.688" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="198.31599999999995" y="2657.2999999999997" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_unknown</text>
+</g>
+<g class="node" data-id="input__ri_up" data-label="@ri_up" data-shape="rounded">
+  <rect x="432.226" y="624.8" width="93.19200000000001" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="478.822" y="647.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_up</text>
+</g>
+<g class="node" data-id="input__ri_up_move" data-label="@ri_up_move" data-shape="rounded">
+  <rect x="411.47800000000007" y="743" width="134.688" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="478.82200000000006" y="766.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_up_move</text>
+</g>
+<g class="node" data-id="input__ri_down" data-label="@ri_down" data-shape="rounded">
+  <rect x="526.792" y="861.2" width="110.74799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="582.166" y="884.3000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_down</text>
+</g>
+<g class="node" data-id="input__ri_down_move" data-label="@ri_down_move" data-shape="rounded">
+  <rect x="506.044" y="979.4000000000001" width="152.244" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="582.1659999999999" y="1002.5000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_down_move</text>
+</g>
+<g class="node" data-id="input__ri_left" data-label="@ri_left" data-shape="rounded">
+  <rect x="534.772" y="1097.6000000000001" width="94.78800000000001" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="582.166" y="1120.7" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_left</text>
+</g>
+<g class="node" data-id="input__ri_left_move" data-label="@ri_left_move" data-shape="rounded">
+  <rect x="514.024" y="1215.8000000000002" width="136.284" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="582.1659999999999" y="1238.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_left_move</text>
+</g>
+<g class="node" data-id="input__ri_right" data-label="@ri_right" data-shape="rounded">
+  <rect x="529.186" y="1334.0000000000002" width="105.96000000000001" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="582.166" y="1357.1000000000001" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_right</text>
+</g>
+<g class="node" data-id="input__ri_right_move" data-label="@ri_right_move" data-shape="rounded">
+  <rect x="508.438" y="1452.2000000000003" width="147.45599999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="582.1659999999999" y="1475.3000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_right_move</text>
+</g>
+<g class="node" data-id="input__ri_moved" data-label="@ri_moved" data-shape="rounded">
+  <rect x="549.226" y="1570.4000000000003" width="118.72799999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="608.59" y="1593.5000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_moved</text>
+</g>
+<g class="node" data-id="input__ri_sel1" data-label="@ri_sel1" data-shape="rounded">
+  <rect x="300.8620000000001" y="1452.2000000000003" width="99.576" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="350.6500000000001" y="1475.3000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_sel1</text>
+</g>
+<g class="node" data-id="input__ri_sel2" data-label="@ri_sel2" data-shape="rounded">
+  <rect x="300.86199999999997" y="1570.4000000000003" width="104.364" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="353.044" y="1593.5000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_sel2</text>
+</g>
+<g class="node" data-id="input__ri_sel3" data-label="@ri_sel3" data-shape="rounded">
+  <rect x="316.024" y="1688.6000000000004" width="104.364" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="368.206" y="1711.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_sel3</text>
+</g>
+<g class="node" data-id="input__ri_sel4" data-label="@ri_sel4" data-shape="rounded">
+  <rect x="316.024" y="1806.8000000000004" width="104.364" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="368.206" y="1829.9000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_sel4</text>
+</g>
+<g class="node" data-id="input__ri_sel5" data-label="@ri_sel5" data-shape="rounded">
+  <rect x="316.024" y="1925.0000000000005" width="104.364" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="368.206" y="1948.1000000000004" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_sel5</text>
+</g>
+<g class="node" data-id="input__ri_sel6" data-label="@ri_sel6" data-shape="rounded">
+  <rect x="316.024" y="2043.2000000000005" width="104.364" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="368.206" y="2066.3000000000006" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_sel6</text>
+</g>
+<g class="node" data-id="input__ri_sel7" data-label="@ri_sel7" data-shape="rounded">
+  <rect x="316.024" y="2161.4000000000005" width="104.364" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="368.206" y="2184.5000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_sel7</text>
+</g>
+<g class="node" data-id="input__ri_setsel" data-label="@ri_setsel" data-shape="rounded">
+  <rect x="510.65199999999993" y="2279.6000000000004" width="115.536" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="568.42" y="2302.7000000000003" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_setsel</text>
+</g>
+<g class="node" data-id="input__ri_build" data-label="@ri_build" data-shape="rounded">
+  <rect x="300.86199999999997" y="2397.8" width="107.55600000000001" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="354.64" y="2420.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_build</text>
+</g>
+<g class="node" data-id="input__ri_demo" data-label="@ri_demo" data-shape="rounded">
+  <rect x="300.86199999999997" y="2516" width="110.74799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="356.236" y="2539.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_demo</text>
+</g>
+<g class="node" data-id="input__ri_quit" data-label="@ri_quit" data-shape="rounded">
+  <rect x="550.51" y="2634.2" width="99.576" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="600.298" y="2657.2999999999997" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_quit</text>
+</g>
+<g class="node" data-id="input__ri_done" data-label="@ri_done" data-shape="rounded">
+  <rect x="1080.172" y="2752.3999999999996" width="109.152" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1134.748" y="2775.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@ri_done</text>
+</g>
+<g class="node" data-id="_start" data-label="" data-shape="statestart">
+  <circle cx="198.31599999999995" cy="60" r="12" fill="var(--_text)" stroke="none" />
+  
+</g>
+<g class="node" data-id="map_restore_cursor_color" data-label="map_restore_cursor_color" data-shape="rounded">
+  <rect x="835.894" y="1452.2000000000003" width="225.65999999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="948.7239999999999" y="1475.3000000000002" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">map_restore_cursor_color</text>
+</g>
+<g class="node" data-id="buildings_show_building_name" data-label="buildings_show_building_name" data-shape="rounded">
+  <rect x="444.418" y="2397.8" width="248.00399999999993" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="568.42" y="2420.9" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">buildings_show_building_name</text>
+</g>
+<g class="node" data-id="buildings_try_place_building" data-label="buildings_try_place_building" data-shape="rounded">
+  <rect x="447.6099999999999" y="2516" width="233.63999999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="564.4299999999998" y="2539.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">buildings_try_place_building</text>
+</g>
+<g class="node" data-id="buildings_try_demolish" data-label="buildings_try_demolish" data-shape="rounded">
+  <rect x="301.65999999999997" y="2634.2" width="196.93199999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="400.126" y="2657.2999999999997" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">buildings_try_demolish</text>
+</g>
+<g class="node" data-id="title_show_title" data-label="title_show_title" data-shape="rounded">
+  <rect x="40" y="2752.3999999999996" width="141.072" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="110.536" y="2775.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">title_show_title</text>
+</g>
+<g class="node" data-id="init_clear_screen" data-label="init_clear_screen" data-shape="rounded">
+  <rect x="217.072" y="2752.3999999999996" width="163.41599999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="298.78" y="2775.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_clear_screen</text>
+</g>
+<g class="node" data-id="map_render_map" data-label="map_render_map" data-shape="rounded">
+  <rect x="416.48799999999994" y="2752.3999999999996" width="161.82" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="497.3979999999999" y="2775.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">map_render_map</text>
+</g>
+<g class="node" data-id="ui_draw_status_bar" data-label="ui_draw_status_bar" data-shape="rounded">
+  <rect x="614.308" y="2752.3999999999996" width="177.78" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="703.198" y="2775.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">ui_draw_status_bar</text>
+</g>
+<g class="node" data-id="init_enable_cursor_sprite" data-label="init_enable_cursor_sprite" data-shape="rounded">
+  <rect x="828.088" y="2752.3999999999996" width="216.08399999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="936.13" y="2775.4999999999995" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_enable_cursor_sprite</text>
+</g>
+</svg>

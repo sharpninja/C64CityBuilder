@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1568.76 520.8" width="1568.76" height="520.8" style="--bg:#FFFFFF;--fg:#27272A;--accent:#3b82f6">
+<style>
+  text { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .mono { font-family: ui-monospace, 'SF Mono', 'Cascadia Code', monospace; }
+  svg {
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 55%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 35%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 20%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 32%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 70%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 4%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 22%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 4%, var(--bg));
+    --_group-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 8%, var(--bg));
+    --_accent-fill:   color-mix(in srgb, var(--accent, var(--fg)) 8%, var(--bg));
+    --_accent-stroke: color-mix(in srgb, var(--accent, var(--fg)) 20%, var(--bg));
+    --_accent-text:   color-mix(in srgb, var(--accent, var(--fg)) 65%, var(--bg));
+  }
+  .node, .actor, .entity, .class-node { filter: drop-shadow(0 1px 3px rgba(0,0,0,.07)); }
+  .subgraph { filter: drop-shadow(0 1px 2px rgba(0,0,0,.04)); }
+</style>
+
+<defs>
+  <marker id="arrowhead" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto">
+    <polygon points="0 0, 12 6, 0 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="1" refY="6" orient="auto-start-reverse">
+    <polygon points="12 0, 0 6, 12 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+
+<path class="edge" data-from="_start" data-to="main_game_start" data-style="solid" data-arrow-start="false" data-arrow-end="true" d="M753.5200000000001,80 L753.5200000000001,117.96899999999991 Q753.5200000000001,119.1 752.389,119.1 L752.389,119.1 Q751.2579999999999,119.1 751.2579999999999,120.23100000000008 L751.2579999999999,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main_game_start" data-to="init_init_system" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call init_system" d="M751.2579999999999,204.4 L751.2579999999999,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main_game_start" data-to="title_show_title" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call show_title" d="M751.2579999999999,204.4 L751.2579999999999,234.4 Q751.2579999999999,240.4 757.2579999999999,240.4 L924.7239999999999,240.4 Q930.7239999999999,240.4 930.7239999999999,246.4 L930.7239999999999,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main_game_start" data-to="init_clear_screen" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call clear_screen" d="M751.2579999999999,204.4 L751.2579999999999,234.4 Q751.2579999999999,240.4 757.2579999999999,240.4 L1112.968,240.4 Q1118.968,240.4 1118.968,246.4 L1118.968,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main_game_start" data-to="map_render_map" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call render_map" d="M751.2579999999999,204.4 L751.2579999999999,234.4 Q751.2579999999999,240.4 745.2579999999999,240.4 L567.418,240.4 Q561.418,240.4 561.418,246.4 L561.418,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main_game_start" data-to="ui_draw_status_bar" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call draw_status_bar" d="M751.2579999999999,204.4 L751.2579999999999,234.4 Q751.2579999999999,240.4 745.2579999999999,240.4 L361.618,240.4 Q355.618,240.4 355.618,246.4 L355.618,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main_game_start" data-to="init_enable_cursor_sprite" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call enable_cursor_sprite" d="M751.2579999999999,204.4 L751.2579999999999,234.4 Q751.2579999999999,240.4 757.2579999999999,240.4 L1338.7179999999998,240.4 Q1344.7179999999998,240.4 1344.7179999999998,246.4 L1344.7179999999998,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main_game_start" data-to="main_game_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M751.2579999999999,204.4 L751.2579999999999,234.4 Q751.2579999999999,240.4 745.2579999999999,240.4 L177.36399999999998,240.4 Q171.36399999999998,240.4 171.36399999999998,246.4 L171.36399999999998,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main_game_loop" data-to="main__wait_jiffy" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M171.36399999999998,322.6 L171.36399999999998,352.6 Q171.36399999999998,358.6 177.36399999999998,358.6 L332.06199999999995,358.6 Q338.06199999999995,358.6 338.06199999999995,364.6 L338.06199999999995,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__wait_jiffy" data-to="main__wait_jiffy" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M394.234,417.70000000000005 L1488.76,417.70000000000005 L1488.76,417.70000000000005 L394.234,417.70000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__wait_jiffy" data-to="input_read_input" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call read_input" d="M338.06199999999995,440.8 L338.06199999999995,246.4 Q338.06199999999995,240.4 344.06199999999995,240.4 L478.6400000000001,240.4 Q484.6400000000001,240.4 484.6400000000001,234.4 L484.6400000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__wait_jiffy" data-to="main__no_sim" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M338.06199999999995,440.8 L338.06199999999995,246.4 Q338.06199999999995,240.4 344.06199999999995,240.4 L645.3380000000001,240.4 Q651.3380000000001,240.4 651.3380000000001,234.4 L651.3380000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__wait_jiffy" data-to="simulation_run_simulation" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call run_simulation" d="M338.06199999999995,440.8 L338.06199999999995,246.4 Q338.06199999999995,240.4 344.06199999999995,240.4 L903.9660000000001,240.4 Q909.9660000000001,240.4 909.9660000000001,234.4 L909.9660000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__wait_jiffy" data-to="main__no_sim" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M338.06199999999995,440.8 L338.06199999999995,246.4 Q338.06199999999995,240.4 344.06199999999995,240.4 L645.3380000000001,240.4 Q651.3380000000001,240.4 651.3380000000001,234.4 L651.3380000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__no_sim" data-to="main__no_map_redraw" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M651.3380000000001,86.2 L651.3380000000001,69.1 Q651.3380000000001,63.1 645.3380000000001,63.1 L294.4160000000001,63.1 Q288.4160000000001,63.1 288.4160000000001,57.1 L288.4160000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__no_sim" data-to="main__no_map_redraw" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M651.3380000000001,86.2 L651.3380000000001,69.1 Q651.3380000000001,63.1 645.3380000000001,63.1 L294.4160000000001,63.1 Q288.4160000000001,63.1 288.4160000000001,57.1 L288.4160000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__no_map_redraw" data-to="map_update_cursor_display" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call update_cursor_display" d="M288.4160000000001,86.2 L288.4160000000001,69.1 Q288.4160000000001,63.1 294.4160000000001,63.1 L1163.232,63.1 Q1169.232,63.1 1169.232,57.1 L1169.232,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__no_ui_redraw" data-to="main_game_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Jmp JMP" d="M245.89,417.70000000000005 L1482.76,417.70000000000005 Q1488.76,417.70000000000005 1488.76,411.70000000000005 L1488.76,305.5 Q1488.76,299.5 1482.76,299.5 L230.728,299.5" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__no_map_redraw" data-to="main__no_ui_redraw" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M288.4160000000001,86.2 L288.4160000000001,116.2 Q288.4160000000001,122.2 282.4160000000001,122.2 L46,122.2 Q40,122.2 40,128.2 L40,152.2 Q40,158.2 40,164.2 L40,270.4 Q40,276.4 40,282.4 L40,329.5 Q40,335.5 46,335.5 L165.36399999999998,335.5 Q171.36399999999998,335.5 171.36399999999998,341.5 L171.36399999999998,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__no_map_redraw" data-to="ui_draw_status_bar" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call draw_status_bar" d="M288.4160000000001,86.2 L288.4160000000001,116.2 Q288.4160000000001,122.2 294.4160000000001,122.2 L354.41600000000005,122.2 Q360.41600000000005,122.2 360.41600000000005,128.2 L360.41600000000005,152.2 Q360.41600000000005,158.2 360.41600000000005,164.2 L360.41600000000005,214.90099999999998 Q360.41600000000005,217.3 358.01700000000005,217.3 L358.01700000000005,217.3 Q355.618,217.3 355.618,219.69900000000004 L355.618,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__no_map_redraw" data-to="main__no_ui_redraw" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M288.4160000000001,86.2 L288.4160000000001,116.2 Q288.4160000000001,122.2 294.4160000000001,122.2 L318.41600000000005,122.2 Q324.41600000000005,122.2 324.41600000000005,128.2 L324.41600000000005,152.2 Q324.41600000000005,158.2 324.41600000000005,164.2 L324.41600000000005,211.3 Q324.41600000000005,217.3 318.41600000000005,217.3 L82,217.3 Q76,217.3 76,223.3 L76,270.4 Q76,276.4 76,282.4 L76,329.5 Q76,335.5 82,335.5 L165.36399999999998,335.5 Q171.36399999999998,335.5 171.36399999999998,341.5 L171.36399999999998,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="main__no_sim" data-to="map_render_map" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call render_map" d="M651.3380000000001,86.2 L651.3380000000001,116.2 Q651.3380000000001,122.2 645.3380000000001,122.2 L567.418,122.2 Q561.418,122.2 561.418,128.2 L561.418,152.2 Q561.418,158.2 561.418,164.2 L561.418,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="main_game_start" data-to="init_init_system" data-label="Call init_system">
+  <rect x="703.1539999999999" y="217.4" width="96.208" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="751.2579999999999" y="233.20000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call init_system</text>
+</g>
+<g class="edge-label" data-from="main_game_start" data-to="title_show_title" data-label="Call show_title">
+  <rect x="778.1803999999998" y="224.6" width="89.72800000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="823.0443999999999" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call show_title</text>
+</g>
+<g class="edge-label" data-from="main_game_start" data-to="init_clear_screen" data-label="Call clear_screen">
+  <rect x="843.11" y="224.6" width="110.46400000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="898.342" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call clear_screen</text>
+</g>
+<g class="edge-label" data-from="main_game_start" data-to="map_render_map" data-label="Call render_map">
+  <rect x="623.978" y="224.6" width="102.688" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="675.322" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call render_map</text>
+</g>
+<g class="edge-label" data-from="main_game_start" data-to="ui_draw_status_bar" data-label="Call draw_status_bar">
+  <rect x="529.346" y="224.6" width="127.31200000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="593.002" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call draw_status_bar</text>
+</g>
+<g class="edge-label" data-from="main_game_start" data-to="init_enable_cursor_sprite" data-label="Call enable_cursor_sprite">
+  <rect x="912.026" y="224.6" width="153.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="988.6419999999999" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call enable_cursor_sprite</text>
+</g>
+<g class="edge-label" data-from="main_game_start" data-to="main_game_loop" data-label="fallthrough">
+  <rect x="483.1844" y="224.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="519.3004" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="main_game_loop" data-to="main__wait_jiffy" data-label="fallthrough">
+  <rect x="201.92719999999997" y="342.8" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="238.04319999999996" y="358.6" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="main__wait_jiffy" data-to="main__wait_jiffy" data-label="Branch BEQ">
+  <rect x="791.0684" y="401.90000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="832.0444" y="417.70000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="main__wait_jiffy" data-to="input_read_input" data-label="Call read_input">
+  <rect x="290.60599999999994" y="344.84" width="94.912" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="338.06199999999995" y="360.64" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call read_input</text>
+</g>
+<g class="edge-label" data-from="main__wait_jiffy" data-to="main__no_sim" data-label="Branch BNE">
+  <rect x="422.3964" y="224.6" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="463.3724" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="main__wait_jiffy" data-to="simulation_run_simulation" data-label="Call run_simulation">
+  <rect x="509.64760000000007" y="224.6" width="114.352" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="566.8236" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call run_simulation</text>
+</g>
+<g class="edge-label" data-from="main__wait_jiffy" data-to="main__no_sim" data-label="fallthrough">
+  <rect x="427.25640000000004" y="224.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="463.3724" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="main__no_sim" data-to="main__no_map_redraw" data-label="Branch BEQ">
+  <rect x="465.19320000000005" y="47.3" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="506.16920000000005" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="main__no_sim" data-to="main__no_map_redraw" data-label="fallthrough">
+  <rect x="470.05320000000006" y="47.3" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="506.16920000000005" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="main__no_map_redraw" data-to="map_update_cursor_display" data-label="Call update_cursor_display">
+  <rect x="560.2384000000001" y="47.3" width="161.008" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="640.7424000000001" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call update_cursor_display</text>
+</g>
+<g class="edge-label" data-from="main__no_ui_redraw" data-to="main_game_loop" data-label="Jmp JMP">
+  <rect x="700.4168" y="283.7" width="67.048" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="733.9408" y="299.5" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Jmp JMP</text>
+</g>
+<g class="edge-label" data-from="main__no_map_redraw" data-to="main__no_ui_redraw" data-label="fallthrough">
+  <rect x="152.93360000000007" y="106.4" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="189.04960000000005" y="122.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="main__no_map_redraw" data-to="ui_draw_status_bar" data-label="Call draw_status_bar">
+  <rect x="253.56000000000006" y="106.4" width="127.31200000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="317.21600000000007" y="122.2" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call draw_status_bar</text>
+</g>
+<g class="edge-label" data-from="main__no_map_redraw" data-to="main__no_ui_redraw" data-label="Branch BEQ">
+  <rect x="184.07360000000006" y="201.5" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="225.04960000000005" y="217.3" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="main__no_sim" data-to="map_render_map" data-label="Call render_map">
+  <rect x="510.074" y="189.68" width="102.688" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="561.418" y="205.48000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call render_map</text>
+</g>
+<g class="node" data-id="main_game_start" data-label="game_start" data-shape="rounded">
+  <rect x="691.0959999999999" y="158.2" width="120.324" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="751.2579999999999" y="181.29999999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">game_start</text>
+</g>
+<g class="node" data-id="main_game_loop" data-label="game_loop" data-shape="rounded">
+  <rect x="112" y="276.4" width="118.728" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="171.364" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">game_loop</text>
+</g>
+<g class="node" data-id="main__wait_jiffy" data-label="@wait_jiffy" data-shape="rounded">
+  <rect x="281.89" y="394.6" width="112.34400000000001" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="338.062" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@wait_jiffy</text>
+</g>
+<g class="node" data-id="main__no_sim" data-label="@no_sim" data-shape="rounded">
+  <rect x="599.1560000000001" y="40" width="104.364" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="651.3380000000001" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@no_sim</text>
+</g>
+<g class="node" data-id="main__no_map_redraw" data-label="@no_map_redraw" data-shape="rounded">
+  <rect x="206.70800000000008" y="40" width="163.416" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="288.41600000000005" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@no_map_redraw</text>
+</g>
+<g class="node" data-id="main__no_ui_redraw" data-label="@no_ui_redraw" data-shape="rounded">
+  <rect x="96.83800000000001" y="394.6" width="149.05199999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="171.36399999999998" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@no_ui_redraw</text>
+</g>
+<g class="node" data-id="_start" data-label="" data-shape="statestart">
+  <circle cx="753.5200000000001" cy="60" r="12" fill="var(--_text)" stroke="none" />
+  
+</g>
+<g class="node" data-id="init_init_system" data-label="init_init_system" data-shape="rounded">
+  <rect x="678.328" y="276.4" width="145.85999999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="751.2579999999999" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_init_system</text>
+</g>
+<g class="node" data-id="title_show_title" data-label="title_show_title" data-shape="rounded">
+  <rect x="860.188" y="276.4" width="141.072" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="930.7239999999999" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">title_show_title</text>
+</g>
+<g class="node" data-id="init_clear_screen" data-label="init_clear_screen" data-shape="rounded">
+  <rect x="1037.26" y="276.4" width="163.41599999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1118.968" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_clear_screen</text>
+</g>
+<g class="node" data-id="map_render_map" data-label="map_render_map" data-shape="rounded">
+  <rect x="480.508" y="276.4" width="161.82" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="561.418" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">map_render_map</text>
+</g>
+<g class="node" data-id="ui_draw_status_bar" data-label="ui_draw_status_bar" data-shape="rounded">
+  <rect x="266.728" y="276.4" width="177.78" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="355.618" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">ui_draw_status_bar</text>
+</g>
+<g class="node" data-id="init_enable_cursor_sprite" data-label="init_enable_cursor_sprite" data-shape="rounded">
+  <rect x="1236.676" y="276.4" width="216.08399999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1344.7179999999998" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_enable_cursor_sprite</text>
+</g>
+<g class="node" data-id="input_read_input" data-label="input_read_input" data-shape="rounded">
+  <rect x="406.1240000000001" y="40" width="157.03199999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="484.6400000000001" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">input_read_input</text>
+</g>
+<g class="node" data-id="simulation_run_simulation" data-label="simulation_run_simulation" data-shape="rounded">
+  <rect x="803.5200000000001" y="40" width="212.89199999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="909.9660000000001" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">simulation_run_simulation</text>
+</g>
+<g class="node" data-id="map_update_cursor_display" data-label="map_update_cursor_display" data-shape="rounded">
+  <rect x="1052.412" y="40" width="233.63999999999996" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="1169.232" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">map_update_cursor_display</text>
+</g>
+</svg>

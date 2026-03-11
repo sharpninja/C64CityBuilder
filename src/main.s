@@ -65,10 +65,10 @@ game_start:
     jsr show_title          ; title screen + keypress wait
 
     ; ---- Full first-frame render --------------------------
-    jsr clear_screen
-    jsr render_map
-    jsr draw_status_bar
-    jsr enable_cursor_sprite
+    jsr clear_screen ; clear the whole visible screen
+    jsr render_map ; redraw the full city map
+    jsr draw_status_bar ; redraw the status bar
+    jsr enable_cursor_sprite ; show the cursor sprite
 
 ; ============================================================
 ; game_loop
@@ -77,37 +77,44 @@ game_start:
 ; ============================================================
 game_loop:
     ; --- Wait for the next jiffy tick ---------------------
+; Branch target from @wait_jiffy if the test matched.
 @wait_jiffy:
-    lda JIFFY_LO
-    cmp last_jiffy
-    beq @wait_jiffy
-    sta last_jiffy
+    lda JIFFY_LO ; load JIFFY LO into A
+    cmp last_jiffy ; last jiffy snapshot
+    beq @wait_jiffy ; if the test matched, branch to wait jiffy
+    sta last_jiffy ; store A into last jiffy snapshot
 
     ; --- Read keyboard input ------------------------------
-    jsr read_input
+    jsr read_input ; process one keyboard input event
 
     ; --- Simulation tick ---------------------------------
-    dec sim_counter
-    bne @no_sim
-    jsr run_simulation
+    dec sim_counter ; count down toward the next simulation tick
+    bne @no_sim ; if the test did not match, branch to sim
+    jsr run_simulation ; advance the city simulation
+; Continue with the sim path.
+; Branch target from @wait_jiffy if the test did not match.
 @no_sim:
 
     ; --- Redraw map if dirty ----------------------------
-    lda dirty_map
-    beq @no_map_redraw
-    jsr render_map
+    lda dirty_map ; load map redraw flag into A
+    beq @no_map_redraw ; if the test matched, branch to map redraw
+    jsr render_map ; redraw the full city map
+; Continue with the map redraw path.
+; Branch target from @no_sim if the test matched.
 @no_map_redraw:
 
     ; --- Update cursor highlight (blink) ----------------
-    jsr update_cursor_display
+    jsr update_cursor_display ; refresh cursor visibility and blink state
 
     ; --- Redraw UI bar if dirty -------------------------
-    lda dirty_ui
-    beq @no_ui_redraw
-    jsr draw_status_bar
+    lda dirty_ui ; load UI redraw flag into A
+    beq @no_ui_redraw ; if the test matched, branch to ui redraw
+    jsr draw_status_bar ; redraw the status bar
+; Continue with the ui redraw path.
+; Branch target from @no_map_redraw if the test matched.
 @no_ui_redraw:
 
-    jmp game_loop
+    jmp game_loop ; continue at game loop
 
 ; ============================================================
 ; Include all game modules (single compilation unit)

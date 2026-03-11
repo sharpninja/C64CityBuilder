@@ -1,0 +1,1933 @@
+stateDiagram-v2
+    state "try_place_building" as buildings_try_place_building
+    state "@tp_sel_ok" as buildings__tp_sel_ok
+    state "@tp_check_same" as buildings__tp_check_same
+    state "@tp_not_water" as buildings__tp_not_water
+    state "@tp_not_bridge" as buildings__tp_not_bridge
+    state "@tp_upgrade_density" as buildings__tp_upgrade_density
+    state "@tp_check_cost" as buildings__tp_check_cost
+    state "@tp_cost_bridge" as buildings__tp_cost_bridge
+    state "@tp_cost_ready" as buildings__tp_cost_ready
+    state "@tp_cant_build" as buildings__tp_cant_build
+    state "@tp_max_density" as buildings__tp_max_density
+    state "@tp_afford" as buildings__tp_afford
+    state "@tp_new_bridge" as buildings__tp_new_bridge
+    state "@tp_new_tile" as buildings__tp_new_tile
+    state "@tp_place_new" as buildings__tp_place_new
+    state "@tp_make_upgrade" as buildings__tp_make_upgrade
+    state "@tp_place_tile" as buildings__tp_place_tile
+    state "@tp_msg_upgraded" as buildings__tp_msg_upgraded
+    state "@tp_show_msg" as buildings__tp_show_msg
+    state "try_demolish" as buildings_try_demolish
+    state "@td_do_it" as buildings__td_do_it
+    state "@td_clear_tile" as buildings__td_clear_tile
+    state "@td_clear_empty" as buildings__td_clear_empty
+    state "@td_store_clear" as buildings__td_store_clear
+    state "@td_place" as buildings__td_place
+    state "@td_msg_demo" as buildings__td_msg_demo
+    state "@td_show_msg" as buildings__td_show_msg
+    state "place_tile_at" as buildings_place_tile_at
+    state "@pta_old_road" as buildings__pta_old_road
+    state "@pta_old_done" as buildings__pta_old_done
+    state "@pta_new_road" as buildings__pta_new_road
+    state "@pta_compare" as buildings__pta_compare
+    state "@pta_topology_changed" as buildings__pta_topology_changed
+    state "@pta_write" as buildings__pta_write
+    state "@pta_update_one" as buildings__pta_update_one
+    state "@pta_done" as buildings__pta_done
+    state "get_tile_density_units" as buildings_get_tile_density_units
+    state "increment_count" as buildings_increment_count
+    state "@inc_road" as buildings__inc_road
+    state "@inc_store_road" as buildings__inc_store_road
+    state "@inc1" as buildings__inc1
+    state "@inc_store_house" as buildings__inc_store_house
+    state "@inc2" as buildings__inc2
+    state "@inc_store_factory" as buildings__inc_store_factory
+    state "@inc3" as buildings__inc3
+    state "@inc_store_park" as buildings__inc_store_park
+    state "@inc4" as buildings__inc4
+    state "@inc_store_power" as buildings__inc_store_power
+    state "@inc5" as buildings__inc5
+    state "@inc_store_police" as buildings__inc_store_police
+    state "@inc6" as buildings__inc6
+    state "@inc_store_fire" as buildings__inc_store_fire
+    state "@inc_done" as buildings__inc_done
+    state "decrement_count" as buildings_decrement_count
+    state "@dec_road" as buildings__dec_road
+    state "@dec_store_road" as buildings__dec_store_road
+    state "@dec1" as buildings__dec1
+    state "@dec_store_house" as buildings__dec_store_house
+    state "@dec2" as buildings__dec2
+    state "@dec_store_factory" as buildings__dec_store_factory
+    state "@dec3" as buildings__dec3
+    state "@dec_store_park" as buildings__dec_store_park
+    state "@dec4" as buildings__dec4
+    state "@dec_store_power" as buildings__dec_store_power
+    state "@dec5" as buildings__dec5
+    state "@dec_store_police" as buildings__dec_store_police
+    state "@dec6" as buildings__dec6
+    state "@dec_store_fire" as buildings__dec_store_fire
+    state "@dec_done" as buildings__dec_done
+    state "show_building_name" as buildings_show_building_name
+    state "@sbn_done" as buildings__sbn_done
+    state "mul40_lo" as data_mul40_lo
+    state "mul40_hi" as data_mul40_hi
+    state "tile_char" as data_tile_char
+    state "road_shape_char" as data_road_shape_char
+    state "tile_color" as data_tile_color
+    state "tile_density_base" as data_tile_density_base
+    state "density_color" as data_density_color
+    state "tile_mc_color" as data_tile_mc_color
+    state "density_mc_color" as data_density_mc_color
+    state "house_aoe_radius" as data_house_aoe_radius
+    state "factory_aoe_radius" as data_factory_aoe_radius
+    state "bld_cost_lo" as data_bld_cost_lo
+    state "bld_cost_hi" as data_bld_cost_hi
+    state "pow10_lo" as data_pow10_lo
+    state "pow10_hi" as data_pow10_hi
+    state "cursor_sprite_data" as data_cursor_sprite_data
+    state "custom_char_glyphs" as data_custom_char_glyphs
+    state "str_menu" as data_str_menu
+    state "str_msg_empty" as data_str_msg_empty
+    state "str_help" as data_str_help
+    state "bld_names" as data_bld_names
+    state "hud_tile_names" as data_hud_tile_names
+    state "hud_segment_names" as data_hud_segment_names
+    state "hud_level_names" as data_hud_level_names
+    state "init_system" as init_init_system
+    state "init_custom_charset" as init_init_custom_charset
+    state "@icc_page" as init__icc_page
+    state "@icc_byte" as init__icc_byte
+    state "@icc_custom_page" as init__icc_custom_page
+    state "@icc_custom" as init__icc_custom
+    state "init_cursor_sprite" as init_init_cursor_sprite
+    state "@ics_copy" as init__ics_copy
+    state "enable_cursor_sprite" as init_enable_cursor_sprite
+    state "disable_cursor_sprite" as init_disable_cursor_sprite
+    state "init_raster_split" as init_init_raster_split
+    state "raster_irq" as init_raster_irq
+    state "@lower_phase" as init__lower_phase
+    state "@top_phase" as init__top_phase
+    state "@irq_done" as init__irq_done
+    state "@chain_kernal" as init__chain_kernal
+    state "clear_screen" as init_clear_screen
+    state "@pg_loop" as init__pg_loop
+    state "@byte_loop" as init__byte_loop
+    state "@rem_loop" as init__rem_loop
+    state "init_map" as init_init_map
+    state "@im_pg" as init__im_pg
+    state "@im_inner" as init__im_inner
+    state "@im_rem" as init__im_rem
+    state "@river" as init__river
+    state "read_input" as input_read_input
+    state "@ri_process" as input__ri_process
+    state "@ri_not_lc" as input__ri_not_lc
+    state "@ri_check_w" as input__ri_check_w
+    state "@ri_check_down" as input__ri_check_down
+    state "@ri_check_s" as input__ri_check_s
+    state "@ri_check_left" as input__ri_check_left
+    state "@ri_check_a" as input__ri_check_a
+    state "@ri_check_right" as input__ri_check_right
+    state "@ri_check_d" as input__ri_check_d
+    state "@ri_check_1" as input__ri_check_1
+    state "@ri_check_2" as input__ri_check_2
+    state "@ri_check_3" as input__ri_check_3
+    state "@ri_check_4" as input__ri_check_4
+    state "@ri_check_5" as input__ri_check_5
+    state "@ri_check_6" as input__ri_check_6
+    state "@ri_check_7" as input__ri_check_7
+    state "@ri_check_action" as input__ri_check_action
+    state "@ri_check_b" as input__ri_check_b
+    state "@ri_check_x" as input__ri_check_x
+    state "@ri_check_q" as input__ri_check_q
+    state "@ri_unknown" as input__ri_unknown
+    state "@ri_up" as input__ri_up
+    state "@ri_up_move" as input__ri_up_move
+    state "@ri_down" as input__ri_down
+    state "@ri_down_move" as input__ri_down_move
+    state "@ri_left" as input__ri_left
+    state "@ri_left_move" as input__ri_left_move
+    state "@ri_right" as input__ri_right
+    state "@ri_right_move" as input__ri_right_move
+    state "@ri_moved" as input__ri_moved
+    state "@ri_sel1" as input__ri_sel1
+    state "@ri_sel2" as input__ri_sel2
+    state "@ri_sel3" as input__ri_sel3
+    state "@ri_sel4" as input__ri_sel4
+    state "@ri_sel5" as input__ri_sel5
+    state "@ri_sel6" as input__ri_sel6
+    state "@ri_sel7" as input__ri_sel7
+    state "@ri_setsel" as input__ri_setsel
+    state "@ri_build" as input__ri_build
+    state "@ri_demo" as input__ri_demo
+    state "@ri_quit" as input__ri_quit
+    state "@ri_done" as input__ri_done
+    state "game_start" as main_game_start
+    state "game_loop" as main_game_loop
+    state "@wait_jiffy" as main__wait_jiffy
+    state "@no_sim" as main__no_sim
+    state "@no_map_redraw" as main__no_map_redraw
+    state "@no_ui_redraw" as main__no_ui_redraw
+    state "render_map" as map_render_map
+    state "@rm_row" as map__rm_row
+    state "@rm_col" as map__rm_col
+    state "render_tile" as map_render_tile
+    state "render_road_neighborhood" as map_render_road_neighborhood
+    state "@rrn_render_north" as map__rrn_render_north
+    state "@rrn_restore_north" as map__rrn_restore_north
+    state "@rrn_south" as map__rrn_south
+    state "@rrn_render_south" as map__rrn_render_south
+    state "@rrn_restore_south" as map__rrn_restore_south
+    state "@rrn_east" as map__rrn_east
+    state "@rrn_render_east" as map__rrn_render_east
+    state "@rrn_restore_east" as map__rrn_restore_east
+    state "@rrn_west" as map__rrn_west
+    state "@rrn_render_west" as map__rrn_render_west
+    state "@rrn_restore_west" as map__rrn_restore_west
+    state "render_road_neighborhood_exit" as map_render_road_neighborhood_exit
+    state "@rrn_done" as map__rrn_done
+    state "get_tile_screen_char" as map_get_tile_screen_char
+    state "@gtsc_base" as map__gtsc_base
+    state "@gtsc_road" as map__gtsc_road
+    state "get_road_screen_char" as map_get_road_screen_char
+    state "@grsc_north_yes" as map__grsc_north_yes
+    state "@grsc_south" as map__grsc_south
+    state "@grsc_south_yes" as map__grsc_south_yes
+    state "@grsc_east" as map__grsc_east
+    state "@grsc_east_yes" as map__grsc_east_yes
+    state "@grsc_west" as map__grsc_west
+    state "@grsc_west_yes" as map__grsc_west_yes
+    state "@grsc_lookup" as map__grsc_lookup
+    state "get_tile" as map_get_tile
+    state "set_tile" as map_set_tile
+    state "update_cursor_display" as map_update_cursor_display
+    state "@ucd_store_x" as map__ucd_store_x
+    state "update_cursor_aoe_state" as map_update_cursor_aoe_state
+    state "@ucao_house" as map__ucao_house
+    state "@ucao_factory" as map__ucao_factory
+    state "@ucao_enable" as map__ucao_enable
+    state "@ucao_park" as map__ucao_park
+    state "@ucao_police" as map__ucao_police
+    state "@ucao_fire" as map__ucao_fire
+    state "@ucao_store" as map__ucao_store
+    state "tile_in_cursor_aoe" as map_tile_in_cursor_aoe
+    state "@tica_dx" as map__tica_dx
+    state "@tica_dx_abs" as map__tica_dx_abs
+    state "@tica_dy" as map__tica_dy
+    state "@tica_dy_abs" as map__tica_dy_abs
+    state "@tica_yes" as map__tica_yes
+    state "get_tile_draw_color" as map_get_tile_draw_color
+    state "@gtdc_base" as map__gtdc_base
+    state "get_tile_highlight_color" as map_get_tile_highlight_color
+    state "@gthc_base" as map__gthc_base
+    state "restore_cursor_color" as map_restore_cursor_color
+    state "@rcc_no_carry" as map__rcc_no_carry
+    state "mul_by_5" as simulation_mul_by_5
+    state "@m5_loop" as simulation__m5_loop
+    state "@m5_done" as simulation__m5_done
+    state "@m5_cap" as simulation__m5_cap
+    state "mul_by_10" as simulation_mul_by_10
+    state "@m10_loop" as simulation__m10_loop
+    state "@m10_done" as simulation__m10_done
+    state "@m10_cap" as simulation__m10_cap
+    state "mul_by_20" as simulation_mul_by_20
+    state "@m20_loop" as simulation__m20_loop
+    state "@m20_done" as simulation__m20_done
+    state "@m20_cap" as simulation__m20_cap
+    state "mul_by_50" as simulation_mul_by_50
+    state "@m50_loop" as simulation__m50_loop
+    state "@m50_done" as simulation__m50_done
+    state "@m50_cap" as simulation__m50_cap
+    state "mul_by_2" as simulation_mul_by_2
+    state "@m2_cap" as simulation__m2_cap
+    state "mul_by_3" as simulation_mul_by_3
+    state "@m3_cap" as simulation__m3_cap
+    state "add_to_jobs" as simulation_add_to_jobs
+    state "@atj_store" as simulation__atj_store
+    state "add_to_revenue" as simulation_add_to_revenue
+    state "@atr_done" as simulation__atr_done
+    state "add_to_cost" as simulation_add_to_cost
+    state "@atc_done" as simulation__atc_done
+    state "add_to_land_value" as simulation_add_to_land_value
+    state "@atl_done" as simulation__atl_done
+    state "add_to_worker_supply" as simulation_add_to_worker_supply
+    state "@atw_store" as simulation__atw_store
+    state "add_a_to_tmp3" as simulation_add_a_to_tmp3
+    state "@a3_store" as simulation__a3_store
+    state "clear_map_buffer" as simulation_clear_map_buffer
+    state "@cmb_page" as simulation__cmb_page
+    state "@cmb_loop" as simulation__cmb_loop
+    state "@cmb_rem" as simulation__cmb_rem
+    state "clear_sim_maps" as simulation_clear_sim_maps
+    state "copy_map_buffer" as simulation_copy_map_buffer
+    state "@cpb_page" as simulation__cpb_page
+    state "@cpb_loop" as simulation__cpb_loop
+    state "@cpb_rem" as simulation__cpb_rem
+    state "clear_segment_totals" as simulation_clear_segment_totals
+    state "@cst_loop" as simulation__cst_loop
+    state "clear_segment_used" as simulation_clear_segment_used
+    state "@csu_loop" as simulation__csu_loop
+    state "clear_road_segment_state" as simulation_clear_road_segment_state
+    state "add_segment_to_pack" as simulation_add_segment_to_pack
+    state "@astp_check_high" as simulation__astp_check_high
+    state "@astp_store_low" as simulation__astp_store_low
+    state "@astp_store_high" as simulation__astp_store_high
+    state "@astp_done" as simulation__astp_done
+    state "collect_adjacent_segments" as simulation_collect_adjacent_segments
+    state "@cas_south" as simulation__cas_south
+    state "@cas_east" as simulation__cas_east
+    state "@cas_west" as simulation__cas_west
+    state "@cas_done" as simulation__cas_done
+    state "update_building_segment_at" as simulation_update_building_segment_at
+    state "@ubsa_clear" as simulation__ubsa_clear
+    state "rebuild_building_segments" as simulation_rebuild_building_segments
+    state "@rbs_row" as simulation__rbs_row
+    state "@rbs_col" as simulation__rbs_col
+    state "@rbs_next_row" as simulation__rbs_next_row
+    state "@rbs_done" as simulation__rbs_done
+    state "touches_current_segment" as simulation_touches_current_segment
+    state "@tcs_south" as simulation__tcs_south
+    state "@tcs_east" as simulation__tcs_east
+    state "@tcs_west" as simulation__tcs_west
+    state "@tcs_no" as simulation__tcs_no
+    state "@tcs_yes" as simulation__tcs_yes
+    state "expand_temp_segment" as simulation_expand_temp_segment
+    state "@ets_pass" as simulation__ets_pass
+    state "@ets_row" as simulation__ets_row
+    state "@ets_col" as simulation__ets_col
+    state "@ets_roadlike" as simulation__ets_roadlike
+    state "@ets_next" as simulation__ets_next
+    state "@ets_next_row" as simulation__ets_next_row
+    state "@ets_pass_done" as simulation__ets_pass_done
+    state "choose_segment_id_for_temp" as simulation_choose_segment_id_for_temp
+    state "@csit_row" as simulation__csit_row
+    state "@csit_col" as simulation__csit_col
+    state "@csit_store_old" as simulation__csit_store_old
+    state "@csit_next" as simulation__csit_next
+    state "@csit_next_row" as simulation__csit_next_row
+    state "@csit_choose" as simulation__csit_choose
+    state "@csit_find_free" as simulation__csit_find_free
+    state "@csit_find_loop" as simulation__csit_find_loop
+    state "@csit_use_x" as simulation__csit_use_x
+    state "@csit_use" as simulation__csit_use
+    state "relabel_temp_segment" as simulation_relabel_temp_segment
+    state "@rts_row" as simulation__rts_row
+    state "@rts_col" as simulation__rts_col
+    state "@rts_next" as simulation__rts_next
+    state "@rts_next_row" as simulation__rts_next_row
+    state "@rts_done" as simulation__rts_done
+    state "rebuild_road_segments" as simulation_rebuild_road_segments
+    state "@rrs_row" as simulation__rrs_row
+    state "@rrs_col" as simulation__rrs_col
+    state "@rrs_roadlike" as simulation__rrs_roadlike
+    state "@rrs_next" as simulation__rrs_next
+    state "@rrs_next_row" as simulation__rrs_next_row
+    state "@rrs_done" as simulation__rrs_done
+    state "load_metric_at" as simulation_load_metric_at
+    state "store_metric_at" as simulation_store_metric_at
+    state "stamp_radius_add" as simulation_stamp_radius_add
+    state "@sra_row_lo_ok" as simulation__sra_row_lo_ok
+    state "@sra_row_hi_ok" as simulation__sra_row_hi_ok
+    state "@sra_col_lo_ok" as simulation__sra_col_lo_ok
+    state "@sra_col_hi_ok" as simulation__sra_col_hi_ok
+    state "@sra_row_loop" as simulation__sra_row_loop
+    state "@sra_ptr_ok" as simulation__sra_ptr_ok
+    state "@sra_col_loop" as simulation__sra_col_loop
+    state "@sra_store" as simulation__sra_store
+    state "region_has_nonzero" as simulation_region_has_nonzero
+    state "@rhn_row_lo_ok" as simulation__rhn_row_lo_ok
+    state "@rhn_row_hi_ok" as simulation__rhn_row_hi_ok
+    state "@rhn_col_lo_ok" as simulation__rhn_col_lo_ok
+    state "@rhn_col_hi_ok" as simulation__rhn_col_hi_ok
+    state "@rhn_row_loop" as simulation__rhn_row_loop
+    state "@rhn_ptr_ok" as simulation__rhn_ptr_ok
+    state "@rhn_col_loop" as simulation__rhn_col_loop
+    state "@rhn_found" as simulation__rhn_found
+    state "build_service_maps" as simulation_build_service_maps
+    state "@bsm_row" as simulation__bsm_row
+    state "@bsm_col" as simulation__bsm_col
+    state "@bsm_police" as simulation__bsm_police
+    state "@bsm_fire" as simulation__bsm_fire
+    state "@bsm_house" as simulation__bsm_house
+    state "@bsm_factory" as simulation__bsm_factory
+    state "@bsm_next" as simulation__bsm_next
+    state "@bsm_next_row" as simulation__bsm_next_row
+    state "@bsm_done" as simulation__bsm_done
+    state "apply_neighbor_value_effect" as simulation_apply_neighbor_value_effect
+    state "@anv_road" as simulation__anv_road
+    state "@anv_house" as simulation__anv_house
+    state "@anv_factory" as simulation__anv_factory
+    state "@anv_sub_factory" as simulation__anv_sub_factory
+    state "@anv_park" as simulation__anv_park
+    state "@anv_power" as simulation__anv_power
+    state "@anv_sub_power" as simulation__anv_sub_power
+    state "@anv_police" as simulation__anv_police
+    state "@anv_service" as simulation__anv_service
+    state "@anv_done" as simulation__anv_done
+    state "compute_tile_value_at" as simulation_compute_tile_value_at
+    state "@ctv_road" as simulation__ctv_road
+    state "@ctv_house" as simulation__ctv_house
+    state "@ctv_factory" as simulation__ctv_factory
+    state "@ctv_park" as simulation__ctv_park
+    state "@ctv_power" as simulation__ctv_power
+    state "@ctv_police" as simulation__ctv_police
+    state "@ctv_fire" as simulation__ctv_fire
+    state "@ctv_base_done" as simulation__ctv_base_done
+    state "@ctv_effects" as simulation__ctv_effects
+    state "@ctv_public_safety" as simulation__ctv_public_safety
+    state "@ctv_neighbors" as simulation__ctv_neighbors
+    state "@ctv_south" as simulation__ctv_south
+    state "@ctv_east" as simulation__ctv_east
+    state "@ctv_west" as simulation__ctv_west
+    state "@ctv_need_road" as simulation__ctv_need_road
+    state "@ctv_check_road" as simulation__ctv_check_road
+    state "@ctv_sub_no_road" as simulation__ctv_sub_no_road
+    state "@ctv_clamp" as simulation__ctv_clamp
+    state "@ctv_done" as simulation__ctv_done
+    state "analyze_city_tiles" as simulation_analyze_city_tiles
+    state "@act_row" as simulation__act_row
+    state "@act_col" as simulation__act_col
+    state "@act_check_factory" as simulation__act_check_factory
+    state "@act_check_police" as simulation__act_check_police
+    state "@act_check_fire" as simulation__act_check_fire
+    state "@act_other" as simulation__act_other
+    state "@act_house" as simulation__act_house
+    state "@act_value_loop" as simulation__act_value_loop
+    state "@act_store_park" as simulation__act_store_park
+    state "@act_police" as simulation__act_police
+    state "@act_store_police" as simulation__act_store_police
+    state "@act_fire" as simulation__act_fire
+    state "@act_store_fire" as simulation__act_store_fire
+    state "@act_worker" as simulation__act_worker
+    state "@act_factory" as simulation__act_factory
+    state "@act_police_jobs" as simulation__act_police_jobs
+    state "@act_fire_jobs" as simulation__act_fire_jobs
+    state "@act_next" as simulation__act_next
+    state "@act_next_row" as simulation__act_next_row
+    state "@act_done" as simulation__act_done
+    state "add_to_component_jobs" as simulation_add_to_component_jobs
+    state "@acj_store" as simulation__acj_store
+    state "add_to_component_workers" as simulation_add_to_component_workers
+    state "@acw_store" as simulation__acw_store
+    state "touches_current_road_component" as simulation_touches_current_road_component
+    state "@trc_south" as simulation__trc_south
+    state "@trc_east" as simulation__trc_east
+    state "@trc_west" as simulation__trc_west
+    state "@trc_no" as simulation__trc_no
+    state "@trc_yes" as simulation__trc_yes
+    state "expand_current_road_component" as simulation_expand_current_road_component
+    state "@erc_pass" as simulation__erc_pass
+    state "@erc_row" as simulation__erc_row
+    state "@erc_col" as simulation__erc_col
+    state "@erc_roadlike" as simulation__erc_roadlike
+    state "@erc_next" as simulation__erc_next
+    state "@erc_next_row" as simulation__erc_next_row
+    state "@erc_pass_done" as simulation__erc_pass_done
+    state "mark_current_road_component_processed" as simulation_mark_current_road_component_processed
+    state "@mrc_row" as simulation__mrc_row
+    state "@mrc_col" as simulation__mrc_col
+    state "@mrc_next" as simulation__mrc_next
+    state "@mrc_next_row" as simulation__mrc_next_row
+    state "@mrc_done" as simulation__mrc_done
+    state "score_current_road_component" as simulation_score_current_road_component
+    state "@src_row" as simulation__src_row
+    state "@src_col" as simulation__src_col
+    state "@src_not_empty" as simulation__src_not_empty
+    state "@src_not_water" as simulation__src_not_water
+    state "@src_not_tree" as simulation__src_not_tree
+    state "@src_connected" as simulation__src_connected
+    state "@src_factory" as simulation__src_factory
+    state "@src_police" as simulation__src_police
+    state "@src_fire" as simulation__src_fire
+    state "@src_next" as simulation__src_next
+    state "@src_next_row" as simulation__src_next_row
+    state "@src_totals" as simulation__src_totals
+    state "@src_use_workers" as simulation__src_use_workers
+    state "@src_add_employed" as simulation__src_add_employed
+    state "@src_done" as simulation__src_done
+    state "analyze_road_networks" as simulation_analyze_road_networks
+    state "@arn_row" as simulation__arn_row
+    state "@arn_col" as simulation__arn_col
+    state "@arn_has_segments" as simulation__arn_has_segments
+    state "@arn_check_factory" as simulation__arn_check_factory
+    state "@arn_check_police" as simulation__arn_check_police
+    state "@arn_check_fire" as simulation__arn_check_fire
+    state "@arn_next" as simulation__arn_next
+    state "@arn_next_row" as simulation__arn_next_row
+    state "@arn_totals" as simulation__arn_totals
+    state "@arn_seg_loop" as simulation__arn_seg_loop
+    state "@arn_use_workers" as simulation__arn_use_workers
+    state "@arn_add_emp" as simulation__arn_add_emp
+    state "@arn_seg_next" as simulation__arn_seg_next
+    state "@arn_done" as simulation__arn_done
+    state "add_workers_for_segments" as simulation_add_workers_for_segments
+    state "@awfs_store_low" as simulation__awfs_store_low
+    state "@awfs_high" as simulation__awfs_high
+    state "@awfs_store_high" as simulation__awfs_store_high
+    state "@awfs_done" as simulation__awfs_done
+    state "add_jobs_for_segments" as simulation_add_jobs_for_segments
+    state "@ajfs_store_low" as simulation__ajfs_store_low
+    state "@ajfs_high" as simulation__ajfs_high
+    state "@ajfs_store_high" as simulation__ajfs_store_high
+    state "@ajfs_done" as simulation__ajfs_done
+    state "run_simulation" as simulation_run_simulation
+    state "@pwr_police" as simulation__pwr_police
+    state "@pwr_fire" as simulation__pwr_fire
+    state "@pwr_store" as simulation__pwr_store
+    state "@jobs" as simulation__jobs
+    state "@jobs_overlap_ready" as simulation__jobs_overlap_ready
+    state "@all_employed" as simulation__all_employed
+    state "@crime" as simulation__crime
+    state "@crime_cap" as simulation__crime_cap
+    state "@crime_blackout" as simulation__crime_blackout
+    state "@crime_store_blackout" as simulation__crime_store_blackout
+    state "@crime_police" as simulation__crime_police
+    state "@crime_sub_police" as simulation__crime_sub_police
+    state "@crime_fire" as simulation__crime_fire
+    state "@crime_sub_fire" as simulation__crime_sub_fire
+    state "@crime_parks" as simulation__crime_parks
+    state "@crime_sub_parks" as simulation__crime_sub_parks
+    state "@crime_done" as simulation__crime_done
+    state "@happiness" as simulation__happiness
+    state "@hap_store_parks" as simulation__hap_store_parks
+    state "@hap_store_police" as simulation__hap_store_police
+    state "@hap_store_fire" as simulation__hap_store_fire
+    state "@hap_store_value" as simulation__hap_store_value
+    state "@hap_sub_unemp" as simulation__hap_sub_unemp
+    state "@hap_job_bonus" as simulation__hap_job_bonus
+    state "@hap_store_bonus" as simulation__hap_store_bonus
+    state "@hap_blackout" as simulation__hap_blackout
+    state "@hap_sub_blackout" as simulation__hap_sub_blackout
+    state "@hap_crime" as simulation__hap_crime
+    state "@hap_sub_crime" as simulation__hap_sub_crime
+    state "@economy" as simulation__economy
+    state "@apply_net" as simulation__apply_net
+    state "@money_floor_ok" as simulation__money_floor_ok
+    state "@money_ceil_ok" as simulation__money_ceil_ok
+    state "@pop_jobs_ok" as simulation__pop_jobs_ok
+    state "@pop_target_ready" as simulation__pop_target_ready
+    state "@pop_shrink" as simulation__pop_shrink
+    state "@pop_do_shrink" as simulation__pop_do_shrink
+    state "@pop_balance" as simulation__pop_balance
+    state "@pop_done" as simulation__pop_done
+    state "@no_year" as simulation__no_year
+    state "show_title" as title_show_title
+    state "@box_row" as title__box_row
+    state "@box_col" as title__box_col
+    state "@flush" as title__flush
+    state "@wait_key" as title__wait_key
+    state "set_row_color" as title_set_row_color
+    state "@src_loop" as title__src_loop
+    state "print_str_col" as ui_print_str_col
+    state "@psc_nc1" as ui__psc_nc1
+    state "@psc_loop" as ui__psc_loop
+    state "@psc_done" as ui__psc_done
+    state "print_dec16" as ui_print_dec16
+    state "@pd_nc1" as ui__pd_nc1
+    state "@pd_loop" as ui__pd_loop
+    state "@pd_sub" as ui__pd_sub
+    state "@pd_do_sub" as ui__pd_do_sub
+    state "@pd_emit" as ui__pd_emit
+    state "fill_row_color" as ui_fill_row_color
+    state "@frc_loop" as ui__frc_loop
+    state "fill_row_char" as ui_fill_row_char
+    state "@frch_loop" as ui__frch_loop
+    state "draw_status_bar" as ui_draw_status_bar
+    state "draw_mode_row" as ui_draw_mode_row
+    state "@dm_demo" as ui__dm_demo
+    state "@dm_print" as ui__dm_print
+    state "@dm_needs" as ui__dm_needs
+    state "@dm_done" as ui__dm_done
+    state "draw_city_needs" as ui_draw_city_needs
+    state "@dcn_jobs" as ui__dcn_jobs
+    state "@dcn_housing" as ui__dcn_housing
+    state "@dcn_parks" as ui__dcn_parks
+    state "@dcn_safety" as ui__dcn_safety
+    state "@dcn_ok" as ui__dcn_ok
+    state "@dcn_done" as ui__dcn_done
+    state "draw_cursor_tile_info" as ui_draw_cursor_tile_info
+    state "@dcti_segment" as ui__dcti_segment
+    state "@dcti_no_level" as ui__dcti_no_level
+    state "@dcti_print_level" as ui__dcti_print_level
+    state "get_cursor_tile_impact" as ui_get_cursor_tile_impact
+    state "@gcti_road" as ui__gcti_road
+    state "@gcti_house" as ui__gcti_house
+    state "@gcti_factory" as ui__gcti_factory
+    state "@gcti_park" as ui__gcti_park
+    state "@gcti_power" as ui__gcti_power
+    state "@gcti_police" as ui__gcti_police
+    state "@gcti_fire" as ui__gcti_fire
+    state "@gcti_zero" as ui__gcti_zero
+    state "draw_cursor_tile_impact" as ui_draw_cursor_tile_impact
+    state "@dcti_zero" as ui__dcti_zero
+    state "@dcti_abs_ready" as ui__dcti_abs_ready
+    state "@dcti_tens" as ui__dcti_tens
+    state "@dcti_digits" as ui__dcti_digits
+    state "@dcti_scr_ok" as ui__dcti_scr_ok
+    state "@dcti_col_ok" as ui__dcti_col_ok
+    state "@dcti_blank_tens" as ui__dcti_blank_tens
+    state "@dcti_store_tens" as ui__dcti_store_tens
+    state "menu_entry_col" as ui_menu_entry_col
+    state "menu_entry_len" as ui_menu_entry_len
+    state "menu_icon_col" as ui_menu_icon_col
+    state "menu_icon_color" as ui_menu_icon_color
+    state "color_menu_icons" as ui_color_menu_icons
+    state "@cmi_loop" as ui__cmi_loop
+    state "@cmi_base" as ui__cmi_base
+    state "@cmi_store" as ui__cmi_store
+    state "highlight_sel_building" as ui_highlight_sel_building
+    state "@hsel_nc" as ui__hsel_nc
+    state "@hsel_loop" as ui__hsel_loop
+    state "@hsel_done" as ui__hsel_done
+
+    [*] --> buildings_try_place_building
+    buildings_try_place_building --> buildings__tp_sel_ok : Branch BNE
+    buildings__tp_sel_ok --> map_get_tile : Call get_tile
+    buildings__tp_sel_ok --> buildings__tp_check_same : Branch BNE
+    buildings__tp_sel_ok --> buildings__tp_upgrade_density : Branch BEQ
+    buildings__tp_sel_ok --> buildings__tp_check_same : fallthrough
+    buildings__tp_check_same --> buildings__tp_upgrade_density : Branch BEQ
+    buildings__tp_check_same --> buildings__tp_not_water : Branch BNE
+    buildings__tp_check_same --> buildings__tp_cant_build : Branch BNE
+    buildings__tp_check_same --> buildings__tp_check_cost : Jmp JMP
+    buildings__tp_check_same --> buildings__tp_not_water : fallthrough
+    buildings__tp_not_water --> buildings__tp_not_bridge : Branch BNE
+    buildings__tp_not_water --> buildings__tp_cant_build : Branch BNE
+    buildings__tp_not_water --> buildings__tp_check_cost : Jmp JMP
+    buildings__tp_not_water --> buildings__tp_not_bridge : fallthrough
+    buildings__tp_not_bridge --> buildings__tp_cant_build : Branch BEQ
+    buildings__tp_not_bridge --> buildings__tp_upgrade_density : fallthrough
+    buildings__tp_upgrade_density --> buildings__tp_max_density : Branch BEQ
+    buildings__tp_upgrade_density --> buildings__tp_check_cost : fallthrough
+    buildings__tp_check_cost --> buildings__tp_cost_ready : Branch BNE
+    buildings__tp_check_cost --> buildings__tp_cost_bridge : Branch BEQ
+    buildings__tp_check_cost --> buildings__tp_cost_ready : Branch BNE
+    buildings__tp_check_cost --> buildings__tp_cost_bridge : fallthrough
+    buildings__tp_cost_bridge --> buildings__tp_cost_ready : fallthrough
+    buildings__tp_cost_ready --> buildings__tp_afford : Branch BPL
+    buildings__tp_cost_ready --> ui_print_str_col : Call print_str_col
+    buildings__tp_cant_build --> ui_print_str_col : Call print_str_col
+    buildings__tp_max_density --> ui_print_str_col : Call print_str_col
+    buildings__tp_afford --> buildings__tp_make_upgrade : Branch BEQ
+    buildings__tp_afford --> buildings__tp_new_tile : Branch BNE
+    buildings__tp_afford --> buildings__tp_new_bridge : Branch BEQ
+    buildings__tp_afford --> buildings__tp_new_tile : Branch BNE
+    buildings__tp_afford --> buildings__tp_new_bridge : fallthrough
+    buildings__tp_new_bridge --> buildings__tp_place_new : Branch BNE
+    buildings__tp_new_bridge --> buildings__tp_new_tile : fallthrough
+    buildings__tp_new_tile --> buildings__tp_place_new : fallthrough
+    buildings__tp_place_new --> buildings__tp_place_tile : Branch BNE
+    buildings__tp_place_new --> buildings__tp_make_upgrade : fallthrough
+    buildings__tp_make_upgrade --> buildings__tp_place_tile : fallthrough
+    buildings__tp_place_tile --> buildings_place_tile_at : Call place_tile_at
+    buildings__tp_place_tile --> buildings__tp_msg_upgraded : Branch BNE
+    buildings__tp_place_tile --> buildings__tp_show_msg : Branch BNE
+    buildings__tp_place_tile --> buildings__tp_msg_upgraded : fallthrough
+    buildings__tp_msg_upgraded --> buildings__tp_show_msg : fallthrough
+    buildings__tp_show_msg --> ui_print_str_col : Call print_str_col
+    buildings_try_demolish --> map_get_tile : Call get_tile
+    buildings_try_demolish --> buildings__td_do_it : Branch BNE
+    buildings__td_do_it --> buildings__td_clear_tile : Branch BCC
+    buildings__td_do_it --> buildings__td_clear_tile : Branch BCS
+    buildings__td_do_it --> buildings__td_clear_tile : Branch BEQ
+    buildings__td_do_it --> buildings__td_place : Branch BNE
+    buildings__td_do_it --> buildings__td_clear_tile : fallthrough
+    buildings__td_clear_tile --> buildings__td_clear_empty : Branch BNE
+    buildings__td_clear_tile --> buildings__td_store_clear : Branch BNE
+    buildings__td_clear_tile --> buildings__td_clear_empty : fallthrough
+    buildings__td_clear_empty --> buildings__td_store_clear : fallthrough
+    buildings__td_store_clear --> buildings__td_place : fallthrough
+    buildings__td_place --> buildings_place_tile_at : Call place_tile_at
+    buildings__td_place --> buildings__td_msg_demo : Branch BEQ
+    buildings__td_place --> buildings__td_show_msg : Branch BNE
+    buildings__td_place --> buildings__td_msg_demo : fallthrough
+    buildings__td_msg_demo --> buildings__td_show_msg : fallthrough
+    buildings__td_show_msg --> ui_print_str_col : Call print_str_col
+    buildings_place_tile_at --> map_get_tile : Call get_tile
+    buildings_place_tile_at --> buildings_decrement_count : Call decrement_count
+    buildings_place_tile_at --> buildings__pta_old_road : Branch BEQ
+    buildings_place_tile_at --> buildings__pta_old_done : Branch BNE
+    buildings_place_tile_at --> buildings__pta_old_road : fallthrough
+    buildings__pta_old_road --> buildings__pta_old_done : fallthrough
+    buildings__pta_old_done --> buildings__pta_new_road : Branch BEQ
+    buildings__pta_old_done --> buildings__pta_compare : Branch BNE
+    buildings__pta_old_done --> buildings__pta_new_road : fallthrough
+    buildings__pta_new_road --> buildings__pta_compare : fallthrough
+    buildings__pta_compare --> buildings__pta_topology_changed : Branch BNE
+    buildings__pta_compare --> buildings__pta_write : Branch BEQ
+    buildings__pta_compare --> buildings__pta_topology_changed : fallthrough
+    buildings__pta_topology_changed --> buildings__pta_write : fallthrough
+    buildings__pta_write --> map_set_tile : Call set_tile
+    buildings__pta_write --> buildings_increment_count : Call increment_count
+    buildings__pta_write --> map_render_road_neighborhood : Call render_road_neighborhood
+    buildings__pta_write --> buildings__pta_update_one : Branch BEQ
+    buildings__pta_write --> simulation_rebuild_road_segments : Call rebuild_road_segments
+    buildings__pta_write --> buildings__pta_done : Jmp JMP
+    buildings__pta_write --> buildings__pta_update_one : fallthrough
+    buildings__pta_update_one --> simulation_update_building_segment_at : Call update_building_segment_at
+    buildings__pta_update_one --> buildings__pta_done : fallthrough
+    buildings_increment_count --> buildings_get_tile_density_units : Call get_tile_density_units
+    buildings_increment_count --> buildings__inc_road : Branch BEQ
+    buildings_increment_count --> buildings__inc1 : Branch BNE
+    buildings_increment_count --> buildings__inc_road : fallthrough
+    buildings__inc_road --> buildings__inc_store_road : Branch BCC
+    buildings__inc_road --> buildings__inc_store_road : fallthrough
+    buildings__inc1 --> buildings__inc2 : Branch BNE
+    buildings__inc1 --> buildings__inc_store_house : Branch BCC
+    buildings__inc1 --> buildings__inc_store_house : fallthrough
+    buildings__inc2 --> buildings__inc3 : Branch BNE
+    buildings__inc2 --> buildings__inc_store_factory : Branch BCC
+    buildings__inc2 --> buildings__inc_store_factory : fallthrough
+    buildings__inc3 --> buildings__inc4 : Branch BNE
+    buildings__inc3 --> buildings__inc_store_park : Branch BCC
+    buildings__inc3 --> buildings__inc_store_park : fallthrough
+    buildings__inc4 --> buildings__inc5 : Branch BNE
+    buildings__inc4 --> buildings__inc_store_power : Branch BCC
+    buildings__inc4 --> buildings__inc_store_power : fallthrough
+    buildings__inc5 --> buildings__inc6 : Branch BNE
+    buildings__inc5 --> buildings__inc_store_police : Branch BCC
+    buildings__inc5 --> buildings__inc_store_police : fallthrough
+    buildings__inc6 --> buildings__inc_done : Branch BNE
+    buildings__inc6 --> buildings__inc_store_fire : Branch BCC
+    buildings__inc6 --> buildings__inc_store_fire : fallthrough
+    buildings__inc_store_fire --> buildings__inc_done : fallthrough
+    buildings_decrement_count --> buildings_get_tile_density_units : Call get_tile_density_units
+    buildings_decrement_count --> buildings__dec_road : Branch BEQ
+    buildings_decrement_count --> buildings__dec1 : Branch BNE
+    buildings_decrement_count --> buildings__dec_road : fallthrough
+    buildings__dec_road --> buildings__dec_store_road : Branch BCS
+    buildings__dec_road --> buildings__dec_store_road : fallthrough
+    buildings__dec1 --> buildings__dec2 : Branch BNE
+    buildings__dec1 --> buildings__dec_store_house : Branch BCS
+    buildings__dec1 --> buildings__dec_store_house : fallthrough
+    buildings__dec2 --> buildings__dec3 : Branch BNE
+    buildings__dec2 --> buildings__dec_store_factory : Branch BCS
+    buildings__dec2 --> buildings__dec_store_factory : fallthrough
+    buildings__dec3 --> buildings__dec4 : Branch BNE
+    buildings__dec3 --> buildings__dec_store_park : Branch BCS
+    buildings__dec3 --> buildings__dec_store_park : fallthrough
+    buildings__dec4 --> buildings__dec5 : Branch BNE
+    buildings__dec4 --> buildings__dec_store_power : Branch BCS
+    buildings__dec4 --> buildings__dec_store_power : fallthrough
+    buildings__dec5 --> buildings__dec6 : Branch BNE
+    buildings__dec5 --> buildings__dec_store_police : Branch BCS
+    buildings__dec5 --> buildings__dec_store_police : fallthrough
+    buildings__dec6 --> buildings__dec_done : Branch BNE
+    buildings__dec6 --> buildings__dec_store_fire : Branch BCS
+    buildings__dec6 --> buildings__dec_store_fire : fallthrough
+    buildings__dec_store_fire --> buildings__dec_done : fallthrough
+    buildings_show_building_name --> buildings__sbn_done : Branch BEQ
+    buildings_show_building_name --> buildings__sbn_done : Branch BCS
+    buildings_show_building_name --> ui_print_str_col : Call print_str_col
+    buildings_show_building_name --> buildings__sbn_done : fallthrough
+    data_mul40_lo --> data_mul40_hi : fallthrough
+    data_mul40_hi --> data_tile_char : fallthrough
+    data_tile_char --> data_road_shape_char : fallthrough
+    data_road_shape_char --> data_tile_color : fallthrough
+    data_tile_color --> data_tile_density_base : fallthrough
+    data_tile_density_base --> data_density_color : fallthrough
+    data_density_color --> data_tile_mc_color : fallthrough
+    data_tile_mc_color --> data_density_mc_color : fallthrough
+    data_density_mc_color --> data_house_aoe_radius : fallthrough
+    data_house_aoe_radius --> data_factory_aoe_radius : fallthrough
+    data_factory_aoe_radius --> data_bld_cost_lo : fallthrough
+    data_bld_cost_lo --> data_bld_cost_hi : fallthrough
+    data_bld_cost_hi --> data_pow10_lo : fallthrough
+    data_pow10_lo --> data_pow10_hi : fallthrough
+    data_pow10_hi --> data_cursor_sprite_data : fallthrough
+    data_cursor_sprite_data --> data_custom_char_glyphs : fallthrough
+    data_custom_char_glyphs --> data_str_menu : fallthrough
+    data_str_menu --> data_str_msg_empty : fallthrough
+    data_str_msg_empty --> data_str_help : fallthrough
+    data_str_help --> data_bld_names : fallthrough
+    data_bld_names --> data_hud_tile_names : fallthrough
+    data_hud_tile_names --> data_hud_segment_names : fallthrough
+    data_hud_segment_names --> data_hud_level_names : fallthrough
+    init_init_system --> init_init_custom_charset : Call init_custom_charset
+    init_init_system --> init_clear_screen : Call clear_screen
+    init_init_system --> init_init_cursor_sprite : Call init_cursor_sprite
+    init_init_system --> init_init_map : Call init_map
+    init_init_system --> simulation_clear_road_segment_state : Call clear_road_segment_state
+    init_init_system --> init_init_raster_split : Call init_raster_split
+    init_init_custom_charset --> init__icc_page : fallthrough
+    init__icc_page --> init__icc_byte : fallthrough
+    init__icc_byte --> init__icc_byte : Branch BNE
+    init__icc_byte --> init__icc_page : Branch BNE
+    init__icc_byte --> init__icc_custom_page : fallthrough
+    init__icc_custom_page --> init__icc_custom : fallthrough
+    init__icc_custom --> init__icc_custom : Branch BNE
+    init__icc_custom --> init__icc_custom_page : Branch BNE
+    init_init_cursor_sprite --> init__ics_copy : fallthrough
+    init__ics_copy --> init__ics_copy : Branch BNE
+    init__ics_copy --> init_disable_cursor_sprite : Call disable_cursor_sprite
+    init_enable_cursor_sprite --> map_update_cursor_display : Call update_cursor_display
+    init_raster_irq --> init__chain_kernal : Branch BEQ
+    init_raster_irq --> init__top_phase : Branch BEQ
+    init_raster_irq --> init__lower_phase : fallthrough
+    init__lower_phase --> init__irq_done : Jmp JMP
+    init__lower_phase --> init__top_phase : fallthrough
+    init__top_phase --> init__irq_done : fallthrough
+    state "KERNAL_IRQ (external)" as external_KERNAL_IRQ
+    init__chain_kernal --> external_KERNAL_IRQ : Jmp JMP
+    init__chain_kernal --> init_clear_screen : fallthrough
+    init_clear_screen --> init__pg_loop : fallthrough
+    init__pg_loop --> init__byte_loop : fallthrough
+    init__byte_loop --> init__byte_loop : Branch BNE
+    init__byte_loop --> init__pg_loop : Branch BNE
+    init__byte_loop --> init__rem_loop : fallthrough
+    init__rem_loop --> init__rem_loop : Branch BNE
+    init_init_map --> init__im_pg : fallthrough
+    init__im_pg --> init__im_inner : fallthrough
+    init__im_inner --> init__im_inner : Branch BNE
+    init__im_inner --> init__im_pg : Branch BNE
+    init__im_inner --> init__im_rem : fallthrough
+    init__im_rem --> init__im_rem : Branch BNE
+    init__im_rem --> init__river : fallthrough
+    init__river --> init__river : Branch BNE
+    input_read_input --> input__ri_process : Call KERNAL_GETIN
+    input_read_input --> input__ri_process : Branch BNE
+    input__ri_process --> input__ri_not_lc : Branch BCC
+    input__ri_process --> input__ri_not_lc : Branch BCS
+    input__ri_process --> input__ri_not_lc : fallthrough
+    input__ri_not_lc --> input__ri_check_w : Branch BNE
+    input__ri_not_lc --> input__ri_up : Jmp JMP
+    input__ri_not_lc --> input__ri_check_w : fallthrough
+    input__ri_check_w --> input__ri_check_down : Branch BNE
+    input__ri_check_w --> input__ri_up : Jmp JMP
+    input__ri_check_w --> input__ri_check_down : fallthrough
+    input__ri_check_down --> input__ri_check_s : Branch BNE
+    input__ri_check_down --> input__ri_down : Jmp JMP
+    input__ri_check_down --> input__ri_check_s : fallthrough
+    input__ri_check_s --> input__ri_check_left : Branch BNE
+    input__ri_check_s --> input__ri_down : Jmp JMP
+    input__ri_check_s --> input__ri_check_left : fallthrough
+    input__ri_check_left --> input__ri_check_a : Branch BNE
+    input__ri_check_left --> input__ri_left : Jmp JMP
+    input__ri_check_left --> input__ri_check_a : fallthrough
+    input__ri_check_a --> input__ri_check_right : Branch BNE
+    input__ri_check_a --> input__ri_left : Jmp JMP
+    input__ri_check_a --> input__ri_check_right : fallthrough
+    input__ri_check_right --> input__ri_check_d : Branch BNE
+    input__ri_check_right --> input__ri_right : Jmp JMP
+    input__ri_check_right --> input__ri_check_d : fallthrough
+    input__ri_check_d --> input__ri_check_1 : Branch BNE
+    input__ri_check_d --> input__ri_right : Jmp JMP
+    input__ri_check_d --> input__ri_check_1 : fallthrough
+    input__ri_check_1 --> input__ri_check_2 : Branch BNE
+    input__ri_check_1 --> input__ri_sel1 : Jmp JMP
+    input__ri_check_1 --> input__ri_check_2 : fallthrough
+    input__ri_check_2 --> input__ri_check_3 : Branch BNE
+    input__ri_check_2 --> input__ri_sel2 : Jmp JMP
+    input__ri_check_2 --> input__ri_check_3 : fallthrough
+    input__ri_check_3 --> input__ri_check_4 : Branch BNE
+    input__ri_check_3 --> input__ri_sel3 : Jmp JMP
+    input__ri_check_3 --> input__ri_check_4 : fallthrough
+    input__ri_check_4 --> input__ri_check_5 : Branch BNE
+    input__ri_check_4 --> input__ri_sel4 : Jmp JMP
+    input__ri_check_4 --> input__ri_check_5 : fallthrough
+    input__ri_check_5 --> input__ri_check_6 : Branch BNE
+    input__ri_check_5 --> input__ri_sel5 : Jmp JMP
+    input__ri_check_5 --> input__ri_check_6 : fallthrough
+    input__ri_check_6 --> input__ri_check_7 : Branch BNE
+    input__ri_check_6 --> input__ri_sel6 : Jmp JMP
+    input__ri_check_6 --> input__ri_check_7 : fallthrough
+    input__ri_check_7 --> input__ri_check_action : Branch BNE
+    input__ri_check_7 --> input__ri_sel7 : Jmp JMP
+    input__ri_check_7 --> input__ri_check_action : fallthrough
+    input__ri_check_action --> input__ri_check_b : Branch BNE
+    input__ri_check_action --> input__ri_build : Jmp JMP
+    input__ri_check_action --> input__ri_check_b : fallthrough
+    input__ri_check_b --> input__ri_check_x : Branch BNE
+    input__ri_check_b --> input__ri_build : Jmp JMP
+    input__ri_check_b --> input__ri_check_x : fallthrough
+    input__ri_check_x --> input__ri_check_q : Branch BNE
+    input__ri_check_x --> input__ri_demo : Jmp JMP
+    input__ri_check_x --> input__ri_check_q : fallthrough
+    input__ri_check_q --> input__ri_unknown : Branch BNE
+    input__ri_check_q --> input__ri_quit : Jmp JMP
+    input__ri_check_q --> input__ri_unknown : fallthrough
+    input__ri_up --> map_restore_cursor_color : Call restore_cursor_color
+    input__ri_up --> input__ri_up_move : Branch BNE
+    input__ri_up --> input__ri_done : Jmp JMP
+    input__ri_up --> input__ri_up_move : fallthrough
+    input__ri_up_move --> input__ri_moved : Jmp JMP
+    input__ri_up_move --> input__ri_down : fallthrough
+    input__ri_down --> map_restore_cursor_color : Call restore_cursor_color
+    input__ri_down --> input__ri_down_move : Branch BNE
+    input__ri_down --> input__ri_done : Jmp JMP
+    input__ri_down --> input__ri_down_move : fallthrough
+    input__ri_down_move --> input__ri_moved : Jmp JMP
+    input__ri_down_move --> input__ri_left : fallthrough
+    input__ri_left --> map_restore_cursor_color : Call restore_cursor_color
+    input__ri_left --> input__ri_left_move : Branch BNE
+    input__ri_left --> input__ri_done : Jmp JMP
+    input__ri_left --> input__ri_left_move : fallthrough
+    input__ri_left_move --> input__ri_moved : Jmp JMP
+    input__ri_left_move --> input__ri_right : fallthrough
+    input__ri_right --> map_restore_cursor_color : Call restore_cursor_color
+    input__ri_right --> input__ri_right_move : Branch BNE
+    input__ri_right --> input__ri_done : Jmp JMP
+    input__ri_right --> input__ri_right_move : fallthrough
+    input__ri_right_move --> input__ri_moved : fallthrough
+    input__ri_sel1 --> input__ri_setsel : Branch BNE
+    input__ri_sel1 --> input__ri_sel2 : fallthrough
+    input__ri_sel2 --> input__ri_setsel : Branch BNE
+    input__ri_sel2 --> input__ri_sel3 : fallthrough
+    input__ri_sel3 --> input__ri_setsel : Branch BNE
+    input__ri_sel3 --> input__ri_sel4 : fallthrough
+    input__ri_sel4 --> input__ri_setsel : Branch BNE
+    input__ri_sel4 --> input__ri_sel5 : fallthrough
+    input__ri_sel5 --> input__ri_setsel : Branch BNE
+    input__ri_sel5 --> input__ri_sel6 : fallthrough
+    input__ri_sel6 --> input__ri_setsel : Branch BNE
+    input__ri_sel6 --> input__ri_sel7 : fallthrough
+    input__ri_sel7 --> input__ri_setsel : fallthrough
+    input__ri_setsel --> buildings_show_building_name : Call show_building_name
+    input__ri_build --> buildings_try_place_building : Call try_place_building
+    input__ri_demo --> buildings_try_demolish : Call try_demolish
+    input__ri_quit --> title_show_title : Call show_title
+    input__ri_quit --> init_clear_screen : Call clear_screen
+    input__ri_quit --> map_render_map : Call render_map
+    input__ri_quit --> ui_draw_status_bar : Call draw_status_bar
+    input__ri_quit --> init_enable_cursor_sprite : Call enable_cursor_sprite
+    input__ri_quit --> input__ri_done : fallthrough
+    main_game_start --> init_init_system : Call init_system
+    main_game_start --> title_show_title : Call show_title
+    main_game_start --> init_clear_screen : Call clear_screen
+    main_game_start --> map_render_map : Call render_map
+    main_game_start --> ui_draw_status_bar : Call draw_status_bar
+    main_game_start --> init_enable_cursor_sprite : Call enable_cursor_sprite
+    main_game_start --> main_game_loop : fallthrough
+    main_game_loop --> main__wait_jiffy : fallthrough
+    main__wait_jiffy --> main__wait_jiffy : Branch BEQ
+    main__wait_jiffy --> input_read_input : Call read_input
+    main__wait_jiffy --> main__no_sim : Branch BNE
+    main__wait_jiffy --> simulation_run_simulation : Call run_simulation
+    main__wait_jiffy --> main__no_sim : fallthrough
+    main__no_sim --> main__no_map_redraw : Branch BEQ
+    main__no_sim --> map_render_map : Call render_map
+    main__no_sim --> main__no_map_redraw : fallthrough
+    main__no_map_redraw --> map_update_cursor_display : Call update_cursor_display
+    main__no_map_redraw --> main__no_ui_redraw : Branch BEQ
+    main__no_map_redraw --> ui_draw_status_bar : Call draw_status_bar
+    main__no_map_redraw --> main__no_ui_redraw : fallthrough
+    main__no_ui_redraw --> main_game_loop : Jmp JMP
+    map_render_map --> map__rm_row : fallthrough
+    map__rm_row --> map__rm_col : fallthrough
+    map__rm_col --> map_render_tile : Call render_tile
+    map__rm_col --> map__rm_col : Branch BNE
+    map__rm_col --> map__rm_row : Branch BNE
+    map_render_tile --> map_update_cursor_aoe_state : Call update_cursor_aoe_state
+    map_render_tile --> map_get_tile_screen_char : Call get_tile_screen_char
+    map_render_tile --> map_get_tile_draw_color : Call get_tile_draw_color
+    map_render_road_neighborhood --> map_render_tile : Call render_tile
+    map_render_road_neighborhood --> map__rrn_south : Branch BEQ
+    map_render_road_neighborhood --> map_get_tile : Call get_tile
+    map_render_road_neighborhood --> map__rrn_render_north : Branch BEQ
+    map_render_road_neighborhood --> map__rrn_restore_north : Branch BNE
+    map_render_road_neighborhood --> map__rrn_render_north : fallthrough
+    map__rrn_render_north --> map_render_tile : Call render_tile
+    map__rrn_render_north --> map__rrn_restore_north : fallthrough
+    map__rrn_restore_north --> map__rrn_south : fallthrough
+    map__rrn_south --> map__rrn_east : Branch BEQ
+    map__rrn_south --> map_get_tile : Call get_tile
+    map__rrn_south --> map__rrn_render_south : Branch BEQ
+    map__rrn_south --> map__rrn_restore_south : Branch BNE
+    map__rrn_south --> map__rrn_render_south : fallthrough
+    map__rrn_render_south --> map_render_tile : Call render_tile
+    map__rrn_render_south --> map__rrn_restore_south : fallthrough
+    map__rrn_restore_south --> map__rrn_east : fallthrough
+    map__rrn_east --> map__rrn_west : Branch BEQ
+    map__rrn_east --> map_get_tile : Call get_tile
+    map__rrn_east --> map__rrn_render_east : Branch BEQ
+    map__rrn_east --> map__rrn_restore_east : Branch BNE
+    map__rrn_east --> map__rrn_render_east : fallthrough
+    map__rrn_render_east --> map_render_tile : Call render_tile
+    map__rrn_render_east --> map__rrn_restore_east : fallthrough
+    map__rrn_restore_east --> map__rrn_west : fallthrough
+    map__rrn_west --> map__rrn_done : Branch BEQ
+    map__rrn_west --> map_get_tile : Call get_tile
+    map__rrn_west --> map__rrn_render_west : Branch BEQ
+    map__rrn_west --> map__rrn_restore_west : Branch BNE
+    map__rrn_west --> map__rrn_render_west : fallthrough
+    map__rrn_render_west --> map_render_tile : Call render_tile
+    map__rrn_render_west --> map__rrn_restore_west : fallthrough
+    map__rrn_restore_west --> map_render_road_neighborhood_exit : fallthrough
+    map_render_road_neighborhood_exit --> map__rrn_done : fallthrough
+    map_get_tile_screen_char --> map__gtsc_road : Branch BEQ
+    map_get_tile_screen_char --> map__gtsc_road : Branch BEQ
+    map_get_tile_screen_char --> map_tile_in_cursor_aoe : Call tile_in_cursor_aoe
+    map_get_tile_screen_char --> map__gtsc_base : Branch BEQ
+    map__gtsc_road --> map_get_road_screen_char : Call get_road_screen_char
+    map__gtsc_road --> map_tile_in_cursor_aoe : Call tile_in_cursor_aoe
+    map__gtsc_road --> map__gtsc_base : Branch BEQ
+    map_get_road_screen_char --> map__grsc_south : Branch BEQ
+    map_get_road_screen_char --> map_get_tile : Call get_tile
+    map_get_road_screen_char --> map__grsc_north_yes : Branch BEQ
+    map_get_road_screen_char --> map__grsc_south : Branch BNE
+    map_get_road_screen_char --> map__grsc_north_yes : fallthrough
+    map__grsc_north_yes --> map__grsc_south : fallthrough
+    map__grsc_south --> map__grsc_east : Branch BEQ
+    map__grsc_south --> map_get_tile : Call get_tile
+    map__grsc_south --> map__grsc_south_yes : Branch BEQ
+    map__grsc_south --> map__grsc_east : Branch BNE
+    map__grsc_south --> map__grsc_south_yes : fallthrough
+    map__grsc_south_yes --> map__grsc_east : fallthrough
+    map__grsc_east --> map__grsc_west : Branch BEQ
+    map__grsc_east --> map_get_tile : Call get_tile
+    map__grsc_east --> map__grsc_east_yes : Branch BEQ
+    map__grsc_east --> map__grsc_west : Branch BNE
+    map__grsc_east --> map__grsc_east_yes : fallthrough
+    map__grsc_east_yes --> map__grsc_west : fallthrough
+    map__grsc_west --> map__grsc_lookup : Branch BEQ
+    map__grsc_west --> map_get_tile : Call get_tile
+    map__grsc_west --> map__grsc_west_yes : Branch BEQ
+    map__grsc_west --> map__grsc_lookup : Branch BNE
+    map__grsc_west --> map__grsc_west_yes : fallthrough
+    map__grsc_west_yes --> map__grsc_lookup : fallthrough
+    map_update_cursor_display --> map__ucd_store_x : Branch BEQ
+    map_update_cursor_display --> map__ucd_store_x : fallthrough
+    map_update_cursor_aoe_state --> map_get_tile : Call get_tile
+    map_update_cursor_aoe_state --> map_get_tile_highlight_color : Call get_tile_highlight_color
+    map_update_cursor_aoe_state --> map__ucao_house : Branch BEQ
+    map_update_cursor_aoe_state --> map__ucao_factory : Branch BEQ
+    map_update_cursor_aoe_state --> map__ucao_park : Branch BEQ
+    map_update_cursor_aoe_state --> map__ucao_police : Branch BEQ
+    map_update_cursor_aoe_state --> map__ucao_fire : Branch BEQ
+    map__ucao_house --> buildings_get_tile_density_units : Call get_tile_density_units
+    map__ucao_house --> map__ucao_enable : Branch BNE
+    map__ucao_house --> map__ucao_factory : fallthrough
+    map__ucao_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    map__ucao_factory --> map__ucao_enable : fallthrough
+    map__ucao_park --> map__ucao_store : Branch BNE
+    map__ucao_park --> map__ucao_police : fallthrough
+    map__ucao_police --> map__ucao_store : Branch BNE
+    map__ucao_police --> map__ucao_fire : fallthrough
+    map__ucao_fire --> map__ucao_store : fallthrough
+    map_tile_in_cursor_aoe --> map__tica_dx : Branch BNE
+    map__tica_dx --> map__tica_dx_abs : Branch BCS
+    map__tica_dx --> map__tica_dx_abs : fallthrough
+    map__tica_dx_abs --> map__tica_dy : Branch BCC
+    map__tica_dx_abs --> map__tica_dy : Branch BEQ
+    map__tica_dy --> map__tica_dy_abs : Branch BCS
+    map__tica_dy --> map__tica_dy_abs : fallthrough
+    map__tica_dy_abs --> map__tica_yes : Branch BCC
+    map__tica_dy_abs --> map__tica_yes : Branch BEQ
+    map_get_tile_draw_color --> map__gtdc_base : Branch BCC
+    map_get_tile_draw_color --> map__gtdc_base : Branch BCS
+    map_get_tile_highlight_color --> map__gthc_base : Branch BCC
+    map_get_tile_highlight_color --> map__gthc_base : Branch BCS
+    map_restore_cursor_color --> map_get_tile : Call get_tile
+    map_restore_cursor_color --> map_get_tile_draw_color : Call get_tile_draw_color
+    map_restore_cursor_color --> map__rcc_no_carry : Branch BCC
+    map_restore_cursor_color --> map__rcc_no_carry : fallthrough
+    simulation_mul_by_5 --> simulation__m5_done : Branch BEQ
+    simulation_mul_by_5 --> simulation__m5_loop : fallthrough
+    simulation__m5_loop --> simulation__m5_cap : Branch BCS
+    simulation__m5_loop --> simulation__m5_loop : Branch BNE
+    simulation__m5_loop --> simulation__m5_done : fallthrough
+    simulation_mul_by_10 --> simulation__m10_done : Branch BEQ
+    simulation_mul_by_10 --> simulation__m10_loop : fallthrough
+    simulation__m10_loop --> simulation__m10_cap : Branch BCS
+    simulation__m10_loop --> simulation__m10_loop : Branch BNE
+    simulation__m10_loop --> simulation__m10_done : fallthrough
+    simulation_mul_by_20 --> simulation__m20_done : Branch BEQ
+    simulation_mul_by_20 --> simulation__m20_loop : fallthrough
+    simulation__m20_loop --> simulation__m20_cap : Branch BCS
+    simulation__m20_loop --> simulation__m20_loop : Branch BNE
+    simulation__m20_loop --> simulation__m20_done : fallthrough
+    simulation_mul_by_50 --> simulation__m50_done : Branch BEQ
+    simulation_mul_by_50 --> simulation__m50_loop : fallthrough
+    simulation__m50_loop --> simulation__m50_cap : Branch BCS
+    simulation__m50_loop --> simulation__m50_loop : Branch BNE
+    simulation__m50_loop --> simulation__m50_done : fallthrough
+    simulation_mul_by_2 --> simulation__m2_cap : Branch BCS
+    simulation_mul_by_3 --> simulation__m3_cap : Branch BCS
+    simulation_mul_by_3 --> simulation__m3_cap : Branch BCS
+    simulation_add_to_jobs --> simulation__atj_store : Branch BCC
+    simulation_add_to_jobs --> simulation__atj_store : fallthrough
+    simulation_add_to_revenue --> simulation__atr_done : Branch BCC
+    simulation_add_to_revenue --> simulation__atr_done : fallthrough
+    simulation_add_to_cost --> simulation__atc_done : Branch BCC
+    simulation_add_to_cost --> simulation__atc_done : fallthrough
+    simulation_add_to_land_value --> simulation__atl_done : Branch BCC
+    simulation_add_to_land_value --> simulation__atl_done : Branch BNE
+    simulation_add_to_land_value --> simulation__atl_done : fallthrough
+    simulation_add_to_worker_supply --> simulation__atw_store : Branch BCC
+    simulation_add_to_worker_supply --> simulation__atw_store : fallthrough
+    simulation_add_a_to_tmp3 --> simulation__a3_store : Branch BCC
+    simulation_add_a_to_tmp3 --> simulation__a3_store : fallthrough
+    simulation_clear_map_buffer --> simulation__cmb_page : fallthrough
+    simulation__cmb_page --> simulation__cmb_loop : fallthrough
+    simulation__cmb_loop --> simulation__cmb_loop : Branch BNE
+    simulation__cmb_loop --> simulation__cmb_page : Branch BNE
+    simulation__cmb_loop --> simulation__cmb_rem : fallthrough
+    simulation__cmb_rem --> simulation__cmb_rem : Branch BNE
+    simulation_clear_sim_maps --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_clear_sim_maps --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_clear_sim_maps --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_clear_sim_maps --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_clear_sim_maps --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_clear_sim_maps --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_copy_map_buffer --> simulation__cpb_page : fallthrough
+    simulation__cpb_page --> simulation__cpb_loop : fallthrough
+    simulation__cpb_loop --> simulation__cpb_loop : Branch BNE
+    simulation__cpb_loop --> simulation__cpb_page : Branch BNE
+    simulation__cpb_loop --> simulation__cpb_rem : fallthrough
+    simulation__cpb_rem --> simulation__cpb_rem : Branch BNE
+    simulation_clear_segment_totals --> simulation__cst_loop : fallthrough
+    simulation__cst_loop --> simulation__cst_loop : Branch BPL
+    simulation_clear_segment_used --> simulation__csu_loop : fallthrough
+    simulation__csu_loop --> simulation__csu_loop : Branch BPL
+    simulation_clear_road_segment_state --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_clear_road_segment_state --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_clear_road_segment_state --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_clear_road_segment_state --> simulation_clear_segment_totals : Call clear_segment_totals
+    simulation_clear_road_segment_state --> simulation_clear_segment_used : Call clear_segment_used
+    simulation_add_segment_to_pack --> simulation__astp_done : Branch BCS
+    simulation_add_segment_to_pack --> simulation__astp_done : Branch BEQ
+    simulation_add_segment_to_pack --> simulation__astp_store_low : Branch BEQ
+    simulation_add_segment_to_pack --> simulation__astp_done : Branch BEQ
+    simulation_add_segment_to_pack --> simulation__astp_store_high : Branch BEQ
+    simulation_add_segment_to_pack --> simulation__astp_done : Branch BEQ
+    simulation_add_segment_to_pack --> simulation__astp_check_high : Branch BCC
+    simulation__astp_check_high --> simulation__astp_done : Branch BCC
+    simulation__astp_check_high --> simulation__astp_done : Branch BEQ
+    simulation__astp_store_high --> simulation__astp_done : fallthrough
+    simulation_collect_adjacent_segments --> simulation__cas_south : Branch BEQ
+    simulation_collect_adjacent_segments --> simulation_load_metric_at : Call load_metric_at
+    simulation_collect_adjacent_segments --> simulation_add_segment_to_pack : Call add_segment_to_pack
+    simulation_collect_adjacent_segments --> simulation__cas_south : fallthrough
+    simulation__cas_south --> simulation__cas_east : Branch BCS
+    simulation__cas_south --> simulation_load_metric_at : Call load_metric_at
+    simulation__cas_south --> simulation_add_segment_to_pack : Call add_segment_to_pack
+    simulation__cas_south --> simulation__cas_east : fallthrough
+    simulation__cas_east --> simulation__cas_west : Branch BCS
+    simulation__cas_east --> simulation_load_metric_at : Call load_metric_at
+    simulation__cas_east --> simulation_add_segment_to_pack : Call add_segment_to_pack
+    simulation__cas_east --> simulation__cas_west : fallthrough
+    simulation__cas_west --> simulation__cas_done : Branch BEQ
+    simulation__cas_west --> simulation_load_metric_at : Call load_metric_at
+    simulation__cas_west --> simulation_add_segment_to_pack : Call add_segment_to_pack
+    simulation__cas_west --> simulation__cas_done : fallthrough
+    simulation_update_building_segment_at --> map_get_tile : Call get_tile
+    simulation_update_building_segment_at --> simulation__ubsa_clear : Branch BCC
+    simulation_update_building_segment_at --> simulation__ubsa_clear : Branch BCS
+    simulation_update_building_segment_at --> simulation_collect_adjacent_segments : Call collect_adjacent_segments
+    simulation_update_building_segment_at --> simulation_store_metric_at : Jmp JMP
+    simulation_update_building_segment_at --> simulation__ubsa_clear : fallthrough
+    simulation__ubsa_clear --> simulation_store_metric_at : Jmp JMP
+    simulation__ubsa_clear --> simulation_rebuild_building_segments : fallthrough
+    simulation_rebuild_building_segments --> simulation__rbs_row : fallthrough
+    simulation__rbs_row --> simulation__rbs_col : fallthrough
+    simulation__rbs_col --> simulation_update_building_segment_at : Call update_building_segment_at
+    simulation__rbs_col --> simulation__rbs_next_row : Branch BEQ
+    simulation__rbs_col --> simulation__rbs_col : Jmp JMP
+    simulation__rbs_col --> simulation__rbs_next_row : fallthrough
+    simulation__rbs_next_row --> simulation__rbs_done : Branch BEQ
+    simulation__rbs_next_row --> simulation__rbs_row : Jmp JMP
+    simulation__rbs_next_row --> simulation__rbs_done : fallthrough
+    simulation_touches_current_segment --> simulation__tcs_south : Branch BEQ
+    simulation_touches_current_segment --> simulation_load_metric_at : Call load_metric_at
+    simulation_touches_current_segment --> simulation__tcs_yes : Branch BEQ
+    simulation_touches_current_segment --> simulation__tcs_south : fallthrough
+    simulation__tcs_south --> simulation__tcs_east : Branch BCS
+    simulation__tcs_south --> simulation_load_metric_at : Call load_metric_at
+    simulation__tcs_south --> simulation__tcs_yes : Branch BEQ
+    simulation__tcs_south --> simulation__tcs_east : fallthrough
+    simulation__tcs_east --> simulation__tcs_west : Branch BCS
+    simulation__tcs_east --> simulation_load_metric_at : Call load_metric_at
+    simulation__tcs_east --> simulation__tcs_yes : Branch BEQ
+    simulation__tcs_east --> simulation__tcs_west : fallthrough
+    simulation__tcs_west --> simulation__tcs_no : Branch BEQ
+    simulation__tcs_west --> simulation_load_metric_at : Call load_metric_at
+    simulation__tcs_west --> simulation__tcs_yes : Branch BEQ
+    simulation__tcs_west --> simulation__tcs_no : fallthrough
+    simulation_expand_temp_segment --> simulation__ets_pass : fallthrough
+    simulation__ets_pass --> simulation__ets_row : fallthrough
+    simulation__ets_row --> simulation__ets_col : fallthrough
+    simulation__ets_col --> map_get_tile : Call get_tile
+    simulation__ets_col --> simulation__ets_roadlike : Branch BEQ
+    simulation__ets_col --> simulation__ets_next : Branch BNE
+    simulation__ets_col --> simulation__ets_roadlike : fallthrough
+    simulation__ets_roadlike --> simulation_load_metric_at : Call load_metric_at
+    simulation__ets_roadlike --> simulation__ets_next : Branch BNE
+    simulation__ets_roadlike --> simulation_touches_current_segment : Call touches_current_segment
+    simulation__ets_roadlike --> simulation__ets_next : Branch BEQ
+    simulation__ets_roadlike --> simulation_store_metric_at : Call store_metric_at
+    simulation__ets_roadlike --> simulation__ets_next : fallthrough
+    simulation__ets_next --> simulation__ets_next_row : Branch BEQ
+    simulation__ets_next --> simulation__ets_col : Jmp JMP
+    simulation__ets_next --> simulation__ets_next_row : fallthrough
+    simulation__ets_next_row --> simulation__ets_pass_done : Branch BEQ
+    simulation__ets_next_row --> simulation__ets_row : Jmp JMP
+    simulation__ets_next_row --> simulation__ets_pass_done : fallthrough
+    simulation__ets_pass_done --> simulation__ets_pass : Branch BNE
+    simulation_choose_segment_id_for_temp --> simulation__csit_row : fallthrough
+    simulation__csit_row --> simulation__csit_col : fallthrough
+    simulation__csit_col --> simulation_load_metric_at : Call load_metric_at
+    simulation__csit_col --> simulation__csit_next : Branch BNE
+    simulation__csit_col --> simulation_load_metric_at : Call load_metric_at
+    simulation__csit_col --> simulation__csit_next : Branch BEQ
+    simulation__csit_col --> simulation__csit_next : Branch BCS
+    simulation__csit_col --> simulation__csit_store_old : Branch BEQ
+    simulation__csit_col --> simulation__csit_store_old : Branch BCS
+    simulation__csit_col --> simulation__csit_store_old : Branch BEQ
+    simulation__csit_col --> simulation__csit_next : Branch BCS
+    simulation__csit_col --> simulation__csit_store_old : fallthrough
+    simulation__csit_store_old --> simulation__csit_next : fallthrough
+    simulation__csit_next --> simulation__csit_next_row : Branch BEQ
+    simulation__csit_next --> simulation__csit_col : Jmp JMP
+    simulation__csit_next --> simulation__csit_next_row : fallthrough
+    simulation__csit_next_row --> simulation__csit_choose : Branch BEQ
+    simulation__csit_next_row --> simulation__csit_row : Jmp JMP
+    simulation__csit_next_row --> simulation__csit_choose : fallthrough
+    simulation__csit_choose --> simulation__csit_find_free : Branch BEQ
+    simulation__csit_choose --> simulation__csit_find_free : Branch BNE
+    simulation__csit_choose --> simulation__csit_use : Branch BNE
+    simulation__csit_choose --> simulation__csit_find_free : fallthrough
+    simulation__csit_find_free --> simulation__csit_find_loop : fallthrough
+    simulation__csit_find_loop --> simulation__csit_use_x : Branch BEQ
+    simulation__csit_find_loop --> simulation__csit_find_loop : Branch BNE
+    simulation__csit_use_x --> simulation__csit_use : fallthrough
+    simulation_relabel_temp_segment --> simulation__rts_row : fallthrough
+    simulation__rts_row --> simulation__rts_col : fallthrough
+    simulation__rts_col --> simulation_load_metric_at : Call load_metric_at
+    simulation__rts_col --> simulation__rts_next : Branch BNE
+    simulation__rts_col --> simulation_store_metric_at : Call store_metric_at
+    simulation__rts_col --> simulation__rts_next : fallthrough
+    simulation__rts_next --> simulation__rts_next_row : Branch BEQ
+    simulation__rts_next --> simulation__rts_col : Jmp JMP
+    simulation__rts_next --> simulation__rts_next_row : fallthrough
+    simulation__rts_next_row --> simulation__rts_done : Branch BEQ
+    simulation__rts_next_row --> simulation__rts_row : Jmp JMP
+    simulation__rts_next_row --> simulation__rts_done : fallthrough
+    simulation_rebuild_road_segments --> simulation_copy_map_buffer : Call copy_map_buffer
+    simulation_rebuild_road_segments --> simulation_clear_map_buffer : Call clear_map_buffer
+    simulation_rebuild_road_segments --> simulation_clear_segment_used : Call clear_segment_used
+    simulation_rebuild_road_segments --> simulation__rrs_row : fallthrough
+    simulation__rrs_row --> simulation__rrs_col : fallthrough
+    simulation__rrs_col --> map_get_tile : Call get_tile
+    simulation__rrs_col --> simulation__rrs_roadlike : Branch BEQ
+    simulation__rrs_col --> simulation__rrs_next : Branch BNE
+    simulation__rrs_col --> simulation__rrs_roadlike : fallthrough
+    simulation__rrs_roadlike --> simulation_load_metric_at : Call load_metric_at
+    simulation__rrs_roadlike --> simulation__rrs_next : Branch BNE
+    simulation__rrs_roadlike --> simulation_store_metric_at : Call store_metric_at
+    simulation__rrs_roadlike --> simulation_expand_temp_segment : Call expand_temp_segment
+    simulation__rrs_roadlike --> simulation_choose_segment_id_for_temp : Call choose_segment_id_for_temp
+    simulation__rrs_roadlike --> simulation_relabel_temp_segment : Call relabel_temp_segment
+    simulation__rrs_roadlike --> simulation__rrs_next : fallthrough
+    simulation__rrs_next --> simulation__rrs_next_row : Branch BEQ
+    simulation__rrs_next --> simulation__rrs_col : Jmp JMP
+    simulation__rrs_next --> simulation__rrs_next_row : fallthrough
+    simulation__rrs_next_row --> simulation__rrs_done : Branch BEQ
+    simulation__rrs_next_row --> simulation__rrs_row : Jmp JMP
+    simulation__rrs_next_row --> simulation__rrs_done : fallthrough
+    simulation__rrs_done --> simulation_rebuild_building_segments : Call rebuild_building_segments
+    simulation_stamp_radius_add --> simulation__sra_row_lo_ok : Branch BCS
+    simulation_stamp_radius_add --> simulation__sra_row_lo_ok : fallthrough
+    simulation__sra_row_lo_ok --> simulation__sra_row_hi_ok : Branch BCC
+    simulation__sra_row_lo_ok --> simulation__sra_row_hi_ok : fallthrough
+    simulation__sra_row_hi_ok --> simulation__sra_col_lo_ok : Branch BCS
+    simulation__sra_row_hi_ok --> simulation__sra_col_lo_ok : fallthrough
+    simulation__sra_col_lo_ok --> simulation__sra_col_hi_ok : Branch BCC
+    simulation__sra_col_lo_ok --> simulation__sra_col_hi_ok : fallthrough
+    simulation__sra_col_hi_ok --> simulation__sra_row_loop : fallthrough
+    simulation__sra_row_loop --> simulation__sra_ptr_ok : Branch BCC
+    simulation__sra_row_loop --> simulation__sra_ptr_ok : fallthrough
+    simulation__sra_ptr_ok --> simulation__sra_col_loop : fallthrough
+    simulation__sra_col_loop --> simulation__sra_store : Branch BCC
+    simulation__sra_col_loop --> simulation__sra_store : fallthrough
+    simulation__sra_store --> simulation__sra_col_loop : Branch BNE
+    simulation__sra_store --> simulation__sra_row_loop : Branch BCS
+    simulation_region_has_nonzero --> simulation__rhn_row_lo_ok : Branch BCS
+    simulation_region_has_nonzero --> simulation__rhn_row_lo_ok : fallthrough
+    simulation__rhn_row_lo_ok --> simulation__rhn_row_hi_ok : Branch BCC
+    simulation__rhn_row_lo_ok --> simulation__rhn_row_hi_ok : fallthrough
+    simulation__rhn_row_hi_ok --> simulation__rhn_col_lo_ok : Branch BCS
+    simulation__rhn_row_hi_ok --> simulation__rhn_col_lo_ok : fallthrough
+    simulation__rhn_col_lo_ok --> simulation__rhn_col_hi_ok : Branch BCC
+    simulation__rhn_col_lo_ok --> simulation__rhn_col_hi_ok : fallthrough
+    simulation__rhn_col_hi_ok --> simulation__rhn_row_loop : fallthrough
+    simulation__rhn_row_loop --> simulation__rhn_ptr_ok : Branch BCC
+    simulation__rhn_row_loop --> simulation__rhn_ptr_ok : fallthrough
+    simulation__rhn_ptr_ok --> simulation__rhn_col_loop : fallthrough
+    simulation__rhn_col_loop --> simulation__rhn_found : Branch BNE
+    simulation__rhn_col_loop --> simulation__rhn_col_loop : Branch BNE
+    simulation__rhn_col_loop --> simulation__rhn_row_loop : Branch BCS
+    simulation_build_service_maps --> simulation_clear_sim_maps : Call clear_sim_maps
+    simulation_build_service_maps --> simulation__bsm_row : fallthrough
+    simulation__bsm_row --> simulation__bsm_col : fallthrough
+    simulation__bsm_col --> map_get_tile : Call get_tile
+    simulation__bsm_col --> simulation__bsm_police : Branch BNE
+    simulation__bsm_col --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__bsm_col --> simulation_mul_by_3 : Call mul_by_3
+    simulation__bsm_col --> simulation_stamp_radius_add : Call stamp_radius_add
+    simulation__bsm_col --> simulation__bsm_next : Jmp JMP
+    simulation__bsm_col --> simulation__bsm_police : fallthrough
+    simulation__bsm_police --> simulation__bsm_fire : Branch BNE
+    simulation__bsm_police --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__bsm_police --> simulation_mul_by_2 : Call mul_by_2
+    simulation__bsm_police --> simulation_stamp_radius_add : Call stamp_radius_add
+    simulation__bsm_police --> simulation__bsm_next : Jmp JMP
+    simulation__bsm_police --> simulation__bsm_fire : fallthrough
+    simulation__bsm_fire --> simulation__bsm_house : Branch BNE
+    simulation__bsm_fire --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__bsm_fire --> simulation_mul_by_2 : Call mul_by_2
+    simulation__bsm_fire --> simulation_stamp_radius_add : Call stamp_radius_add
+    simulation__bsm_fire --> simulation__bsm_next : Jmp JMP
+    simulation__bsm_fire --> simulation__bsm_house : fallthrough
+    simulation__bsm_house --> simulation__bsm_factory : Branch BNE
+    simulation__bsm_house --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__bsm_house --> simulation_stamp_radius_add : Call stamp_radius_add
+    simulation__bsm_house --> simulation__bsm_next : Jmp JMP
+    simulation__bsm_house --> simulation__bsm_factory : fallthrough
+    simulation__bsm_factory --> simulation__bsm_next : Branch BNE
+    simulation__bsm_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__bsm_factory --> simulation_stamp_radius_add : Call stamp_radius_add
+    simulation__bsm_factory --> simulation__bsm_next : fallthrough
+    simulation__bsm_next --> simulation__bsm_next_row : Branch BEQ
+    simulation__bsm_next --> simulation__bsm_col : Jmp JMP
+    simulation__bsm_next --> simulation__bsm_next_row : fallthrough
+    simulation__bsm_next_row --> simulation__bsm_done : Branch BEQ
+    simulation__bsm_next_row --> simulation__bsm_row : Jmp JMP
+    simulation__bsm_next_row --> simulation__bsm_done : fallthrough
+    simulation_apply_neighbor_value_effect --> simulation__anv_road : Branch BEQ
+    simulation_apply_neighbor_value_effect --> simulation__anv_house : Branch BNE
+    simulation_apply_neighbor_value_effect --> simulation__anv_road : fallthrough
+    simulation__anv_road --> simulation_add_a_to_tmp3 : Jmp JMP
+    simulation__anv_road --> simulation__anv_house : fallthrough
+    simulation__anv_house --> simulation__anv_factory : Branch BNE
+    simulation__anv_house --> simulation_add_a_to_tmp3 : Jmp JMP
+    simulation__anv_house --> simulation__anv_factory : fallthrough
+    simulation__anv_factory --> simulation__anv_park : Branch BNE
+    simulation__anv_factory --> simulation__anv_sub_factory : Branch BCS
+    simulation__anv_park --> simulation__anv_power : Branch BNE
+    simulation__anv_park --> simulation_add_a_to_tmp3 : Jmp JMP
+    simulation__anv_park --> simulation__anv_power : fallthrough
+    simulation__anv_power --> simulation__anv_police : Branch BNE
+    simulation__anv_power --> simulation__anv_sub_power : Branch BCS
+    simulation__anv_police --> simulation__anv_service : Branch BEQ
+    simulation__anv_police --> simulation__anv_done : Branch BNE
+    simulation__anv_police --> simulation__anv_service : fallthrough
+    simulation__anv_service --> simulation_add_a_to_tmp3 : Jmp JMP
+    simulation__anv_service --> simulation__anv_done : fallthrough
+    simulation_compute_tile_value_at --> map_get_tile : Call get_tile
+    simulation_compute_tile_value_at --> simulation__ctv_road : Branch BEQ
+    simulation_compute_tile_value_at --> simulation__ctv_house : Branch BNE
+    simulation_compute_tile_value_at --> simulation__ctv_road : fallthrough
+    simulation__ctv_road --> simulation__ctv_base_done : Branch BNE
+    simulation__ctv_road --> simulation__ctv_house : fallthrough
+    simulation__ctv_house --> simulation__ctv_factory : Branch BNE
+    simulation__ctv_house --> simulation__ctv_base_done : Branch BNE
+    simulation__ctv_house --> simulation__ctv_factory : fallthrough
+    simulation__ctv_factory --> simulation__ctv_park : Branch BNE
+    simulation__ctv_factory --> simulation__ctv_base_done : Branch BNE
+    simulation__ctv_factory --> simulation__ctv_park : fallthrough
+    simulation__ctv_park --> simulation__ctv_power : Branch BNE
+    simulation__ctv_park --> simulation__ctv_base_done : Branch BNE
+    simulation__ctv_park --> simulation__ctv_power : fallthrough
+    simulation__ctv_power --> simulation__ctv_police : Branch BNE
+    simulation__ctv_power --> simulation__ctv_base_done : Branch BNE
+    simulation__ctv_power --> simulation__ctv_police : fallthrough
+    simulation__ctv_police --> simulation__ctv_fire : Branch BNE
+    simulation__ctv_police --> simulation__ctv_base_done : Branch BNE
+    simulation__ctv_police --> simulation__ctv_fire : fallthrough
+    simulation__ctv_fire --> simulation__ctv_base_done : Branch BNE
+    simulation__ctv_fire --> simulation__ctv_base_done : fallthrough
+    simulation__ctv_base_done --> simulation__ctv_effects : Branch BEQ
+    simulation__ctv_base_done --> simulation__ctv_effects : Branch BCS
+    simulation__ctv_base_done --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__ctv_base_done --> simulation_add_a_to_tmp3 : Call add_a_to_tmp3
+    simulation__ctv_base_done --> simulation__ctv_effects : fallthrough
+    simulation__ctv_effects --> simulation_load_metric_at : Call load_metric_at
+    simulation__ctv_effects --> simulation_add_a_to_tmp3 : Call add_a_to_tmp3
+    simulation__ctv_effects --> simulation__ctv_public_safety : Branch BEQ
+    simulation__ctv_effects --> simulation__ctv_public_safety : Branch BEQ
+    simulation__ctv_effects --> simulation__ctv_neighbors : Jmp JMP
+    simulation__ctv_effects --> simulation__ctv_public_safety : fallthrough
+    simulation__ctv_public_safety --> simulation_load_metric_at : Call load_metric_at
+    simulation__ctv_public_safety --> simulation_add_a_to_tmp3 : Call add_a_to_tmp3
+    simulation__ctv_public_safety --> simulation_load_metric_at : Call load_metric_at
+    simulation__ctv_public_safety --> simulation_add_a_to_tmp3 : Call add_a_to_tmp3
+    simulation__ctv_public_safety --> simulation__ctv_neighbors : fallthrough
+    simulation__ctv_neighbors --> simulation__ctv_south : Branch BEQ
+    simulation__ctv_neighbors --> map_get_tile : Call get_tile
+    simulation__ctv_neighbors --> simulation_apply_neighbor_value_effect : Call apply_neighbor_value_effect
+    simulation__ctv_neighbors --> simulation__ctv_south : fallthrough
+    simulation__ctv_south --> simulation__ctv_east : Branch BCS
+    simulation__ctv_south --> map_get_tile : Call get_tile
+    simulation__ctv_south --> simulation_apply_neighbor_value_effect : Call apply_neighbor_value_effect
+    simulation__ctv_south --> simulation__ctv_east : fallthrough
+    simulation__ctv_east --> simulation__ctv_west : Branch BCS
+    simulation__ctv_east --> map_get_tile : Call get_tile
+    simulation__ctv_east --> simulation_apply_neighbor_value_effect : Call apply_neighbor_value_effect
+    simulation__ctv_east --> simulation__ctv_west : fallthrough
+    simulation__ctv_west --> simulation__ctv_need_road : Branch BEQ
+    simulation__ctv_west --> map_get_tile : Call get_tile
+    simulation__ctv_west --> simulation_apply_neighbor_value_effect : Call apply_neighbor_value_effect
+    simulation__ctv_west --> simulation__ctv_need_road : fallthrough
+    simulation__ctv_need_road --> simulation__ctv_check_road : Branch BEQ
+    simulation__ctv_need_road --> simulation__ctv_clamp : Branch BNE
+    simulation__ctv_need_road --> simulation__ctv_check_road : fallthrough
+    simulation__ctv_check_road --> simulation__ctv_clamp : Branch BNE
+    simulation__ctv_check_road --> simulation__ctv_sub_no_road : Branch BCS
+    simulation__ctv_check_road --> simulation__ctv_clamp : Branch BEQ
+    simulation__ctv_check_road --> simulation__ctv_sub_no_road : fallthrough
+    simulation__ctv_sub_no_road --> simulation__ctv_clamp : fallthrough
+    simulation__ctv_clamp --> simulation__ctv_done : Branch BCC
+    simulation__ctv_clamp --> simulation__ctv_done : fallthrough
+    simulation_analyze_city_tiles --> simulation__act_row : fallthrough
+    simulation__act_row --> simulation__act_col : fallthrough
+    simulation__act_col --> simulation_compute_tile_value_at : Call compute_tile_value_at
+    simulation__act_col --> simulation_store_metric_at : Call store_metric_at
+    simulation__act_col --> simulation__act_check_factory : Branch BNE
+    simulation__act_col --> simulation__act_house : Jmp JMP
+    simulation__act_col --> simulation__act_check_factory : fallthrough
+    simulation__act_check_factory --> simulation__act_check_police : Branch BNE
+    simulation__act_check_factory --> simulation__act_factory : Jmp JMP
+    simulation__act_check_factory --> simulation__act_check_police : fallthrough
+    simulation__act_check_police --> simulation__act_check_fire : Branch BNE
+    simulation__act_check_police --> simulation__act_police_jobs : Jmp JMP
+    simulation__act_check_police --> simulation__act_check_fire : fallthrough
+    simulation__act_check_fire --> simulation__act_other : Branch BNE
+    simulation__act_check_fire --> simulation__act_fire_jobs : Jmp JMP
+    simulation__act_check_fire --> simulation__act_other : fallthrough
+    simulation__act_other --> simulation__act_next : Jmp JMP
+    simulation__act_other --> simulation__act_house : fallthrough
+    simulation__act_house --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__act_house --> simulation__act_value_loop : fallthrough
+    simulation__act_value_loop --> simulation_add_to_land_value : Call add_to_land_value
+    simulation__act_value_loop --> simulation__act_value_loop : Branch BNE
+    simulation__act_value_loop --> simulation_load_metric_at : Call load_metric_at
+    simulation__act_value_loop --> simulation__act_police : Branch BEQ
+    simulation__act_value_loop --> simulation__act_store_park : Branch BCC
+    simulation__act_value_loop --> simulation__act_store_park : fallthrough
+    simulation__act_store_park --> simulation__act_police : fallthrough
+    simulation__act_police --> simulation_load_metric_at : Call load_metric_at
+    simulation__act_police --> simulation__act_fire : Branch BEQ
+    simulation__act_police --> simulation__act_store_police : Branch BCC
+    simulation__act_police --> simulation__act_store_police : fallthrough
+    simulation__act_store_police --> simulation__act_fire : fallthrough
+    simulation__act_fire --> simulation_load_metric_at : Call load_metric_at
+    simulation__act_fire --> simulation__act_worker : Branch BEQ
+    simulation__act_fire --> simulation__act_store_fire : Branch BCC
+    simulation__act_fire --> simulation__act_store_fire : fallthrough
+    simulation__act_store_fire --> simulation__act_worker : fallthrough
+    simulation__act_worker --> simulation_mul_by_10 : Call mul_by_10
+    simulation__act_worker --> simulation_add_to_worker_supply : Call add_to_worker_supply
+    simulation__act_worker --> simulation__act_next : Jmp JMP
+    simulation__act_worker --> simulation__act_factory : fallthrough
+    simulation__act_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__act_factory --> simulation_region_has_nonzero : Call region_has_nonzero
+    simulation__act_factory --> simulation__act_next : Branch BEQ
+    simulation__act_factory --> simulation_mul_by_10 : Call mul_by_10
+    simulation__act_factory --> simulation_add_to_jobs : Call add_to_jobs
+    simulation__act_factory --> simulation__act_next : Jmp JMP
+    simulation__act_factory --> simulation__act_police_jobs : fallthrough
+    simulation__act_police_jobs --> simulation_load_metric_at : Call load_metric_at
+    simulation__act_police_jobs --> simulation__act_next : Branch BEQ
+    simulation__act_police_jobs --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__act_police_jobs --> simulation_mul_by_2 : Call mul_by_2
+    simulation__act_police_jobs --> simulation_add_to_jobs : Call add_to_jobs
+    simulation__act_police_jobs --> simulation__act_next : Jmp JMP
+    simulation__act_police_jobs --> simulation__act_fire_jobs : fallthrough
+    simulation__act_fire_jobs --> simulation_load_metric_at : Call load_metric_at
+    simulation__act_fire_jobs --> simulation__act_next : Branch BEQ
+    simulation__act_fire_jobs --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__act_fire_jobs --> simulation_mul_by_2 : Call mul_by_2
+    simulation__act_fire_jobs --> simulation_add_to_jobs : Call add_to_jobs
+    simulation__act_fire_jobs --> simulation__act_next : fallthrough
+    simulation__act_next --> simulation__act_next_row : Branch BEQ
+    simulation__act_next --> simulation__act_col : Jmp JMP
+    simulation__act_next --> simulation__act_next_row : fallthrough
+    simulation__act_next_row --> simulation__act_done : Branch BEQ
+    simulation__act_next_row --> simulation__act_row : Jmp JMP
+    simulation__act_next_row --> simulation__act_done : fallthrough
+    simulation_add_to_component_jobs --> simulation__acj_store : Branch BCC
+    simulation_add_to_component_jobs --> simulation__acj_store : fallthrough
+    simulation_add_to_component_workers --> simulation__acw_store : Branch BCC
+    simulation_add_to_component_workers --> simulation__acw_store : fallthrough
+    simulation_touches_current_road_component --> simulation__trc_south : Branch BEQ
+    simulation_touches_current_road_component --> simulation_load_metric_at : Call load_metric_at
+    simulation_touches_current_road_component --> simulation__trc_yes : Branch BEQ
+    simulation_touches_current_road_component --> simulation__trc_south : fallthrough
+    simulation__trc_south --> simulation__trc_east : Branch BCS
+    simulation__trc_south --> simulation_load_metric_at : Call load_metric_at
+    simulation__trc_south --> simulation__trc_yes : Branch BEQ
+    simulation__trc_south --> simulation__trc_east : fallthrough
+    simulation__trc_east --> simulation__trc_west : Branch BCS
+    simulation__trc_east --> simulation_load_metric_at : Call load_metric_at
+    simulation__trc_east --> simulation__trc_yes : Branch BEQ
+    simulation__trc_east --> simulation__trc_west : fallthrough
+    simulation__trc_west --> simulation__trc_no : Branch BEQ
+    simulation__trc_west --> simulation_load_metric_at : Call load_metric_at
+    simulation__trc_west --> simulation__trc_yes : Branch BEQ
+    simulation__trc_west --> simulation__trc_no : fallthrough
+    simulation_expand_current_road_component --> simulation__erc_pass : fallthrough
+    simulation__erc_pass --> simulation__erc_row : fallthrough
+    simulation__erc_row --> simulation__erc_col : fallthrough
+    simulation__erc_col --> map_get_tile : Call get_tile
+    simulation__erc_col --> simulation__erc_roadlike : Branch BEQ
+    simulation__erc_col --> simulation__erc_next : Branch BNE
+    simulation__erc_col --> simulation__erc_roadlike : fallthrough
+    simulation__erc_roadlike --> simulation_load_metric_at : Call load_metric_at
+    simulation__erc_roadlike --> simulation__erc_next : Branch BNE
+    simulation__erc_roadlike --> simulation_touches_current_road_component : Call touches_current_road_component
+    simulation__erc_roadlike --> simulation__erc_next : Branch BEQ
+    simulation__erc_roadlike --> simulation_store_metric_at : Call store_metric_at
+    simulation__erc_roadlike --> simulation__erc_next : fallthrough
+    simulation__erc_next --> simulation__erc_next_row : Branch BEQ
+    simulation__erc_next --> simulation__erc_col : Jmp JMP
+    simulation__erc_next --> simulation__erc_next_row : fallthrough
+    simulation__erc_next_row --> simulation__erc_pass_done : Branch BEQ
+    simulation__erc_next_row --> simulation__erc_row : Jmp JMP
+    simulation__erc_next_row --> simulation__erc_pass_done : fallthrough
+    simulation__erc_pass_done --> simulation__erc_pass : Branch BNE
+    simulation_mark_current_road_component_processed --> simulation__mrc_row : fallthrough
+    simulation__mrc_row --> simulation__mrc_col : fallthrough
+    simulation__mrc_col --> simulation_load_metric_at : Call load_metric_at
+    simulation__mrc_col --> simulation__mrc_next : Branch BNE
+    simulation__mrc_col --> simulation_store_metric_at : Call store_metric_at
+    simulation__mrc_col --> simulation__mrc_next : fallthrough
+    simulation__mrc_next --> simulation__mrc_next_row : Branch BEQ
+    simulation__mrc_next --> simulation__mrc_col : Jmp JMP
+    simulation__mrc_next --> simulation__mrc_next_row : fallthrough
+    simulation__mrc_next_row --> simulation__mrc_done : Branch BEQ
+    simulation__mrc_next_row --> simulation__mrc_row : Jmp JMP
+    simulation__mrc_next_row --> simulation__mrc_done : fallthrough
+    simulation_score_current_road_component --> simulation__src_row : fallthrough
+    simulation__src_row --> simulation__src_col : fallthrough
+    simulation__src_col --> map_get_tile : Call get_tile
+    simulation__src_col --> simulation__src_not_empty : Branch BNE
+    simulation__src_col --> simulation__src_next : Jmp JMP
+    simulation__src_col --> simulation__src_not_empty : fallthrough
+    simulation__src_not_empty --> simulation__src_not_water : Branch BNE
+    simulation__src_not_empty --> simulation__src_next : Jmp JMP
+    simulation__src_not_empty --> simulation__src_not_water : fallthrough
+    simulation__src_not_water --> simulation__src_not_tree : Branch BNE
+    simulation__src_not_water --> simulation__src_next : Jmp JMP
+    simulation__src_not_water --> simulation__src_not_tree : fallthrough
+    simulation__src_not_tree --> simulation_touches_current_road_component : Call touches_current_road_component
+    simulation__src_not_tree --> simulation__src_connected : Branch BNE
+    simulation__src_not_tree --> simulation__src_next : Jmp JMP
+    simulation__src_not_tree --> simulation__src_connected : fallthrough
+    simulation__src_connected --> simulation__src_factory : Branch BNE
+    simulation__src_connected --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__src_connected --> simulation_mul_by_10 : Call mul_by_10
+    simulation__src_connected --> simulation_add_to_component_workers : Call add_to_component_workers
+    simulation__src_connected --> simulation__src_next : Jmp JMP
+    simulation__src_connected --> simulation__src_factory : fallthrough
+    simulation__src_factory --> simulation__src_police : Branch BNE
+    simulation__src_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__src_factory --> simulation_region_has_nonzero : Call region_has_nonzero
+    simulation__src_factory --> simulation__src_next : Branch BEQ
+    simulation__src_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__src_factory --> simulation_mul_by_10 : Call mul_by_10
+    simulation__src_factory --> simulation_add_to_component_jobs : Call add_to_component_jobs
+    simulation__src_factory --> simulation__src_next : Jmp JMP
+    simulation__src_factory --> simulation__src_police : fallthrough
+    simulation__src_police --> simulation__src_fire : Branch BNE
+    simulation__src_police --> simulation_load_metric_at : Call load_metric_at
+    simulation__src_police --> simulation__src_next : Branch BEQ
+    simulation__src_police --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__src_police --> simulation_mul_by_2 : Call mul_by_2
+    simulation__src_police --> simulation_add_to_component_jobs : Call add_to_component_jobs
+    simulation__src_police --> simulation__src_next : Jmp JMP
+    simulation__src_police --> simulation__src_fire : fallthrough
+    simulation__src_fire --> simulation__src_next : Branch BNE
+    simulation__src_fire --> simulation_load_metric_at : Call load_metric_at
+    simulation__src_fire --> simulation__src_next : Branch BEQ
+    simulation__src_fire --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__src_fire --> simulation_mul_by_2 : Call mul_by_2
+    simulation__src_fire --> simulation_add_to_component_jobs : Call add_to_component_jobs
+    simulation__src_fire --> simulation__src_next : fallthrough
+    simulation__src_next --> simulation__src_next_row : Branch BEQ
+    simulation__src_next --> simulation__src_col : Jmp JMP
+    simulation__src_next --> simulation__src_next_row : fallthrough
+    simulation__src_next_row --> simulation__src_totals : Branch BEQ
+    simulation__src_next_row --> simulation__src_row : Jmp JMP
+    simulation__src_next_row --> simulation__src_totals : fallthrough
+    simulation__src_totals --> simulation__src_done : Branch BEQ
+    simulation__src_totals --> simulation__src_done : Branch BEQ
+    simulation__src_totals --> simulation_add_to_jobs : Call add_to_jobs
+    simulation__src_totals --> simulation__src_use_workers : Branch BCC
+    simulation__src_totals --> simulation__src_add_employed : Jmp JMP
+    simulation__src_totals --> simulation__src_use_workers : fallthrough
+    simulation__src_use_workers --> simulation__src_add_employed : fallthrough
+    simulation__src_add_employed --> simulation_add_to_worker_supply : Call add_to_worker_supply
+    simulation__src_add_employed --> simulation__src_done : fallthrough
+    simulation_analyze_road_networks --> simulation_clear_segment_totals : Call clear_segment_totals
+    simulation_analyze_road_networks --> simulation__arn_row : fallthrough
+    simulation__arn_row --> simulation__arn_col : fallthrough
+    simulation__arn_col --> simulation_load_metric_at : Call load_metric_at
+    simulation__arn_col --> simulation__arn_has_segments : Branch BNE
+    simulation__arn_col --> simulation__arn_next : Jmp JMP
+    simulation__arn_col --> simulation__arn_has_segments : fallthrough
+    simulation__arn_has_segments --> map_get_tile : Call get_tile
+    simulation__arn_has_segments --> simulation__arn_check_factory : Branch BNE
+    simulation__arn_has_segments --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__arn_has_segments --> simulation_mul_by_10 : Call mul_by_10
+    simulation__arn_has_segments --> simulation_add_workers_for_segments : Call add_workers_for_segments
+    simulation__arn_has_segments --> simulation__arn_next : Jmp JMP
+    simulation__arn_has_segments --> simulation__arn_check_factory : fallthrough
+    simulation__arn_check_factory --> simulation__arn_check_police : Branch BNE
+    simulation__arn_check_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__arn_check_factory --> simulation_region_has_nonzero : Call region_has_nonzero
+    simulation__arn_check_factory --> simulation__arn_next : Branch BEQ
+    simulation__arn_check_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__arn_check_factory --> simulation_mul_by_10 : Call mul_by_10
+    simulation__arn_check_factory --> simulation_add_jobs_for_segments : Call add_jobs_for_segments
+    simulation__arn_check_factory --> simulation__arn_next : Jmp JMP
+    simulation__arn_check_factory --> simulation__arn_check_police : fallthrough
+    simulation__arn_check_police --> simulation__arn_check_fire : Branch BNE
+    simulation__arn_check_police --> simulation_load_metric_at : Call load_metric_at
+    simulation__arn_check_police --> simulation__arn_next : Branch BEQ
+    simulation__arn_check_police --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__arn_check_police --> simulation_mul_by_2 : Call mul_by_2
+    simulation__arn_check_police --> simulation_add_jobs_for_segments : Call add_jobs_for_segments
+    simulation__arn_check_police --> simulation__arn_next : Jmp JMP
+    simulation__arn_check_police --> simulation__arn_check_fire : fallthrough
+    simulation__arn_check_fire --> simulation__arn_next : Branch BNE
+    simulation__arn_check_fire --> simulation_load_metric_at : Call load_metric_at
+    simulation__arn_check_fire --> simulation__arn_next : Branch BEQ
+    simulation__arn_check_fire --> buildings_get_tile_density_units : Call get_tile_density_units
+    simulation__arn_check_fire --> simulation_mul_by_2 : Call mul_by_2
+    simulation__arn_check_fire --> simulation_add_jobs_for_segments : Call add_jobs_for_segments
+    simulation__arn_check_fire --> simulation__arn_next : fallthrough
+    simulation__arn_next --> simulation__arn_next_row : Branch BEQ
+    simulation__arn_next --> simulation__arn_col : Jmp JMP
+    simulation__arn_next --> simulation__arn_next_row : fallthrough
+    simulation__arn_next_row --> simulation__arn_totals : Branch BEQ
+    simulation__arn_next_row --> simulation__arn_row : Jmp JMP
+    simulation__arn_next_row --> simulation__arn_totals : fallthrough
+    simulation__arn_totals --> simulation__arn_seg_loop : fallthrough
+    simulation__arn_seg_loop --> simulation_add_to_jobs : Call add_to_jobs
+    simulation__arn_seg_loop --> simulation__arn_seg_next : Branch BEQ
+    simulation__arn_seg_loop --> simulation__arn_use_workers : Branch BCC
+    simulation__arn_seg_loop --> simulation__arn_add_emp : Jmp JMP
+    simulation__arn_seg_loop --> simulation__arn_use_workers : fallthrough
+    simulation__arn_use_workers --> simulation__arn_add_emp : fallthrough
+    simulation__arn_add_emp --> simulation_add_to_worker_supply : Call add_to_worker_supply
+    simulation__arn_add_emp --> simulation__arn_seg_next : fallthrough
+    simulation__arn_seg_next --> simulation__arn_seg_loop : Branch BNE
+    simulation__arn_seg_next --> simulation__arn_done : fallthrough
+    simulation_add_workers_for_segments --> simulation__awfs_high : Branch BEQ
+    simulation_add_workers_for_segments --> simulation__awfs_store_low : Branch BCC
+    simulation_add_workers_for_segments --> simulation__awfs_store_low : fallthrough
+    simulation__awfs_store_low --> simulation__awfs_high : fallthrough
+    simulation__awfs_high --> simulation__awfs_done : Branch BEQ
+    simulation__awfs_high --> simulation__awfs_store_high : Branch BCC
+    simulation__awfs_high --> simulation__awfs_store_high : fallthrough
+    simulation__awfs_store_high --> simulation__awfs_done : fallthrough
+    simulation_add_jobs_for_segments --> simulation__ajfs_high : Branch BEQ
+    simulation_add_jobs_for_segments --> simulation__ajfs_store_low : Branch BCC
+    simulation_add_jobs_for_segments --> simulation__ajfs_store_low : fallthrough
+    simulation__ajfs_store_low --> simulation__ajfs_high : fallthrough
+    simulation__ajfs_high --> simulation__ajfs_done : Branch BEQ
+    simulation__ajfs_high --> simulation__ajfs_store_high : Branch BCC
+    simulation__ajfs_high --> simulation__ajfs_store_high : fallthrough
+    simulation__ajfs_store_high --> simulation__ajfs_done : fallthrough
+    simulation_run_simulation --> simulation_mul_by_50 : Call mul_by_50
+    simulation_run_simulation --> simulation_mul_by_5 : Call mul_by_5
+    simulation_run_simulation --> simulation_mul_by_20 : Call mul_by_20
+    simulation_run_simulation --> simulation__pwr_police : Branch BCC
+    simulation_run_simulation --> simulation__pwr_police : fallthrough
+    simulation__pwr_police --> simulation_mul_by_2 : Call mul_by_2
+    simulation__pwr_police --> simulation__pwr_fire : Branch BCC
+    simulation__pwr_police --> simulation__pwr_fire : fallthrough
+    simulation__pwr_fire --> simulation_mul_by_2 : Call mul_by_2
+    simulation__pwr_fire --> simulation__pwr_store : Branch BCC
+    simulation__pwr_fire --> simulation__pwr_store : fallthrough
+    simulation__pwr_store --> simulation__jobs : Branch BCS
+    simulation__pwr_store --> simulation__jobs : fallthrough
+    simulation__jobs --> simulation_build_service_maps : Call build_service_maps
+    simulation__jobs --> simulation_analyze_city_tiles : Call analyze_city_tiles
+    simulation__jobs --> simulation_analyze_road_networks : Call analyze_road_networks
+    simulation__jobs --> simulation__jobs_overlap_ready : Branch BCC
+    simulation__jobs --> simulation__jobs_overlap_ready : fallthrough
+    simulation__jobs_overlap_ready --> simulation__all_employed : Branch BCC
+    simulation__jobs_overlap_ready --> simulation__all_employed : Branch BEQ
+    simulation__jobs_overlap_ready --> simulation__crime : Branch BNE
+    simulation__jobs_overlap_ready --> simulation__all_employed : fallthrough
+    simulation__all_employed --> simulation__crime : fallthrough
+    simulation__crime --> simulation_mul_by_2 : Call mul_by_2
+    simulation__crime --> simulation__crime_cap : Branch BCS
+    simulation__crime --> simulation__crime_blackout : Branch BCC
+    simulation__crime --> simulation__crime_cap : fallthrough
+    simulation__crime_cap --> simulation__crime_blackout : fallthrough
+    simulation__crime_blackout --> simulation__crime_police : Branch BEQ
+    simulation__crime_blackout --> simulation__crime_store_blackout : Branch BCC
+    simulation__crime_blackout --> simulation__crime_store_blackout : fallthrough
+    simulation__crime_store_blackout --> simulation__crime_police : fallthrough
+    simulation__crime_police --> simulation__crime_sub_police : Branch BCS
+    simulation__crime_police --> simulation__crime_fire : Branch BEQ
+    simulation__crime_police --> simulation__crime_sub_police : fallthrough
+    simulation__crime_sub_police --> simulation__crime_fire : fallthrough
+    simulation__crime_fire --> simulation__crime_sub_fire : Branch BCS
+    simulation__crime_fire --> simulation__crime_parks : Branch BEQ
+    simulation__crime_fire --> simulation__crime_sub_fire : fallthrough
+    simulation__crime_sub_fire --> simulation__crime_parks : fallthrough
+    simulation__crime_parks --> simulation__crime_sub_parks : Branch BCS
+    simulation__crime_parks --> simulation__happiness : Branch BEQ
+    simulation__crime_parks --> simulation__crime_sub_parks : fallthrough
+    simulation__crime_sub_parks --> simulation__crime_done : fallthrough
+    simulation__crime_done --> simulation__happiness : fallthrough
+    simulation__happiness --> simulation__hap_store_parks : Branch BCC
+    simulation__happiness --> simulation__hap_store_parks : fallthrough
+    simulation__hap_store_parks --> simulation__hap_store_police : Branch BCC
+    simulation__hap_store_parks --> simulation__hap_store_police : fallthrough
+    simulation__hap_store_police --> simulation__hap_store_fire : Branch BCC
+    simulation__hap_store_police --> simulation__hap_store_fire : fallthrough
+    simulation__hap_store_fire --> simulation__hap_store_value : Branch BCC
+    simulation__hap_store_fire --> simulation__hap_store_value : fallthrough
+    simulation__hap_store_value --> simulation__hap_job_bonus : Branch BEQ
+    simulation__hap_store_value --> simulation_mul_by_2 : Call mul_by_2
+    simulation__hap_store_value --> simulation__hap_sub_unemp : Branch BCS
+    simulation__hap_store_value --> simulation__hap_blackout : Branch BEQ
+    simulation__hap_store_value --> simulation__hap_sub_unemp : fallthrough
+    simulation__hap_sub_unemp --> simulation__hap_job_bonus : fallthrough
+    simulation__hap_job_bonus --> simulation__hap_blackout : Branch BEQ
+    simulation__hap_job_bonus --> simulation__hap_blackout : Branch BNE
+    simulation__hap_job_bonus --> simulation__hap_store_bonus : Branch BCC
+    simulation__hap_job_bonus --> simulation__hap_store_bonus : fallthrough
+    simulation__hap_store_bonus --> simulation__hap_blackout : fallthrough
+    simulation__hap_blackout --> simulation__hap_crime : Branch BEQ
+    simulation__hap_blackout --> simulation__hap_sub_blackout : Branch BCS
+    simulation__hap_blackout --> simulation__hap_crime : Branch BEQ
+    simulation__hap_blackout --> simulation__hap_sub_blackout : fallthrough
+    simulation__hap_sub_blackout --> simulation__hap_crime : fallthrough
+    simulation__hap_crime --> simulation__hap_sub_crime : Branch BCS
+    simulation__hap_crime --> simulation__economy : Branch BEQ
+    simulation__hap_crime --> simulation__hap_sub_crime : fallthrough
+    simulation__hap_sub_crime --> simulation__economy : fallthrough
+    simulation__economy --> simulation_mul_by_2 : Call mul_by_2
+    simulation__economy --> simulation_add_to_revenue : Call add_to_revenue
+    simulation__economy --> simulation_mul_by_2 : Call mul_by_2
+    simulation__economy --> simulation_add_to_revenue : Call add_to_revenue
+    simulation__economy --> simulation_add_to_revenue : Call add_to_revenue
+    simulation__economy --> simulation_add_to_revenue : Call add_to_revenue
+    simulation__economy --> simulation_mul_by_20 : Call mul_by_20
+    simulation__economy --> simulation_add_to_revenue : Call add_to_revenue
+    simulation__economy --> simulation_add_to_cost : Call add_to_cost
+    simulation__economy --> simulation_add_to_cost : Call add_to_cost
+    simulation__economy --> simulation_mul_by_5 : Call mul_by_5
+    simulation__economy --> simulation_add_to_cost : Call add_to_cost
+    simulation__economy --> simulation_mul_by_5 : Call mul_by_5
+    simulation__economy --> simulation_add_to_cost : Call add_to_cost
+    simulation__economy --> simulation_mul_by_20 : Call mul_by_20
+    simulation__economy --> simulation_add_to_cost : Call add_to_cost
+    simulation__economy --> simulation_mul_by_10 : Call mul_by_10
+    simulation__economy --> simulation_add_to_cost : Call add_to_cost
+    simulation__economy --> simulation_mul_by_10 : Call mul_by_10
+    simulation__economy --> simulation_add_to_cost : Call add_to_cost
+    simulation__economy --> simulation_mul_by_2 : Call mul_by_2
+    simulation__economy --> simulation_add_to_cost : Call add_to_cost
+    simulation__economy --> simulation__apply_net : Branch BEQ
+    simulation__economy --> simulation_add_to_cost : Call add_to_cost
+    simulation__economy --> simulation__apply_net : fallthrough
+    simulation__apply_net --> simulation__money_floor_ok : Branch BPL
+    simulation__apply_net --> ui_print_str_col : Call print_str_col
+    simulation__apply_net --> simulation__money_floor_ok : fallthrough
+    simulation__money_floor_ok --> simulation__money_ceil_ok : Branch BPL
+    simulation__money_floor_ok --> simulation__money_ceil_ok : fallthrough
+    simulation__money_ceil_ok --> simulation_mul_by_10 : Call mul_by_10
+    simulation__money_ceil_ok --> simulation__pop_jobs_ok : Branch BCC
+    simulation__money_ceil_ok --> simulation__pop_jobs_ok : fallthrough
+    simulation__pop_jobs_ok --> simulation__pop_target_ready : Branch BCC
+    simulation__pop_jobs_ok --> simulation__pop_target_ready : fallthrough
+    simulation__pop_target_ready --> simulation__pop_balance : Branch BEQ
+    simulation__pop_target_ready --> simulation__pop_shrink : Branch BCS
+    simulation__pop_target_ready --> simulation__pop_done : Branch BCC
+    simulation__pop_target_ready --> simulation__pop_done : Branch BNE
+    simulation__pop_target_ready --> simulation__pop_shrink : fallthrough
+    simulation__pop_shrink --> simulation__pop_do_shrink : Branch BCC
+    simulation__pop_shrink --> simulation__pop_done : Branch BEQ
+    simulation__pop_shrink --> simulation__pop_do_shrink : fallthrough
+    simulation__pop_do_shrink --> simulation__pop_done : Branch BEQ
+    simulation__pop_do_shrink --> simulation__pop_done : Branch BNE
+    simulation__pop_do_shrink --> simulation__pop_balance : fallthrough
+    simulation__pop_balance --> simulation__pop_done : Branch BCS
+    simulation__pop_balance --> simulation__pop_done : Branch BEQ
+    simulation__pop_balance --> simulation__pop_done : fallthrough
+    simulation__pop_done --> simulation__no_year : Branch BNE
+    simulation__pop_done --> simulation__no_year : Branch BNE
+    simulation__pop_done --> simulation__no_year : fallthrough
+    title_show_title --> init_disable_cursor_sprite : Call disable_cursor_sprite
+    title_show_title --> init_clear_screen : Call clear_screen
+    title_show_title --> title__box_row : fallthrough
+    title__box_row --> title__box_col : fallthrough
+    title__box_col --> title__box_col : Branch BNE
+    title__box_col --> title__box_row : Branch BNE
+    title__box_col --> title_set_row_color : Call set_row_color
+    title__box_col --> title_set_row_color : Call set_row_color
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> title__flush : fallthrough
+    title__flush --> title__wait_key : Call KERNAL_GETIN
+    title__flush --> title__flush : Branch BNE
+    title__flush --> title__wait_key : fallthrough
+    title__wait_key --> title_set_row_color : Call KERNAL_GETIN
+    title__wait_key --> title__wait_key : Branch BEQ
+    title__wait_key --> init_clear_screen : Call clear_screen
+    title_set_row_color --> title__src_loop : fallthrough
+    title__src_loop --> title__src_loop : Branch BNE
+    ui_print_str_col --> ui__psc_nc1 : Branch BCC
+    ui_print_str_col --> ui__psc_nc1 : fallthrough
+    ui__psc_nc1 --> ui__psc_loop : fallthrough
+    ui__psc_loop --> ui__psc_done : Branch BEQ
+    ui__psc_loop --> ui__psc_loop : Branch BNE
+    ui__psc_loop --> ui__psc_done : fallthrough
+    ui_print_dec16 --> ui__pd_nc1 : Branch BCC
+    ui_print_dec16 --> ui__pd_nc1 : fallthrough
+    ui__pd_nc1 --> ui__pd_loop : fallthrough
+    ui__pd_loop --> ui__pd_sub : fallthrough
+    ui__pd_sub --> ui__pd_emit : Branch BCC
+    ui__pd_sub --> ui__pd_do_sub : Branch BNE
+    ui__pd_sub --> ui__pd_emit : Branch BCC
+    ui__pd_sub --> ui__pd_do_sub : fallthrough
+    ui__pd_do_sub --> ui__pd_sub : Branch BNE
+    ui__pd_do_sub --> ui__pd_emit : fallthrough
+    ui__pd_emit --> ui__pd_loop : Branch BNE
+    ui_fill_row_color --> ui__frc_loop : fallthrough
+    ui__frc_loop --> ui__frc_loop : Branch BNE
+    ui_fill_row_char --> ui__frch_loop : fallthrough
+    ui__frch_loop --> ui__frch_loop : Branch BNE
+    ui_draw_status_bar --> ui_fill_row_char : Call fill_row_char
+    ui_draw_status_bar --> ui_fill_row_color : Call fill_row_color
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_highlight_sel_building : Call highlight_sel_building
+    ui_draw_status_bar --> ui_color_menu_icons : Call color_menu_icons
+    ui_draw_status_bar --> ui_fill_row_char : Call fill_row_char
+    ui_draw_status_bar --> ui_fill_row_color : Call fill_row_color
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_fill_row_char : Call fill_row_char
+    ui_draw_status_bar --> ui_fill_row_color : Call fill_row_color
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_status_bar --> ui_print_dec16 : Call print_dec16
+    ui_draw_status_bar --> ui_draw_cursor_tile_info : Call draw_cursor_tile_info
+    ui_draw_status_bar --> ui_draw_mode_row : Call draw_mode_row
+    ui_draw_status_bar --> ui_print_str_col : Call print_str_col
+    ui_draw_mode_row --> ui__dm_demo : Branch BNE
+    ui_draw_mode_row --> ui__dm_print : Branch BNE
+    ui_draw_mode_row --> ui__dm_demo : fallthrough
+    ui__dm_demo --> ui__dm_print : fallthrough
+    ui__dm_print --> ui_print_str_col : Call print_str_col
+    ui__dm_print --> ui__dm_needs : Branch BEQ
+    ui__dm_print --> ui__dm_done : Branch BNE
+    ui__dm_print --> ui__dm_needs : fallthrough
+    ui__dm_needs --> ui_draw_city_needs : Call draw_city_needs
+    ui__dm_needs --> ui__dm_done : fallthrough
+    ui_draw_city_needs --> ui_print_str_col : Call print_str_col
+    ui_draw_city_needs --> ui_print_str_col : Call print_str_col
+    ui_draw_city_needs --> ui__dcn_jobs : Branch BCS
+    ui_draw_city_needs --> ui_print_str_col : Call print_str_col
+    ui_draw_city_needs --> ui__dcn_jobs : fallthrough
+    ui__dcn_jobs --> ui__dcn_housing : Branch BEQ
+    ui__dcn_jobs --> ui_print_str_col : Call print_str_col
+    ui__dcn_jobs --> ui__dcn_housing : fallthrough
+    ui__dcn_housing --> ui__dcn_parks : Branch BEQ
+    ui__dcn_housing --> simulation_mul_by_10 : Call mul_by_10
+    ui__dcn_housing --> ui__dcn_parks : Branch BCC
+    ui__dcn_housing --> ui_print_str_col : Call print_str_col
+    ui__dcn_housing --> ui__dcn_parks : fallthrough
+    ui__dcn_parks --> ui__dcn_safety : Branch BCS
+    ui__dcn_parks --> ui_print_str_col : Call print_str_col
+    ui__dcn_parks --> ui__dcn_safety : fallthrough
+    ui__dcn_safety --> ui__dcn_ok : Branch BCC
+    ui__dcn_safety --> ui_print_str_col : Call print_str_col
+    ui__dcn_safety --> ui__dcn_ok : fallthrough
+    ui__dcn_ok --> ui__dcn_done : Branch BNE
+    ui__dcn_ok --> ui_print_str_col : Call print_str_col
+    ui__dcn_ok --> ui__dcn_done : fallthrough
+    ui_draw_cursor_tile_info --> map_get_tile : Call get_tile
+    ui_draw_cursor_tile_info --> ui_print_str_col : Call print_str_col
+    ui_draw_cursor_tile_info --> ui__dcti_segment : Branch BEQ
+    ui_draw_cursor_tile_info --> ui__dcti_segment : Branch BEQ
+    ui_draw_cursor_tile_info --> ui__dcti_no_level : Branch BCC
+    ui_draw_cursor_tile_info --> ui__dcti_no_level : Branch BCS
+    ui_draw_cursor_tile_info --> ui__dcti_print_level : Branch BNE
+    ui_draw_cursor_tile_info --> ui__dcti_segment : fallthrough
+    ui__dcti_segment --> simulation_load_metric_at : Call load_metric_at
+    ui__dcti_segment --> ui__dcti_print_level : Branch BNE
+    ui__dcti_segment --> ui__dcti_no_level : fallthrough
+    ui__dcti_no_level --> ui__dcti_print_level : fallthrough
+    ui__dcti_print_level --> ui_print_str_col : Call print_str_col
+    ui__dcti_print_level --> ui_get_cursor_tile_impact : Call get_cursor_tile_impact
+    ui__dcti_print_level --> ui_draw_cursor_tile_impact : Call draw_cursor_tile_impact
+    ui_get_cursor_tile_impact --> ui__gcti_road : Branch BEQ
+    ui_get_cursor_tile_impact --> ui__gcti_house : Branch BNE
+    ui_get_cursor_tile_impact --> ui__gcti_road : fallthrough
+    ui__gcti_road --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_house --> ui__gcti_factory : Branch BNE
+    ui__gcti_house --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_factory --> ui__gcti_park : Branch BNE
+    ui__gcti_factory --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_factory --> simulation_mul_by_10 : Call mul_by_10
+    ui__gcti_factory --> simulation_mul_by_5 : Call mul_by_5
+    ui__gcti_park --> ui__gcti_power : Branch BNE
+    ui__gcti_park --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_park --> simulation_mul_by_5 : Call mul_by_5
+    ui__gcti_power --> ui__gcti_police : Branch BNE
+    ui__gcti_power --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_power --> simulation_mul_by_20 : Call mul_by_20
+    ui__gcti_police --> ui__gcti_fire : Branch BNE
+    ui__gcti_police --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_police --> simulation_mul_by_10 : Call mul_by_10
+    ui__gcti_fire --> ui__gcti_zero : Branch BNE
+    ui__gcti_fire --> buildings_get_tile_density_units : Call get_tile_density_units
+    ui__gcti_fire --> simulation_mul_by_10 : Call mul_by_10
+    ui_draw_cursor_tile_impact --> ui__dcti_zero : Branch BEQ
+    ui_draw_cursor_tile_impact --> ui__dcti_abs_ready : Branch BPL
+    ui_draw_cursor_tile_impact --> ui__dcti_abs_ready : Branch BNE
+    ui_draw_cursor_tile_impact --> ui__dcti_zero : fallthrough
+    ui__dcti_zero --> ui__dcti_abs_ready : fallthrough
+    ui__dcti_abs_ready --> ui__dcti_tens : fallthrough
+    ui__dcti_tens --> ui__dcti_digits : Branch BCC
+    ui__dcti_tens --> ui__dcti_tens : Branch BNE
+    ui__dcti_tens --> ui__dcti_digits : fallthrough
+    ui__dcti_digits --> ui__dcti_scr_ok : Branch BCC
+    ui__dcti_digits --> ui__dcti_scr_ok : fallthrough
+    ui__dcti_scr_ok --> ui__dcti_col_ok : Branch BCC
+    ui__dcti_scr_ok --> ui__dcti_col_ok : fallthrough
+    ui__dcti_col_ok --> ui__dcti_blank_tens : Branch BEQ
+    ui__dcti_col_ok --> ui__dcti_store_tens : Branch BNE
+    ui__dcti_col_ok --> ui__dcti_blank_tens : fallthrough
+    ui__dcti_blank_tens --> ui__dcti_store_tens : fallthrough
+    ui_menu_entry_col --> ui_menu_entry_len : fallthrough
+    ui_menu_entry_len --> ui_menu_icon_col : fallthrough
+    ui_menu_icon_col --> ui_menu_icon_color : fallthrough
+    ui_menu_icon_color --> ui_color_menu_icons : fallthrough
+    ui_color_menu_icons --> ui__cmi_loop : fallthrough
+    ui__cmi_loop --> ui__cmi_base : Branch BNE
+    ui__cmi_loop --> ui__cmi_store : Branch BNE
+    ui__cmi_loop --> ui__cmi_base : fallthrough
+    ui__cmi_base --> ui__cmi_store : fallthrough
+    ui__cmi_store --> ui__cmi_loop : Branch BNE
+    ui_highlight_sel_building --> ui__hsel_done : Branch BEQ
+    ui_highlight_sel_building --> ui__hsel_done : Branch BCS
+    ui_highlight_sel_building --> ui__hsel_nc : Branch BCC
+    ui_highlight_sel_building --> ui__hsel_nc : fallthrough
+    ui__hsel_nc --> ui__hsel_loop : fallthrough
+    ui__hsel_loop --> ui__hsel_loop : Branch BNE
+    ui__hsel_loop --> ui__hsel_done : fallthrough

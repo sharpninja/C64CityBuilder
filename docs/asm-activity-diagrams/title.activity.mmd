@@ -1,0 +1,37 @@
+stateDiagram-v2
+    state "show_title" as title_show_title
+    state "@box_row" as title__box_row
+    state "@box_col" as title__box_col
+    state "@flush" as title__flush
+    state "@wait_key" as title__wait_key
+    state "set_row_color" as title_set_row_color
+    state "@src_loop" as title__src_loop
+
+    [*] --> title_show_title
+    title_show_title --> init_disable_cursor_sprite : Call disable_cursor_sprite
+    title_show_title --> init_clear_screen : Call clear_screen
+    title_show_title --> title__box_row : fallthrough
+    title__box_row --> title__box_col : fallthrough
+    title__box_col --> title__box_col : Branch BNE
+    title__box_col --> title__box_row : Branch BNE
+    title__box_col --> title_set_row_color : Call set_row_color
+    title__box_col --> title_set_row_color : Call set_row_color
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> ui_print_str_col : Call print_str_col
+    title__box_col --> title__flush : fallthrough
+    title__flush --> title__wait_key : Call KERNAL_GETIN
+    title__flush --> title__flush : Branch BNE
+    title__flush --> title__wait_key : fallthrough
+    title__wait_key --> title_set_row_color : Call KERNAL_GETIN
+    title__wait_key --> title__wait_key : Branch BEQ
+    title__wait_key --> init_clear_screen : Call clear_screen
+    title_set_row_color --> title__src_loop : fallthrough
+    title__src_loop --> title__src_loop : Branch BNE

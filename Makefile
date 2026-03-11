@@ -7,6 +7,10 @@
 
 TARGET  = citybuilder.prg
 D64     = citybuilder.d64
+LABELS  = citybuilder.labels
+MAPFILE = citybuilder.map
+DIAGRAM_OUT = docs\asm-activity-diagrams
+ASM_DIAGRAM_SCRIPT = C:\Users\kingd\.codex\skills\asm-activity-diagram\scripts\generate-asm-activity-diagrams.py
 
 CA65    = ca65
 LD65    = ld65
@@ -32,13 +36,13 @@ OBJ = src/main.o
 CA65FLAGS = --cpu 6502 -I src
 
 # ---------------------------------------------------------------
-.PHONY: all d64 run-d64 reload-d64 clean
+.PHONY: all d64 run-d64 reload-d64 clean diagrams install-dotnet-tools
 
 all: $(TARGET)
 	@echo "Built: $<"
 
 $(TARGET): $(OBJ) $(CONFIG)
-	$(LD65) -C $(CONFIG) -o $@ $(OBJ)
+	$(LD65) -C $(CONFIG) -m $(MAPFILE) -Ln $(LABELS) -o $@ $(OBJ)
 	@echo "Built: $@"
 
 d64: $(D64)
@@ -57,5 +61,11 @@ run-d64: $(D64)
 reload-d64: $(D64)
 	pwsh -NoProfile -File scripts/vice-monitor-run-d64.ps1 -ImagePath $<
 
+install-dotnet-tools:
+	dotnet tool restore
+
+diagrams: install-dotnet-tools
+	python "$(ASM_DIAGRAM_SCRIPT)" -s src -o "$(DIAGRAM_OUT)"
+
 clean:
-	rm -f $(OBJ) $(TARGET) $(D64)
+	rm -f $(OBJ) $(TARGET) $(D64) $(LABELS)

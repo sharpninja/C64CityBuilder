@@ -1,0 +1,213 @@
+stateDiagram-v2
+    state "try_place_building" as buildings_try_place_building
+    state "@tp_sel_ok" as buildings__tp_sel_ok
+    state "@tp_check_same" as buildings__tp_check_same
+    state "@tp_not_water" as buildings__tp_not_water
+    state "@tp_not_bridge" as buildings__tp_not_bridge
+    state "@tp_upgrade_density" as buildings__tp_upgrade_density
+    state "@tp_check_cost" as buildings__tp_check_cost
+    state "@tp_cost_bridge" as buildings__tp_cost_bridge
+    state "@tp_cost_ready" as buildings__tp_cost_ready
+    state "@tp_cant_build" as buildings__tp_cant_build
+    state "@tp_max_density" as buildings__tp_max_density
+    state "@tp_afford" as buildings__tp_afford
+    state "@tp_new_bridge" as buildings__tp_new_bridge
+    state "@tp_new_tile" as buildings__tp_new_tile
+    state "@tp_place_new" as buildings__tp_place_new
+    state "@tp_make_upgrade" as buildings__tp_make_upgrade
+    state "@tp_place_tile" as buildings__tp_place_tile
+    state "@tp_msg_upgraded" as buildings__tp_msg_upgraded
+    state "@tp_show_msg" as buildings__tp_show_msg
+    state "try_demolish" as buildings_try_demolish
+    state "@td_do_it" as buildings__td_do_it
+    state "@td_clear_tile" as buildings__td_clear_tile
+    state "@td_clear_empty" as buildings__td_clear_empty
+    state "@td_store_clear" as buildings__td_store_clear
+    state "@td_place" as buildings__td_place
+    state "@td_msg_demo" as buildings__td_msg_demo
+    state "@td_show_msg" as buildings__td_show_msg
+    state "place_tile_at" as buildings_place_tile_at
+    state "@pta_old_road" as buildings__pta_old_road
+    state "@pta_old_done" as buildings__pta_old_done
+    state "@pta_new_road" as buildings__pta_new_road
+    state "@pta_compare" as buildings__pta_compare
+    state "@pta_topology_changed" as buildings__pta_topology_changed
+    state "@pta_write" as buildings__pta_write
+    state "@pta_update_one" as buildings__pta_update_one
+    state "@pta_done" as buildings__pta_done
+    state "get_tile_density_units" as buildings_get_tile_density_units
+    state "increment_count" as buildings_increment_count
+    state "@inc_road" as buildings__inc_road
+    state "@inc_store_road" as buildings__inc_store_road
+    state "@inc1" as buildings__inc1
+    state "@inc_store_house" as buildings__inc_store_house
+    state "@inc2" as buildings__inc2
+    state "@inc_store_factory" as buildings__inc_store_factory
+    state "@inc3" as buildings__inc3
+    state "@inc_store_park" as buildings__inc_store_park
+    state "@inc4" as buildings__inc4
+    state "@inc_store_power" as buildings__inc_store_power
+    state "@inc5" as buildings__inc5
+    state "@inc_store_police" as buildings__inc_store_police
+    state "@inc6" as buildings__inc6
+    state "@inc_store_fire" as buildings__inc_store_fire
+    state "@inc_done" as buildings__inc_done
+    state "decrement_count" as buildings_decrement_count
+    state "@dec_road" as buildings__dec_road
+    state "@dec_store_road" as buildings__dec_store_road
+    state "@dec1" as buildings__dec1
+    state "@dec_store_house" as buildings__dec_store_house
+    state "@dec2" as buildings__dec2
+    state "@dec_store_factory" as buildings__dec_store_factory
+    state "@dec3" as buildings__dec3
+    state "@dec_store_park" as buildings__dec_store_park
+    state "@dec4" as buildings__dec4
+    state "@dec_store_power" as buildings__dec_store_power
+    state "@dec5" as buildings__dec5
+    state "@dec_store_police" as buildings__dec_store_police
+    state "@dec6" as buildings__dec6
+    state "@dec_store_fire" as buildings__dec_store_fire
+    state "@dec_done" as buildings__dec_done
+    state "show_building_name" as buildings_show_building_name
+    state "@sbn_done" as buildings__sbn_done
+
+    [*] --> buildings_try_place_building
+    buildings_try_place_building --> buildings__tp_sel_ok : Branch BNE
+    buildings__tp_sel_ok --> map_get_tile : Call get_tile
+    buildings__tp_sel_ok --> buildings__tp_check_same : Branch BNE
+    buildings__tp_sel_ok --> buildings__tp_upgrade_density : Branch BEQ
+    buildings__tp_sel_ok --> buildings__tp_check_same : fallthrough
+    buildings__tp_check_same --> buildings__tp_upgrade_density : Branch BEQ
+    buildings__tp_check_same --> buildings__tp_not_water : Branch BNE
+    buildings__tp_check_same --> buildings__tp_cant_build : Branch BNE
+    buildings__tp_check_same --> buildings__tp_check_cost : Jmp JMP
+    buildings__tp_check_same --> buildings__tp_not_water : fallthrough
+    buildings__tp_not_water --> buildings__tp_not_bridge : Branch BNE
+    buildings__tp_not_water --> buildings__tp_cant_build : Branch BNE
+    buildings__tp_not_water --> buildings__tp_check_cost : Jmp JMP
+    buildings__tp_not_water --> buildings__tp_not_bridge : fallthrough
+    buildings__tp_not_bridge --> buildings__tp_cant_build : Branch BEQ
+    buildings__tp_not_bridge --> buildings__tp_upgrade_density : fallthrough
+    buildings__tp_upgrade_density --> buildings__tp_max_density : Branch BEQ
+    buildings__tp_upgrade_density --> buildings__tp_check_cost : fallthrough
+    buildings__tp_check_cost --> buildings__tp_cost_ready : Branch BNE
+    buildings__tp_check_cost --> buildings__tp_cost_bridge : Branch BEQ
+    buildings__tp_check_cost --> buildings__tp_cost_ready : Branch BNE
+    buildings__tp_check_cost --> buildings__tp_cost_bridge : fallthrough
+    buildings__tp_cost_bridge --> buildings__tp_cost_ready : fallthrough
+    buildings__tp_cost_ready --> buildings__tp_afford : Branch BPL
+    buildings__tp_cost_ready --> ui_print_str_col : Call print_str_col
+    buildings__tp_cant_build --> ui_print_str_col : Call print_str_col
+    buildings__tp_max_density --> ui_print_str_col : Call print_str_col
+    buildings__tp_afford --> buildings__tp_make_upgrade : Branch BEQ
+    buildings__tp_afford --> buildings__tp_new_tile : Branch BNE
+    buildings__tp_afford --> buildings__tp_new_bridge : Branch BEQ
+    buildings__tp_afford --> buildings__tp_new_tile : Branch BNE
+    buildings__tp_afford --> buildings__tp_new_bridge : fallthrough
+    buildings__tp_new_bridge --> buildings__tp_place_new : Branch BNE
+    buildings__tp_new_bridge --> buildings__tp_new_tile : fallthrough
+    buildings__tp_new_tile --> buildings__tp_place_new : fallthrough
+    buildings__tp_place_new --> buildings__tp_place_tile : Branch BNE
+    buildings__tp_place_new --> buildings__tp_make_upgrade : fallthrough
+    buildings__tp_make_upgrade --> buildings__tp_place_tile : fallthrough
+    buildings__tp_place_tile --> buildings_place_tile_at : Call place_tile_at
+    buildings__tp_place_tile --> buildings__tp_msg_upgraded : Branch BNE
+    buildings__tp_place_tile --> buildings__tp_show_msg : Branch BNE
+    buildings__tp_place_tile --> buildings__tp_msg_upgraded : fallthrough
+    buildings__tp_msg_upgraded --> buildings__tp_show_msg : fallthrough
+    buildings__tp_show_msg --> ui_print_str_col : Call print_str_col
+    buildings_try_demolish --> map_get_tile : Call get_tile
+    buildings_try_demolish --> buildings__td_do_it : Branch BNE
+    buildings__td_do_it --> buildings__td_clear_tile : Branch BCC
+    buildings__td_do_it --> buildings__td_clear_tile : Branch BCS
+    buildings__td_do_it --> buildings__td_clear_tile : Branch BEQ
+    buildings__td_do_it --> buildings__td_place : Branch BNE
+    buildings__td_do_it --> buildings__td_clear_tile : fallthrough
+    buildings__td_clear_tile --> buildings__td_clear_empty : Branch BNE
+    buildings__td_clear_tile --> buildings__td_store_clear : Branch BNE
+    buildings__td_clear_tile --> buildings__td_clear_empty : fallthrough
+    buildings__td_clear_empty --> buildings__td_store_clear : fallthrough
+    buildings__td_store_clear --> buildings__td_place : fallthrough
+    buildings__td_place --> buildings_place_tile_at : Call place_tile_at
+    buildings__td_place --> buildings__td_msg_demo : Branch BEQ
+    buildings__td_place --> buildings__td_show_msg : Branch BNE
+    buildings__td_place --> buildings__td_msg_demo : fallthrough
+    buildings__td_msg_demo --> buildings__td_show_msg : fallthrough
+    buildings__td_show_msg --> ui_print_str_col : Call print_str_col
+    buildings_place_tile_at --> map_get_tile : Call get_tile
+    buildings_place_tile_at --> buildings_decrement_count : Call decrement_count
+    buildings_place_tile_at --> buildings__pta_old_road : Branch BEQ
+    buildings_place_tile_at --> buildings__pta_old_done : Branch BNE
+    buildings_place_tile_at --> buildings__pta_old_road : fallthrough
+    buildings__pta_old_road --> buildings__pta_old_done : fallthrough
+    buildings__pta_old_done --> buildings__pta_new_road : Branch BEQ
+    buildings__pta_old_done --> buildings__pta_compare : Branch BNE
+    buildings__pta_old_done --> buildings__pta_new_road : fallthrough
+    buildings__pta_new_road --> buildings__pta_compare : fallthrough
+    buildings__pta_compare --> buildings__pta_topology_changed : Branch BNE
+    buildings__pta_compare --> buildings__pta_write : Branch BEQ
+    buildings__pta_compare --> buildings__pta_topology_changed : fallthrough
+    buildings__pta_topology_changed --> buildings__pta_write : fallthrough
+    buildings__pta_write --> map_set_tile : Call set_tile
+    buildings__pta_write --> buildings_increment_count : Call increment_count
+    buildings__pta_write --> map_render_road_neighborhood : Call render_road_neighborhood
+    buildings__pta_write --> buildings__pta_update_one : Branch BEQ
+    buildings__pta_write --> simulation_rebuild_road_segments : Call rebuild_road_segments
+    buildings__pta_write --> buildings__pta_done : Jmp JMP
+    buildings__pta_write --> buildings__pta_update_one : fallthrough
+    buildings__pta_update_one --> simulation_update_building_segment_at : Call update_building_segment_at
+    buildings__pta_update_one --> buildings__pta_done : fallthrough
+    buildings_increment_count --> buildings_get_tile_density_units : Call get_tile_density_units
+    buildings_increment_count --> buildings__inc_road : Branch BEQ
+    buildings_increment_count --> buildings__inc1 : Branch BNE
+    buildings_increment_count --> buildings__inc_road : fallthrough
+    buildings__inc_road --> buildings__inc_store_road : Branch BCC
+    buildings__inc_road --> buildings__inc_store_road : fallthrough
+    buildings__inc1 --> buildings__inc2 : Branch BNE
+    buildings__inc1 --> buildings__inc_store_house : Branch BCC
+    buildings__inc1 --> buildings__inc_store_house : fallthrough
+    buildings__inc2 --> buildings__inc3 : Branch BNE
+    buildings__inc2 --> buildings__inc_store_factory : Branch BCC
+    buildings__inc2 --> buildings__inc_store_factory : fallthrough
+    buildings__inc3 --> buildings__inc4 : Branch BNE
+    buildings__inc3 --> buildings__inc_store_park : Branch BCC
+    buildings__inc3 --> buildings__inc_store_park : fallthrough
+    buildings__inc4 --> buildings__inc5 : Branch BNE
+    buildings__inc4 --> buildings__inc_store_power : Branch BCC
+    buildings__inc4 --> buildings__inc_store_power : fallthrough
+    buildings__inc5 --> buildings__inc6 : Branch BNE
+    buildings__inc5 --> buildings__inc_store_police : Branch BCC
+    buildings__inc5 --> buildings__inc_store_police : fallthrough
+    buildings__inc6 --> buildings__inc_done : Branch BNE
+    buildings__inc6 --> buildings__inc_store_fire : Branch BCC
+    buildings__inc6 --> buildings__inc_store_fire : fallthrough
+    buildings__inc_store_fire --> buildings__inc_done : fallthrough
+    buildings_decrement_count --> buildings_get_tile_density_units : Call get_tile_density_units
+    buildings_decrement_count --> buildings__dec_road : Branch BEQ
+    buildings_decrement_count --> buildings__dec1 : Branch BNE
+    buildings_decrement_count --> buildings__dec_road : fallthrough
+    buildings__dec_road --> buildings__dec_store_road : Branch BCS
+    buildings__dec_road --> buildings__dec_store_road : fallthrough
+    buildings__dec1 --> buildings__dec2 : Branch BNE
+    buildings__dec1 --> buildings__dec_store_house : Branch BCS
+    buildings__dec1 --> buildings__dec_store_house : fallthrough
+    buildings__dec2 --> buildings__dec3 : Branch BNE
+    buildings__dec2 --> buildings__dec_store_factory : Branch BCS
+    buildings__dec2 --> buildings__dec_store_factory : fallthrough
+    buildings__dec3 --> buildings__dec4 : Branch BNE
+    buildings__dec3 --> buildings__dec_store_park : Branch BCS
+    buildings__dec3 --> buildings__dec_store_park : fallthrough
+    buildings__dec4 --> buildings__dec5 : Branch BNE
+    buildings__dec4 --> buildings__dec_store_power : Branch BCS
+    buildings__dec4 --> buildings__dec_store_power : fallthrough
+    buildings__dec5 --> buildings__dec6 : Branch BNE
+    buildings__dec5 --> buildings__dec_store_police : Branch BCS
+    buildings__dec5 --> buildings__dec_store_police : fallthrough
+    buildings__dec6 --> buildings__dec_done : Branch BNE
+    buildings__dec6 --> buildings__dec_store_fire : Branch BCS
+    buildings__dec6 --> buildings__dec_store_fire : fallthrough
+    buildings__dec_store_fire --> buildings__dec_done : fallthrough
+    buildings_show_building_name --> buildings__sbn_done : Branch BEQ
+    buildings_show_building_name --> buildings__sbn_done : Branch BCS
+    buildings_show_building_name --> ui_print_str_col : Call print_str_col
+    buildings_show_building_name --> buildings__sbn_done : fallthrough

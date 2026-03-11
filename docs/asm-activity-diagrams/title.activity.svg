@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 979.984 520.8" width="979.984" height="520.8" style="--bg:#FFFFFF;--fg:#27272A;--accent:#3b82f6">
+<style>
+  text { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .mono { font-family: ui-monospace, 'SF Mono', 'Cascadia Code', monospace; }
+  svg {
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 55%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 35%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 20%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 32%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 70%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 4%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 22%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 4%, var(--bg));
+    --_group-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 10%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 8%, var(--bg));
+    --_accent-fill:   color-mix(in srgb, var(--accent, var(--fg)) 8%, var(--bg));
+    --_accent-stroke: color-mix(in srgb, var(--accent, var(--fg)) 20%, var(--bg));
+    --_accent-text:   color-mix(in srgb, var(--accent, var(--fg)) 65%, var(--bg));
+  }
+  .node, .actor, .entity, .class-node { filter: drop-shadow(0 1px 3px rgba(0,0,0,.07)); }
+  .subgraph { filter: drop-shadow(0 1px 2px rgba(0,0,0,.04)); }
+</style>
+
+<defs>
+  <marker id="arrowhead" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto">
+    <polygon points="0 0, 12 6, 0 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="1" refY="6" orient="auto-start-reverse">
+    <polygon points="12 0, 0 6, 12 12" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+
+<path class="edge" data-from="_start" data-to="title_show_title" data-style="solid" data-arrow-start="false" data-arrow-end="true" d="M331.53599999999994,80 L331.53599999999994,113.1 Q331.53599999999994,119.1 337.53599999999994,119.1 L418.06199999999995,119.1 Q424.06199999999995,119.1 424.06199999999995,125.1 L424.06199999999995,158.2" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title_show_title" data-to="init_disable_cursor_sprite" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call disable_cursor_sprite" d="M424.06199999999995,204.4 L424.06199999999995,234.4 Q424.06199999999995,240.4 430.06199999999995,240.4 L621.468,240.4 Q627.468,240.4 627.468,246.4 L627.468,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title_show_title" data-to="init_clear_screen" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call clear_screen" d="M424.06199999999995,204.4 L424.06199999999995,234.4 Q424.06199999999995,240.4 418.06199999999995,240.4 L254.586,240.4 Q248.586,240.4 248.586,246.4 L248.586,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title_show_title" data-to="title__box_row" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M424.06199999999995,204.4 L424.06199999999995,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_row" data-to="title__box_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M424.06199999999995,322.6 L424.062,394.6" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="title__box_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M479.436,417.70000000000005 L899.984,417.70000000000005 L899.984,417.70000000000005 L479.436,417.70000000000005" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="title__box_row" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M479.436,417.70000000000005 L893.984,417.70000000000005 Q899.984,417.70000000000005 899.984,411.70000000000005 L899.984,305.5 Q899.984,299.5 893.984,299.5 L481.8299999999999,299.5" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="title_set_row_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call set_row_color" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L446.86999999999995,240.4 Q452.86999999999995,240.4 452.86999999999995,234.4 L452.86999999999995,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="title_set_row_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call set_row_color" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L446.86999999999995,240.4 Q452.86999999999995,240.4 452.86999999999995,234.4 L452.86999999999995,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="ui_print_str_col" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call print_str_col" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 430.062,240.4 L782.6600000000001,240.4 Q788.6600000000001,240.4 788.6600000000001,234.4 L788.6600000000001,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__box_col" data-to="title__flush" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M424.062,440.8 L424.062,246.4 Q424.062,240.4 418.062,240.4 L91,240.4 Q85,240.4 85,234.4 L85,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__flush" data-to="title__wait_key" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call KERNAL_GETIN" d="M85,86.2 L85,69.1 Q85,63.1 91,63.1 L217.76799999999997,63.1 Q223.76799999999997,63.1 223.76799999999997,57.1 L223.76799999999997,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__flush" data-to="title__flush" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M130,63.1 L899.984,63.1 L899.984,63.1 L130,63.1" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__flush" data-to="title__wait_key" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M85,86.2 L85,69.1 Q85,63.1 91,63.1 L217.76799999999997,63.1 Q223.76799999999997,63.1 223.76799999999997,57.1 L223.76799999999997,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__wait_key" data-to="title_set_row_color" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call KERNAL_GETIN" d="M223.76799999999997,86.2 L223.76799999999997,69.1 Q223.76799999999997,63.1 229.76799999999997,63.1 L446.86999999999995,63.1 Q452.86999999999995,63.1 452.86999999999995,57.1 L452.86999999999995,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__wait_key" data-to="title__wait_key" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BEQ" d="M281.53599999999994,63.1 L899.984,63.1 L899.984,63.1 L281.53599999999994,63.1" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title_set_row_color" data-to="title__src_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="fallthrough" d="M452.86999999999995,86.2 L452.86999999999995,69.1 Q452.86999999999995,63.1 458.86999999999995,63.1 L612.77,63.1 Q618.77,63.1 618.77,57.1 L618.77,40" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__src_loop" data-to="title__src_loop" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Branch BNE" d="M677.3359999999999,63.1 L899.984,63.1 L899.984,63.1 L677.3359999999999,63.1" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<path class="edge" data-from="title__wait_key" data-to="init_clear_screen" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Call clear_screen" d="M223.76799999999997,86.2 L223.76799999999997,116.2 Q223.76799999999997,122.2 229.76799999999997,122.2 L242.586,122.2 Q248.586,122.2 248.586,128.2 L248.586,152.2 Q248.586,158.2 248.586,164.2 L248.586,276.4" fill="none" stroke="var(--_line)" stroke-width="2.25" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="title_show_title" data-to="init_disable_cursor_sprite" data-label="Call disable_cursor_sprite">
+  <rect x="427.51239999999996" y="224.6" width="155.82400000000004" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="505.4244" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call disable_cursor_sprite</text>
+</g>
+<g class="edge-label" data-from="title_show_title" data-to="init_clear_screen" data-label="Call clear_screen">
+  <rect x="298.6395999999999" y="224.6" width="110.46400000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="353.87159999999994" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call clear_screen</text>
+</g>
+<g class="edge-label" data-from="title_show_title" data-to="title__box_row" data-label="fallthrough">
+  <rect x="387.94599999999997" y="217.4" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="424.06199999999995" y="233.20000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="title__box_row" data-to="title__box_col" data-label="fallthrough">
+  <rect x="387.94599999999997" y="335.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="424.06199999999995" y="351.40000000000003" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="title__box_col" data-label="Branch BNE">
+  <rect x="606.6792" y="401.90000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="647.6552" y="417.70000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="title__box_row" data-label="Branch BNE">
+  <rect x="690.7888" y="401.90000000000003" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="731.7648" y="417.70000000000005" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="title_set_row_color" data-label="Call set_row_color">
+  <rect x="366.886" y="344.84" width="114.352" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="424.062" y="360.64" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call set_row_color</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="title_set_row_color" data-label="Call set_row_color">
+  <rect x="366.886" y="344.84" width="114.352" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="424.062" y="360.64" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call set_row_color</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="ui_print_str_col" data-label="Call print_str_col">
+  <rect x="517.2612" y="224.6" width="105.28000000000002" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="569.9012" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call print_str_col</text>
+</g>
+<g class="edge-label" data-from="title__box_col" data-to="title__flush" data-label="fallthrough">
+  <rect x="252.32119999999998" y="224.6" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="288.43719999999996" y="240.4" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="title__flush" data-to="title__wait_key" data-label="Call KERNAL_GETIN">
+  <rect x="77.4992" y="47.3" width="126.01599999999998" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="140.50719999999998" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call KERNAL_GETIN</text>
+</g>
+<g class="edge-label" data-from="title__flush" data-to="title__flush" data-label="Branch BNE">
+  <rect x="397.0176" y="47.3" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="437.9936" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="title__flush" data-to="title__wait_key" data-label="fallthrough">
+  <rect x="104.39119999999998" y="47.3" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="140.50719999999998" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="title__wait_key" data-to="title_set_row_color" data-label="Call KERNAL_GETIN">
+  <rect x="252.4008" y="47.3" width="126.01599999999998" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="315.4088" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call KERNAL_GETIN</text>
+</g>
+<g class="edge-label" data-from="title__wait_key" data-to="title__wait_key" data-label="Branch BEQ">
+  <rect x="487.9392" y="47.3" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="528.9152" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BEQ</text>
+</g>
+<g class="edge-label" data-from="title_set_row_color" data-to="title__src_loop" data-label="fallthrough">
+  <rect x="483.11400000000003" y="47.3" width="72.232" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="519.23" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">fallthrough</text>
+</g>
+<g class="edge-label" data-from="title__src_loop" data-to="title__src_loop" data-label="Branch BNE">
+  <rect x="725.4191999999999" y="47.3" width="81.952" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="766.3951999999999" y="63.1" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Branch BNE</text>
+</g>
+<g class="edge-label" data-from="title__wait_key" data-to="init_clear_screen" data-label="Call clear_screen">
+  <rect x="193.354" y="189.68" width="110.46400000000001" height="31.6" rx="10" ry="10" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+<text x="248.586" y="205.48000000000002" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-sec)" dy="4.199999999999999">Call clear_screen</text>
+</g>
+<g class="node" data-id="title_show_title" data-label="show_title" data-shape="rounded">
+  <rect x="367.88999999999993" y="158.2" width="112.34400000000001" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="424.06199999999995" y="181.29999999999998" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">show_title</text>
+</g>
+<g class="node" data-id="title__box_row" data-label="@box_row" data-shape="rounded">
+  <rect x="366.294" y="276.4" width="115.53599999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="424.06199999999995" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@box_row</text>
+</g>
+<g class="node" data-id="title__box_col" data-label="@box_col" data-shape="rounded">
+  <rect x="368.688" y="394.6" width="110.74799999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="424.062" y="417.70000000000005" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@box_col</text>
+</g>
+<g class="node" data-id="title__flush" data-label="@flush" data-shape="rounded">
+  <rect x="40" y="40" width="90" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="85" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@flush</text>
+</g>
+<g class="node" data-id="title__wait_key" data-label="@wait_key" data-shape="rounded">
+  <rect x="165.99999999999997" y="40" width="115.53599999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="223.76799999999997" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@wait_key</text>
+</g>
+<g class="node" data-id="title_set_row_color" data-label="set_row_color" data-shape="rounded">
+  <rect x="381.53599999999994" y="40" width="142.668" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="452.86999999999995" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">set_row_color</text>
+</g>
+<g class="node" data-id="title__src_loop" data-label="@src_loop" data-shape="rounded">
+  <rect x="560.204" y="40" width="117.13199999999999" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="618.77" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">@src_loop</text>
+</g>
+<g class="node" data-id="_start" data-label="" data-shape="statestart">
+  <circle cx="331.53599999999994" cy="60" r="12" fill="var(--_text)" stroke="none" />
+  
+</g>
+<g class="node" data-id="init_disable_cursor_sprite" data-label="init_disable_cursor_sprite" data-shape="rounded">
+  <rect x="517.8299999999999" y="276.4" width="219.27599999999998" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="627.468" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_disable_cursor_sprite</text>
+</g>
+<g class="node" data-id="init_clear_screen" data-label="init_clear_screen" data-shape="rounded">
+  <rect x="166.87800000000001" y="276.4" width="163.41599999999997" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="248.586" y="299.5" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">init_clear_screen</text>
+</g>
+<g class="node" data-id="ui_print_str_col" data-label="ui_print_str_col" data-shape="rounded">
+  <rect x="713.336" y="40" width="150.64800000000002" height="46.2" rx="10" ry="10" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="2" />
+  <text x="788.6600000000001" y="63.1" text-anchor="middle" font-size="14" font-weight="500" fill="var(--_text)" dy="4.8999999999999995">ui_print_str_col</text>
+</g>
+</svg>
