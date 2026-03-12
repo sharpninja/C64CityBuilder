@@ -1,0 +1,3 @@
+[submodule "external/asm-lsp"]
+	path = external/asm-lsp
+	url = https://github.com/sharpninja/asm-lsp.git
